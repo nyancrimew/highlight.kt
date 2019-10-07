@@ -1,4 +1,4 @@
-package com.codewaves.codehighlight.core;
+package com.codewaves.codehighlight.core
 
 /*
  * Created by Sergej Kravcenko on 5/16/2017.
@@ -9,7 +9,7 @@ package com.codewaves.codehighlight.core;
  * Factory that creates style renderers used for applying style to
  * code parts.
  */
-public interface StyleRendererFactory {
+interface StyleRendererFactory {
    /**
     * Creates style renderer for provided language name.
     *
@@ -17,5 +17,5 @@ public interface StyleRendererFactory {
     *
     * @return style renderer
     */
-   StyleRenderer create(String languageName);
+   fun create(languageName: String): StyleRenderer
 }
