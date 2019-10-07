@@ -1,4 +1,4 @@
-package com.codewaves.codehighlight.languages
+package com.codewaves.codehighlight.core
 
 import com.codewaves.codehighlight.core.Mode
 
