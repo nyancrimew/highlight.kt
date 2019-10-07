@@ -22,3 +22,5 @@ classes
 obj
 
 .DS_Store
+
+**/.gradle
