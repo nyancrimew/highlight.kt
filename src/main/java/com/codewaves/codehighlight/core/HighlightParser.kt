@@ -1,8 +1,5 @@
 package com.codewaves.codehighlight.core;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -69,7 +66,7 @@ class HighlightParser(
 
    private fun isIllegal(lexeme: String, mode: Mode) = !ignoreIllegals && testRe(mode.illegalRe, lexeme)
 
-   private fun keywordMatch(mode: Mode, match: String) = mode.compiledKeywords.get(if(language.caseInsensitive) match.toLowerCase() else match)
+   private fun keywordMatch(mode: Mode, match: String) = mode.compiledKeywords.get(if(language.case_insensitive) match.toLowerCase() else match)
 
    private fun processKeywords() {
       if (top.mode.compiledKeywords.isEmpty()) {

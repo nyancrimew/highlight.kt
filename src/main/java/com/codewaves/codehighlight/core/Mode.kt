@@ -1,5 +1,4 @@
 package com.codewaves.codehighlight.core
-import java.util.HashMap
 import java.util.regex.Pattern
 /**
 * Created by Sergej Kravcenko on 5/12/2017.
@@ -7,32 +6,32 @@ import java.util.regex.Pattern
 */
 data class Mode(
    // Language
-   val aliases: List<String> = emptyList(),
-   val caseInsensitive: Boolean = false,
+    val aliases: List<String> = emptyList(),
+    val case_insensitive: Boolean = false,
    // Mode
-   val self: Boolean = false,
-   val subLanguage: String? = null,
-   val subLanguages: List<String> = emptyList(),
-   val starts: Mode? = null,
-   var contains: List<Mode> = emptyList(),
-   val variants: List<Mode> = emptyList(),
-   val beginKeywords: List<Keyword> = emptyList(),
-   val keywords: List<Keyword> = emptyList(),
-   val className: String? = null,
-   var begin: String? = null,
-   var end: String? = null,
-   val lexemes: String? = null,
-   var terminators: Pattern? = null,
-   val illegal: String? = null,
-   var terminatorEnd: String? = null,
-   var relevance: Int = -1,
-   val skip: Boolean = false,
-   val returnBegin: Boolean = false,
-   val excludeBegin: Boolean = false,
-   val returnEnd: Boolean = false,
-   val excludeEnd: Boolean = false,
-   val endsWithParent: Boolean = false,
-   val endsParent: Boolean = false
+    val self: Boolean = false,
+    val subLanguage: String? = null,
+    val subLanguages: List<String> = emptyList(),
+    val starts: Mode? = null,
+    var contains: List<Mode> = emptyList(),
+    val variants: List<Mode> = emptyList(),
+    val beginKeywords: List<Keyword> = emptyList(),
+    val keywords: List<Keyword> = emptyList(),
+    val className: String? = null,
+    var begin: String? = null,
+    var end: String? = null,
+    val lexemes: String? = null,
+    var terminators: Pattern? = null,
+    val illegal: String? = null,
+    var terminatorEnd: String? = null,
+    var relevance: Int = -1,
+    val skip: Boolean = false,
+    val returnBegin: Boolean = false,
+    val excludeBegin: Boolean = false,
+    val returnEnd: Boolean = false,
+    val excludeEnd: Boolean = false,
+    val endsWithParent: Boolean = false,
+    val endsParent: Boolean = false
 ) {
   internal var compiled:Boolean = false
   internal var compiledKeywords = mapOf<String, Keyword>()
@@ -41,7 +40,7 @@ data class Mode(
   internal var lexemesRe : Pattern? = null
   internal var illegalRe : Pattern? = null
 
-  private fun langRe(re: String) = "(?m" + (if(caseInsensitive) "i" else "") + ")" + re
+  private fun langRe(re: String) = "(?m" + (if(case_insensitive) "i" else "") + ")" + re
 
   private fun expandMode(mode: Mode) = if (mode.variants.isNotEmpty()) {
          mode.variants.map { inherit(mode, it) }
@@ -59,7 +58,7 @@ data class Mode(
       val keywords = if(mode.keywords.isEmpty()) mode.beginKeywords else mode.keywords
       if (keywords.isNotEmpty()) {
          mode.compiledKeywords = keywords.flatMap { group ->
-            val words = if (caseInsensitive) group.value.toLowerCase() else group.value
+            val words = if (case_insensitive) group.value.toLowerCase() else group.value
             words.split(" ").map { word ->
                val pair = word.split("\\|")
                val relevance = if (pair.size > 1) pair[1].toInt() else 1
@@ -153,7 +152,7 @@ data class Mode(
     val APOS_STRING_MODE = Mode(className = "string", begin= "\'", end = "\'", illegal= "\\n", contains = listOf(BACKSLASH_ESCAPE))
     val QUOTE_STRING_MODE = Mode(className = "string", begin= "\"", end= "\"", illegal= "\\n", contains= listOf(BACKSLASH_ESCAPE))
     val PHRASAL_WORDS_MODE = Mode(begin = "\\b(a|an|the|are|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such|will|you|your|they|like|more)\\b")
-    fun COMMENT(begin:String, end:String, inherits:Mode?) : Mode {
+    fun COMMENT(begin:String, end:String, inherits:Mode? = null) : Mode {
        var mode = Mode(
           className = "comment",
           begin = begin,
@@ -193,7 +192,7 @@ data class Mode(
                                                             ")?"), relevance = 0)
     val REGEXP_MODE = Mode(className = "regexp", begin = "\\/", end = "\\/[gimuy]*", illegal = "\\n", contains = listOf(BACKSLASH_ESCAPE, Mode(begin = "\\[", end = "\\]", relevance = 0, contains = listOf(BACKSLASH_ESCAPE))))
 
-    fun inherit(mode:Mode, from:Mode?) = if (from == null) mode else mode.copy(
+    fun inherit(mode:Mode, from:Mode? = null) = if (from == null) mode else mode.copy(
           starts = from.starts ?: mode.starts,
           contains = if (from.contains.isNotEmpty()) from.contains else mode.contains,
           variants = if (from.variants.isNotEmpty()) from.variants else mode.variants,
