@@ -35,7 +35,10 @@ class CppLanguage : LanguageBuilder {
                 end = "\'",
                 illegal = "."
             ),
-            Mode(begin = """(?:u8?|U|L)?R"(listOf(^()\\ ]{0,16))\((?:.|\n)*?\)\1"""")
+            Mode(
+                begin =
+                    """(?:u8?|U|L)?R"(listOf(^()\\ ]{0,16))\((?:.|\n)*?\)\1""""
+            )
         )
     )
 
@@ -51,22 +54,28 @@ class CppLanguage : LanguageBuilder {
 
     val PREPROCESSOR = Mode(
         className = "meta",
-        begin = """#\s*[a-z]+\b""",
-        end = """${'$'}""",
+        begin =
+            """#\s*[a-z]+\b""",
+        end =
+            """${'$'}""",
         keywords = keywordsJson(
             """
-meta-keyword ="if else elif endif define undef warning error line pragma ifdef ifndef include"""".trimIndent()
+            meta-keyword ="if else elif endif define undef warning error line pragma ifdef ifndef include"
+            """.trimIndent()
         ),
         contains = listOf(
             Mode(
-                begin = """\\\n""",
+                begin =
+                    """\\\n""",
                 relevance = 0
             ),
             hljs.inherit(STRINGS, Mode(className = "meta-string")),
             Mode(
                 className = "meta-string",
-                begin = """<[^\n>]*>""",
-                end = """${'$'}""",
+                begin =
+                    """<[^\n>]*>""",
+                end =
+                    """${'$'}""",
                 illegal = "\\n"
             ),
             hljs.C_LINE_COMMENT_MODE,
@@ -78,9 +87,10 @@ meta-keyword ="if else elif endif define undef warning error line pragma ifdef i
 
     val CPP_KEYWORDS = keywordsJson(
         """
-keyword = "int float while private char catch import module export virtual operator sizeof dynamic_cast|10 typedef const_cast|10 const for static_cast|10 union namespace unsigned long volatile static protected bool template mutable if public friend do goto auto void enum else break extern using asm case typeid short reinterpret_cast|10 default double register explicit signed typename try this switch continue inline delete alignof constexpr consteval constinit decltype concept co_await co_return co_yield requires noexcept static_assert thread_local restrict _Bool complex _Complex _Imaginary atomic_bool atomic_char atomic_schar atomic_uchar atomic_short atomic_ushort atomic_int atomic_uint atomic_long atomic_ulong atomic_llong atomic_ullong new throw return and or not",
-built_in = "std string wstring cin cout cerr clog stdin stdout stderr stringstream istringstream ostringstream auto_ptr deque list queue stack vector map set bitset multiset multimap unordered_set unordered_map unordered_multiset unordered_multimap array shared_ptr abort abs acos asin atan2 atan calloc ceil cosh cos exit exp fabs floor fmod fprintf fputs free frexp fscanf isalnum isalpha iscntrl isdigit isgraph islower isprint ispunct isspace isupper isxdigit tolower toupper labs ldexp log10 log malloc realloc memchr memcmp memcpy memset modf pow printf putchar puts scanf sinh sin snprintf sprintf sqrt sscanf strcat strchr strcmp strcpy strcspn strlen strncat strncmp strncpy strpbrk strrchr strspn strstr tanh tan vfprintf vprintf vsprintf endl initializer_list unique_ptr",
-literal = "true false nullptr NULL"""".trimIndent()
+        keyword = "int float while private char catch import module export virtual operator sizeof dynamic_cast|10 typedef const_cast|10 const for static_cast|10 union namespace unsigned long volatile static protected bool template mutable if public friend do goto auto void enum else break extern using asm case typeid short reinterpret_cast|10 default double register explicit signed typename try this switch continue inline delete alignof constexpr consteval constinit decltype concept co_await co_return co_yield requires noexcept static_assert thread_local restrict _Bool complex _Complex _Imaginary atomic_bool atomic_char atomic_schar atomic_uchar atomic_short atomic_ushort atomic_int atomic_uint atomic_long atomic_ulong atomic_llong atomic_ullong new throw return and or not",
+        built_in = "std string wstring cin cout cerr clog stdin stdout stderr stringstream istringstream ostringstream auto_ptr deque list queue stack vector map set bitset multiset multimap unordered_set unordered_map unordered_multiset unordered_multimap array shared_ptr abort abs acos asin atan2 atan calloc ceil cosh cos exit exp fabs floor fmod fprintf fputs free frexp fscanf isalnum isalpha iscntrl isdigit isgraph islower isprint ispunct isspace isupper isxdigit tolower toupper labs ldexp log10 log malloc realloc memchr memcmp memcpy memset modf pow printf putchar puts scanf sinh sin snprintf sprintf sqrt sscanf strcat strchr strcmp strcpy strcspn strlen strncat strncmp strncpy strpbrk strrchr strspn strstr tanh tan vfprintf vprintf vsprintf endl initializer_list unique_ptr",
+        literal = "true false nullptr NULL"
+        """.trimIndent()
     )
 
     val EXPRESSION_CONTAINS = listOf(
@@ -112,23 +122,30 @@ literal = "true false nullptr NULL"""".trimIndent()
                 // definition and shouldn't highlight anything that looks like one =         // `return some()`, `else if()`, `(x*sum(1, 2))`
                 variants = listOf(
                     Mode(
-                        begin = """=""",
-                        end = """;"""
+                        begin =
+                            """=""",
+                        end =
+                            """;"""
                     ),
                     Mode(
-                        begin = """\(""",
-                        end = """\)"""
+                        begin =
+                            """\(""",
+                        end =
+                            """\)"""
                     ),
                     Mode(
                         beginKeywords = keywords("new throw return else"),
-                        end = """;"""
+                        end =
+                            """;"""
                     )
                 ),
                 keywords = CPP_KEYWORDS,
                 contains = EXPRESSION_CONTAINS + listOf(
                     Mode(
-                        begin = """\(""",
-                        end = """\)""",
+                        begin =
+                            """\(""",
+                        end =
+                            """\)""",
                         keywords = CPP_KEYWORDS,
                         contains = EXPRESSION_CONTAINS
                     )

@@ -16,14 +16,16 @@ Category = common, css
 class CssLanguage : LanguageBuilder {
     val IDENT_RE = "[a-zA-Z-][a-zA-Z0-9_-]*"
     val RULE = Mode(
-        begin = """(?:[A-Z\_\.\-]+|--[a-zA-Z0-9_-]+)\s*:""",
+        begin =
+            """(?:[A-Z\_\.\-]+|--[a-zA-Z0-9_-]+)\s*:""",
         returnBegin = true,
         end = ";",
         endsWithParent = true,
         contains = listOf(
             Mode(
                 className = "attribute",
-                begin = """\S""",
+                begin =
+                    """\S""",
                 end = ":",
                 excludeEnd = true,
                 starts = Mode(
@@ -31,16 +33,20 @@ class CssLanguage : LanguageBuilder {
                     excludeEnd = true,
                     contains = listOf(
                         Mode(
-                            begin = """[\w-]+\(""",
+                            begin =
+                                """[\w-]+\(""",
                             returnBegin = true,
                             contains = listOf(
                                 Mode(
                                     className = "built_in",
-                                    begin = """[\w-]+"""
+                                    begin =
+                                        """[\w-]+"""
                                 ),
                                 Mode(
-                                    begin = """\(""",
-                                    end = """\)""",
+                                    begin =
+                                        """\(""",
+                                    end =
+                                        """\)""",
                                     contains = listOf(
                                         hljs.APOS_STRING_MODE,
                                         hljs.QUOTE_STRING_MODE
@@ -68,26 +74,32 @@ class CssLanguage : LanguageBuilder {
 
     override fun build() = Mode(
         case_insensitive = true,
-        illegal = """[=\/|'\${'$'}]""",
+        illegal =
+            """[=\/|'\${'$'}]""",
         contains = listOf(
             hljs.C_BLOCK_COMMENT_MODE,
             Mode(
                 className = "selector-id",
-                begin = """#[A-Za-z0-9_-]+"""
+                begin =
+                    """#[A-Za-z0-9_-]+"""
             ),
             Mode(
                 className = "selector-class",
-                begin = """\.[A-Za-z0-9_-]+"""
+                begin =
+                    """\.[A-Za-z0-9_-]+"""
             ),
             Mode(
                 className = "selector-attr",
-                begin = """\[""",
-                end = """\]""",
+                begin =
+                    """\[""",
+                end =
+                    """\]""",
                 illegal = "${'$'}"
             ),
             Mode(
                 className = "selector-pseudo",
-                begin = """:(:)?[a-zA-Z0-9\_\-\+\(\)"'.]+"""
+                begin =
+                    """:(:)?[a-zA-Z0-9\_\-\+\(\)"'.]+"""
             ),
             Mode(
                 begin = "@(font-face|page)",
@@ -100,14 +112,18 @@ class CssLanguage : LanguageBuilder {
                 // because it doesn’t let it to be parsed as
                 // a rule set but instead drops parser into
                 // the default mode which is how it should be.
-                illegal = """:""", // break on Less variables @var = ...
+                illegal =
+                    """:""",
+                // break on Less variables @var = ...
                 contains = listOf(
                     Mode(
                         className = "keyword",
-                        begin = """\w+"""
+                        begin =
+                            """\w+"""
                     ),
                     Mode(
-                        begin = """\s""",
+                        begin =
+                            """\s""",
                         endsWithParent = true,
                         excludeEnd = true,
                         relevance = 0,
@@ -126,7 +142,8 @@ class CssLanguage : LanguageBuilder {
             Mode(
                 begin = "{",
                 end = "}",
-                illegal = """\S""",
+                illegal =
+                    """\S""",
                 contains = listOf(
                     hljs.C_BLOCK_COMMENT_MODE,
                     RULE

@@ -32,7 +32,8 @@ class JavaLanguage : LanguageBuilder {
     override fun build() = Mode(
         aliases = listOf("jsp"),
         keywords = keywords(KEYWORDS),
-        illegal = """<\/|#""",
+        illegal =
+            """<\/|#""",
         contains = listOf(
             hljs.COMMENT(
                 "/\\*\\*",
@@ -42,7 +43,8 @@ class JavaLanguage : LanguageBuilder {
                     contains = listOf(
                         Mode(
                             // eat up @'s in emails to prevent them to be recognized as doctags
-                            begin = """\w+@""",
+                            begin =
+                                """\w+@""",
                             relevance = 0
                         ),
                         Mode(
@@ -59,10 +61,12 @@ class JavaLanguage : LanguageBuilder {
             Mode(
                 className = "class",
                 beginKeywords = keywords("class interface"),
-                end = """[{;=]""",
+                end =
+                    """[{;=]""",
                 excludeEnd = true,
                 keywords = keywords("class interface"),
-                illegal = """[:"\[\]]""",
+                illegal =
+                    """[:"\[\]]""",
                 contains = listOf(
                     Mode(beginKeywords = keywords("extends implements")),
                     hljs.UNDERSCORE_TITLE_MODE
@@ -78,7 +82,8 @@ class JavaLanguage : LanguageBuilder {
                 className = "function",
                 begin = "(\\s+)+\\s*\\(",
                 returnBegin = true,
-                end = """[{;=]""",
+                end =
+                    """[{;=]""",
                 excludeEnd = true,
                 keywords = keywords(KEYWORDS),
                 contains = listOf(
@@ -90,8 +95,10 @@ class JavaLanguage : LanguageBuilder {
                     ),
                     Mode(
                         className = "params",
-                        begin = """\(""",
-                        end = """\)""",
+                        begin =
+                            """\(""",
+                        end =
+                            """\)""",
                         keywords = keywords(KEYWORDS),
                         relevance = 0,
                         contains = listOf(

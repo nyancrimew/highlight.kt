@@ -19,9 +19,11 @@ class ClojurereplLanguage : LanguageBuilder {
         contains = listOf(
             Mode(
                 className = "meta",
-                begin = """^(listOf(\w.-]+|\s*#_)?=>""",
+                begin =
+                    """^(listOf(\w.-]+|\s*#_)?=>""",
                 starts = Mode(
-                    end = """${'$'}""",
+                    end =
+                        """${'$'}""",
                     subLanguage = "clojure"
                 )
             )

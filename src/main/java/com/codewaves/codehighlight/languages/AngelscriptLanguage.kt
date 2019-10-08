@@ -39,7 +39,7 @@ class AngelscriptLanguage : LanguageBuilder {
         // avoid close detection with C# and JS
         illegal = "(^using\\s+[A-Za-z0-9_\\.]+;${'$'}|\\bfunction\\s*[^\\())",
         contains = listOf(
-            Mode( // "strings"
+            Mode(// "strings"
                 className = "string",
                 begin = "\'",
                 end = "\'",
@@ -48,7 +48,7 @@ class AngelscriptLanguage : LanguageBuilder {
                 relevance = 0
             ),
 
-            Mode( // "strings"
+            Mode(// "strings"
                 className = "string",
                 begin = "\"",
                 end = "\"",
@@ -67,24 +67,24 @@ class AngelscriptLanguage : LanguageBuilder {
             hljs.C_LINE_COMMENT_MODE, // single-line comments
             hljs.C_BLOCK_COMMENT_MODE, // comment blocks
 
-            Mode( // interface or namespace declaration
+            Mode(// interface or namespace declaration
                 beginKeywords = keywords("interface namespace"),
                 end = "{",
                 illegal = "[;.\\-]",
                 contains = listOf(
-                    Mode( // interface or namespace name
+                    Mode(// interface or namespace name
                         className = "symbol",
                         begin = "[a-zA-Z0-9_]+"
                     )
                 )
             ),
 
-            Mode( // class declaration
+            Mode(// class declaration
                 beginKeywords = keywords("class"),
                 end = "{",
                 illegal = "[;.\\-]",
                 contains = listOf(
-                    Mode( // class name
+                    Mode(// class name
                         className = "symbol",
                         begin = "[a-zA-Z0-9_]+",
                         contains = listOf(
@@ -105,12 +105,12 @@ class AngelscriptLanguage : LanguageBuilder {
             builtInTypeMode, // built-in types
             objectHandleMode, // object handles
 
-            Mode( // literals
+            Mode(// literals
                 className = "literal",
                 begin = "\\b(null|true|false)"
             ),
 
-            Mode( // numbers
+            Mode(// numbers
                 className = "number",
                 begin = "(-?)(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?f?|\\.\\d+f?)(listOf(eE][-+]?\\d+f?)?)"
             )

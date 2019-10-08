@@ -21,7 +21,8 @@ class CspLanguage : LanguageBuilder {
         lexemes = "[a-zA-Z][a-zA-Z0-9_-]*",
         keywords = keywordsJson(
             """
-keyword = "base-uri child-src connect-src default-src font-src form-action frame-ancestors frame-src img-src media-src object-src plugin-types report-uri sandbox script-src style-src", """.trimIndent()
+            keyword = "base-uri child-src connect-src default-src font-src form-action frame-ancestors frame-src img-src media-src object-src plugin-types report-uri sandbox script-src style-src", 
+            """.trimIndent()
         ),
         contains = listOf(
             Mode(

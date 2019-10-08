@@ -23,7 +23,7 @@ Description = Ada is a general-purpose programming language that has great suppo
 /**
  * This class is automatically generated, avoid directly editing it if possible!
  */
-class AdaLanguage : LanguageBuilder  {
+class AdaLanguage : LanguageBuilder {
     // Regular expression for Ada numeric literals.
     // stolen form the VHDL highlighter
 
@@ -31,7 +31,7 @@ class AdaLanguage : LanguageBuilder  {
     val EXPONENT_RE = "[eE][-+]?(\\.)?()?"
 
     // Based literal =     val BASED_INTEGER_RE = "\\w+"
-    //val BASED_LITERAL_RE = INTEGER_RE + "#(\\.)?#()?"
+    // val BASED_LITERAL_RE = INTEGER_RE + "#(\\.)?#()?"
 
     val NUMBER_RE = "\\b(|)"
 
@@ -51,102 +51,113 @@ class AdaLanguage : LanguageBuilder  {
         // TODO: These spaces are not required by the Ada syntax
         // however, I have yet to see handwritten Ada code where
         // someone does not put spaces around  =         begin = "\\s+:\\s+",
-end = "\\s*(:=|;|\\)|=>|${'$'})",
+        end = "\\s*(:=|;|\\)|=>|${'$'})",
         // endsWithParent = true,
         // returnBegin = true,
-illegal = BAD_CHARS,
-contains = listOf(
+        illegal = BAD_CHARS,
+        contains = listOf(
             Mode(
                 // workaround to avoid highlighting
                 // named loops and declare blocks
                 beginKeywords = keywords("loop for declare others"),
-endsParent = true
+                endsParent = true
             ),
             Mode(
                 // properly highlight all modifiers
                 className = "keyword",
-beginKeywords = keywords("not null constant access function procedure in out aliased exception")
+                beginKeywords = keywords("not null constant access function procedure in out aliased exception")
             ),
             Mode(
                 className = "type",
-begin = ID_REGEX,
-endsParent = true,
-relevance = 0
+                begin = ID_REGEX,
+                endsParent = true,
+                relevance = 0
             )
         )
     )
 
     override fun build() = Mode(
         case_insensitive = true,
-keywords = keywordsJson("""
-keyword = "abort else new return abs elsif not reverse abstract end accept entry select access exception of separate aliased exit or some all others subtype and for out synchronized array function overriding at tagged generic package task begin goto pragma terminate body private then if procedure type case in protected constant interface is raise use declare range delay limited record when delta loop rem while digits renames with do mod requeue xor",
-literal = "True False",""".trimIndent()),
-contains = listOf(
+        keywords = keywordsJson(
+            """
+            keyword = "abort else new return abs elsif not reverse abstract end accept entry select access exception of separate aliased exit or some all others subtype and for out synchronized array function overriding at tagged generic package task begin goto pragma terminate body private then if procedure type case in protected constant interface is raise use declare range delay limited record when delta loop rem while digits renames with do mod requeue xor",
+            literal = "True False",
+            """.trimIndent()
+        ),
+        contains = listOf(
             COMMENTS,
             // strings "foobar"
             Mode(
                 className = "string",
-begin = """"""",
-end = """"""",
-contains = listOf(Mode(begin = """""""",
-relevance = 0))
+                begin =
+                    """"""",
+                end =
+                    """"""",
+                contains = listOf(
+                    Mode(
+                        begin =
+                            """""""",
+                        relevance = 0
+                    )
+                )
             ),
             // characters "\"
             Mode(
                 // character literals always contain one char
                 className = "string",
-begin = """'.'"""
-),
+                begin =
+                    """'.'"""
+            ),
             Mode(
                 // number literals
                 className = "number",
-begin = NUMBER_RE,
-relevance = 0
+                begin = NUMBER_RE,
+                relevance = 0
             ),
             Mode(
                 // Attributes
                 className = "symbol",
-begin = "'title",
-//begin = "(\\bwith\\s+)?(\\bprivate\\s+)?\\bpackage\\s+(\\bbody\\s+)?",
-end = "(is|${'$'})",
-keywords = keywords("package body"),
-excludeBegin = true,
-excludeEnd = true,
-illegal = BAD_CHARS
+                begin = "'title",
+// begin = "(\\bwith\\s+)?(\\bprivate\\s+)?\\bpackage\\s+(\\bbody\\s+)?",
+                end = "(is|${'$'})",
+                keywords = keywords("package body"),
+                excludeBegin = true,
+                excludeEnd = true,
+                illegal = BAD_CHARS
             ),
             Mode(
                 // function/procedure declaration/definition
                 // maybe inside generic
                 begin = "(\\b(with|overriding)\\s+)?\\b(function|procedure)\\s+",
-end = "(\\bis|\\bwith|\\brenames|\\)\\s*;)",
-keywords = keywords("overriding function procedure with is renames return"),
+                end = "(\\bis|\\bwith|\\brenames|\\)\\s*;)",
+                keywords = keywords("overriding function procedure with is renames return"),
                 // we need to re-match the "function" keyword, so that
                 // the title mode below matches only exactly once
                 returnBegin = true,
-contains =                 listOf(
+                contains = listOf(
                     COMMENTS,
                     Mode(
                         // name of the function/procedure
                         className = "title",
-begin = "(\\bwith\\s+)?\\b(function|procedure)\\s+",
-end = "(\\(|\\s+|${'$'})",
-excludeBegin = true,
-excludeEnd = true,
-illegal = BAD_CHARS
+                        begin = "(\\bwith\\s+)?\\b(function|procedure)\\s+",
+                        end = "(\\(|\\s+|${'$'})",
+                        excludeBegin = true,
+                        excludeEnd = true,
+                        illegal = BAD_CHARS
                     ),
                     // "self""""/ /""" parameter types
                     VAR_DECLS,
                     Mode(
                         // return type
                         className = "type",
-begin = "\\breturn\\s+",
-end = "(\\s+|;|${'$'})",
-keywords = keywords("return"),
-excludeBegin = true,
-excludeEnd = true,
+                        begin = "\\breturn\\s+",
+                        end = "(\\s+|;|${'$'})",
+                        keywords = keywords("return"),
+                        excludeBegin = true,
+                        excludeEnd = true,
                         // we are done with functions
                         endsParent = true,
-illegal = BAD_CHARS
+                        illegal = BAD_CHARS
 
                     )
                 )
@@ -155,11 +166,11 @@ illegal = BAD_CHARS
                 // new type declarations
                 // maybe inside generic
                 className = "type",
-begin = "\\b(sub)?type\\s+",
-end = "\\s+",
-keywords = keywords("type"),
-excludeBegin = true,
-illegal = BAD_CHARS
+                begin = "\\b(sub)?type\\s+",
+                end = "\\s+",
+                keywords = keywords("type"),
+                excludeBegin = true,
+                illegal = BAD_CHARS
             ),
 
             // see comment above the definition

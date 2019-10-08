@@ -18,18 +18,24 @@ class BnfLanguage : LanguageBuilder {
             // Attribute
             Mode(
                 className = "attribute",
-                begin = """<""",
-                end = """>"""
+                begin =
+                    """<""",
+                end =
+                    """>"""
             ),
             // Specific
             Mode(
-                begin = """::=""",
+                begin =
+                    """::=""",
                 starts = Mode(
-                    end = """${'$'}""",
+                    end =
+                        """${'$'}""",
                     contains = listOf(
                         Mode(
-                            begin = """<""",
-                            end = """>"""
+                            begin =
+                                """<""",
+                            end =
+                                """>"""
                         ),
                         // Common
                         hljs.C_LINE_COMMENT_MODE,

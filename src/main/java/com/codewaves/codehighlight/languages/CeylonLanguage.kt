@@ -25,8 +25,10 @@ class CeylonLanguage : LanguageBuilder {
         className = "subst",
         excludeBegin = true,
         excludeEnd = true,
-        begin = """``""",
-        end = """``""",
+        begin =
+            """``""",
+        end =
+            """``""",
         keywords = keywords(KEYWORDS),
         relevance = 10
     )

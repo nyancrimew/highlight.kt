@@ -20,9 +20,10 @@ class CleanLanguage : LanguageBuilder {
         aliases = listOf("clean", "icl", "dcl"),
         keywords = keywordsJson(
             """
-keyword = "if let in with where case of class instance otherwise implementation definition system module from import qualified as special code inline foreign export ccall stdcall generic derive infix infixl infixr",
-built_in = "Int Real Char Bool",
-literal = "True False"""".trimIndent()
+            keyword = "if let in with where case of class instance otherwise implementation definition system module from import qualified as special code inline foreign export ccall stdcall generic derive infix infixl infixr",
+            built_in = "Int Real Char Bool",
+            literal = "True False"
+            """.trimIndent()
         ),
         contains = listOf(
 

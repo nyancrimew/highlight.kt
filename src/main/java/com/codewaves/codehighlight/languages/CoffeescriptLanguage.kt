@@ -16,50 +16,63 @@ Category = common, scripting
 class CoffeescriptLanguage : LanguageBuilder {
     val KEYWORDS = keywordsJson(
         """
-keyword =       // JS keywords
-      "in if for while finally new do return else break catch instanceof throw try this switch continue typeof delete debugger super yield import export from as default await then unless until loop of by when and or is isnt not",
-literal =       // JS literals
-      "true false null undefined yes no on off",
-built_in = "npm require console print module global window document"""".trimIndent()
+        keyword =       // JS keywords
+              "in if for while finally new do return else break catch instanceof throw try this switch continue typeof delete debugger super yield import export from as default await then unless until loop of by when and or is isnt not",
+        literal =       // JS literals
+              "true false null undefined yes no on off",
+        built_in = "npm require console print module global window document"
+        """.trimIndent()
     )
     val JS_IDENT_RE = "[A-Za-z\$_][0-9A-Za-z\$_]*"
     val SUBST = Mode(
         className = "subst",
-        begin = """#\{""",
-        end = """}""",
+        begin =
+            """#\{""",
+        end =
+            """}""",
         keywords = KEYWORDS
     )
     val EXPRESSIONS = listOf(
         hljs.BINARY_NUMBER_MODE,
         hljs.inherit(
-            hljs.C_NUMBER_MODE, Mode(
+            hljs.C_NUMBER_MODE,
+            Mode(
                 starts = Mode(
                     end = "(\\s*\"\"\")?",
                     relevance = 0
                 )
             )
-        ), //""" a number tries to eat the following slash to prevent treating it as a regexp
+        ),
+        // """ a number tries to eat the following slash to prevent treating it as a regexp
         Mode(
             className = "string",
             variants = listOf(
                 Mode(
-                    begin = """'''""",
-                    end = """'''""",
+                    begin =
+                        """'''""",
+                    end =
+                        """'''""",
                     contains = listOf(hljs.BACKSLASH_ESCAPE)
                 ),
                 Mode(
-                    begin = """'""",
-                    end = """'""",
+                    begin =
+                        """'""",
+                    end =
+                        """'""",
                     contains = listOf(hljs.BACKSLASH_ESCAPE)
                 ),
                 Mode(
-                    begin = """"""""",
-                    end = """"""""",
+                    begin =
+                        """"""""",
+                    end =
+                        """"""""",
                     contains = listOf(hljs.BACKSLASH_ESCAPE, SUBST)
                 ),
                 Mode(
-                    begin = """"""",
-                    end = """"""",
+                    begin =
+                        """"""",
+                    end =
+                        """"""",
                     contains = listOf(hljs.BACKSLASH_ESCAPE, SUBST)
                 )
             )
@@ -79,7 +92,8 @@ built_in = "npm require console print module global window document"""".trimInde
                 Mode(
                     className = "regex", // regex can't start with space to parse x """ 2 / 3 as two divisions
                     // regex can't start with *, and it supports an "illegal" in the main mode
-                    begin = """\/(?![ *))(\\\/|.)*?\/[gim]*(?=\W|${'$'})"""
+                    begin =
+                        """\/(?![ *))(\\\/|.)*?\/[gim]*(?=\W|${'$'})"""
                 )
             )
         ),
@@ -110,8 +124,10 @@ built_in = "npm require console print module global window document"""".trimInde
         pair of parens to be called "params" */
         contains = listOf(
             Mode(
-                begin = """\(""",
-                end = """\)""",
+                begin =
+                    """\(""",
+                end =
+                    """\)""",
                 keywords = KEYWORDS,
                 contains = EXPRESSIONS
             )
@@ -121,7 +137,8 @@ built_in = "npm require console print module global window document"""".trimInde
     override fun build() = Mode(
         aliases = listOf("coffee", "cson", "iced"),
         keywords = KEYWORDS,
-        illegal = """\/\*""",
+        illegal =
+            """\/\*""",
         contains = EXPRESSIONS + listOf(
             hljs.COMMENT("###", "###"),
             hljs.HASH_COMMENT_MODE,
@@ -133,7 +150,8 @@ built_in = "npm require console print module global window document"""".trimInde
             ),
             Mode(
                 // anonymous function start
-                begin = """[:\(,=]\s*""",
+                begin =
+                    """[:\(,=]\s*""",
                 relevance = 0,
                 contains = listOf(
                     Mode(
@@ -149,12 +167,14 @@ built_in = "npm require console print module global window document"""".trimInde
                 className = "class",
                 beginKeywords = keywords("class"),
                 end = "${'$'}",
-                illegal = """[:="\[\]]""",
+                illegal =
+                    """[:="\[\]]""",
                 contains = listOf(
                     Mode(
                         beginKeywords = keywords("extends"),
                         endsWithParent = true,
-                        illegal = """[:="\[\]]""",
+                        illegal =
+                            """[:="\[\]]""",
                         contains = listOf(TITLE)
                     ),
                     TITLE
