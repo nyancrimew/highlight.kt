@@ -1,7 +1,6 @@
 package com.codewaves.codehighlight.languages
 
-import com.codewaves.codehighlight.core.LanguageBuilder
-import com.codewaves.codehighlight.core.Mode
+import com.codewaves.codehighlight.core.*
 
 /*
 Language = Clojure REPL
@@ -19,11 +18,14 @@ class ClojurereplLanguage : LanguageBuilder {
         contains = listOf(
             Mode(
                 className = "meta",
+
                 begin =
                     """^(listOf(\w.-]+|\s*#_)?=>""",
+
                 starts = Mode(
                     end =
                         """${'$'}""",
+
                     subLanguage = "clojure"
                 )
             )

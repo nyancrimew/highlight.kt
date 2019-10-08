@@ -5,7 +5,7 @@ import com.codewaves.codehighlight.core.*
 /*
 Language = Awk
 Author = Matthew Daly <matthewbdaly@gmail.com>
-Website = http:"""/matthewdaly.co.uk"""
+Website = http://matthewdaly.co.uk/
 Description = language definition for Awk scripts
 */
 
@@ -15,59 +15,67 @@ Description = language definition for Awk scripts
 class AwkLanguage : LanguageBuilder {
     val VARIABLE = Mode(
         className = "variable",
+
         variants = listOf(
-            Mode(
-                begin =
-                    """\${'$'}[\w\d#@][\w\d_]*"""
-            ),
-            Mode(
-                begin =
-                    """\${'$'}\{(.*?)}"""
-            )
+            Mode(begin =
+                    """\${'$'}[\w\d#@][\w\d_]*"""),
+            Mode(begin =
+                    """\${'$'}\{(.*?)}""")
         )
     )
     val KEYWORDS = "BEGIN END if else while do for in break continue delete next nextfile function func exit|10"
     val STRING = Mode(
         className = "string",
+
         contains = listOf(hljs.BACKSLASH_ESCAPE),
         variants = listOf(
             Mode(
                 begin =
                     """(u|b)?r?'''""",
+
                 end =
                     """'''""",
+
                 relevance = 10
             ),
             Mode(
                 begin =
                     """(u|b)?r?"""""",
+
                 end =
                     """"""""",
+
                 relevance = 10
             ),
             Mode(
                 begin =
                     """(u|r|ur)'""",
+
                 end =
                     """'""",
+
                 relevance = 10
             ),
             Mode(
                 begin =
                     """(u|r|ur)"""",
+
                 end =
                     """"""",
+
                 relevance = 10
             ),
             Mode(
                 begin =
                     """(b|br)'""",
+
                 end =
                     """'"""
             ),
             Mode(
                 begin =
                     """(b|br)"""",
+
                 end =
                     """""""
             ),
@@ -76,10 +84,12 @@ class AwkLanguage : LanguageBuilder {
         )
     )
     override fun build() = Mode(
-        keywords = keywordsJson(
-            """
-            keyword = KEYWORDS
-            """.trimIndent()
+        keywords = listOf(
+            Keyword(
+                className = "keyword",
+
+                value = KEYWORDS
+            )
         ),
         contains = listOf(
             VARIABLE,

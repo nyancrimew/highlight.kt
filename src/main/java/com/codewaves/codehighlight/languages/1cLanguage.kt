@@ -18,19 +18,23 @@ class `1cLanguage` : LanguageBuilder {
     val UNDERSCORE_IDENT_RE = "[A-Za-zА-Яа-яёЁ_][A-Za-zА-Яа-яёЁ_0-9]+"
 
     // v7 уникальные ключевые слова, отсутствующие в v8 ==> keyword
-    val v7_keywords = keywords("далее ")
+    val v7_keywords =
+        keywords("далее ")
 
     // v8 ключевые слова ==> keyword
-    val v8_keywords = keywords("возврат вызватьисключение выполнить для если и из или иначе иначеесли исключение каждого конецесли конецпопытки конеццикла не новый перейти перем по пока попытка прервать продолжить тогда цикл экспорт ")
+    val v8_keywords =
+        keywords("возврат вызватьисключение выполнить для если и из или иначе иначеесли исключение каждого конецесли конецпопытки конеццикла не новый перейти перем по пока попытка прервать продолжить тогда цикл экспорт ")
 
     // keyword  = ключевые слова
     val KEYWORD = v7_keywords + v8_keywords
 
     // v7 уникальные директивы, отсутствующие в v8 ==> meta-keyword
-    val v7_meta_keywords = keywords("загрузитьизфайла ")
+    val v7_meta_keywords =
+        keywords("загрузитьизфайла ")
 
     // v8 ключевые слова в инструкциях препроцессора, директивах компиляции, аннотациях ==> meta-keyword
-    val v8_meta_keywords = keywords("вебклиент вместо внешнеесоединение клиент конецобласти мобильноеприложениеклиент мобильноеприложениесервер наклиенте наклиентенасервере наклиентенасерверебезконтекста насервере насерверебезконтекста область перед после сервер толстыйклиентобычноеприложение толстыйклиентуправляемоеприложение тонкийклиент ")
+    val v8_meta_keywords =
+        keywords("вебклиент вместо внешнеесоединение клиент конецобласти мобильноеприложениеклиент мобильноеприложениесервер наклиенте наклиентенасервере наклиентенасерверебезконтекста насервере насерверебезконтекста область перед после сервер толстыйклиентобычноеприложение толстыйклиентуправляемоеприложение тонкийклиент ")
 
     // meta-keyword  = ключевые слова в инструкциях препроцессора, директивах компиляции, аннотациях
     val METAKEYWORD = v7_meta_keywords + v8_meta_keywords
@@ -166,20 +170,26 @@ class `1cLanguage` : LanguageBuilder {
     // string  = строки
     val STRINGS = Mode(
         className = "string",
+
         begin = "\"|\\|",
-        end = "\"|${'$'}",
+
+        end = "\"|\$",
+
         contains = listOf(Mode(begin = "\"\""))
     )
 
     // number  = даты
     val DATE = Mode(
         begin = "'",
+
         end = "'",
+
         excludeBegin = true,
         excludeEnd = true,
         contains = listOf(
             Mode(
                 className = "number",
+
                 begin = "\\d{4}(listOf(\\.\\\\/:-]?\\d{2)){0,5}"
             )
         )
@@ -191,10 +201,21 @@ class `1cLanguage` : LanguageBuilder {
     // meta  = инструкции препроцессора, директивы компиляции
     val META = Mode(
         className = "meta",
+
         lexemes = UNDERSCORE_IDENT_RE,
         begin = "#|&",
-        end = "${'$'}",
-        keywords = listOf(Keyword(className = "meta-keyword", value = (KEYWORD + METAKEYWORD).joinToString(" ") { it.value })),
+
+        end = "\$",
+
+        keywords = keywords(
+            listOf(
+                Keyword(
+                    className = "meta-keyword",
+
+                    value = KEYWORD + METAKEYWORD
+                )
+            )
+        ),
         contains = listOf(
             COMMENTS
         )
@@ -203,43 +224,60 @@ class `1cLanguage` : LanguageBuilder {
     // symbol  = метка goto
     val SYMBOL = Mode(
         className = "symbol",
+
         begin = "~",
+
         end = ";|:",
+
         excludeEnd = true
     )
 
     // function  = объявление процедур и функций
     val FUNCTION = Mode(
         className = "function",
+
         lexemes = UNDERSCORE_IDENT_RE,
         variants = listOf(
             Mode(
                 begin = "процедура|функция",
+
                 end = "\\)",
+
                 keywords = keywords("процедура функция")
             ),
             Mode(
                 begin = "конецпроцедуры|конецфункции",
+
                 keywords = keywords("конецпроцедуры конецфункции")
             )
         ),
         contains = listOf(
             Mode(
                 begin = "\\(",
-                end = "\\)", endsParent = true,
+
+                end = "\\)",
+                endsParent = true,
                 contains = listOf(
                     Mode(
                         className = "params",
+
                         lexemes = UNDERSCORE_IDENT_RE,
                         begin = UNDERSCORE_IDENT_RE,
                         end = ",",
+
                         excludeEnd = true,
                         endsWithParent = true,
-                        keywords = keywordsJson(
-                            """
-                            keyword = "знач",
-                            literal = LITERAL
-                            """.trimIndent()
+                        keywords = listOf(
+                            Keyword(
+                                className = "keyword",
+
+                                value = "знач"
+                            ),
+                            Keyword(
+                                className = "literal",
+
+                                value = LITERAL
+                            )
                         ),
                         contains = listOf(
                             NUMBERS,
@@ -257,14 +295,32 @@ class `1cLanguage` : LanguageBuilder {
     override fun build() = Mode(
         case_insensitive = true,
         lexemes = UNDERSCORE_IDENT_RE,
-        keywords = keywordsJson(
-            """
-            keyword = KEYWORD,
-            built_in = BUILTIN,
-            class = CLASS,
-            type = TYPE,
-            literal = LITERAL
-            """.trimIndent()
+        keywords = listOf(
+            Keyword(
+                className = "keyword",
+
+                value = KEYWORD
+            ),
+            Keyword(
+                className = "built_in",
+
+                value = BUILTIN
+            ),
+            Keyword(
+                className = "class",
+
+                value = CLASS
+            ),
+            Keyword(
+                className = "type",
+
+                value = TYPE
+            ),
+            Keyword(
+                className = "literal",
+
+                value = LITERAL
+            )
         ),
         contains = listOf(
             META,

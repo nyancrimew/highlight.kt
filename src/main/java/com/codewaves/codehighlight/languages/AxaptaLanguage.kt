@@ -22,15 +22,23 @@ class AxaptaLanguage : LanguageBuilder {
             hljs.C_NUMBER_MODE,
             Mode(
                 className = "meta",
+
                 begin = "#",
-                end = "${'$'}"
+
+                end = "\$"
             ),
             Mode(
                 className = "class",
-                beginKeywords = keywords("class interface"),
-                end = "{",
-                excludeEnd = true,
+
+                beginKeywords = keywords(
+                    "class interface",
+
+                    end = "{",
+
+                    excludeEnd = true
+                ),
                 illegal = ":",
+
                 contains = listOf(
                     Mode(beginKeywords = keywords("extends implements")),
                     hljs.UNDERSCORE_TITLE_MODE
