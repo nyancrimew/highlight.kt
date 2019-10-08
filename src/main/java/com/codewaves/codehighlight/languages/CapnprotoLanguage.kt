@@ -17,9 +17,10 @@ class CapnprotoLanguage : LanguageBuilder {
         aliases = listOf("capnp"),
         keywords = keywordsJson(
             """
-keyword = "struct enum interface union group import using const annotation extends in of on as with from fixed",
-built_in = "Void Bool Int8 Int16 Int32 Int64 UInt8 UInt16 UInt32 UInt64 Float32 Float64 Text Data AnyPointer AnyStruct Capability List",
-literal = "true false"""".trimIndent()
+            keyword = "struct enum interface union group import using const annotation extends in of on as with from fixed",
+            built_in = "Void Bool Int8 Int16 Int32 Int64 UInt8 UInt16 UInt32 UInt64 Float32 Float64 Text Data AnyPointer AnyStruct Capability List",
+            literal = "true false"
+            """.trimIndent()
         ),
         contains = listOf(
             hljs.QUOTE_STRING_MODE,
@@ -27,21 +28,27 @@ literal = "true false"""".trimIndent()
             hljs.HASH_COMMENT_MODE,
             Mode(
                 className = "meta",
-                begin = """@0x[\w\d]{16);""",
-                illegal = """\n"""
+                begin =
+                    """@0x[\w\d]{16);""",
+                illegal =
+                    """\n"""
             ),
             Mode(
                 className = "symbol",
-                begin = """@\d+\b"""
+                begin =
+                    """@\d+\b"""
             ),
             Mode(
                 className = "class",
                 beginKeywords = keywords("struct enum"),
-                end = """\{""",
-                illegal = """\n""",
+                end =
+                    """\{""",
+                illegal =
+                    """\n""",
                 contains = listOf(
                     hljs.inherit(
-                        hljs.TITLE_MODE, Mode(
+                        hljs.TITLE_MODE,
+                        Mode(
                             starts = Mode(
                                 endsWithParent = true,
                                 excludeEnd = true
@@ -53,11 +60,14 @@ literal = "true false"""".trimIndent()
             Mode(
                 className = "class",
                 beginKeywords = keywords("interface"),
-                end = """\{""",
-                illegal = """\n""",
+                end =
+                    """\{""",
+                illegal =
+                    """\n""",
                 contains = listOf(
                     hljs.inherit(
-                        hljs.TITLE_MODE, Mode(
+                        hljs.TITLE_MODE,
+                        Mode(
                             starts = Mode(
                                 endsWithParent = true,
                                 excludeEnd = true

@@ -32,13 +32,21 @@ class CalLanguage : LanguageBuilder {
     )
     val STRING = Mode(
         className = "string",
-        begin = """'""",
-        end = """'""",
-        contains = listOf(Mode(begin = """''"""))
+        begin =
+            """'""",
+        end =
+            """'""",
+        contains = listOf(
+            Mode(
+                begin =
+                    """''"""
+            )
+        )
     )
     val CHAR_STRING = Mode(
         className = "string",
-        begin = """(#\d+)+"""
+        begin =
+            """(#\d+)+"""
     )
     val DATE = Mode(
         className = "number",
@@ -54,14 +62,17 @@ class CalLanguage : LanguageBuilder {
     val PROCEDURE = Mode(
         className = "function",
         beginKeywords = keywords("procedure"),
-        end = """[:;]""",
+        end =
+            """[:;]""",
         keywords = keywords("procedure|10"),
         contains = listOf(
             hljs.TITLE_MODE,
             Mode(
                 className = "params",
-                begin = """\(""",
-                end = """\)""",
+                begin =
+                    """\(""",
+                end =
+                    """\)""",
                 keywords = keywords(KEYWORDS),
                 contains = listOf(STRING, CHAR_STRING)
             )
@@ -82,9 +93,11 @@ class CalLanguage : LanguageBuilder {
         case_insensitive = true,
         keywords = keywordsJson(
             """ keyword = KEYWORDS,
-literal = LITERALS """.trimIndent()
+                       literal = LITERALS 
+            """.trimIndent()
         ),
-        illegal = """\/\*""",
+        illegal =
+            """\/\*""",
         contains = listOf(
             STRING, CHAR_STRING,
             DATE, DBL_QUOTED_VARIABLE,

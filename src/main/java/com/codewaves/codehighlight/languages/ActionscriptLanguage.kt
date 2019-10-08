@@ -26,8 +26,9 @@ class ActionscriptLanguage : LanguageBuilder {
         aliases = listOf("as"),
         keywords = keywordsJson(
             """
-keyword = "as break case catch class const continue default delete do dynamic each else extends final finally for function get if implements import in include instanceof interface internal is namespace native new override package private protected public return set static super switch this throw try typeof use val void while with",
-literal = "true false null undefined"""".trimIndent()
+            keyword = "as break case catch class const continue default delete do dynamic each else extends final finally for function get if implements import in include instanceof interface internal is namespace native new override package private protected public return set static super switch this throw try typeof use val void while with",
+            literal = "true false null undefined"
+            """.trimIndent()
         ),
         contains = listOf(
             hljs.APOS_STRING_MODE,

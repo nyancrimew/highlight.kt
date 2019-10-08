@@ -35,20 +35,24 @@ class ApacheLanguage : LanguageBuilder {
             ),
             Mode(
                 className = "attribute",
-                begin = """\w+""",
+                begin =
+                    """\w+""",
                 relevance = 0,
                 // keywords aren’t needed for highlighting per se, they only boost relevance
                 // for a very generally defined mode (starts with a word, ends with line-end
                 keywords = keywordsJson(
                     """
-nomarkup = "order deny allow setenv rewriterule rewriteengine rewritecond documentroot sethandler errordocument loadmodule options header listen serverroot servername"""".trimIndent()
+                    nomarkup = "order deny allow setenv rewriterule rewriteengine rewritecond documentroot sethandler errordocument loadmodule options header listen serverroot servername"
+                    """.trimIndent()
                 ),
                 starts = Mode(
-                    end = """${'$'}""",
+                    end =
+                        """${'$'}""",
                     relevance = 0,
                     keywords = keywordsJson(
                         """
-literal = "on off all"""".trimIndent()
+                        literal = "on off all"
+                        """.trimIndent()
                     ),
                     contains = listOf(
                         Mode(
@@ -68,6 +72,7 @@ literal = "on off all"""".trimIndent()
                 )
             )
         ),
-        illegal = """\S"""
+        illegal =
+            """\S"""
     )
 }

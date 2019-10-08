@@ -42,7 +42,8 @@ class BrainfuckLanguage : LanguageBuilder {
             ),
             Mode(
                 // this mode works as the only relevance counter
-                begin = """\+\+|\-\-""",
+                begin =
+                    """\+\+|\-\-""",
                 returnBegin = true,
                 contains = listOf(LITERAL)
             ),

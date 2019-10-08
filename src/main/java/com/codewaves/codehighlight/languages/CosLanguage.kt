@@ -22,7 +22,7 @@ class CosLanguage : LanguageBuilder {
                 begin = "\"",
                 end = "\"",
                 contains = listOf(
-                    Mode( // escaped
+                    Mode(// escaped
                         begin = "\"\"",
                         relevance = 0
                     )
@@ -43,39 +43,39 @@ class CosLanguage : LanguageBuilder {
     // registered function - no need in them due to all functions are highlighted,
     // but I'll just leave this here.
 
-    //"${'$'}bit", "${'$'}bitcount",
-    //"${'$'}bitfind", "${'$'}bitlogic", "${'$'}case", "${'$'}char", "${'$'}classmethod", "${'$'}classname",
-    //"${'$'}compile", "${'$'}data", "${'$'}decimal", "${'$'}double", "${'$'}extract", "${'$'}factor",
-    //"${'$'}find", "${'$'}fnumber", "${'$'}get", "${'$'}increment", "${'$'}inumber", "${'$'}isobject",
-    //"${'$'}isvaliddouble", "${'$'}isvalidnum", "${'$'}justify", "${'$'}length", "${'$'}list",
-    //"${'$'}listbuild", "${'$'}listdata", "${'$'}listfind", "${'$'}listfromstring", "${'$'}listget",
-    //"${'$'}listlength", "${'$'}listnext", "${'$'}listsame", "${'$'}listtostring", "${'$'}listvalid",
-    //"${'$'}locate", "${'$'}match", "${'$'}method", "${'$'}name", "${'$'}nconvert", "${'$'}next",
-    //"${'$'}normalize", "${'$'}now", "${'$'}number", "${'$'}order", "${'$'}parameter", "${'$'}piece",
-    //"${'$'}prefetchoff", "${'$'}prefetchon", "${'$'}property", "${'$'}qlength", "${'$'}qsubscript",
-    //"${'$'}query", "${'$'}random", "${'$'}replace", "${'$'}reverse", "${'$'}sconvert", "${'$'}select",
-    //"${'$'}sortbegin", "${'$'}sortend", "${'$'}stack", "${'$'}text", "${'$'}translate", "${'$'}view",
-    //"${'$'}wascii", "${'$'}wchar", "${'$'}wextract", "${'$'}wfind", "${'$'}wiswide", "${'$'}wlength",
-    //"${'$'}wreverse", "${'$'}xecute", "${'$'}zabs", "${'$'}zarccos", "${'$'}zarcsin", "${'$'}zarctan",
-    //"${'$'}zcos", "${'$'}zcot", "${'$'}zcsc", "${'$'}zdate", "${'$'}zdateh", "${'$'}zdatetime",
-    //"${'$'}zdatetimeh", "${'$'}zexp", "${'$'}zhex", "${'$'}zln", "${'$'}zlog", "${'$'}zpower", "${'$'}zsec",
-    //"${'$'}zsin", "${'$'}zsqr", "${'$'}ztan", "${'$'}ztime", "${'$'}ztimeh", "${'$'}zboolean",
-    //"${'$'}zconvert", "${'$'}zcrc", "${'$'}zcyc", "${'$'}zdascii", "${'$'}zdchar", "${'$'}zf",
-    //"${'$'}ziswide", "${'$'}zlascii", "${'$'}zlchar", "${'$'}zname", "${'$'}zposition", "${'$'}zqascii",
-    //"${'$'}zqchar", "${'$'}zsearch", "${'$'}zseek", "${'$'}zstrip", "${'$'}zwascii", "${'$'}zwchar",
-    //"${'$'}zwidth", "${'$'}zwpack", "${'$'}zwbpack", "${'$'}zwunpack", "${'$'}zwbunpack", "${'$'}zzenkaku",
-    //"${'$'}change", "${'$'}mv", "${'$'}mvat", "${'$'}mvfmt", "${'$'}mvfmts", "${'$'}mviconv",
-    //"${'$'}mviconvs", "${'$'}mvinmat", "${'$'}mvlover", "${'$'}mvoconv", "${'$'}mvoconvs", "${'$'}mvraise",
-    //"${'$'}mvtrans", "${'$'}mvv", "${'$'}mvname", "${'$'}zbitand", "${'$'}zbitcount", "${'$'}zbitfind",
-    //"${'$'}zbitget", "${'$'}zbitlen", "${'$'}zbitnot", "${'$'}zbitor", "${'$'}zbitset", "${'$'}zbitstr",
-    //"${'$'}zbitxor", "${'$'}zincrement", "${'$'}znext", "${'$'}zorder", "${'$'}zprevious", "${'$'}zsort",
-    //"device", "${'$'}ecode", "${'$'}estack", "${'$'}etrap", "${'$'}halt", "${'$'}horolog",
-    //"${'$'}io", "${'$'}job", "${'$'}key", "${'$'}namespace", "${'$'}principal", "${'$'}quit", "${'$'}roles",
-    //"${'$'}storage", "${'$'}system", "${'$'}test", "${'$'}this", "${'$'}tlevel", "${'$'}username",
-    //"${'$'}x", "${'$'}y", "${'$'}za", "${'$'}zb", "${'$'}zchild", "${'$'}zeof", "${'$'}zeos", "${'$'}zerror",
-    //"${'$'}zhorolog", "${'$'}zio", "${'$'}zjob", "${'$'}zmode", "${'$'}znspace", "${'$'}zparent", "${'$'}zpi",
-    //"${'$'}zpos", "${'$'}zreference", "${'$'}zstorage", "${'$'}ztimestamp", "${'$'}ztimezone",
-    //"${'$'}ztrap", "${'$'}zversion"
+    // "${'$'}bit", "${'$'}bitcount",
+    // "${'$'}bitfind", "${'$'}bitlogic", "${'$'}case", "${'$'}char", "${'$'}classmethod", "${'$'}classname",
+    // "${'$'}compile", "${'$'}data", "${'$'}decimal", "${'$'}double", "${'$'}extract", "${'$'}factor",
+    // "${'$'}find", "${'$'}fnumber", "${'$'}get", "${'$'}increment", "${'$'}inumber", "${'$'}isobject",
+    // "${'$'}isvaliddouble", "${'$'}isvalidnum", "${'$'}justify", "${'$'}length", "${'$'}list",
+    // "${'$'}listbuild", "${'$'}listdata", "${'$'}listfind", "${'$'}listfromstring", "${'$'}listget",
+    // "${'$'}listlength", "${'$'}listnext", "${'$'}listsame", "${'$'}listtostring", "${'$'}listvalid",
+    // "${'$'}locate", "${'$'}match", "${'$'}method", "${'$'}name", "${'$'}nconvert", "${'$'}next",
+    // "${'$'}normalize", "${'$'}now", "${'$'}number", "${'$'}order", "${'$'}parameter", "${'$'}piece",
+    // "${'$'}prefetchoff", "${'$'}prefetchon", "${'$'}property", "${'$'}qlength", "${'$'}qsubscript",
+    // "${'$'}query", "${'$'}random", "${'$'}replace", "${'$'}reverse", "${'$'}sconvert", "${'$'}select",
+    // "${'$'}sortbegin", "${'$'}sortend", "${'$'}stack", "${'$'}text", "${'$'}translate", "${'$'}view",
+    // "${'$'}wascii", "${'$'}wchar", "${'$'}wextract", "${'$'}wfind", "${'$'}wiswide", "${'$'}wlength",
+    // "${'$'}wreverse", "${'$'}xecute", "${'$'}zabs", "${'$'}zarccos", "${'$'}zarcsin", "${'$'}zarctan",
+    // "${'$'}zcos", "${'$'}zcot", "${'$'}zcsc", "${'$'}zdate", "${'$'}zdateh", "${'$'}zdatetime",
+    // "${'$'}zdatetimeh", "${'$'}zexp", "${'$'}zhex", "${'$'}zln", "${'$'}zlog", "${'$'}zpower", "${'$'}zsec",
+    // "${'$'}zsin", "${'$'}zsqr", "${'$'}ztan", "${'$'}ztime", "${'$'}ztimeh", "${'$'}zboolean",
+    // "${'$'}zconvert", "${'$'}zcrc", "${'$'}zcyc", "${'$'}zdascii", "${'$'}zdchar", "${'$'}zf",
+    // "${'$'}ziswide", "${'$'}zlascii", "${'$'}zlchar", "${'$'}zname", "${'$'}zposition", "${'$'}zqascii",
+    // "${'$'}zqchar", "${'$'}zsearch", "${'$'}zseek", "${'$'}zstrip", "${'$'}zwascii", "${'$'}zwchar",
+    // "${'$'}zwidth", "${'$'}zwpack", "${'$'}zwbpack", "${'$'}zwunpack", "${'$'}zwbunpack", "${'$'}zzenkaku",
+    // "${'$'}change", "${'$'}mv", "${'$'}mvat", "${'$'}mvfmt", "${'$'}mvfmts", "${'$'}mviconv",
+    // "${'$'}mviconvs", "${'$'}mvinmat", "${'$'}mvlover", "${'$'}mvoconv", "${'$'}mvoconvs", "${'$'}mvraise",
+    // "${'$'}mvtrans", "${'$'}mvv", "${'$'}mvname", "${'$'}zbitand", "${'$'}zbitcount", "${'$'}zbitfind",
+    // "${'$'}zbitget", "${'$'}zbitlen", "${'$'}zbitnot", "${'$'}zbitor", "${'$'}zbitset", "${'$'}zbitstr",
+    // "${'$'}zbitxor", "${'$'}zincrement", "${'$'}znext", "${'$'}zorder", "${'$'}zprevious", "${'$'}zsort",
+    // "device", "${'$'}ecode", "${'$'}estack", "${'$'}etrap", "${'$'}halt", "${'$'}horolog",
+    // "${'$'}io", "${'$'}job", "${'$'}key", "${'$'}namespace", "${'$'}principal", "${'$'}quit", "${'$'}roles",
+    // "${'$'}storage", "${'$'}system", "${'$'}test", "${'$'}this", "${'$'}tlevel", "${'$'}username",
+    // "${'$'}x", "${'$'}y", "${'$'}za", "${'$'}zb", "${'$'}zchild", "${'$'}zeof", "${'$'}zeos", "${'$'}zerror",
+    // "${'$'}zhorolog", "${'$'}zio", "${'$'}zjob", "${'$'}zmode", "${'$'}znspace", "${'$'}zparent", "${'$'}zpi",
+    // "${'$'}zpos", "${'$'}zreference", "${'$'}zstorage", "${'$'}ztimestamp", "${'$'}ztimezone",
+    // "${'$'}ztrap", "${'$'}zversion"
 
     override fun build() = Mode(
         case_insensitive = true,
@@ -88,51 +88,63 @@ class CosLanguage : LanguageBuilder {
             hljs.C_BLOCK_COMMENT_MODE,
             Mode(
                 className = "comment",
-                begin = """;""",
+                begin =
+                    """;""",
                 end = "${'$'}",
                 relevance = 0
             ),
-            Mode( // Functions and user-defined functions = write $ztime(60*60*3), $$myFunc(10), $$^Val(1)
+            Mode(// Functions and user-defined functions = write $ztime(60*60*3), $$myFunc(10), $$^Val(1)
                 className = "built_in",
-                begin = """(?:\$\$?|\.\.)\^?[a-zA-Z]+"""
+                begin =
+                    """(?:\$\$?|\.\.)\^?[a-zA-Z]+"""
             ),
-            Mode( // Macro command = quit $$$OK
+            Mode(// Macro command = quit $$$OK
                 className = "built_in",
-                begin = """\$\$\$[a-zA-Z]+"""
+                begin =
+                    """\$\$\$[a-zA-Z]+"""
             ),
-            Mode( // Special (global) variables = write %request.Content; Built-in classes = %Library.Integer
+            Mode(// Special (global) variables = write %request.Content; Built-in classes = %Library.Integer
                 className = "built_in",
-                begin = """%[a-z]+(?:\.[a-z]+)*"""
+                begin =
+                    """%[a-z]+(?:\.[a-z]+)*"""
             ),
-            Mode( // Global variable = set ^globalName = 12 write ^globalName
+            Mode(// Global variable = set ^globalName = 12 write ^globalName
                 className = "symbol",
-                begin = """\^%?[a-zA-Z][\w]*"""
+                begin =
+                    """\^%?[a-zA-Z][\w]*"""
             ),
-            Mode( // Some control constructions = do ##class(Package.ClassName).Method(), ##super()
+            Mode(// Some control constructions = do ##class(Package.ClassName).Method(), ##super()
                 className = "keyword",
-                begin = """##class|##super|#define|#dim"""
+                begin =
+                    """##class|##super|#define|#dim"""
             ),
 
             // sub-languages = are not fully supported by hljs by 11/15/2015
             // left for the future implementation.
             Mode(
-                begin = """&sql\(""",
-                end = """\)""",
+                begin =
+                    """&sql\(""",
+                end =
+                    """\)""",
                 excludeBegin = true,
                 excludeEnd = true,
                 subLanguage = "sql"
             ),
             Mode(
-                begin = """&(js|jscript|javascript)<""",
-                end = """>""",
+                begin =
+                    """&(js|jscript|javascript)<""",
+                end =
+                    """>""",
                 excludeBegin = true,
                 excludeEnd = true,
                 subLanguage = "javascript"
             ),
             Mode(
                 // this brakes first and last tag, but this is the only way to embed a valid html
-                begin = """&html<\s*<""",
-                end = """>\s*>""",
+                begin =
+                    """&html<\s*<""",
+                end =
+                    """>\s*>""",
                 subLanguage = "xml"
             )
         )

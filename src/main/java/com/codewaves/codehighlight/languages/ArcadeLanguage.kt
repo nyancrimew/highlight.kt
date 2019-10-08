@@ -15,9 +15,10 @@ class ArcadeLanguage : LanguageBuilder {
     val IDENT_RE = "[A-Za-z_][0-9A-Za-z_]*"
     val KEYWORDS = keywordsJson(
         """
-keyword = "if for while val new function do return void else break",
-literal = "BackSlash DoubleQuote false ForwardSlash Infinity NaN NewLine null PI SingleQuote Tab TextFormatting true undefined",
-built_in = "Abs Acos Angle Attachments Area AreaGeodetic Asin Atan Atan2 Average Bearing Boolean Buffer BufferGeodetic Ceil Centroid Clip Console Constrain Contains Cos Count Crosses Cut Date DateAdd DateDiff Day Decode DefaultValue Dictionary Difference Disjoint Distance DistanceGeodetic Distinct DomainCode DomainName Equals Exp Extent Feature FeatureSet FeatureSetByAssociation FeatureSetById FeatureSetByPortalItem FeatureSetByRelationshipName FeatureSetByTitle FeatureSetByUrl Filter First Floor Geometry GroupBy Guid HasKey Hour IIf IndexOf Intersection Intersects IsEmpty IsNan IsSelfIntersecting Length LengthGeodetic Log Max Mean Millisecond Min Minute Month MultiPartToSinglePart Multipoint NextSequenceValue Now Number OrderBy Overlaps Point Polygon Polyline Portal Pow Random Relate Reverse RingIsClockWise Round Second SetGeometry Sin Sort Sqrt Stdev Sum SymmetricDifference Tan Text Timestamp Today ToLocal Top Touches ToUTC TrackCurrentTime TrackGeometryWindow TrackIndex TrackStartTime TrackWindow TypeOf Union UrlEncode Variance Weekday When Within Year """".trimIndent()
+        keyword = "if for while val new function do return void else break",
+        literal = "BackSlash DoubleQuote false ForwardSlash Infinity NaN NewLine null PI SingleQuote Tab TextFormatting true undefined",
+        built_in = "Abs Acos Angle Attachments Area AreaGeodetic Asin Atan Atan2 Average Bearing Boolean Buffer BufferGeodetic Ceil Centroid Clip Console Constrain Contains Cos Count Crosses Cut Date DateAdd DateDiff Day Decode DefaultValue Dictionary Difference Disjoint Distance DistanceGeodetic Distinct DomainCode DomainName Equals Exp Extent Feature FeatureSet FeatureSetByAssociation FeatureSetById FeatureSetByPortalItem FeatureSetByRelationshipName FeatureSetByTitle FeatureSetByUrl Filter First Floor Geometry GroupBy Guid HasKey Hour IIf IndexOf Intersection Intersects IsEmpty IsNan IsSelfIntersecting Length LengthGeodetic Log Max Mean Millisecond Min Minute Month MultiPartToSinglePart Multipoint NextSequenceValue Now Number OrderBy Overlaps Point Polygon Polyline Portal Pow Random Relate Reverse RingIsClockWise Round Second SetGeometry Sin Sort Sqrt Stdev Sum SymmetricDifference Tan Text Timestamp Today ToLocal Top Touches ToUTC TrackCurrentTime TrackGeometryWindow TrackIndex TrackStartTime TrackWindow TypeOf Union UrlEncode Variance Weekday When Within Year "
+        """.trimIndent()
     )
     val SYMBOL = Mode(
         className = "symbol",
@@ -37,7 +38,7 @@ built_in = "Abs Acos Angle Attachments Area AreaGeodetic Asin Atan Atan2 Average
         begin = "\\${'$'}\\{",
         end = "\\}",
         keywords = KEYWORDS,
-        contains = listOf()  // defined later
+        contains = listOf() // defined later
     )
     val TEMPLATE_STRING = Mode(
         className = "string",
@@ -71,8 +72,9 @@ built_in = "Abs Acos Angle Attachments Area AreaGeodetic Asin Atan Atan2 Average
             hljs.C_BLOCK_COMMENT_MODE,
             SYMBOL,
             NUMBER,
-            Mode( // object attr container
-                begin = """[{,]\s*""",
+            Mode(// object attr container
+                begin =
+                    """[{,]\s*""",
                 relevance = 0,
                 contains = listOf(
                     Mode(
@@ -89,7 +91,7 @@ built_in = "Abs Acos Angle Attachments Area AreaGeodetic Asin Atan Atan2 Average
                     )
                 )
             ),
-            Mode( // "value" container
+            Mode(// "value" container
                 begin = "(|\\b(return)\\b)\\s*",
                 keywords = keywords("return"),
                 contains = listOf(
@@ -109,11 +111,14 @@ built_in = "Abs Acos Angle Attachments Area AreaGeodetic Asin Atan Atan2 Average
                                         begin = IDENT_RE
                                     ),
                                     Mode(
-                                        begin = """\(\s*\)"""
+                                        begin =
+                                            """\(\s*\)"""
                                     ),
                                     Mode(
-                                        begin = """\(""",
-                                        end = """\)""",
+                                        begin =
+                                            """\(""",
+                                        end =
+                                            """\)""",
                                         excludeBegin = true,
                                         excludeEnd = true,
                                         keywords = KEYWORDS,
@@ -129,25 +134,31 @@ built_in = "Abs Acos Angle Attachments Area AreaGeodetic Asin Atan Atan2 Average
             Mode(
                 className = "function",
                 beginKeywords = keywords("function"),
-                end = """\{""",
+                end =
+                    """\{""",
                 excludeEnd = true,
                 contains = listOf(
                     hljs.inherit(hljs.TITLE_MODE, Mode(begin = IDENT_RE)),
                     Mode(
                         className = "params",
-                        begin = """\(""",
-                        end = """\)""",
+                        begin =
+                            """\(""",
+                        end =
+                            """\)""",
                         excludeBegin = true,
                         excludeEnd = true,
                         contains = PARAMS_CONTAINS
                     )
                 ),
-                illegal = """\[|%"""
+                illegal =
+                    """\[|%"""
             ),
             Mode(
-                begin = """\${'$'}[(.]"""
+                begin =
+                    """\${'$'}[(.]"""
             )
         ),
-        illegal = """#(?!!)"""
+        illegal =
+            """#(?!!)"""
     )
 }

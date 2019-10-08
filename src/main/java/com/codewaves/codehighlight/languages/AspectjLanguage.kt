@@ -19,7 +19,8 @@ class AspectjLanguage : LanguageBuilder {
     val SHORTKEYS = "get set args call"
     override fun build() = Mode(
         keywords = keywords(KEYWORDS),
-        illegal = """<\/|#""",
+        illegal =
+            """<\/|#""",
         contains = listOf(
             hljs.COMMENT(
                 "/\\*\\*",
@@ -29,7 +30,8 @@ class AspectjLanguage : LanguageBuilder {
                     contains = listOf(
                         Mode(
                             // eat up @'s in emails to prevent them to be recognized as doctags
-                            begin = """\w+@""",
+                            begin =
+                                """\w+@""",
                             relevance = 0
                         ),
                         Mode(
@@ -46,24 +48,29 @@ class AspectjLanguage : LanguageBuilder {
             Mode(
                 className = "class",
                 beginKeywords = keywords("aspect"),
-                end = """[{;=]""",
+                end =
+                    """[{;=]""",
                 excludeEnd = true,
-                illegal = """[:;"\[\]]""",
+                illegal =
+                    """[:;"\[\]]""",
                 contains = listOf(
                     Mode(
                         beginKeywords = keywords("extends implements pertypewithin perthis pertarget percflowbelow percflow issingleton")
                     ),
                     hljs.UNDERSCORE_TITLE_MODE,
                     Mode(
-                        begin = """\(listOf(^\)]*""",
-                        end = """[)]+""",
+                        begin =
+                            """\(listOf(^\)]*""",
+                        end =
+                            """[)]+""",
                         keywords = keywords(KEYWORDS + " class"),
                         beginKeywords = keywords("class interface"),
-                        //end  = """[{;=]""",
+                        // end  = """[{;=]""",
                         excludeEnd = true,
                         relevance = 0,
-                        //keywords  = "class interface",
-                        illegal = """[:"\[\]]""",
+                        // keywords  = "class interface",
+                        illegal =
+                            """[:"\[\]]""",
                         contains = listOf(
                             Mode(beginKeywords = keywords("extends implements")),
                             hljs.UNDERSCORE_TITLE_MODE
@@ -72,9 +79,11 @@ class AspectjLanguage : LanguageBuilder {
                     Mode(
                         // AspectJ Constructs
                         beginKeywords = keywords("pointcut after before around throwing returning"),
-                        end = """[)]""",
+                        end =
+                            """[)]""",
                         excludeEnd = false,
-                        illegal = """["\[\]]""",
+                        illegal =
+                            """["\[\]]""",
                         contains = listOf(
                             Mode(
                                 begin = hljs.UNDERSCORE_IDENT_RE + "\\s*\\(",
@@ -84,13 +93,16 @@ class AspectjLanguage : LanguageBuilder {
                         )
                     ),
                     Mode(
-                        begin = """[:]""",
+                        begin =
+                            """[:]""",
                         returnBegin = true,
-                        end = """[{;]""",
+                        end =
+                            """[{;]""",
                         relevance = 0,
                         excludeEnd = false,
                         keywords = keywords(KEYWORDS),
-                        illegal = """["\[\]]""",
+                        illegal =
+                            """["\[\]]""",
                         contains = listOf(
                             Mode(
                                 begin = hljs.UNDERSCORE_IDENT_RE + "\\s*\\(",
@@ -101,9 +113,11 @@ class AspectjLanguage : LanguageBuilder {
                             Mode(
                                 // the function class is a bit different for AspectJ compared to the Java language
                                 className = "function",
-                                begin = """\w+ +\w+(\.)?\w+\s*\(listOf(^\)]*\)\s*((throws)[\w\s,]+)?[\{;]""",
+                                begin =
+                                    """\w+ +\w+(\.)?\w+\s*\(listOf(^\)]*\)\s*((throws)[\w\s,]+)?[\{;]""",
                                 returnBegin = true,
-                                end = """[{;=]""",
+                                end =
+                                    """[{;=]""",
                                 keywords = keywords(KEYWORDS),
                                 excludeEnd = true,
                                 contains = listOf(
@@ -115,7 +129,10 @@ class AspectjLanguage : LanguageBuilder {
                                     ),
                                     Mode(
                                         className = "params",
-                                        begin = """\(""", end = """\)""",
+                                        begin =
+                                            """\(""",
+                                        end =
+                                            """\)""",
                                         relevance = 0,
                                         keywords = keywords(KEYWORDS),
                                         contains = listOf(

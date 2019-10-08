@@ -15,9 +15,10 @@ Category = common
 class CsLanguage : LanguageBuilder {
     val KEYWORDS = keywordsJson(
         """
-keyword =       // Normal keywords.
-      "abstract as base bool break byte case catch char checked const continue decimal default delegate do double enum event explicit extern finally fixed float for foreach goto if implicit in int interface internal is lock long object operator out override params private protected public readonly ref sbyte sealed short sizeof stackalloc static string struct switch this try typeof uint ulong unchecked unsafe ushort using virtual void volatile while add alias ascending async await by descending dynamic equals from get global group into join let nameof on orderby partial remove select set value val when where yield",
-literal = "null false true"""".trimIndent()
+        keyword =       // Normal keywords.
+              "abstract as base bool break byte case catch char checked const continue decimal default delegate do double enum event explicit extern finally fixed float for foreach goto if implicit in int interface internal is lock long object operator out override params private protected public readonly ref sbyte sealed short sizeof stackalloc static string struct switch this try typeof uint ulong unchecked unsafe ushort using virtual void volatile while add alias ascending async await by descending dynamic equals from get global group into join let nameof on orderby partial remove select set value val when where yield",
+        literal = "null false true"
+        """.trimIndent()
     )
     val NUMBERS = Mode(
         className = "number",
@@ -34,30 +35,47 @@ literal = "null false true"""".trimIndent()
         end = "\"",
         contains = listOf(Mode(begin = "\"\""))
     )
-    val VERBATIM_STRING_NO_LF = hljs.inherit(VERBATIM_STRING, Mode(illegal = """\n"""))
+    val VERBATIM_STRING_NO_LF = hljs.inherit(
+        VERBATIM_STRING,
+        Mode(
+            illegal =
+                """\n"""
+        )
+    )
     val SUBST = Mode(
         className = "subst",
         begin = "{",
         end = "}",
         keywords = KEYWORDS
     )
-    val SUBST_NO_LF = hljs.inherit(SUBST, Mode(illegal = """\n"""))
+    val SUBST_NO_LF = hljs.inherit(
+        SUBST,
+        Mode(
+            illegal =
+                """\n"""
+        )
+    )
     val INTERPOLATED_STRING = Mode(
         className = "string",
-        begin = """\${'$'}"""",
+        begin =
+            """\${'$'}"""",
         end = "\"",
-        illegal = """\n""",
+        illegal =
+            """\n""",
         contains = listOf(Mode(begin = "{{"), Mode(begin = ")}"), hljs.BACKSLASH_ESCAPE, SUBST_NO_LF)
     )
     val INTERPOLATED_VERBATIM_STRING = Mode(
         className = "string",
-        begin = """\${'$'}@"""",
+        begin =
+            """\${'$'}@"""",
         end = "\"",
         contains = listOf(Mode(begin = "{{"), Mode(begin = ")}"), Mode(begin = "\"\""), SUBST)
     )
     val INTERPOLATED_VERBATIM_STRING_NO_LF = hljs.inherit(
-        INTERPOLATED_VERBATIM_STRING, Mode(
-            illegal = """\n""",
+        INTERPOLATED_VERBATIM_STRING,
+        Mode(
+            illegal =
+                """\n""",
             contains = listOf(Mode(begin = "{{"), Mode(begin = ")}"), Mode(begin = "\"\""), SUBST_NO_LF)
         )
     )
@@ -76,7 +94,8 @@ literal = "null false true"""".trimIndent()
     override fun build() = Mode(
         aliases = listOf("csharp", "c#"),
         keywords = KEYWORDS,
-        illegal = """::""",
+        illegal =
+            """::""",
         contains = listOf(
             hljs.COMMENT(
                 "///",
@@ -111,15 +130,18 @@ literal = "null false true"""".trimIndent()
                 end = "${'$'}",
                 keywords = keywordsJson(
                     """
-meta-keyword = "if else elif endif define undef warning error line region endregion pragma checksum"""".trimIndent()
+                    meta-keyword = "if else elif endif define undef warning error line region endregion pragma checksum"
+                    """.trimIndent()
                 )
             ),
             STRING,
             NUMBERS,
             Mode(
                 beginKeywords = keywords("class interface"),
-                end = """[{;=]""",
-                illegal = """[^\s:,]""",
+                end =
+                    """[{;=]""",
+                illegal =
+                    """[^\s:,]""",
                 contains = listOf(
                     hljs.TITLE_MODE,
                     hljs.C_LINE_COMMENT_MODE,
@@ -128,8 +150,10 @@ meta-keyword = "if else elif endif define undef warning error line region endreg
             ),
             Mode(
                 beginKeywords = keywords("namespace"),
-                end = """[{;=]""",
-                illegal = """[^\s:]""",
+                end =
+                    """[{;=]""",
+                illegal =
+                    """[^\s:]""",
                 contains = listOf(
                     hljs.inherit(hljs.TITLE_MODE, Mode(begin = "[a-zA-Z](\\.?\\w)*")),
                     hljs.C_LINE_COMMENT_MODE,
@@ -146,8 +170,10 @@ meta-keyword = "if else elif endif define undef warning error line region endreg
                 contains = listOf(
                     Mode(
                         className = "meta-string",
-                        begin = """"""",
-                        end = """""""
+                        begin =
+                            """"""",
+                        end =
+                            """""""
                     )
                 )
             ),
@@ -161,7 +187,8 @@ meta-keyword = "if else elif endif define undef warning error line region endreg
                 className = "function",
                 begin = "(\\s+)+\\s*\\(",
                 returnBegin = true,
-                end = """\s*[{;=]""",
+                end =
+                    """\s*[{;=]""",
                 excludeEnd = true,
                 keywords = KEYWORDS,
                 contains = listOf(
@@ -173,8 +200,10 @@ meta-keyword = "if else elif endif define undef warning error line region endreg
                     ),
                     Mode(
                         className = "params",
-                        begin = """\(""",
-                        end = """\)""",
+                        begin =
+                            """\(""",
+                        end =
+                            """\)""",
                         excludeBegin = true,
                         excludeEnd = true,
                         keywords = KEYWORDS,
