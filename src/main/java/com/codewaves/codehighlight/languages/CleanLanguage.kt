@@ -1,9 +1,6 @@
 package com.codewaves.codehighlight.languages
 
-import com.codewaves.codehighlight.core.LanguageBuilder
-import com.codewaves.codehighlight.core.Mode
-import com.codewaves.codehighlight.core.hljs
-import com.codewaves.codehighlight.core.keywordsJson
+import com.codewaves.codehighlight.core.*
 
 /*
 Language = Clean
@@ -17,13 +14,23 @@ Website = http://clean.cs.ru.nl
  */
 class CleanLanguage : LanguageBuilder {
     override fun build() = Mode(
-        aliases = listOf("clean", "icl", "dcl"),
-        keywords = keywordsJson(
-            """
-            keyword = "if let in with where case of class instance otherwise implementation definition system module from import qualified as special code inline foreign export ccall stdcall generic derive infix infixl infixr",
-            built_in = "Int Real Char Bool",
-            literal = "True False"
-            """.trimIndent()
+        aliases = listOf("clean\",\"icl\",\"dcl"),
+        keywords = listOf(
+            Keyword(
+                className = "keyword",
+
+                value = "if let in with where case of class instance otherwise implementation definition system module from import qualified as special code inline foreign export ccall stdcall generic derive infix infixl infixr"
+            ),
+            Keyword(
+                className = "built_in",
+
+                value = "Int Real Char Bool"
+            ),
+            Keyword(
+                className = "literal",
+
+                value = "True False"
+            )
         ),
         contains = listOf(
 

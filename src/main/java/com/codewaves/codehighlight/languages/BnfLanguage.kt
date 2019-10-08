@@ -1,8 +1,6 @@
 package com.codewaves.codehighlight.languages
 
-import com.codewaves.codehighlight.core.LanguageBuilder
-import com.codewaves.codehighlight.core.Mode
-import com.codewaves.codehighlight.core.hljs
+import com.codewaves.codehighlight.core.*
 
 /*
 Language = Backus–Naur Form
@@ -18,8 +16,10 @@ class BnfLanguage : LanguageBuilder {
             // Attribute
             Mode(
                 className = "attribute",
+
                 begin =
                     """<""",
+
                 end =
                     """>"""
             ),
@@ -27,13 +27,16 @@ class BnfLanguage : LanguageBuilder {
             Mode(
                 begin =
                     """::=""",
+
                 starts = Mode(
                     end =
                         """${'$'}""",
+
                     contains = listOf(
                         Mode(
                             begin =
                                 """<""",
+
                             end =
                                 """>"""
                         ),
