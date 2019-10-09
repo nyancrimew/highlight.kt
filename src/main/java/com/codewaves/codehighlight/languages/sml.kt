@@ -17,17 +17,20 @@ internal fun sml(): Mode {
         keywords = listOf(
             Keyword(
                 className = "keyword",
-                value = /* according to Definition of Standard ML 97  */
+                value =
+                    /* according to Definition of Standard ML 97  */
                     "abstype and andalso as case datatype do else end eqtype exception fn fun functor handle if in include infix infixr let local nonfix of op open orelse raise rec sharing sig signature struct structure then type val with withtype where while"
             ),
             Keyword(
                 className = "built_in",
-                value = /* built-in types according to basis library */
+                value =
+                    /* built-in types according to basis library */
                     "array bool char exn int list option order real ref string substring vector unit word"
             ),
             Keyword(
                 className = "literal",
-                value = "true false NONE SOME LESS EQUAL GREATER nil"
+                value =
+                    "true false NONE SOME LESS EQUAL GREATER nil"
             )
         ),
         illegal =
@@ -74,7 +77,8 @@ internal fun sml(): Mode {
             hljs.inherit(hljs.QUOTE_STRING_MODE, Mode(illegal = null)),
             Mode(
                 className = "number",
-                begin = "\\b(0[xX][a-fA-F0-9_]+[Lln]?|0[oO][0-7_]+[Lln]?|0[bB][01_]+[Lln]?|[0-9][0-9_]*([Lln]|(\\.[0-9_]*)?([eE][-+]?[0-9_]+)?)?)",
+                begin =
+                    "\\b(0[xX][a-fA-F0-9_]+[Lln]?|0[oO][0-7_]+[Lln]?|0[bB][01_]+[Lln]?|[0-9][0-9_]*([Lln]|(\\.[0-9_]*)?([eE][-+]?[0-9_]+)?)?)",
                 relevance = 0
             ),
             Mode(

@@ -61,7 +61,10 @@ internal fun htmlbars(): Mode {
         keywords = listOf(
             Keyword(
                 className = "keyword",
-                value = "as\"), Keyword(className = \"built_in",
+                value = "as"
+            ),
+            Keyword(
+                className = "built_in",
                 value = BUILT_INS
             )
         ),
@@ -75,7 +78,10 @@ internal fun htmlbars(): Mode {
         case_insensitive = true,
         subLanguage = "xml",
         contains = listOf(
-            hljs.COMMENT("{{!(--)?\", \"(--)?)}"),
+            hljs.COMMENT(
+                "{{!(--)?",
+                "(--)?)}"
+            ),
             Mode(
                 className = "template-tag",
                 begin =
@@ -106,7 +112,10 @@ internal fun htmlbars(): Mode {
                 keywords = listOf(
                     Keyword(
                         className = "keyword",
-                        value = "as\"), Keyword(className = \"built_in",
+                        value = "as"
+                    ),
+                    Keyword(
+                        className = "built_in",
                         value = BUILT_INS
                     )
                 ),

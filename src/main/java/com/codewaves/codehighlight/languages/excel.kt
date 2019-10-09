@@ -1,9 +1,5 @@
 package com.codewaves.codehighlight.languages
-
-import com.codewaves.codehighlight.core.Keyword
-import com.codewaves.codehighlight.core.Mode
-import com.codewaves.codehighlight.core.hljs
-
+import com.codewaves.codehighlight.core.*
 /*
 Language = Excel
 Author = Victor Zhou <OiCMudkips@users.noreply.github.com>
@@ -15,7 +11,10 @@ Description = Excel formulae
  */
 internal fun excel(): Mode {
     return Mode(
-        aliases = listOf("xlsx\", \"xls"),
+        aliases = listOf(
+            "xlsx",
+            "xls"
+        ),
         case_insensitive = true,
         lexemes =
             """[a-zA-Z][\w\.]*""",
@@ -35,8 +34,7 @@ internal fun excel(): Mode {
                     """[^=]""",
                 returnEnd = true,
                 illegal =
-                    """=""",
-                /* only allow single equal sign at front of line */
+                    """=""", /* only allow single equal sign at front of line */
                 relevance = 10
             ),
             /* technically, there can be more than 2 letters in column names, but this prevents conflict with some keywords */
@@ -66,7 +64,7 @@ internal fun excel(): Mode {
             ),
             /* Excel formula comments are done by putting the comment in a function call to N() */
             hljs.COMMENT(
-                """\bN\(/,/\)""", null,
+                """\bN\(""", """\)""",
                 Mode(
                     excludeBegin = true,
                     excludeEnd = true,

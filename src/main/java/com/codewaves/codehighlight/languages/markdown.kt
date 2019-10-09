@@ -1,7 +1,5 @@
 package com.codewaves.codehighlight.languages
-
-import com.codewaves.codehighlight.core.Mode
-
+import com.codewaves.codehighlight.core.*
 /*
 Language = Markdown
 Requires = xml.js
@@ -15,7 +13,11 @@ Category = common, markup
  */
 internal fun markdown(): Mode {
     return Mode(
-        aliases = listOf("md\", \"mkdown\", \"mkd"),
+        aliases = listOf(
+            "md",
+            "mkdown",
+            "mkd"
+        ),
         contains = listOf(
             // highlight headers
             Mode(

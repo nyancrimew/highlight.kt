@@ -57,7 +57,7 @@ internal fun oxygene(): Mode {
         lexemes =
             """\.?\w+""",
         keywords = keywords(OXYGENE_KEYWORDS),
-        illegal = "(\"|\\$[G-Zg-z]|\\/\\*|</|=>|->)",
+        illegal = "(\"|\\\$[G-Zg-z]|\\/\\*|</|=>|->)",
         contains = listOf(
             CURLY_COMMENT, PAREN_COMMENT, hljs.C_LINE_COMMENT_MODE,
             STRING, CHAR_STRING,

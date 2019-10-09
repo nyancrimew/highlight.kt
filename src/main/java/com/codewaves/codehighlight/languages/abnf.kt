@@ -12,9 +12,8 @@ Author = Alex McKibben <alex@nullscope.net>
  * This function was automatically generated, avoid directly editing it if possible!
  * Origin highlight.js/src/languages/abnf.js MD5 <4a74d5edda09e836fb627b7fdc75baf9>
  */
-
 internal fun abnf(): Mode {
-    var keywords = listOf(
+    var keywords = keywords(
         "ALPHA",
         "BIT",
         "CHAR",
@@ -32,7 +31,10 @@ internal fun abnf(): Mode {
         "VCHAR",
         "WSP"
     )
-    var commentMode = hljs.COMMENT(";\", \"\$")
+    var commentMode = hljs.COMMENT(
+        ";",
+        "\$"
+    )
     var terminalBinaryMode = Mode(
         className = "symbol",
         begin =
@@ -82,7 +84,7 @@ internal fun abnf(): Mode {
     )
 }
 
-private object regexes {
-    val ruleDeclaration = "^[a-zA-Z][a-zA-Z0-9-]*"
-    val unexpectedChars = "[!@#\$^&\",?+~`|:]"
+object regexes {
+    const val ruleDeclaration = "^[a-zA-Z][a-zA-Z0-9-]*"
+    const val unexpectedChars = "[!@#\$^&\",?+~`|:]"
 }

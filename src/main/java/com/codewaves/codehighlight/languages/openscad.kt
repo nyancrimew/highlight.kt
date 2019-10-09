@@ -1,10 +1,5 @@
 package com.codewaves.codehighlight.languages
-
-import com.codewaves.codehighlight.core.Keyword
-import com.codewaves.codehighlight.core.Mode
-import com.codewaves.codehighlight.core.hljs
-import com.codewaves.codehighlight.core.keywords
-
+import com.codewaves.codehighlight.core.*
 /*
 Language = OpenSCAD
 Author = Dan Panzarella <alsoelp@gmail.com>
@@ -18,15 +13,22 @@ Category = scientific
 internal fun openscad(): Mode {
     var SPECIAL_VARS = Mode(
         className = "keyword",
-        begin = "\\$(f[asn]|t|vp[rtd]|children)"
+        begin = "\\\$(f[asn]|t|vp[rtd]|children)"
     )
-    val LITERALS = Mode(
-        className = "literal",
-        begin = "false|true|PI|undef"
+    var LITERALS = listOf(
+        Keyword(
+            className = "className",
+            value = "literal"
+        ),
+        Keyword(
+            className = "begin",
+            value = "false|true|PI|undef"
+        )
     )
     var NUMBERS = Mode(
         className = "number",
-        begin = "\\b\\d+(\\.\\d+)?(e-?\\d+)?", // adds 1e5, 1e-10
+        begin = "\\b\\d+(\\.\\d+)?(e-?\\d+)?",
+        // adds 1e5, 1e-10
         relevance = 0
     )
     var STRING = hljs.inherit(hljs.QUOTE_STRING_MODE, Mode(illegal = null))
@@ -45,7 +47,10 @@ internal fun openscad(): Mode {
         className = "params",
         begin = "\\(",
         end = "\\)",
-        contains = listOf(hljs.SELF, NUMBERS, STRING, SPECIAL_VARS, LITERALS)
+        contains = listOf(
+            hljs.SELF,
+            NUMBERS, STRING, SPECIAL_VARS, LITERALS
+        )
     )
     var MODIFIERS = Mode(
         begin = "[*!#%]",

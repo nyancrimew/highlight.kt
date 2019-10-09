@@ -34,14 +34,16 @@ internal fun lisp(): Mode {
             Mode(begin = "#(o|O)[0-7]+(/[0-7]+)?"),
             Mode(begin = "#(x|X)[0-9a-fA-F]+(/[0-9a-fA-F]+)?"),
             Mode(
-                begin = "#(c|C)\\(" + LISP_SIMPLE_NUMBER_RE + + LISP_SIMPLE_NUMBER_RE,
+                begin = "#(c|C)\\(" +
+                    LISP_SIMPLE_NUMBER_RE + + LISP_SIMPLE_NUMBER_RE,
                 end = "\\)"
             )
         )
     )
     var STRING = hljs.inherit(hljs.QUOTE_STRING_MODE, Mode(illegal = null))
     var COMMENT = hljs.COMMENT(
-        ";\", \"\$",
+        ";",
+        "\$",
         Mode(
             relevance = 0
         )
@@ -52,7 +54,8 @@ internal fun lisp(): Mode {
     )
     var KEYWORD = Mode(
         className = "symbol",
-        begin = "[:&]" + LISP_IDENT_RE
+        begin = "[:&]" +
+            LISP_IDENT_RE
     )
     var IDENT = Mode(
         begin = LISP_IDENT_RE,
@@ -64,7 +67,10 @@ internal fun lisp(): Mode {
     var QUOTED_LIST = Mode(
         begin = "\\(",
         end = "\\)",
-        contains = listOf(hljs.SELF, LITERAL, STRING, NUMBER, IDENT)
+        contains = listOf(
+            hljs.SELF,
+            LITERAL, STRING, NUMBER, IDENT
+        )
     )
     var QUOTED = Mode(
         contains = listOf(NUMBER, STRING, VARIABLE, KEYWORD, QUOTED_LIST, IDENT),
@@ -84,14 +90,22 @@ internal fun lisp(): Mode {
                 )
             ),
             Mode(
-                begin = "'" + MEC_RE
+                begin = "'" +
+                    MEC_RE
             )
         )
     )
     var QUOTED_ATOM = Mode(
         variants = listOf(
-            Mode(begin = "'" + LISP_IDENT_RE),
-            Mode(begin = "#'\" + LISP_IDENT_RE + \"(::\" + LISP_IDENT_RE + \")*")
+            Mode(
+                begin = "'" +
+                    LISP_IDENT_RE
+            ),
+            Mode(
+                begin = "#'" +
+                    LISP_IDENT_RE + "(::" +
+                    LISP_IDENT_RE + ")*"
+            )
         )
     )
     var LIST = Mode(

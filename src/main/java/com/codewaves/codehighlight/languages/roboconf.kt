@@ -38,13 +38,17 @@ internal fun roboconf(): Mode {
         )
     )
     return Mode(
-        aliases = listOf("graph\", \"instances"),
+        aliases = listOf(
+            "graph",
+            "instances"
+        ),
         case_insensitive = true,
         keywords = keywords("import"),
         contains = listOf(
             // Facet sections
             Mode(
-                begin = "^facet " + IDENTIFIER,
+                begin = "^facet " +
+                    IDENTIFIER,
                 end = "}",
                 keywords = keywords("facet"),
                 contains = listOf(
@@ -54,7 +58,8 @@ internal fun roboconf(): Mode {
             ),
             // Instance sections
             Mode(
-                begin = "^\\s*instance of " + IDENTIFIER,
+                begin = "^\\s*instance of " +
+                    IDENTIFIER,
                 end = "}",
                 keywords = keywords("name count channels instance-data instance-state instance of"),
                 illegal =
@@ -67,7 +72,8 @@ internal fun roboconf(): Mode {
             ),
             // Component sections
             Mode(
-                begin = "^" + IDENTIFIER,
+                begin = "^" +
+                    IDENTIFIER,
                 end = "}",
                 contains = listOf(
                     PROPERTY,

@@ -27,12 +27,17 @@ internal fun crmsh(): Mode {
     var TYPES = "number string"
     var LITERALS = "Master Started Slave Stopped start promote demote stop monitor true false"
     return Mode(
-        aliases = listOf("crm\", \"pcmk"),
+        aliases = listOf(
+            "crm",
+            "pcmk"
+        ),
         case_insensitive = true,
         keywords = listOf(
             Keyword(
                 className = "keyword",
-                value = KEYWORDS + " \" + OPERATORS + \" " + TYPES
+                value = KEYWORDS + " " +
+                    OPERATORS + " " +
+                    TYPES
             ),
             Keyword(
                 className = "literal",
@@ -47,7 +52,7 @@ internal fun crmsh(): Mode {
                     end = "\\s*([\\w_-]+:)?",
                     starts = Mode(
                         className = "title",
-                        end = "\\s*[\\$\\w_][\\w_-]*"
+                        end = "\\s*[\\\$\\w_][\\w_-]*"
                     )
                 )
             ),
@@ -55,19 +60,20 @@ internal fun crmsh(): Mode {
                 beginKeywords = keywords(RESOURCES),
                 starts = Mode(
                     className = "title",
-                    end = "\\s*[\\$\\w_][\\w_-]*",
+                    end = "\\s*[\\\$\\w_][\\w_-]*",
                     starts = Mode(
                         end = "\\s*@?[\\w_][\\w_\\.:-]*"
                     )
                 )
             ),
             Mode(
-                begin = "\\b(" + COMMANDS.split(" ")
-                    .joinToString("|") + ")\\s+",
+                begin = "\\b(" +
+                    COMMANDS.split(" ").joinToString("|") +
+                    ")\\s+",
                 keywords = keywords(COMMANDS),
                 starts = Mode(
                     className = "title",
-                    end = "[\\$\\w_][\\w_-]*"
+                    end = "[\\\$\\w_][\\w_-]*"
                 )
             ),
             Mode(

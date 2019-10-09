@@ -15,11 +15,13 @@ internal fun ruby(): Mode {
     var RUBY_KEYWORDS = listOf(
         Keyword(
             className = "keyword",
-            value = "and then defined module in return redo if BEGIN retry end for self when next until do begin unless END rescue else break undef not super class case require yield alias while ensure elsif or include attr_reader attr_writer attr_accessor"
+            value =
+                "and then defined module in return redo if BEGIN retry end for self when next until do begin unless END rescue else break undef not super class case require yield alias while ensure elsif or include attr_reader attr_writer attr_accessor"
         ),
         Keyword(
             className = "literal",
-            value = "true false nil"
+            value =
+                "true false nil"
         )
     )
     var YARDOCTAG = Mode(
@@ -46,7 +48,10 @@ internal fun ruby(): Mode {
                 relevance = 10
             )
         ),
-        hljs.COMMENT("^__END__\", \"\\n\$")
+        hljs.COMMENT(
+            "^__END__",
+            "\\n\$"
+        )
     )
     var SUBST = Mode(
         className = "subst",
@@ -144,7 +149,7 @@ internal fun ruby(): Mode {
         Mode(
             className = "class",
             beginKeywords = keywords("class module"),
-            end = "\${'$'}|;",
+            end = "\${'\$'}|;",
             illegal =
                 """=""",
             contains = listOf(
@@ -153,22 +158,22 @@ internal fun ruby(): Mode {
                     begin = "<\\s*",
                     contains = listOf(
                         Mode(
-                            begin = "(\" + hljs.IDENT_RE + \"::)?" + hljs.IDENT_RE
+                            begin = "(" +
+                                hljs.IDENT_RE + "::)?" +
+                                hljs.IDENT_RE
                         )
                     )
                 )
-            ) +
-                COMMENT_MODES
+            ) + COMMENT_MODES
         ),
         Mode(
             className = "function",
             beginKeywords = keywords("def"),
-            end = "\${'$'}|;",
+            end = "\${'\$'}|;",
             contains = listOf(
                 hljs.inherit(hljs.TITLE_MODE, Mode(begin = RUBY_METHOD_RE)),
                 PARAMS
-            ) +
-                COMMENT_MODES
+            ) + COMMENT_MODES
         ),
         Mode(
             // swallow namespace qualifiers before symbols
@@ -191,7 +196,7 @@ internal fun ruby(): Mode {
             relevance = 0
         ),
         Mode(
-            begin = "(\\${'$'}\\W)|((\\${'$'}|\\@\\@?)(\\w+))" // variables
+            begin = "(\\\${'\$'}\\W)|((\\\${'\$'}|\\@\\@?)(\\w+))" // variables
         ),
         Mode(
             className = "params",
@@ -202,7 +207,8 @@ internal fun ruby(): Mode {
             keywords = keywords(RUBY_KEYWORDS)
         ),
         Mode(// regexp container
-            begin = "(\" + hljs.RE_STARTERS_RE + \"|unless)\\s*",
+            begin = "(" +
+                hljs.RE_STARTERS_RE + "|unless)\\s*",
             keywords = keywords("unless"),
             contains = listOf(
                 IRB_OBJECT,
@@ -234,12 +240,10 @@ internal fun ruby(): Mode {
                         )
                     )
                 )
-            ) +
-                COMMENT_MODES,
+            ) + COMMENT_MODES,
             relevance = 0
         )
-    )
-    + COMMENT_MODES
+    ) + COMMENT_MODES
     SUBST.contains = RUBY_DEFAULT_CONTAINS
     PARAMS.contains = RUBY_DEFAULT_CONTAINS
     var SIMPLE_PROMPT = "[>?]>"
@@ -250,7 +254,7 @@ internal fun ruby(): Mode {
             begin =
                 """^\s*=>""",
             starts = Mode(
-                end = "\${'$'}",
+                end = "\${'\$'}",
                 contains = RUBY_DEFAULT_CONTAINS
             )
         ),
@@ -258,17 +262,22 @@ internal fun ruby(): Mode {
             className = "meta",
             begin = "^(\"+SIMPLE_PROMPT+\"|\"+DEFAULT_PROMPT+\"|\"+RVM_PROMPT+\")",
             starts = Mode(
-                end = "\${'$'}",
+                end = "\${'\$'}",
                 contains = RUBY_DEFAULT_CONTAINS
             )
         )
     )
     return Mode(
-        aliases = listOf("rb\", \"gemspec\", \"podspec\", \"thor\", \"irb"),
+        aliases = listOf(
+            "rb",
+            "gemspec",
+            "podspec",
+            "thor",
+            "irb"
+        ),
         keywords = keywords(RUBY_KEYWORDS),
         illegal =
             """\/\*""",
-        contains = COMMENT_MODES + IRB_DEFAULT +
-            RUBY_DEFAULT_CONTAINS
+        contains = COMMENT_MODES + IRB_DEFAULT + RUBY_DEFAULT_CONTAINS
     )
 }

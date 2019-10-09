@@ -31,7 +31,10 @@ internal fun fortran(): Mode {
     )
     return Mode(
         case_insensitive = true,
-        aliases = listOf("f90\", \"f95"),
+        aliases = listOf(
+            "f90",
+            "f95"
+        ),
         keywords = keywords(F_KEYWORDS),
         illegal =
             """\/\*""",
@@ -56,7 +59,11 @@ internal fun fortran(): Mode {
                 illegal = "[\${=\\n]",
                 contains = listOf(hljs.UNDERSCORE_TITLE_MODE, PARAMS)
             ),
-            hljs.COMMENT("!\", \"\$", Mode(relevance = 0)),
+            hljs.COMMENT(
+                "!",
+                "\$",
+                Mode(relevance = 0)
+            ),
             Mode(
                 className = "number",
                 begin = "(?=\\b|\\+|\\-|\\.)(?=\\.\\d|\\d)(?:\\d+)?(?:\\.?\\d*)(?:[de][+-]?\\d+)?\\b\\.?",

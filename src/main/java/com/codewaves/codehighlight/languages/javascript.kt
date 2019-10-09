@@ -1,10 +1,5 @@
 package com.codewaves.codehighlight.languages
-
-import com.codewaves.codehighlight.core.Keyword
-import com.codewaves.codehighlight.core.Mode
-import com.codewaves.codehighlight.core.hljs
-import com.codewaves.codehighlight.core.keywords
-
+import com.codewaves.codehighlight.core.*
 /*
 Language = JavaScript
 Category = common, scripting
@@ -18,15 +13,18 @@ internal fun javascript(): Mode {
     var KEYWORDS = listOf(
         Keyword(
             className = "keyword",
-            value = "in of if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const export super debugger as async await static import from as"
+            value =
+                "in of if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const export super debugger as async await static import from as"
         ),
         Keyword(
             className = "literal",
-            value = "true false null undefined NaN Infinity"
+            value =
+                "true false null undefined NaN Infinity"
         ),
         Keyword(
             className = "built_in",
-            value = "eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape Object Function Boolean Error EvalError InternalError RangeError ReferenceError StopIteration SyntaxError TypeError URIError Number Math Date String RegExp Array Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require module console window document Symbol Set Map WeakSet WeakMap Proxy Reflect Promise"
+            value =
+                "eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape Object Function Boolean Error EvalError InternalError RangeError ReferenceError StopIteration SyntaxError TypeError URIError Number Math Date String RegExp Array Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require module console window document Symbol Set Map WeakSet WeakMap Proxy Reflect Promise"
         )
     )
     var NUMBER = Mode(
@@ -40,7 +38,7 @@ internal fun javascript(): Mode {
     )
     var SUBST = Mode(
         className = "subst",
-        begin = "\\$\\{",
+        begin = "\\\$\\{",
         end = "\\}",
         keywords = keywords(KEYWORDS),
         contains = listOf() // defined later
@@ -94,14 +92,17 @@ internal fun javascript(): Mode {
         hljs.C_LINE_COMMENT_MODE
     )
     return Mode(
-        aliases = listOf("js\", \"jsx"),
+        aliases = listOf(
+            "js",
+            "jsx"
+        ),
         keywords = keywords(KEYWORDS),
         contains = listOf(
             Mode(
                 className = "meta",
                 relevance = 10,
                 begin =
-                    """^\s*["\"]use (strict|asm)[""]"""
+                    """^\s*["\"]use (strict|asm)[\""]\"""
             ),
             Mode(
                 className = "meta",
@@ -138,7 +139,8 @@ internal fun javascript(): Mode {
                 )
             ),
             Mode(// "value" container
-                begin = "(\" + hljs.RE_STARTERS_RE + \"|\\b(case|return|throw)\\b)\\s*",
+                begin = "(" +
+                    hljs.RE_STARTERS_RE + "|\\b(case|return|throw)\\b)\\s*",
                 keywords = keywords("return throw case"),
                 contains = listOf(
                     hljs.C_LINE_COMMENT_MODE,
@@ -146,7 +148,8 @@ internal fun javascript(): Mode {
                     hljs.REGEXP_MODE,
                     Mode(
                         className = "function",
-                        begin = "(\\(.*?\\)|\" + IDENT_RE + \")\\s*=>",
+                        begin = "(\\(.*?\\)|" +
+                            IDENT_RE + ")\\s*=>",
                         returnBegin = true,
                         end = "\\s*=>",
                         contains = listOf(
@@ -248,7 +251,7 @@ internal fun javascript(): Mode {
                     """[{;=]""",
                 excludeEnd = true,
                 illegal =
-                    """[:"\[\]]""",
+                    """[:"\[\]]\""",
                 contains = listOf(
                     Mode(beginKeywords = keywords("extends")),
                     hljs.UNDERSCORE_TITLE_MODE

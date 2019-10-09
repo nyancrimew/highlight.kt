@@ -16,15 +16,18 @@ internal fun thrift(): Mode {
         keywords = listOf(
             Keyword(
                 className = "keyword",
-                value = "namespace const typedef struct enum service exception void oneway set list map required optional"
+                value =
+                    "namespace const typedef struct enum service exception void oneway set list map required optional"
             ),
             Keyword(
                 className = "built_in",
-                value = BUILT_IN_TYPES
+                value =
+                    BUILT_IN_TYPES
             ),
             Keyword(
                 className = "literal",
-                value = "true false"
+                value =
+                    "true false"
             )
         ),
         contains = listOf(

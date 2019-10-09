@@ -1,9 +1,5 @@
 package com.codewaves.codehighlight.languages
-
-import com.codewaves.codehighlight.core.Mode
-import com.codewaves.codehighlight.core.hljs
-import com.codewaves.codehighlight.core.keywords
-
+import com.codewaves.codehighlight.core.*
 /*
 Language = PHP
 Author = Victor Karamzin <Victor.Karamzin@enterra-inc.com>
@@ -16,7 +12,7 @@ Category = common
  */
 internal fun php(): Mode {
     var VARIABLE = Mode(
-        begin = "\\$+[a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*"
+        begin = "\\\$+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*"
     )
     var PREPROCESSOR = Mode(
         className = "meta",
@@ -41,12 +37,24 @@ internal fun php(): Mode {
     )
     var NUMBER = Mode(variants = listOf(hljs.BINARY_NUMBER_MODE, hljs.C_NUMBER_MODE))
     return Mode(
-        aliases = listOf("php\", \"php3\", \"php4\", \"php5\", \"php6\", \"php7"),
+        aliases = listOf(
+            "php",
+            "php3",
+            "php4",
+            "php5",
+            "php6",
+            "php7"
+        ),
         case_insensitive = true,
-        keywords = keywords("and include_once list abstract global private echo interface as static endswitch array null if endwhile or const for endforeach self var while isset public protected exit foreach throw elseif include __FILE__ empty require_once do xor return parent clone use __CLASS__ __LINE__ else break print eval new catch __METHOD__ case exception default die require __FUNCTION__ enddeclare final try switch continue endfor endif declare unset true false trait goto instanceof insteadof __DIR__ __NAMESPACE__ yield finally"),
+        keywords =
+            keywords("and include_once list abstract global private echo interface as static endswitch array null if endwhile or const for endforeach self var while isset public protected exit foreach throw elseif include __FILE__ empty require_once do xor return parent clone use __CLASS__ __LINE__ else break print eval new catch __METHOD__ case exception default die require __FUNCTION__ enddeclare final try switch continue endfor endif declare unset true false trait goto instanceof insteadof __DIR__ __NAMESPACE__ yield finally"),
         contains = listOf(
             hljs.HASH_COMMENT_MODE,
-            hljs.COMMENT("//", "\${'$'}", Mode(contains = listOf(PREPROCESSOR))),
+            hljs.COMMENT(
+                "//",
+                "\${'\$'}",
+                Mode(contains = listOf(PREPROCESSOR))
+            ),
             hljs.COMMENT(
                 "/\\*",
                 "\\*/",
@@ -61,7 +69,7 @@ internal fun php(): Mode {
             ),
             hljs.COMMENT(
                 "__halt_compiler.+?;",
-                null,
+                false,
                 Mode(
                     endsWithParent = true,
                     keywords = keywords("__halt_compiler"),
@@ -71,7 +79,7 @@ internal fun php(): Mode {
             Mode(
                 className = "string",
                 begin =
-                    """<<<["\"]?\w+[""]?${'$'}""",
+                    """<<<["\"]?\w+[\""]?\${'\$'}\""",
                 end =
                     """^\w+;?${'$'}""",
                 contains = listOf(
@@ -79,10 +87,8 @@ internal fun php(): Mode {
                     Mode(
                         className = "subst",
                         variants = listOf(
-                            Mode(
-                                begin =
-                                    """\${'$'}\w+"""
-                            ),
+                            Mode(begin =
+                                    """\${'$'}\w+"""),
                             Mode(
                                 begin =
                                     """\{\${'$'}""",
@@ -111,7 +117,7 @@ internal fun php(): Mode {
                 end =
                     """[;{]""",
                 excludeEnd = true,
-                illegal = "\\${'$'}|\\[|%",
+                illegal = "\\\${'\$'}|\\[|%",
                 contains = listOf(
                     hljs.UNDERSCORE_TITLE_MODE,
                     Mode(
@@ -134,7 +140,7 @@ internal fun php(): Mode {
                 end = "{",
                 excludeEnd = true,
                 illegal =
-                    """[:\(\${'$'}"]""",
+                    """[:\(\${'$'}"]\""",
                 contains = listOf(
                     Mode(beginKeywords = keywords("extends implements")),
                     hljs.UNDERSCORE_TITLE_MODE
@@ -144,7 +150,7 @@ internal fun php(): Mode {
                 beginKeywords = keywords("namespace"),
                 end = ";",
                 illegal =
-                    """[\."]""",
+                    """[\."]\""",
                 contains = listOf(hljs.UNDERSCORE_TITLE_MODE)
             ),
             Mode(

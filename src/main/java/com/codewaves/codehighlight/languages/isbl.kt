@@ -1,10 +1,5 @@
 package com.codewaves.codehighlight.languages
-
-import com.codewaves.codehighlight.core.Keyword
-import com.codewaves.codehighlight.core.Mode
-import com.codewaves.codehighlight.core.hljs
-import com.codewaves.codehighlight.core.keywords
-
+import com.codewaves.codehighlight.core.*
 /*
 Language = ISBL
 Author = Dmitriy Tarasov <dimatar@gmail.com>
@@ -43,12 +38,14 @@ internal fun isbl(): Mode {
     // Language code
     var language_code_constants = "ENGLISH_LANGUAGE_CODE RUSSIAN_LANGUAGE_CODE "
     // Launching external applications
-    var launching_external_applications_constants = "smHidden smMaximized smMinimized smNormal wmNo wmYes "
+    var launching_external_applications_constants =
+        "smHidden smMaximized smMinimized smNormal wmNo wmYes "
     // Link kind
     var link_kind_constants =
         "COMPONENT_TOKEN_LINK_KIND DOCUMENT_LINK_KIND EDOCUMENT_LINK_KIND FOLDER_LINK_KIND JOB_LINK_KIND REFERENCE_LINK_KIND TASK_LINK_KIND "
     // Lock type
-    var lock_type_constants = "COMPONENT_TOKEN_LOCK_TYPE EDOCUMENT_VERSION_LOCK_TYPE "
+    var lock_type_constants =
+        "COMPONENT_TOKEN_LOCK_TYPE EDOCUMENT_VERSION_LOCK_TYPE "
     // Monitor block properties
     var monitor_block_properties_constants =
         "MONITOR_BLOCK_AFTER_FINISH_EVENT MONITOR_BLOCK_BEFORE_START_EVENT MONITOR_BLOCK_DEADLINE_PROPERTY MONITOR_BLOCK_INTERVAL_PROPERTY MONITOR_BLOCK_INTERVAL_TYPE_PROPERTY MONITOR_BLOCK_IS_RELATIVE_DEADLINE_PROPERTY MONITOR_BLOCK_NAME_PROPERTY MONITOR_BLOCK_RELATIVE_DEADLINE_TYPE_PROPERTY MONITOR_BLOCK_SEARCH_SCRIPT_PROPERTY "
@@ -59,7 +56,8 @@ internal fun isbl(): Mode {
     var object_events_constants =
         "dseAfterCancel dseAfterClose dseAfterDelete dseAfterDeleteOutOfTransaction dseAfterInsert dseAfterOpen dseAfterScroll dseAfterUpdate dseAfterUpdateOutOfTransaction dseBeforeCancel dseBeforeClose dseBeforeDelete dseBeforeDetailUpdate dseBeforeInsert dseBeforeOpen dseBeforeUpdate dseOnAnyRequisiteChange dseOnCloseRecord dseOnDeleteError dseOnOpenRecord dseOnPrepareUpdate dseOnUpdateError dseOnUpdateRatifiedRecord dseOnValidDelete dseOnValidUpdate reOnChange reOnChangeValues SELECTION_BEGIN_ROUTE_EVENT SELECTION_END_ROUTE_EVENT "
     // Object params
-    var object_params_constants = "CURRENT_PERIOD_IS_REQUIRED PREVIOUS_CARD_TYPE_NAME SHOW_RECORD_PROPERTIES_FORM "
+    var object_params_constants =
+        "CURRENT_PERIOD_IS_REQUIRED PREVIOUS_CARD_TYPE_NAME SHOW_RECORD_PROPERTIES_FORM "
     // Other
     var other_constants =
         "ACCESS_RIGHTS_SETTING_DIALOG_CODE ADMINISTRATOR_USER_CODE ANALYTIC_REPORT_TYPE asrtHideLocal asrtHideRemote CALCULATED_ROLE_TYPE_CODE COMPONENTS_REFERENCE_DEVELOPER_VIEW_CODE DCTS_TEST_PROTOCOLS_FOLDER_PATH E_EDOC_VERSION_ALREADY_APPROVINGLY_SIGNED E_EDOC_VERSION_ALREADY_APPROVINGLY_SIGNED_BY_USER E_EDOC_VERSION_ALREDY_SIGNED E_EDOC_VERSION_ALREDY_SIGNED_BY_USER EDOC_TYPES_CODE_REQUISITE_FIELD_NAME EDOCUMENTS_ALIAS_NAME FILES_FOLDER_PATH FILTER_OPERANDS_DELIMITER FILTER_OPERATIONS_DELIMITER FORMCARD_NAME FORMLIST_NAME GET_EXTENDED_DOCUMENT_EXTENSION_CREATION_MODE GET_EXTENDED_DOCUMENT_EXTENSION_IMPORT_MODE INTEGRATED_REPORT_TYPE IS_BUILDER_APPLICATION_ROLE IS_BUILDER_APPLICATION_ROLE2 IS_BUILDER_USERS ISBSYSDEV LOG_FOLDER_PATH mbCancel mbNo mbNoToAll mbOK mbYes mbYesToAll MEMORY_DATASET_DESRIPTIONS_FILENAME mrNo mrNoToAll mrYes mrYesToAll MULTIPLE_SELECT_DIALOG_CODE NONOPERATING_RECORD_FLAG_FEMININE NONOPERATING_RECORD_FLAG_MASCULINE OPERATING_RECORD_FLAG_FEMININE OPERATING_RECORD_FLAG_MASCULINE PROFILING_SETTINGS_COMMON_SETTINGS_CODE_VALUE PROGRAM_INITIATED_LOOKUP_ACTION ratDelete ratEdit ratInsert REPORT_TYPE REQUIRED_PICK_VALUES_VARIABLE rmCard rmList SBRTE_PROGID_DEV SBRTE_PROGID_RELEASE STATIC_ROLE_TYPE_CODE SUPPRESS_EMPTY_TEMPLATE_CREATION SYSTEM_USER_CODE UPDATE_DIALOG_DATASET USED_IN_OBJECT_HINT_PARAM USER_INITIATED_LOOKUP_ACTION USER_NAME_FORMAT USER_SELECTION_RESTRICTIONS WORKFLOW_TEST_PROTOCOLS_FOLDER_PATH ELS_SUBTYPE_CONTROL_NAME ELS_FOLDER_KIND_CONTROL_NAME REPEAT_PROCESS_CURRENT_OBJECT_EXCEPTION_NAME "
@@ -93,7 +91,8 @@ internal fun isbl(): Mode {
     var subtask_block_properties_constants =
         "SUBTASK_BLOCK_ABORT_DEADLINE_PROPERTY SUBTASK_BLOCK_AFTER_FINISH_EVENT SUBTASK_BLOCK_ASSIGN_PARAMS_EVENT SUBTASK_BLOCK_ATTACHMENTS_PROPERTY SUBTASK_BLOCK_ATTACHMENTS_RIGHTS_GROUP_PROPERTY SUBTASK_BLOCK_ATTACHMENTS_RIGHTS_TYPE_PROPERTY SUBTASK_BLOCK_BEFORE_START_EVENT SUBTASK_BLOCK_CREATED_TASK_PROPERTY SUBTASK_BLOCK_CREATION_EVENT SUBTASK_BLOCK_DEADLINE_PROPERTY SUBTASK_BLOCK_IMPORTANCE_PROPERTY SUBTASK_BLOCK_INITIATOR_PROPERTY SUBTASK_BLOCK_IS_RELATIVE_ABORT_DEADLINE_PROPERTY SUBTASK_BLOCK_IS_RELATIVE_DEADLINE_PROPERTY SUBTASK_BLOCK_JOBS_TYPE_PROPERTY SUBTASK_BLOCK_NAME_PROPERTY SUBTASK_BLOCK_PARALLEL_ROUTE_PROPERTY SUBTASK_BLOCK_PERFORMERS_PROPERTY SUBTASK_BLOCK_RELATIVE_ABORT_DEADLINE_TYPE_PROPERTY SUBTASK_BLOCK_RELATIVE_DEADLINE_TYPE_PROPERTY SUBTASK_BLOCK_REQUIRE_SIGN_PROPERTY SUBTASK_BLOCK_STANDARD_ROUTE_PROPERTY SUBTASK_BLOCK_START_EVENT SUBTASK_BLOCK_STEP_CONTROL_PROPERTY SUBTASK_BLOCK_SUBJECT_PROPERTY SUBTASK_BLOCK_TASK_CONTROL_PROPERTY SUBTASK_BLOCK_TEXT_PROPERTY SUBTASK_BLOCK_UNLOCK_ATTACHMENTS_ON_STOP_PROPERTY SUBTASK_BLOCK_USE_STANDARD_ROUTE_PROPERTY SUBTASK_BLOCK_WAIT_FOR_TASK_COMPLETE_PROPERTY "
     // System component
-    var system_component_constants = "SYSCOMP_CONTROL_JOBS SYSCOMP_FOLDERS SYSCOMP_JOBS SYSCOMP_NOTICES SYSCOMP_TASKS "
+    var system_component_constants =
+        "SYSCOMP_CONTROL_JOBS SYSCOMP_FOLDERS SYSCOMP_JOBS SYSCOMP_NOTICES SYSCOMP_TASKS "
     // System dialogs
     var system_dialogs_constants =
         "SYSDLG_CREATE_EDOCUMENT SYSDLG_CREATE_EDOCUMENT_VERSION SYSDLG_CURRENT_PERIOD SYSDLG_EDIT_FUNCTION_HELP SYSDLG_EDOCUMENT_KINDS_FOR_TEMPLATE SYSDLG_EXPORT_MULTIPLE_EDOCUMENTS SYSDLG_EXPORT_SINGLE_EDOCUMENT SYSDLG_IMPORT_EDOCUMENT SYSDLG_MULTIPLE_SELECT SYSDLG_SETUP_ACCESS_RIGHTS SYSDLG_SETUP_DEFAULT_RIGHTS SYSDLG_SETUP_FILTER_CONDITION SYSDLG_SETUP_SIGN_RIGHTS SYSDLG_SETUP_TASK_OBSERVERS SYSDLG_SETUP_TASK_ROUTE SYSDLG_SETUP_USERS_LIST SYSDLG_SIGN_EDOCUMENT SYSDLG_SIGN_MULTIPLE_EDOCUMENTS "
@@ -101,7 +100,8 @@ internal fun isbl(): Mode {
     var system_reference_names_constants =
         "SYSREF_ACCESS_RIGHTS_TYPES SYSREF_ADMINISTRATION_HISTORY SYSREF_ALL_AVAILABLE_COMPONENTS SYSREF_ALL_AVAILABLE_PRIVILEGES SYSREF_ALL_REPLICATING_COMPONENTS SYSREF_AVAILABLE_DEVELOPERS_COMPONENTS SYSREF_CALENDAR_EVENTS SYSREF_COMPONENT_TOKEN_HISTORY SYSREF_COMPONENT_TOKENS SYSREF_COMPONENTS SYSREF_CONSTANTS SYSREF_DATA_RECEIVE_PROTOCOL SYSREF_DATA_SEND_PROTOCOL SYSREF_DIALOGS SYSREF_DIALOGS_REQUISITES SYSREF_EDITORS SYSREF_EDOC_CARDS SYSREF_EDOC_TYPES SYSREF_EDOCUMENT_CARD_REQUISITES SYSREF_EDOCUMENT_CARD_TYPES SYSREF_EDOCUMENT_CARD_TYPES_REFERENCE SYSREF_EDOCUMENT_CARDS SYSREF_EDOCUMENT_HISTORY SYSREF_EDOCUMENT_KINDS SYSREF_EDOCUMENT_REQUISITES SYSREF_EDOCUMENT_SIGNATURES SYSREF_EDOCUMENT_TEMPLATES SYSREF_EDOCUMENT_TEXT_STORAGES SYSREF_EDOCUMENT_VIEWS SYSREF_FILTERER_SETUP_CONFLICTS SYSREF_FILTRATER_SETTING_CONFLICTS SYSREF_FOLDER_HISTORY SYSREF_FOLDERS SYSREF_FUNCTION_GROUPS SYSREF_FUNCTION_PARAMS SYSREF_FUNCTIONS SYSREF_JOB_HISTORY SYSREF_LINKS SYSREF_LOCALIZATION_DICTIONARY SYSREF_LOCALIZATION_LANGUAGES SYSREF_MODULES SYSREF_PRIVILEGES SYSREF_RECORD_HISTORY SYSREF_REFERENCE_REQUISITES SYSREF_REFERENCE_TYPE_VIEWS SYSREF_REFERENCE_TYPES SYSREF_REFERENCES SYSREF_REFERENCES_REQUISITES SYSREF_REMOTE_SERVERS SYSREF_REPLICATION_SESSIONS_LOG SYSREF_REPLICATION_SESSIONS_PROTOCOL SYSREF_REPORTS SYSREF_ROLES SYSREF_ROUTE_BLOCK_GROUPS SYSREF_ROUTE_BLOCKS SYSREF_SCRIPTS SYSREF_SEARCHES SYSREF_SERVER_EVENTS SYSREF_SERVER_EVENTS_HISTORY SYSREF_STANDARD_ROUTE_GROUPS SYSREF_STANDARD_ROUTES SYSREF_STATUSES SYSREF_SYSTEM_SETTINGS SYSREF_TASK_HISTORY SYSREF_TASK_KIND_GROUPS SYSREF_TASK_KINDS SYSREF_TASK_RIGHTS SYSREF_TASK_SIGNATURES SYSREF_TASKS SYSREF_UNITS SYSREF_USER_GROUPS SYSREF_USER_GROUPS_REFERENCE SYSREF_USER_SUBSTITUTION SYSREF_USERS SYSREF_USERS_REFERENCE SYSREF_VIEWERS SYSREF_WORKING_TIME_CALENDARS "
     // Table name
-    var table_name_constants = "ACCESS_RIGHTS_TABLE_NAME EDMS_ACCESS_TABLE_NAME EDOC_TYPES_TABLE_NAME "
+    var table_name_constants =
+        "ACCESS_RIGHTS_TABLE_NAME EDMS_ACCESS_TABLE_NAME EDOC_TYPES_TABLE_NAME "
     // Test
     var test_constants =
         "TEST_DEV_DB_NAME TEST_DEV_SYSTEM_CODE TEST_EDMS_DB_NAME TEST_EDMS_MAIN_CODE TEST_EDMS_MAIN_DB_NAME TEST_EDMS_SECOND_CODE TEST_EDMS_SECOND_DB_NAME TEST_EDMS_SYSTEM_CODE TEST_ISB5_MAIN_CODE TEST_ISB5_SECOND_CODE TEST_SQL_SERVER_2005_NAME TEST_SQL_SERVER_NAME "
@@ -115,7 +115,8 @@ internal fun isbl(): Mode {
     var using_the_EA_and_encryption_constants =
         "cpDataEnciphermentEnabled cpDigitalSignatureEnabled cpID cpIssuer cpPluginVersion cpSerial cpSubjectName cpSubjSimpleName cpValidFromDate cpValidToDate "
     // Using the ISBL-editor
-    var using_the_ISBL_editor_constants = "ISBL_SYNTAX NO_SYNTAX XML_SYNTAX "
+    var using_the_ISBL_editor_constants =
+        "ISBL_SYNTAX NO_SYNTAX XML_SYNTAX "
     // Wait block properties
     var wait_block_properties_constants =
         "WAIT_BLOCK_AFTER_FINISH_EVENT WAIT_BLOCK_BEFORE_START_EVENT WAIT_BLOCK_DEADLINE_PROPERTY WAIT_BLOCK_IS_RELATIVE_DEADLINE_PROPERTY WAIT_BLOCK_NAME_PROPERTY WAIT_BLOCK_RELATIVE_DEADLINE_TYPE_PROPERTY "
@@ -170,7 +171,8 @@ internal fun isbl(): Mode {
     // enum TAlignment
     var TAlignment = "alLeft alRight "
     // enum TAreaShowMode
-    var TAreaShowMode = "asmNever asmNoButCustomize asmAsLastTime asmYesButCustomize asmAlways "
+    var TAreaShowMode =
+        "asmNever asmNoButCustomize asmAsLastTime asmYesButCustomize asmAlways "
     // enum TCertificateInvalidationReason
     var TCertificateInvalidationReason = "cirCommon cirRevoked "
     // enum TCertificateType
@@ -193,7 +195,8 @@ internal fun isbl(): Mode {
     var TControlType =
         "ctISBLEditor ctBevel ctButton ctCheckListBox ctComboBox ctComboEdit ctGrid ctDBCheckBox ctDBComboBox ctDBEdit ctDBEllipsis ctDBMemo ctDBNavigator ctDBRadioGroup ctDBStatusLabel ctEdit ctGroupBox ctInplaceHint ctMemo ctPanel ctListBox ctRadioButton ctRichEdit ctTabSheet ctWebBrowser ctImage ctHyperLink ctLabel ctDBMultiEllipsis ctRibbon ctRichView ctInnerPanel ctPanelGroup ctBitButton "
     // enum TCriterionContentType
-    var TCriterionContentType = "cctDate cctInteger cctNumeric cctPick cctReference cctString cctText "
+    var TCriterionContentType =
+        "cctDate cctInteger cctNumeric cctPick cctReference cctString cctText "
     // enum TCultureType
     var TCultureType = "cltInternal cltPrimary cltGUI "
     // enum TDataSetEventType
@@ -229,7 +232,8 @@ internal fun isbl(): Mode {
     // enum TEDocumentStorageType
     var TEDocumentStorageType = "edstSQLServer edstFile "
     // enum TEDocumentVersionSourceType
-    var TEDocumentVersionSourceType = "edvstNone edvstEDocumentVersionCopy edvstFile edvstTemplate edvstScannedFile "
+    var TEDocumentVersionSourceType =
+        "edvstNone edvstEDocumentVersionCopy edvstFile edvstTemplate edvstScannedFile "
     // enum TEDocumentVersionState
     var TEDocumentVersionState = "vsDefault vsDesign vsActive vsObsolete "
     // enum TEncodeType
@@ -241,7 +245,8 @@ internal fun isbl(): Mode {
     // enum TExportedVersionType
     var TExportedVersionType = "evtLast evtLastActive evtQuery "
     // enum TFieldDataType
-    var TFieldDataType = "fdtString fdtNumeric fdtInteger fdtDate fdtText fdtUnknown fdtWideString fdtLargeInteger "
+    var TFieldDataType =
+        "fdtString fdtNumeric fdtInteger fdtDate fdtText fdtUnknown fdtWideString fdtLargeInteger "
     // enum TFolderType
     var TFolderType =
         "ftInbox ftOutbox ftFavorites ftCommonFolder ftUserFolder ftComponents ftQuickLaunch ftShortcuts ftSearch "
@@ -250,13 +255,15 @@ internal fun isbl(): Mode {
     // enum THyperlinkType
     var THyperlinkType = "hltText hltRTF hltHTML "
     // enum TImageFileFormat
-    var TImageFileFormat = "iffBMP iffJPEG iffMultiPageTIFF iffSinglePageTIFF iffTIFF iffPNG "
+    var TImageFileFormat =
+        "iffBMP iffJPEG iffMultiPageTIFF iffSinglePageTIFF iffTIFF iffPNG "
     // enum TImageMode
     var TImageMode = "im8bGrayscale im24bRGB im1bMonochrome "
     // enum TImageType
     var TImageType = "itBMP itJPEG itWMF itPNG "
     // enum TInplaceHintKind
-    var TInplaceHintKind = "ikhInformation ikhWarning ikhError ikhNoIcon "
+    var TInplaceHintKind =
+        "ikhInformation ikhWarning ikhError ikhNoIcon "
     // enum TISBLContext
     var TISBLContext =
         "icUnknown icScript icFunction icIntegratedReport icAnalyticReport icDataSetEventHandler icActionHandler icFormEventHandler icLookUpEventHandler icRequisiteChangeEventHandler icBeforeSearchEventHandler icRoleCalculation icSelectRouteEventHandler icBlockPropertyCalculation icBlockQueryParamsEventHandler icChangeSearchResultEventHandler icBlockEventHandler icSubTaskInitEventHandler icEDocDataSetEventHandler icEDocLookUpEventHandler icEDocActionHandler icEDocFormEventHandler icEDocRequisiteChangeEventHandler icStructuredConversionRule icStructuredConversionEventBefore icStructuredConversionEventAfter icWizardEventHandler icWizardFinishEventHandler icWizardStepEventHandler icWizardStepFinishEventHandler icWizardActionEnableEventHandler icWizardActionExecuteEventHandler icCreateJobsHandler icCreateNoticesHandler icBeforeLookUpEventHandler icAfterLookUpEventHandler icTaskAbortEventHandler icWorkflowBlockActionHandler icDialogDataSetEventHandler icDialogActionHandler icDialogLookUpEventHandler icDialogRequisiteChangeEventHandler icDialogFormEventHandler icDialogValidCloseEventHandler icBlockFormEventHandler icTaskFormEventHandler icReferenceMethod icEDocMethod icDialogMethod icProcessMessageHandler "
@@ -271,16 +278,19 @@ internal fun isbl(): Mode {
     // enum TLicensingType
     var TLicensingType = "eltPerConnection eltPerUser "
     // enum TLifeCycleStageFontColor
-    var TLifeCycleStageFontColor = "sfcUndefined sfcBlack sfcGreen sfcRed sfcBlue sfcOrange sfcLilac "
+    var TLifeCycleStageFontColor =
+        "sfcUndefined sfcBlack sfcGreen sfcRed sfcBlue sfcOrange sfcLilac "
     // enum TLifeCycleStageFontStyle
     var TLifeCycleStageFontStyle = "sfsItalic sfsStrikeout sfsNormal "
     // enum TLockableDevelopmentComponentType
     var TLockableDevelopmentComponentType =
         "ldctStandardRoute ldctWizard ldctScript ldctFunction ldctRouteBlock ldctIntegratedReport ldctAnalyticReport ldctReferenceType ldctEDocumentType ldctDialog ldctServerEvents "
     // enum TMaxRecordCountRestrictionType
-    var TMaxRecordCountRestrictionType = "mrcrtNone mrcrtUser mrcrtMaximal mrcrtCustom "
+    var TMaxRecordCountRestrictionType =
+        "mrcrtNone mrcrtUser mrcrtMaximal mrcrtCustom "
     // enum TRangeValueType
-    var TRangeValueType = "vtEqual vtGreaterOrEqual vtLessOrEqual vtRange "
+    var TRangeValueType =
+        "vtEqual vtGreaterOrEqual vtLessOrEqual vtRange "
     // enum TRelativeDate
     var TRelativeDate =
         "rdYesterday rdToday rdTomorrow rdThisWeek rdThisMonth rdThisYear rdNextMonth rdNextWeek rdLastWeek rdLastMonth "
@@ -294,7 +304,8 @@ internal fun isbl(): Mode {
     // enum TSBTimeType
     var TSBTimeType = "ttGlobal ttLocal ttUser ttSystem "
     // enum TSearchShowMode
-    var TSearchShowMode = "ssmBrowse ssmSelect ssmMultiSelect ssmBrowseModal "
+    var TSearchShowMode =
+        "ssmBrowse ssmSelect ssmMultiSelect ssmBrowseModal "
     // enum TSelectMode
     var TSelectMode = "smSelect smLike smCard "
     // enum TSignatureType
@@ -316,27 +327,34 @@ internal fun isbl(): Mode {
     var TUserObjectStatus =
         "usNone usCompleted usRedSquare usBlueSquare usYellowSquare usGreenSquare usOrangeSquare usPurpleSquare usFollowUp "
     // enum TUserType
-    var TUserType = "utUnknown utUser utDeveloper utAdministrator utSystemDeveloper utDisconnected "
+    var TUserType =
+        "utUnknown utUser utDeveloper utAdministrator utSystemDeveloper utDisconnected "
     // enum TValuesBuildType
-    var TValuesBuildType = "btAnd btDetailAnd btOr btNotOr btOnly "
+    var TValuesBuildType =
+        "btAnd btDetailAnd btOr btNotOr btOnly "
     // enum TViewMode
     var TViewMode = "vmView vmSelect vmNavigation "
     // enum TViewSelectionMode
-    var TViewSelectionMode = "vsmSingle vsmMultiple vsmMultipleCheck vsmNoSelection "
+    var TViewSelectionMode =
+        "vsmSingle vsmMultiple vsmMultipleCheck vsmNoSelection "
     // enum TWizardActionType
-    var TWizardActionType = "wfatPrevious wfatNext wfatCancel wfatFinish "
+    var TWizardActionType =
+        "wfatPrevious wfatNext wfatCancel wfatFinish "
     // enum TWizardFormElementProperty
     var TWizardFormElementProperty =
         "wfepUndefined wfepText3 wfepText6 wfepText9 wfepSpinEdit wfepDropDown wfepRadioGroup wfepFlag wfepText12 wfepText15 wfepText18 wfepText21 wfepText24 wfepText27 wfepText30 wfepRadioGroupColumn1 wfepRadioGroupColumn2 wfepRadioGroupColumn3 "
     // enum TWizardFormElementType
-    var TWizardFormElementType = "wfetQueryParameter wfetText wfetDelimiter wfetLabel "
+    var TWizardFormElementType =
+        "wfetQueryParameter wfetText wfetDelimiter wfetLabel "
     // enum TWizardParamType
     var TWizardParamType =
         "wptString wptInteger wptNumeric wptBoolean wptDateTime wptPick wptText wptUser wptUserList wptEDocumentInfo wptEDocumentInfoList wptReferenceRecordInfo wptReferenceRecordInfoList wptFolderInfo wptTaskInfo wptContents wptFileName wptDate "
     // enum TWizardStepResult
-    var TWizardStepResult = "wsrComplete wsrGoNext wsrGoPrevious wsrCustom wsrCancel wsrGoFinal "
+    var TWizardStepResult =
+        "wsrComplete wsrGoNext wsrGoPrevious wsrCustom wsrCancel wsrGoFinal "
     // enum TWizardStepType
-    var TWizardStepType = "wstForm wstEDocument wstTaskCard wstReferenceRecordCard wstFinal "
+    var TWizardStepType =
+        "wstForm wstEDocument wstTaskCard wstReferenceRecordCard wstFinal "
     // enum TWorkAccessType
     var TWorkAccessType = "waAll waPerformers waManual "
     // enum TWorkflowBlockType
@@ -350,9 +368,11 @@ internal fun isbl(): Mode {
     // enum TWorkRouteType
     var TWorkRouteType = "wrtSoft wrtHard "
     // enum TWorkState
-    var TWorkState = "wsInit wsRunning wsDone wsControlled wsAborted wsContinued "
+    var TWorkState =
+        "wsInit wsRunning wsDone wsControlled wsAborted wsContinued "
     // enum TWorkTextBuildingMode
-    var TWorkTextBuildingMode = "wtmFull wtmFromCurrent wtmOnlyCurrent "
+    var TWorkTextBuildingMode =
+        "wtmFull wtmFromCurrent wtmOnlyCurrent "
     // Перечисления
     var ENUMS =
         TAccountType +
@@ -470,10 +490,7 @@ internal fun isbl(): Mode {
         variants = listOf(
             Mode(
                 begin = "\"",
-                end = "\""
-            ),
-            Mode(
-                begin = "'",
+                end = "\"\" ), Mode( begin = \"'",
                 end = "'"
             )
         )
@@ -504,7 +521,7 @@ internal fun isbl(): Mode {
     var COMMENTS = Mode(
         variants = listOf(ISBL_LINE_COMMENT_MODE, ISBL_BLOCK_COMMENT_MODE)
     )
-    // keywords : ключевые слова
+    // keywords = keywords(ключевые слова)
     var KEYWORDS = listOf(
         Keyword(
             className = "keyword",
@@ -525,15 +542,17 @@ internal fun isbl(): Mode {
     )
     // methods : методы
     var METHODS = Mode(
-        begin = "\\.\\s*" + hljs.UNDERSCORE_IDENT_RE,
+        begin = "\\.\\s*" +
+            hljs.UNDERSCORE_IDENT_RE,
         keywords = keywords(KEYWORDS),
         relevance = 0
     )
     // type : встроенные типы
     var TYPES = Mode(
         className = "type",
-        begin = ":[ \\t]*(" + interfaces.trim()
-            .replace(Regex("""\s"""), "|") + ")",
+        begin = ":[ \\t]*(" +
+            interfaces.trim().replace("""\s""", "|") +
+            ")",
         end = "[ \\t]*=",
         excludeEnd = true
     )
@@ -570,7 +589,7 @@ internal fun isbl(): Mode {
         returnBegin = true,
         lexemes = UNDERSCORE_IDENT_RE,
         keywords = keywords(KEYWORDS),
-        illegal = "[\\[\\]\\|\\$\\?%,~#@]",
+        illegal = "[\\[\\]\\|\\\$\\?%,~#@]",
         contains = listOf(TITLE_MODE, METHODS, VARIABLES, STRINGS, NUMBERS, COMMENTS)
     )
     return Mode(
@@ -578,7 +597,7 @@ internal fun isbl(): Mode {
         case_insensitive = true,
         lexemes = UNDERSCORE_IDENT_RE,
         keywords = keywords(KEYWORDS),
-        illegal = "\\$|\\?|%|,|;\$|~|#|@|</",
+        illegal = "\\\$|\\?|%|,|;\$|~|#|@|</",
         contains = listOf(
             FUNCTIONS,
             TYPES,

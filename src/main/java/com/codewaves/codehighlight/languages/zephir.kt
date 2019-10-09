@@ -29,7 +29,8 @@ internal fun zephir(): Mode {
     return Mode(
         aliases = listOf("zep"),
         case_insensitive = true,
-        keywords = keywords("and include_once list abstract global private echo interface as static endswitch array null if endwhile or const for endforeach self var let while isset public protected exit foreach throw elseif include __FILE__ empty require_once do xor return parent clone use __CLASS__ __LINE__ else break print eval new catch __METHOD__ case exception default die require __FUNCTION__ enddeclare final try switch continue endfor endif declare unset true false trait goto instanceof insteadof __DIR__ __NAMESPACE__ yield finally int uint long ulong char uchar double float bool boolean stringlikely unlikely"),
+        keywords =
+            keywords("and include_once list abstract global private echo interface as static endswitch array null if endwhile or const for endforeach self var let while isset public protected exit foreach throw elseif include __FILE__ empty require_once do xor return parent clone use __CLASS__ __LINE__ else break print eval new catch __METHOD__ case exception default die require __FUNCTION__ enddeclare final try switch continue endfor endif declare unset true false trait goto instanceof insteadof __DIR__ __NAMESPACE__ yield finally int uint long ulong char uchar double float bool boolean stringlikely unlikely"),
         contains = listOf(
             hljs.C_LINE_COMMENT_MODE,
             hljs.HASH_COMMENT_MODE,
@@ -71,7 +72,7 @@ internal fun zephir(): Mode {
                 end =
                     """[;{]""",
                 excludeEnd = true,
-                illegal = "\\${'$'}|\\[|%",
+                illegal = "\\\${'\$'}|\\[|%",
                 contains = listOf(
                     hljs.UNDERSCORE_TITLE_MODE,
                     Mode(
@@ -93,9 +94,9 @@ internal fun zephir(): Mode {
                 end = "{",
                 excludeEnd = true,
                 illegal =
-                    """[:\(\${'$'}"]""",
+                    """[:\(\${'$'}"]\""",
                 contains = listOf(
-                    Mode(beginKeywords = "extends implements"),
+                    Mode(beginKeywords = keywords("extends implements")),
                     hljs.UNDERSCORE_TITLE_MODE
                 )
             ),
@@ -103,7 +104,7 @@ internal fun zephir(): Mode {
                 beginKeywords = keywords("namespace"),
                 end = ";",
                 illegal =
-                    """[\."]""",
+                    """[\."]\""",
                 contains = listOf(hljs.UNDERSCORE_TITLE_MODE)
             ),
             Mode(

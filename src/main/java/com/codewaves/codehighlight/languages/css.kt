@@ -1,9 +1,5 @@
 package com.codewaves.codehighlight.languages
-
-import com.codewaves.codehighlight.core.Mode
-import com.codewaves.codehighlight.core.hljs
-import com.codewaves.codehighlight.core.keywords
-
+import com.codewaves.codehighlight.core.*
 /*
 Language = CSS
 Category = common, css
@@ -92,12 +88,12 @@ internal fun css(): Mode {
                     """\[""",
                 end =
                     """\]""",
-                illegal = "\${'$'}"
+                illegal = "\${'\$'}"
             ),
             Mode(
                 className = "selector-pseudo",
                 begin =
-                    """:(:)?[a-zA-Z0-9\_\-\+\(\)"'.]+"""
+                    """:(:)?[a-zA-Z0-9\_\-\+\(\)"'.]+\"""
             ),
             Mode(
                 begin = "@(font-face|page)",
@@ -106,13 +102,13 @@ internal fun css(): Mode {
             ),
             Mode(
                 begin = "@",
-                end = "[{;]", // at_rule eating first  is a good thing
+                end = "[{;]",
+                // at_rule eating first "{" is a good thing
                 // because it doesn’t let it to be parsed as
                 // a rule set but instead drops parser into
                 // the default mode which is how it should be.
                 illegal =
-                    """:""",
-                // break on Less variables @var: ...
+                    """:""", // break on Less variables @var: ...
                 contains = listOf(
                     Mode(
                         className = "keyword",

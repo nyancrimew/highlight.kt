@@ -19,11 +19,18 @@ internal fun handlebars(): Mode {
         )
     )
     return Mode(
-        aliases = listOf("hbs\", \"html.hbs\", \"html.handlebars"),
+        aliases = listOf(
+            "hbs",
+            "html.hbs",
+            "html.handlebars"
+        ),
         case_insensitive = true,
         subLanguage = "xml",
         contains = listOf(
-            hljs.COMMENT("{{!(--)?\", \"(--)?)}"),
+            hljs.COMMENT(
+                "{{!(--)?",
+                "(--)?)}"
+            ),
             Mode(
                 className = "template-tag",
                 begin =

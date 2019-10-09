@@ -28,7 +28,11 @@ internal fun step21(): Mode {
         relevance = 10
     )
     return Mode(
-        aliases = listOf("p21\", \"step\", \"stp"),
+        aliases = listOf(
+            "p21",
+            "step",
+            "stp"
+        ),
         case_insensitive = true, // STEP 21 is case insensitive in theory, in practice all non-comments are capitalized.
         lexemes = STEP21_IDENT_RE,
         keywords = keywords(STEP21_KEYWORDS),
@@ -37,7 +41,10 @@ internal fun step21(): Mode {
             STEP21_CLOSE,
             hljs.C_LINE_COMMENT_MODE,
             hljs.C_BLOCK_COMMENT_MODE,
-            hljs.COMMENT("/\\*\\*!\", \"\\*/"),
+            hljs.COMMENT(
+                "/\\*\\*!",
+                "\\*/"
+            ),
             hljs.C_NUMBER_MODE,
             hljs.inherit(hljs.APOS_STRING_MODE, Mode(illegal = null)),
             hljs.inherit(hljs.QUOTE_STRING_MODE, Mode(illegal = null)),

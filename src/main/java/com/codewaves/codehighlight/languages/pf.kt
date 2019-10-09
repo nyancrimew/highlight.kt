@@ -39,18 +39,23 @@ internal fun pf(): Mode {
         lexemes =
             """[a-z0-9_<>-]+""",
         keywords = listOf(
-            /* block match pass are "actions" in pf.conf(5), the rest are
-                     * lexically similar top-level commands.
-                     */
             Keyword(
                 className = "built_in",
-                value = "block match pass load anchor|5 antispoof|10 set table"
+                value = /* block match pass are "actions" in pf.conf(5)), the rest are
+                 * lexically similar top-level commands.
+                 */
+                    "block match pass load anchor|5 antispoof|10 set table"
             ),
             Keyword(
                 className = "keyword",
-                value = "in out log quick on rdomain inet inet6 proto from port os to routeallow-opts divert-packet divert-reply divert-to flags group icmp-typeicmp6-type label once probability recieved-on rtable prio queuetos tag tagged user keep fragment for os dropaf-to|10 binat-to|10 nat-to|10 rdr-to|10 bitmask least-stats random round-robinsource-hash static-portdup-to reply-to route-toparent bandwidth default min max qlimitblock-policy debug fingerprints hostid limit loginterface optimizationreassemble ruleset-optimization basic none profile skip state-defaultsstate-policy timeoutconst counters persistno modulate synproxy state|5 floating if-bound no-sync pflow|10 sloppysource-track global rule max-src-nodes max-src-states max-src-connmax-src-conn-rate overload flushscrub|5 max-mss min-ttl no-df|10 random-id"
+                value =
+                    "in out log quick on rdomain inet inet6 proto from port os to routeallow-opts divert-packet divert-reply divert-to flags group icmp-typeicmp6-type label once probability recieved-on rtable prio queuetos tag tagged user keep fragment for os dropaf-to|10 binat-to|10 nat-to|10 rdr-to|10 bitmask least-stats random round-robinsource-hash static-portdup-to reply-to route-toparent bandwidth default min max qlimitblock-policy debug fingerprints hostid limit loginterface optimizationreassemble ruleset-optimization basic none profile skip state-defaultsstate-policy timeoutconst counters persistno modulate synproxy state|5 floating if-bound no-sync pflow|10 sloppysource-track global rule max-src-nodes max-src-states max-src-connmax-src-conn-rate overload flushscrub|5 max-mss min-ttl no-df|10 random-id"
             ),
-            Keyword(className = "literal", value = "all any no-route self urpf-failed egress|5 unknown")
+            Keyword(
+                className = "literal",
+                value =
+                    "all any no-route self urpf-failed egress|5 unknown"
+            )
         ),
         contains = listOf(
             hljs.HASH_COMMENT_MODE,

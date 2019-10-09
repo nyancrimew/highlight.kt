@@ -56,8 +56,16 @@ internal fun irpf90(): Mode {
                 illegal = "[\${=\\n]",
                 contains = listOf(hljs.UNDERSCORE_TITLE_MODE, PARAMS)
             ),
-            hljs.COMMENT("!\", \"\$", Mode(relevance = 0)),
-            hljs.COMMENT("begin_doc\", \"end_doc", Mode(relevance = 10)),
+            hljs.COMMENT(
+                "!",
+                "\$",
+                Mode(relevance = 0)
+            ),
+            hljs.COMMENT(
+                "begin_doc",
+                "end_doc",
+                Mode(relevance = 10)
+            ),
             Mode(
                 className = "number",
                 begin = "(?=\\b|\\+|\\-|\\.)(?=\\.\\d|\\d)(?:\\d+)?(?:\\.?\\d*)(?:[de][+-]?\\d+)?\\b\\.?",

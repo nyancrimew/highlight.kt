@@ -9,18 +9,21 @@ Category = common, config
 */
 /**
  * This function was automatically generated, avoid directly editing it if possible!
- * Origin highlight.js/src/languages/yaml.js MD5 <c9373df2e5c9649d4799ef9f10b1e718>
+ * Origin highlight.js/src/languages/yaml.js MD5 <0abdf8afe4f1a0a5882e3ad141664102>
  */
 internal fun yaml(): Mode {
     var LITERALS = "true false yes no null"
-    var keyPrefix = "^[ \\-]*"
-    var keyName = "[a-zA-Z_][\\w\\-]*"
+    // Define keys as starting with a word character 
+    // ...containing word chars, spaces, colons, forward-slashes, hyphens and periods
+    // ...and ending with a colon followed immediately by a space, tab or newline.
+    // The YAML spec allows for much more than this, but this covers most use-cases.
     var KEY = Mode(
         className = "attr",
         variants = listOf(
-            Mode(begin = keyPrefix + keyName + ":"),
-            Mode(begin = keyPrefix + "\"\" + keyName + \"\":"),
-            Mode(begin = keyPrefix + "'\" + keyName + \"':")
+            // TODO: remove |$ hack when we have proper look-ahead support
+            Mode(begin = "\\w[\\w = \\/.-]*:(?=[ \t]|\$)"),
+            Mode(begin = "\"\\w[\\w = \\/.-]*\":(?=[ \t]|\$)"), // double quoted keys
+            Mode(begin = "'\\w[\\w = \\/.-]*':(?=[ \t]|\$)") // single quoted keys
         )
     )
     var TEMPLATE_VARIABLES = Mode(
@@ -63,7 +66,11 @@ internal fun yaml(): Mode {
     )
     return Mode(
         case_insensitive = true,
-        aliases = listOf("yml\", \"YAML\", \"yaml"),
+        aliases = listOf(
+            "yml",
+            "YAML",
+            "yaml"
+        ),
         contains = listOf(
             KEY,
             Mode(
@@ -77,8 +84,7 @@ internal fun yaml(): Mode {
                 returnEnd = true,
                 contains = STRING.contains,
                 // very simple termination: next hash key
-                end = KEY.variants[0]
-                    .begin
+                end = KEY.variants[0].begin
             ),
             Mode(// Ruby/Rails erb
                 begin = "<%[%=-]?",
@@ -90,19 +96,23 @@ internal fun yaml(): Mode {
             ),
             Mode(// local tags
                 className = "type",
-                begin = "!" + hljs.UNDERSCORE_IDENT_RE
+                begin = "!" +
+                    hljs.UNDERSCORE_IDENT_RE
             ),
             Mode(// data type
                 className = "type",
-                begin = "!!" + hljs.UNDERSCORE_IDENT_RE
+                begin = "!!" +
+                    hljs.UNDERSCORE_IDENT_RE
             ),
             Mode(// fragment id &ref
                 className = "meta",
-                begin = "&\" + hljs.UNDERSCORE_IDENT_RE + \"\$"
+                begin = "&" +
+                    hljs.UNDERSCORE_IDENT_RE + "\$"
             ),
             Mode(// fragment reference *ref
                 className = "meta",
-                begin = "\\*\" + hljs.UNDERSCORE_IDENT_RE + \"\$"
+                begin = "\\*" +
+                    hljs.UNDERSCORE_IDENT_RE + "\$"
             ),
             Mode(// array listing
                 className = "bullet",

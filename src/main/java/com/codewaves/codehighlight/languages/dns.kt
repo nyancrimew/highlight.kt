@@ -11,15 +11,23 @@ Category = config
  */
 internal fun dns(): Mode {
     return Mode(
-        aliases = listOf("bind\", \"zone"),
+        aliases = listOf(
+            "bind",
+            "zone"
+        ),
         keywords = listOf(
             Keyword(
                 className = "keyword",
-                value = "IN A AAAA AFSDB APL CAA CDNSKEY CDS CERT CNAME DHCID DLV DNAME DNSKEY DS HIP IPSECKEY KEY KX LOC MX NAPTR NS NSEC NSEC3 NSEC3PARAM PTR RRSIG RP SIG SOA SRV SSHFP TA TKEY TLSA TSIG TXT"
+                value =
+                    "IN A AAAA AFSDB APL CAA CDNSKEY CDS CERT CNAME DHCID DLV DNAME DNSKEY DS HIP IPSECKEY KEY KX LOC MX NAPTR NS NSEC NSEC3 NSEC3PARAM PTR RRSIG RP SIG SOA SRV SSHFP TA TKEY TLSA TSIG TXT"
             )
         ),
         contains = listOf(
-            hljs.COMMENT(";\", \"\$", Mode(relevance = 0)),
+            hljs.COMMENT(
+                ";",
+                "\$",
+                Mode(relevance = 0)
+            ),
             Mode(
                 className = "meta",
                 begin =

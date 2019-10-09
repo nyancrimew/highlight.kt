@@ -16,7 +16,8 @@ internal fun makefile(): Mode {
         className = "variable",
         variants = listOf(
             Mode(
-                begin = "\\$\\(\" + hljs.UNDERSCORE_IDENT_RE + \"\\)",
+                begin = "\\\$\\(" +
+                    hljs.UNDERSCORE_IDENT_RE + "\\)",
                 contains = listOf(hljs.BACKSLASH_ESCAPE)
             ),
             Mode(
@@ -47,7 +48,8 @@ internal fun makefile(): Mode {
         keywords = listOf(
             Keyword(
                 className = "built_in",
-                value = "subst patsubst strip findstring filter filter-out sort word wordlist firstword lastword dir notdir suffix basename addsuffix addprefix join wildcard realpath abspath error warning shell origin flavor foreach if or and call eval file value"
+                value =
+                    "subst patsubst strip findstring filter filter-out sort word wordlist firstword lastword dir notdir suffix basename addsuffix addprefix join wildcard realpath abspath error warning shell origin flavor foreach if or and call eval file value"
             )
         ),
         contains = listOf(
@@ -56,12 +58,14 @@ internal fun makefile(): Mode {
     )
     /* Variable assignment */
     var VAR_ASSIG = Mode(
-        begin = "^\" + hljs.UNDERSCORE_IDENT_RE + \"\\s*[:+?]?=",
+        begin = "^" +
+            hljs.UNDERSCORE_IDENT_RE + "\\s*[:+?]?=",
         illegal = "\\n",
         returnBegin = true,
         contains = listOf(
             Mode(
-                begin = "^" + hljs.UNDERSCORE_IDENT_RE,
+                begin = "^" +
+                    hljs.UNDERSCORE_IDENT_RE,
                 end = "[:+?]?=",
                 excludeEnd = true
             )
@@ -93,8 +97,12 @@ internal fun makefile(): Mode {
         contains = listOf(VARIABLE)
     )
     return Mode(
-        aliases = listOf("mk\", \"mak"),
-        keywords = keywords("define endef undefine ifdef ifndef ifeq ifneq else endif include -include sinclude override export unexport private vpath"),
+        aliases = listOf(
+            "mk",
+            "mak"
+        ),
+        keywords =
+            keywords("define endef undefine ifdef ifndef ifeq ifneq else endif include -include sinclude override export unexport private vpath"),
         lexemes =
             """[\w-]+""",
         contains = listOf(

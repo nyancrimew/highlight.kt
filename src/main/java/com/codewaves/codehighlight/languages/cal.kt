@@ -10,7 +10,8 @@ Description = Provides highlighting of Microsoft Dynamics NAV C/AL code files
  * Origin highlight.js/src/languages/cal.js MD5 <45e2a8d621427a3a744e763dd17a5769>
  */
 internal fun cal(): Mode {
-    var KEYWORDS = "div mod in and or not xor asserterror begin case do downto else end exit for if of repeat then to until while with var"
+    var KEYWORDS =
+        "div mod in and or not xor asserterror begin case do downto else end exit for if of repeat then to until while with var"
     var LITERALS = "false true"
     var COMMENT_MODES = listOf(
         hljs.C_LINE_COMMENT_MODE,
@@ -47,7 +48,8 @@ internal fun cal(): Mode {
         relevance = 0
     )
     var DBL_QUOTED_VARIABLE = Mode(
-        className = "string", // not a string technically but makes sense to be highlighted in the same style
+        className = "string",
+        // not a string technically but makes sense to be highlighted in the same style
         begin = "\"",
         end = "\""
     )
@@ -68,8 +70,7 @@ internal fun cal(): Mode {
                 keywords = keywords(KEYWORDS),
                 contains = listOf(STRING, CHAR_STRING)
             )
-        ) +
-            COMMENT_MODES
+        ) + COMMENT_MODES
     )
     var OBJECT = Mode(
         className = "class",

@@ -13,7 +13,8 @@ Description = FANUC TP programming language (TPP).
 internal fun tp(): Mode {
     var TPID = Mode(
         className = "number",
-        begin = "[1-9][0-9]*", /* no leading zeros */
+        begin = "[1-9][0-9]*",
+        /* no leading zeros */
         relevance = 0
     )
     var TPLABEL = Mode(
@@ -45,11 +46,13 @@ internal fun tp(): Mode {
         keywords = listOf(
             Keyword(
                 className = "keyword",
-                value = "ABORT ACC ADJUST AND AP_LD BREAK CALL CNT COL CONDITION CONFIG DA DB DIV DETECT ELSE END ENDFOR ERR_NUM ERROR_PROG FINE FOR GP GUARD INC IF JMP LINEAR_MAX_SPEED LOCK MOD MONITOR OFFSET Offset OR OVERRIDE PAUSE PREG PTH RT_LD RUN SELECT SKIP Skip TA TB TO TOOL_OFFSET Tool_Offset UF UT UFRAME_NUM UTOOL_NUM UNLOCK WAIT X Y Z W P R STRLEN SUBSTR FINDSTR VOFFSET PROG ATTR MN POS"
+                value =
+                    "ABORT ACC ADJUST AND AP_LD BREAK CALL CNT COL CONDITION CONFIG DA DB DIV DETECT ELSE END ENDFOR ERR_NUM ERROR_PROG FINE FOR GP GUARD INC IF JMP LINEAR_MAX_SPEED LOCK MOD MONITOR OFFSET Offset OR OVERRIDE PAUSE PREG PTH RT_LD RUN SELECT SKIP Skip TA TB TO TOOL_OFFSET Tool_Offset UF UT UFRAME_NUM UTOOL_NUM UNLOCK WAIT X Y Z W P R STRLEN SUBSTR FINDSTR VOFFSET PROG ATTR MN POS"
             ),
             Keyword(
                 className = "literal",
-                value = "ON OFF max_speed LPOS JPOS ENABLE DISABLE START STOP RESET"
+                value =
+                    "ON OFF max_speed LPOS JPOS ENABLE DISABLE START STOP RESET"
             )
         ),
         contains = listOf(
@@ -76,9 +79,18 @@ internal fun tp(): Mode {
                 begin = "\\d+(sec|msec|mm/sec|cm/min|inch/min|deg/sec|mm|in|cm)?\\b",
                 relevance = 0
             ),
-            hljs.COMMENT("//\", \"[;\$]"),
-            hljs.COMMENT("!\", \"[;\$]"),
-            hljs.COMMENT("--eg = \", \"\$"),
+            hljs.COMMENT(
+                "//",
+                "[;\$]"
+            ),
+            hljs.COMMENT(
+                "!",
+                "[;\$]"
+            ),
+            hljs.COMMENT(
+                "--eg = ",
+                "\$"
+            ),
             hljs.QUOTE_STRING_MODE,
             Mode(
                 className = "string",
@@ -88,7 +100,7 @@ internal fun tp(): Mode {
             hljs.C_NUMBER_MODE,
             Mode(
                 className = "variable",
-                begin = "\\$[A-Za-z0-9_]+"
+                begin = "\\\$[A-Za-z0-9_]+"
             )
         )
     )

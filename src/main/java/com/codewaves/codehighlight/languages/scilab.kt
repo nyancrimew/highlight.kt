@@ -32,7 +32,8 @@ internal fun scilab(): Mode {
             ),
             Keyword(
                 className = "literal",
-                value = "%f %F %t %T %pi %eps %inf %nan %e %i %z %s"
+                value =
+                    "%f %F %t %T %pi %eps %inf %nan %e %i %z %s"
             ),
             Keyword(
                 className = "built_in",
@@ -66,8 +67,10 @@ internal fun scilab(): Mode {
                 relevance = 0,
                 contains = COMMON_CONTAINS
             ),
-            hljs.COMMENT("//\", \"\$")
-        ) +
-            COMMON_CONTAINS
+            hljs.COMMENT(
+                "//",
+                "\$"
+            )
+        ) + COMMON_CONTAINS
     )
 }

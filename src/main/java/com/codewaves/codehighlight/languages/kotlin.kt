@@ -13,15 +13,18 @@ internal fun kt(): Mode {
     var KEYWORDS = listOf(
         Keyword(
             className = "keyword",
-            value = "abstract as val var vararg get set class object open private protected public noinline crossinline dynamic final enum if else do while for when throw try catch finally import package is in fun override companion reified inline lateinit init interface annotation data sealed internal infix operator out by constructor super tailrec where const inner suspend typealias external expect actual trait volatile transient native default"
+            value =
+                "abstract as val var vararg get set class object open private protected public noinline crossinline dynamic final enum if else do while for when throw try catch finally import package is in fun override companion reified inline lateinit init interface annotation data sealed internal infix operator out by constructor super tailrec where const inner suspend typealias external expect actual trait volatile transient native default"
         ),
         Keyword(
             className = "built_in",
-            value = "Byte Short Char Int Long Boolean Float Double Void Unit Nothing"
+            value =
+                "Byte Short Char Int Long Boolean Float Double Void Unit Nothing"
         ),
         Keyword(
             className = "literal",
-            value = "true false null"
+            value =
+                "true false null"
         )
     )
     var KEYWORDS_WITH_LABEL = Mode(
@@ -45,13 +48,14 @@ internal fun kt(): Mode {
     // for string templates
     var SUBST = Mode(
         className = "subst",
-        begin = "\\${'$'}{",
+        begin = "\\\${'\$'}{",
         end = "}",
         contains = listOf(hljs.C_NUMBER_MODE)
     )
     var VARIABLE = Mode(
         className = "variable",
-        begin = "\\${'$'}" + hljs.UNDERSCORE_IDENT_RE
+        begin = "\\\${'\$'}" +
+            hljs.UNDERSCORE_IDENT_RE
     )
     var STRING = Mode(
         className = "string",
@@ -80,14 +84,16 @@ internal fun kt(): Mode {
             )
         )
     )
-    SUBST.contains += STRING
+    SUBST.contains += listOf(STRING)
     var ANNOTATION_USE_SITE = Mode(
         className = "meta",
-        begin = "@(?:file|property|field|get|set|receiver|param|setparam|delegate)\\s*:(?:\\s*\" + hljs.UNDERSCORE_IDENT_RE + \")?"
+        begin = "@(?:file|property|field|get|set|receiver|param|setparam|delegate)\\s*:(?:\\s*" +
+            hljs.UNDERSCORE_IDENT_RE + ")?"
     )
     var ANNOTATION = Mode(
         className = "meta",
-        begin = "@" + hljs.UNDERSCORE_IDENT_RE,
+        begin = "@" +
+            hljs.UNDERSCORE_IDENT_RE,
         contains = listOf(
             Mode(
                 begin =
@@ -110,7 +116,8 @@ internal fun kt(): Mode {
         relevance = 0
     )
     var KOTLIN_NESTED_COMMENT = hljs.COMMENT(
-        "/\\*\", \"\\*/",
+        "/\\*",
+        "\\*/",
         Mode(contains = listOf(hljs.C_BLOCK_COMMENT_MODE))
     )
     var KOTLIN_PAREN_TYPE = Mode(
@@ -129,10 +136,8 @@ internal fun kt(): Mode {
         )
     )
     var KOTLIN_PAREN_TYPE2 = KOTLIN_PAREN_TYPE
-    KOTLIN_PAREN_TYPE2.variants[1]
-        .contains = listOf(KOTLIN_PAREN_TYPE)
-    KOTLIN_PAREN_TYPE.variants[1]
-        .contains = listOf(KOTLIN_PAREN_TYPE2)
+    KOTLIN_PAREN_TYPE2.variants[1].contains = listOf(KOTLIN_PAREN_TYPE)
+    KOTLIN_PAREN_TYPE.variants[1].contains = listOf(KOTLIN_PAREN_TYPE2)
     return Mode(
         aliases = listOf("kt"),
         keywords = keywords(KEYWORDS),
@@ -159,7 +164,7 @@ internal fun kt(): Mode {
             Mode(
                 className = "function",
                 beginKeywords = keywords("fun"),
-                end = "[(]|\${'$'}",
+                end = "[(]|\${'\$'}",
                 returnBegin = true,
                 excludeEnd = true,
                 keywords = keywords(KEYWORDS),
@@ -224,7 +229,7 @@ internal fun kt(): Mode {
                 excludeEnd = true,
                 illegal = "extends implements",
                 contains = listOf(
-                    Mode(beginKeywords = "public protected internal private constructor"),
+                    Mode(beginKeywords = keywords("public protected internal private constructor")),
                     hljs.UNDERSCORE_TITLE_MODE,
                     Mode(
                         className = "type",

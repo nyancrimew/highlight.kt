@@ -17,7 +17,8 @@ internal fun http(): Mode {
         illegal = "\\S",
         contains = listOf(
             Mode(
-                begin = "^" + VERSION,
+                begin = "^" +
+                    VERSION,
                 end = "\$",
                 contains = listOf(
                     Mode(
@@ -27,7 +28,8 @@ internal fun http(): Mode {
                 )
             ),
             Mode(
-                begin = "^[A-Z]+ (.*?) \" + VERSION + \"\$",
+                begin = "^[A-Z]+ (.*?) " +
+                    VERSION + "\$",
                 returnBegin = true,
                 end = "\$",
                 contains = listOf(

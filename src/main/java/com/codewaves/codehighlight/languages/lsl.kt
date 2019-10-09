@@ -14,7 +14,7 @@ internal fun lsl(): Mode {
     var LSL_STRING_ESCAPE_CHARS = Mode(
         className = "subst",
         begin =
-            """\\[tn"\\]"""
+            """\\[tn"\\]\"""
     )
     var LSL_STRINGS = Mode(
         className = "string",
@@ -62,8 +62,14 @@ internal fun lsl(): Mode {
             Mode(
                 className = "comment",
                 variants = listOf(
-                    hljs.COMMENT("//\", \"\$"),
-                    hljs.COMMENT("/\\*\", \"\\*/")
+                    hljs.COMMENT(
+                        "//",
+                        "\$"
+                    ),
+                    hljs.COMMENT(
+                        "/\\*",
+                        "\\*/"
+                    )
                 )
             ),
             LSL_NUMBERS,

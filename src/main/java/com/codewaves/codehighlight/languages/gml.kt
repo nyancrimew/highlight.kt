@@ -30,7 +30,10 @@ internal fun gml(): Mode {
         )
     )
     return Mode(
-        aliases = listOf("gml\", \"GML"),
+        aliases = listOf(
+            "gml",
+            "GML"
+        ),
         case_insensitive = false, // language is case-insensitive
         keywords = keywords(GML_KEYWORDS),
         contains = listOf(

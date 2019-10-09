@@ -30,7 +30,7 @@ internal fun axapta(): Mode {
                 excludeEnd = true,
                 illegal = ":",
                 contains = listOf(
-                    Mode(beginKeywords = "extends implements"),
+                    Mode(beginKeywords = keywords("extends implements")),
                     hljs.UNDERSCORE_TITLE_MODE
                 )
             )

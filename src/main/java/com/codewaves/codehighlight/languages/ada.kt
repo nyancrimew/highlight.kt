@@ -14,8 +14,10 @@ Description = Ada is a general-purpose programming language that has great suppo
 // and titles (user defined function/procedure/package)
 // CSS classes are set accordingly
 //
-// Languages causing problems for language detection = // xml (broken by Foo = Bar type), elm (broken by Foo : Bar type), vbscript-html (broken by body keyword)
+// Languages causing problems for language detection = 
+// xml (broken by Foo = Bar type), elm (broken by Foo = Bar type), vbscript-html (broken by body keyword)
 // sql (ada default.txt has a lot of sql keywords)
+
 /**
  * This function was automatically generated, avoid directly editing it if possible!
  * Origin highlight.js/src/languages/ada.js MD5 <03a5196090f73703c3542d0d82f79821>
@@ -23,20 +25,32 @@ Description = Ada is a general-purpose programming language that has great suppo
 internal fun ada(): Mode {
     // Regular expression for Ada numeric literals.
     // stolen form the VHDL highlighter
+
     // Decimal literal:
     var INTEGER_RE = "\\d(_|\\d)*"
-    var EXPONENT_RE = "[eE][-+]?" + INTEGER_RE
-    var DECIMAL_LITERAL_RE = INTEGER_RE + "(\\.\" + INTEGER_RE + \")?(\" + EXPONENT_RE + \")?"
+    var EXPONENT_RE = "[eE][-+]?" +
+        INTEGER_RE
+    var DECIMAL_LITERAL_RE = INTEGER_RE + "(\\." +
+        INTEGER_RE + ")?(" +
+        EXPONENT_RE + ")?"
     // Based literal:
     var BASED_INTEGER_RE = "\\w+"
-    var BASED_LITERAL_RE = INTEGER_RE + "#\" + BASED_INTEGER_RE + \"(\\.\" + BASED_INTEGER_RE + \")?#(\" + EXPONENT_RE + \")?"
-    var NUMBER_RE = "\\b(\" + BASED_LITERAL_RE + \"|\" + DECIMAL_LITERAL_RE + \")"
+    var BASED_LITERAL_RE = INTEGER_RE + "#" +
+        BASED_INTEGER_RE + "(\\." +
+        BASED_INTEGER_RE + ")?#(" +
+        EXPONENT_RE + ")?"
+    var NUMBER_RE = "\\b(" +
+        BASED_LITERAL_RE + "|" +
+        DECIMAL_LITERAL_RE + ")"
     // Identifier regex
     var ID_REGEX = "[A-Za-z](_?[A-Za-z0-9.))*"
     // bad chars, only allowed in literals
     var BAD_CHARS = "[]{}%#'\""
     // Ada doesn't have block comments, only line comments
-    var COMMENTS = hljs.COMMENT("--\", \"\$")
+    var COMMENTS = hljs.COMMENT(
+        "--",
+        "\$"
+    )
     // variable declarations of the form
     // Foo : Bar := Baz;
     // where only Bar will be highlighted
@@ -74,11 +88,13 @@ internal fun ada(): Mode {
         keywords = listOf(
             Keyword(
                 className = "keyword",
-                value = "abort else new return abs elsif not reverse abstract end accept entry select access exception of separate aliased exit or some all others subtype and for out synchronized array function overriding at tagged generic package task begin goto pragma terminate body private then if procedure type case in protected constant interface is raise use declare range delay limited record when delta loop rem while digits renames with do mod requeue xor"
+                value =
+                    "abort else new return abs elsif not reverse abstract end accept entry select access exception of separate aliased exit or some all others subtype and for out synchronized array function overriding at tagged generic package task begin goto pragma terminate body private then if procedure type case in protected constant interface is raise use declare range delay limited record when delta loop rem while digits renames with do mod requeue xor"
             ),
             Keyword(
                 className = "literal",
-                value = "True False"
+                value =
+                    "True False"
             )
         ),
         contains = listOf(
@@ -114,7 +130,8 @@ internal fun ada(): Mode {
             Mode(
                 // Attributes
                 className = "symbol",
-                begin = "'" + ID_REGEX
+                begin = "'" +
+                    ID_REGEX
             ),
             Mode(
                 // package definition, maybe inside generic
@@ -135,33 +152,34 @@ internal fun ada(): Mode {
                 // we need to re-match the "function" keyword, so that
                 // the title mode below matches only exactly once
                 returnBegin = true,
-                contains = listOf(
-                    COMMENTS,
-                    Mode(
-                        // name of the function/procedure
-                        className = "title",
-                        begin = "(\\bwith\\s+)?\\b(function|procedure)\\s+",
-                        end = "(\\(|\\s+|\$)",
-                        excludeBegin = true,
-                        excludeEnd = true,
-                        illegal = BAD_CHARS
-                    ),
-                    // "self"
-                    // // parameter types
-                    VAR_DECLS,
-                    Mode(
-                        // return type
-                        className = "type",
-                        begin = "\\breturn\\s+",
-                        end = "(\\s+|;|\$)",
-                        keywords = keywords("return"),
-                        excludeBegin = true,
-                        excludeEnd = true,
-                        // we are done with functions
-                        endsParent = true,
-                        illegal = BAD_CHARS
+                contains =
+                    listOf(
+                        COMMENTS,
+                        Mode(
+                            // name of the function/procedure
+                            className = "title",
+                            begin = "(\\bwith\\s+)?\\b(function|procedure)\\s+",
+                            end = "(\\(|\\s+|\$)",
+                            excludeBegin = true,
+                            excludeEnd = true,
+                            illegal = BAD_CHARS
+                        ),
+                        // "self"
+                        // // parameter types
+                        VAR_DECLS,
+                        Mode(
+                            // return type
+                            className = "type",
+                            begin = "\\breturn\\s+",
+                            end = "(\\s+|;|\$)",
+                            keywords = keywords("return"),
+                            excludeBegin = true,
+                            excludeEnd = true,
+                            // we are done with functions
+                            endsParent = true,
+                            illegal = BAD_CHARS
+                        )
                     )
-                )
             ),
             Mode(
                 // new type declarations

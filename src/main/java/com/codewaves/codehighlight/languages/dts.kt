@@ -1,10 +1,5 @@
 package com.codewaves.codehighlight.languages
-
-import com.codewaves.codehighlight.core.Keyword
-import com.codewaves.codehighlight.core.Mode
-import com.codewaves.codehighlight.core.hljs
-import com.codewaves.codehighlight.core.keywords
-
+import com.codewaves.codehighlight.core.*
 /*
 Language = Device Tree
 Description = *.dts files used in the Linux kernel
@@ -58,7 +53,7 @@ internal fun dts(): Mode {
             ),
             Mode(
                 beginKeywords = keywords("include"),
-                end = "\${'$'}",
+                end = "\${'\$'}",
                 keywords = listOf(
                     Keyword(
                         className = "meta-keyword",

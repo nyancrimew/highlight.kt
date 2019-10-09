@@ -10,9 +10,69 @@ Description = Basic Smali highlighting
  * Origin highlight.js/src/languages/smali.js MD5 <7ddf2d188885b364ff35f7b7a501cdad>
  */
 internal fun smali(): Mode {
-    var smali_instr_low_prio = listOf("add\", \"and\", \"cmp\", \"cmpg\", \"cmpl\", \"const\", \"div\", \"double\", \"float\", \"goto\", \"if\", \"int\", \"long\", \"move\", \"mul\", \"neg\", \"new\", \"nop\", \"not\", \"or\", \"rem\", \"return\", \"shl\", \"shr\", \"sput\", \"sub\", \"throw\", \"ushr\", \"xor")
-    var smali_instr_high_prio = listOf("aget\", \"aput\", \"array\", \"check\", \"execute\", \"fill\", \"filled\", \"goto/16\", \"goto/32\", \"iget\", \"instance\", \"invoke\", \"iput\", \"monitor\", \"packed\", \"sget\", \"sparse")
-    var smali_keywords = listOf("transient\", \"constructor\", \"abstract\", \"final\", \"synthetic\", \"public\", \"private\", \"protected\", \"static\", \"bridge\", \"system")
+    var smali_instr_low_prio = listOf(
+        "add",
+        "and",
+        "cmp",
+        "cmpg",
+        "cmpl",
+        "const",
+        "div",
+        "double",
+        "float",
+        "goto",
+        "if",
+        "int",
+        "long",
+        "move",
+        "mul",
+        "neg",
+        "new",
+        "nop",
+        "not",
+        "or",
+        "rem",
+        "return",
+        "shl",
+        "shr",
+        "sput",
+        "sub",
+        "throw",
+        "ushr",
+        "xor"
+    )
+    var smali_instr_high_prio = listOf(
+        "aget",
+        "aput",
+        "array",
+        "check",
+        "execute",
+        "fill",
+        "filled",
+        "goto/16",
+        "goto/32",
+        "iget",
+        "instance",
+        "invoke",
+        "iput",
+        "monitor",
+        "packed",
+        "sget",
+        "sparse"
+    )
+    var smali_keywords = keywords(
+        listOf("transient"),
+        "constructor",
+        "abstract",
+        "final",
+        "synthetic",
+        "public",
+        "private",
+        "protected",
+        "static",
+        "bridge",
+        "system"
+    )
     return Mode(
         aliases = listOf("smali"),
         contains = listOf(
@@ -41,7 +101,11 @@ internal fun smali(): Mode {
                         begin = "\\s = [a-zA-Z_0-9]*",
                         relevance = 0
                     ),
-                    Mode(begin = "\\s(\" + smali_keywords.joinToString(\"|\") + \")")
+                    Mode(
+                        begin = "\\s(" +
+                            smali_keywords.joinToString("|") +
+                            ")"
+                    )
                 )
             ),
             Mode(

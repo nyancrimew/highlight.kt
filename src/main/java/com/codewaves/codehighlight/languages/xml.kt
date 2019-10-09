@@ -6,7 +6,7 @@ Category = common
 */
 /**
  * This function was automatically generated, avoid directly editing it if possible!
- * Origin highlight.js/src/languages/xml.js MD5 <c458b82ecce0e97c67764d82dfa39bbe>
+ * Origin highlight.js/src/languages/xml.js MD5 <8d1fe692045603803f24f0f60fd6f450>
  */
 internal fun xml(): Mode {
     var XML_IDENT_RE = "[A-Za-z0-9\\._ = -]+"
@@ -43,7 +43,7 @@ internal fun xml(): Mode {
                                     """'"""
                             ),
                             Mode(begin =
-                                    """[^\s"'=<>`]+""")
+                                    """[^\s"'=<>`]+\""")
                         )
                     )
                 )
@@ -51,7 +51,18 @@ internal fun xml(): Mode {
         )
     )
     return Mode(
-        aliases = listOf("html\", \"xhtml\", \"rss\", \"atom\", \"xjb\", \"xsd\", \"xsl\", \"plist\", \"wsf\", \"svg"),
+        aliases = listOf(
+            "html",
+            "xhtml",
+            "rss",
+            "atom",
+            "xjb",
+            "xsd",
+            "xsl",
+            "plist",
+            "wsf",
+            "svg"
+        ),
         case_insensitive = true,
         contains = listOf(
             Mode(
@@ -135,10 +146,10 @@ internal fun xml(): Mode {
         /*
         The lookahead pattern (?=...) ensures that "begin" only matches
         "<style" as a single word, followed by a whitespace or an
-        ending braket. The "\${'$'}" is needed for the lexeme to be recognized
+        ending braket. The "\${'\$'}" is needed for the lexeme to be recognized
         by hljs.subMode() that tests lexemes outside the stream.
         */
-                begin = "<style(?=\\s|>|\${'$'})",
+                begin = "<style(?=\\s|>|\${'\$'})",
                 end = ">",
                 keywords = listOf(
                     Keyword(
@@ -150,13 +161,16 @@ internal fun xml(): Mode {
                 starts = Mode(
                     end = "</style>",
                     returnEnd = true,
-                    subLanguage = listOf("css\", \"xml")
+                    subLanguage = listOf(
+                        "css",
+                        "xml"
+                    )
                 )
             ),
             Mode(
                 className = "tag",
                 // See the comment in the <style tag about the lookahead pattern
-                begin = "<script(?=\\s|>|\${'$'})",
+                begin = "<script(?=\\s|>|\${'\$'})",
                 end = ">",
                 keywords = listOf(
                     Keyword(
@@ -168,7 +182,12 @@ internal fun xml(): Mode {
                 starts = Mode(
                     end = "\<\/script\>",
                     returnEnd = true,
-                    subLanguage = listOf("actionscript\", \"javascript\", \"handlebars\", \"xml\", \"vbscript")
+                    subLanguage = listOf(
+                        "actionscript",
+                        "javascript",
+                        "handlebars",
+                        "xml"
+                    )
                 )
             ),
             Mode(

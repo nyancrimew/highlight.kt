@@ -113,7 +113,8 @@ internal fun perl(): Mode {
             relevance = 0
         ),
         Mode(// regexp container
-            begin = "(\\/\\/|\" + hljs.RE_STARTERS_RE + \"|\\b(split|return|print|reverse|grep)\\b)\\s*",
+            begin = "(\\/\\/|" +
+                hljs.RE_STARTERS_RE + "|\\b(split|return|print|reverse|grep)\\b)\\s*",
             keywords = keywords("split return print reverse grep"),
             relevance = 0,
             contains = listOf(
@@ -145,13 +146,13 @@ internal fun perl(): Mode {
             relevance = 0
         ),
         Mode(
-            begin = "^__DATA__\${'$'}",
-            end = "^__END__\${'$'}",
+            begin = "^__DATA__\${'\$'}",
+            end = "^__END__\${'\$'}",
             subLanguage = "mojolicious",
             contains = listOf(
                 Mode(
                     begin = "^@@.*",
-                    end = "\${'$'}",
+                    end = "\${'\$'}",
                     className = "comment"
                 )
             )
@@ -160,7 +161,10 @@ internal fun perl(): Mode {
     SUBST.contains = PERL_DEFAULT_CONTAINS
     METHOD.contains = PERL_DEFAULT_CONTAINS
     return Mode(
-        aliases = listOf("pl\", \"pm"),
+        aliases = listOf(
+            "pl",
+            "pm"
+        ),
         lexemes =
             """[\w\.]+""",
         keywords = keywords(PERL_KEYWORDS),

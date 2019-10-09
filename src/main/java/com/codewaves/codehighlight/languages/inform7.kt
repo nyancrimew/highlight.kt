@@ -19,7 +19,8 @@ internal fun inform7(): Mode {
             // Some keywords more or less unique to I7, for relevance.
             Keyword(
                 className = "keyword",
-                value = // kind:
+                value =
+                    // kind:
                     "thing room person man woman animal container supporter backdrop door scenery open closed locked inside gender is are say understand kind of rule"
             )
         ),
@@ -41,7 +42,7 @@ internal fun inform7(): Mode {
                 className = "section",
                 begin =
                     """^(Volume|Book|Part|Chapter|Section|Table)\b""",
-                end = "\${'$'}"
+                end = "\${'\$'}"
             ),
             Mode(
                 // Rule definition

@@ -40,7 +40,10 @@ internal fun ini(): Mode {
         illegal =
             """\S""",
         contains = listOf(
-            hljs.COMMENT(";\", \"\${'$'}"),
+            hljs.COMMENT(
+                ";",
+                "\${'\$'}"
+            ),
             hljs.HASH_COMMENT_MODE,
             Mode(
                 className = "section",
@@ -52,7 +55,7 @@ internal fun ini(): Mode {
             Mode(
                 begin =
                     """^[a-z0-9\[\]_\.-]+\s*=\s*""",
-                end = "\${'$'}",
+                end = "\${'\$'}",
                 returnBegin = true,
                 contains = listOf(
                     Mode(
@@ -66,7 +69,10 @@ internal fun ini(): Mode {
                         endsWithParent = true,
                         relevance = 0,
                         contains = listOf(
-                            hljs.COMMENT(";\", \"\${'$'}"),
+                            hljs.COMMENT(
+                                ";",
+                                "\${'\$'}"
+                            ),
                             hljs.HASH_COMMENT_MODE,
                             Mode(
                                 className = "literal",
@@ -77,7 +83,7 @@ internal fun ini(): Mode {
                                 className = "variable",
                                 variants = listOf(
                                     Mode(begin =
-                                            """\${'$'}[\w\d"][\w\d_]*"""),
+                                            """\${'$'}[\w\d"][\w\d_]*\"""),
                                     Mode(begin =
                                             """\${'$'}\{(.*?)}""")
                                 )
