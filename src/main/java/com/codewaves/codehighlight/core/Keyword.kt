@@ -12,6 +12,7 @@ import java.security.Key
 data class Keyword(
    val value: String,
    val className: String = "keyword",
+   // TODO: parse relevance from className and default to -1?
    val relevance: Int = 0
 )
 

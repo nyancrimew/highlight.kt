@@ -152,7 +152,7 @@ data class Mode(
     val APOS_STRING_MODE = Mode(className = "string", begin= "\'", end = "\'", illegal= "\\n", contains = listOf(BACKSLASH_ESCAPE))
     val QUOTE_STRING_MODE = Mode(className = "string", begin= "\"", end= "\"", illegal= "\\n", contains= listOf(BACKSLASH_ESCAPE))
     val PHRASAL_WORDS_MODE = Mode(begin = "\\b(a|an|the|are|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such|will|you|your|they|like|more)\\b")
-    fun COMMENT(begin:String, end:String, inherits:Mode? = null) : Mode {
+    fun COMMENT(begin:String, end:String? = null, inherits:Mode? = null) : Mode {
        var mode = Mode(
           className = "comment",
           begin = begin,

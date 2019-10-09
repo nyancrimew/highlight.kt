@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [[ `uname -s` =~ (CYGWIN|MINGW32|MSYS)* ]]; then
     echo "Running on Windows, setting python3 alias"
