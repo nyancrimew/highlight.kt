@@ -24,9 +24,9 @@ internal fun scala(): Mode {
     var SUBST = Mode(
         className = "subst",
         variants = listOf(
-            Mode(begin = "\\$[A-Za-z0-9_]+"),
+            Mode(begin = "\\\$[A-Za-z0-9_]+"),
             Mode(
-                begin = "\${",
+                begin = "\\\${",
                 end = "}"
             )
         )
@@ -72,7 +72,7 @@ internal fun scala(): Mode {
     var NAME = Mode(
         className = "title",
         begin =
-            """[^0 - 9\ n \ t "'(),.`{}\[\]:;][^\n\t \"'(),.`{}\[\]:;]+|[^0-9\n\t "'(),.`{}\[\]:;=]""",
+            """[^0 - 9\ n \ t "'(),.`{}\[\]:;][^\n\t \"'(),.`{}\[\]:;]+|[^0-9\n\t \"'(),.`{}\[\]:;=]\""",
         relevance = 0
     )
     var CLASS = Mode(

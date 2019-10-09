@@ -16,15 +16,18 @@ internal fun capnproto(): Mode {
         keywords = listOf(
             Keyword(
                 className = "keyword",
-                value = "struct enum interface union group import using const annotation extends in of on as with from fixed"
+                value =
+                    "struct enum interface union group import using const annotation extends in of on as with from fixed"
             ),
             Keyword(
                 className = "built_in",
-                value = "Void Bool Int8 Int16 Int32 Int64 UInt8 UInt16 UInt32 UInt64 Float32 Float64 Text Data AnyPointer AnyStruct Capability List"
+                value =
+                    "Void Bool Int8 Int16 Int32 Int64 UInt8 UInt16 UInt32 UInt64 Float32 Float64 Text Data AnyPointer AnyStruct Capability List"
             ),
             Keyword(
                 className = "literal",
-                value = "true false"
+                value =
+                    "true false"
             )
         ),
         contains = listOf(

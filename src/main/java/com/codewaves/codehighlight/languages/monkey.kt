@@ -38,10 +38,13 @@ internal fun monkey(): Mode {
         illegal =
             """\/\*""",
         contains = listOf(
-            hljs.COMMENT("#rem\", \"#end"),
+            hljs.COMMENT(
+                "#rem",
+                "#end"
+            ),
             hljs.COMMENT(
                 "'",
-                "\${'$'}",
+                "\${'\$'}",
                 Mode(
                     relevance = 0
                 )
@@ -49,7 +52,7 @@ internal fun monkey(): Mode {
             Mode(
                 className = "function",
                 beginKeywords = keywords("function method"),
-                end = "[(=:]|\${'$'}",
+                end = "[(=:]|\${'\$'}",
                 illegal =
                     """\n""",
                 contains = listOf(

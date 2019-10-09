@@ -16,15 +16,18 @@ internal fun clean(): Mode {
         keywords = listOf(
             Keyword(
                 className = "keyword",
-                value = "if let in with where case of class instance otherwise implementation definition system module from import qualified as special code inline foreign export ccall stdcall generic derive infix infixl infixr"
+                value =
+                    "if let in with where case of class instance otherwise implementation definition system module from import qualified as special code inline foreign export ccall stdcall generic derive infix infixl infixr"
             ),
             Keyword(
                 className = "built_in",
-                value = "Int Real Char Bool"
+                value =
+                    "Int Real Char Bool"
             ),
             Keyword(
                 className = "literal",
-                value = "True False"
+                value =
+                    "True False"
             )
         ),
         contains = listOf(

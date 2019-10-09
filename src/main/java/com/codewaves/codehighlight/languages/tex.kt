@@ -30,7 +30,8 @@ internal fun tex(): Mode {
                     relevance = 0,
                     contains = listOf(
                         Mode(
-                            className = "string", // because it looks like attributes in HTML tags
+                            className = "string",
+                            // because it looks like attributes in HTML tags
                             variants = listOf(
                                 Mode(
                                     begin =

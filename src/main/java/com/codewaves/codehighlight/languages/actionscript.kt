@@ -86,7 +86,8 @@ internal fun actionscript(): Mode {
                         )
                     ),
                     Mode(
-                        begin = ":\\s*" + IDENT_FUNC_RETURN_TYPE_RE
+                        begin = ":\\s*" +
+                            IDENT_FUNC_RETURN_TYPE_RE
                     )
                 )
             ),

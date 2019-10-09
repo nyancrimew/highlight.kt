@@ -1,9 +1,5 @@
 package com.codewaves.codehighlight.languages
-
-import com.codewaves.codehighlight.core.Mode
-import com.codewaves.codehighlight.core.hljs
-import com.codewaves.codehighlight.core.keywords
-
+import com.codewaves.codehighlight.core.*
 /*
 Language = Elm
 Author = Janis Voigtlaender <janis.voigtlaender@gmail.com>
@@ -16,7 +12,10 @@ Category = functional
 internal fun elm(): Mode {
     var COMMENT = Mode(
         variants = listOf(
-            hljs.COMMENT("--\", \"\$"),
+            hljs.COMMENT(
+                "--",
+                "\$"
+            ),
             hljs.COMMENT(
                 "{-",
                 "-}",
@@ -28,7 +27,8 @@ internal fun elm(): Mode {
     )
     var CONSTRUCTOR = Mode(
         className = "type",
-        begin = "\\b[A-Z][\\w\"]*", // TODO: other constructors (built-in, infix).
+        begin = "\\b[A-Z][\\w\"]*",
+        // TODO: other constructors (built-in, infix).
         relevance = 0
     )
     var LIST = Mode(
@@ -55,9 +55,11 @@ internal fun elm(): Mode {
         illegal = "."
     )
     return Mode(
-        keywords = keywords("let in if then else case of where module import exposing type alias as infix infixl infixr port effect command subscription"),
+        keywords =
+            keywords("let in if then else case of where module import exposing type alias as infix infixl infixr port effect command subscription"),
         contains = listOf(
             // Top-level constructions.
+
             Mode(
                 beginKeywords = keywords("port effect module"),
                 end = "exposing",
@@ -90,6 +92,7 @@ internal fun elm(): Mode {
                 contains = listOf(COMMENT)
             ),
             // Literals and names.
+
             CHARACTER,
             hljs.QUOTE_STRING_MODE,
             hljs.C_NUMBER_MODE,

@@ -34,7 +34,11 @@ internal fun autohotkey(): Mode {
         contains = listOf(
             BACKTICK_ESCAPE,
             hljs.inherit(hljs.QUOTE_STRING_MODE, Mode(contains = listOf(BACKTICK_ESCAPE))),
-            hljs.COMMENT(";\", \"\$", Mode(relevance = 0)),
+            hljs.COMMENT(
+                ";",
+                "\$",
+                Mode(relevance = 0)
+            ),
             hljs.C_BLOCK_COMMENT_MODE,
             Mode(
                 className = "number",
@@ -42,7 +46,8 @@ internal fun autohotkey(): Mode {
                 relevance = 0
             ),
             Mode(
-                className = "variable", // subst would be the most accurate however fails the point of highlighting. variable is comparably the most accurate that actually has some effect
+                className = "variable",
+                // subst would be the most accurate however fails the point of highlighting. variable is comparably the most accurate that actually has some effect
                 begin = "%[a-zA-Z0-9#_\$@]+%"
             ),
             Mode(
@@ -51,7 +56,8 @@ internal fun autohotkey(): Mode {
                 // I don't really know if this is totally relevant
             ),
             Mode(
-                className = "title", // symbol would be most accurate however is higlighted just like built_in and that makes up a lot of AutoHotkey code
+                className = "title",
+                // symbol would be most accurate however is higlighted just like built_in and that makes up a lot of AutoHotkey code
                 // meaning that it would fail to highlight anything
                 variants = listOf(
                     Mode(begin = "^[^\\n\";]+::(?!=)"),

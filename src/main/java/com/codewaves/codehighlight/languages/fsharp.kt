@@ -21,7 +21,8 @@ internal fun fsharp(): Mode {
     )
     return Mode(
         aliases = listOf("fs"),
-        keywords = keywords("abstract and as assert base begin class default delegate do done downcast downto elif else end exception extern false finally for fun function global if in inherit inline interface internal lazy let match member module mutable namespace new null of open or override private public rec return sig static struct then to true try type upcast use val void when while with yield"),
+        keywords =
+            keywords("abstract and as assert base begin class default delegate do done downcast downto elif else end exception extern false finally for fun function global if in inherit inline interface internal lazy let match member module mutable namespace new null of open or override private public rec return sig static struct then to true try type upcast use val void when while with yield"),
         illegal =
             """\/\*""",
         contains = listOf(
@@ -42,7 +43,10 @@ internal fun fsharp(): Mode {
                 begin = "\"\"\"",
                 end = "\"\"\""
             ),
-            hljs.COMMENT("\\(\\*\", \"\\*\\)"),
+            hljs.COMMENT(
+                "\\(\\*",
+                "\\*\\)"
+            ),
             Mode(
                 className = "class",
                 beginKeywords = keywords("type"),

@@ -1,14 +1,10 @@
 package com.codewaves.codehighlight.languages
-
-import com.codewaves.codehighlight.core.Keyword
-import com.codewaves.codehighlight.core.Mode
-import com.codewaves.codehighlight.core.hljs
-
+import com.codewaves.codehighlight.core.*
 /*
 Language = Stan
 Author = Brendan Rocks <rocks.brendan@gmail.com>
  Category = scientific
-Description = The Stan probabilistic programming language (http://mc-stan.org/).
+Description = The Stan probabilistic programming language (http = //mc-stan.org/).
 */
 /**
  * This function was automatically generated, avoid directly editing it if possible!
@@ -27,28 +23,33 @@ internal fun stan(): Mode {
                     // Stan's keywords
                     Keyword(
                         className = "name",
-                        value = "for in while repeat until if then else"
+                        value =
+                            "for in while repeat until if then else"
                     ),
                     // Stan's probablity distributions (less beta and gamma, as commonly
                     // used for parameter names). So far, _log and _rng variants are not
                     // included
                     Keyword(
                         className = "symbol",
-                        value = "bernoulli bernoulli_logit binomial binomial_logit beta_binomial hypergeometric categorical categorical_logit ordered_logistic neg_binomial neg_binomial_2 neg_binomial_2_log poisson poisson_log multinomial normal exp_mod_normal skew_normal student_t cauchy double_exponential logistic gumbel lognormal chi_square inv_chi_square scaled_inv_chi_square exponential inv_gamma weibull frechet rayleigh wiener pareto pareto_type_2 von_mises uniform multi_normal multi_normal_prec multi_normal_cholesky multi_gp multi_gp_cholesky multi_student_t gaussian_dlm_obs dirichlet lkj_corr lkj_corr_cholesky wishart inv_wishart"
+                        value =
+                            "bernoulli bernoulli_logit binomial binomial_logit beta_binomial hypergeometric categorical categorical_logit ordered_logistic neg_binomial neg_binomial_2 neg_binomial_2_log poisson poisson_log multinomial normal exp_mod_normal skew_normal student_t cauchy double_exponential logistic gumbel lognormal chi_square inv_chi_square scaled_inv_chi_square exponential inv_gamma weibull frechet rayleigh wiener pareto pareto_type_2 von_mises uniform multi_normal multi_normal_prec multi_normal_cholesky multi_gp multi_gp_cholesky multi_student_t gaussian_dlm_obs dirichlet lkj_corr lkj_corr_cholesky wishart inv_wishart"
                     ),
                     // Stan's data types
                     Keyword(
                         className = "selector-tag",
-                        value = "int real vector simplex unit_vector ordered positive_ordered row_vector matrix cholesky_factor_corr cholesky_factor_cov corr_matrix cov_matrix"
+                        value =
+                            "int real vector simplex unit_vector ordered positive_ordered row_vector matrix cholesky_factor_corr cholesky_factor_cov corr_matrix cov_matrix"
                     ),
                     // Stan's model blocks
                     Keyword(
                         className = "title",
-                        value = "functions model data parameters quantities transformed generated"
+                        value =
+                            "functions model data parameters quantities transformed generated"
                     ),
                     Keyword(
                         className = "literal",
-                        value = "true false"
+                        value =
+                            "true false"
                     )
                 ),
                 relevance = 0

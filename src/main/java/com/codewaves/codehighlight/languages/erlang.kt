@@ -12,19 +12,34 @@ Category = functional
  */
 internal fun erlang(): Mode {
     var BASIC_ATOM_RE = "[a-z\"][a-zA-Z0-9_\"]*"
-    var FUNCTION_NAME_RE = "(\" + BASIC_ATOM_RE + \":\" + BASIC_ATOM_RE + \"|\" + BASIC_ATOM_RE + \")"
-    var ERLANG_RESERVED = Mode(
-        keyword = "after and andalso|10 band begin bnot bor bsl bzr bxor case catch cond div end fun if let not of orelse|10 query receive rem try when xor",
-        literal = "false true"
+    var FUNCTION_NAME_RE = "(" +
+        BASIC_ATOM_RE + ":" +
+        BASIC_ATOM_RE + "|" +
+        BASIC_ATOM_RE + ")"
+    var ERLANG_RESERVED = listOf(
+        Keyword(
+            className = "keyword",
+            value =
+                "after and andalso|10 band begin bnot bor bsl bzr bxor case catch cond div end fun if let not of orelse|10 query receive rem try when xor"
+        ),
+        Keyword(
+            className = "literal",
+            value =
+                "false true"
+        )
     )
-    var COMMENT = hljs.COMMENT("%\", \"\$")
+    var COMMENT = hljs.COMMENT(
+        "%",
+        "\$"
+    )
     var NUMBER = Mode(
         className = "number",
         begin = "\\b(\\d+#[a-fA-F0-9]+|\\d+(\\.\\d+)?([eE][-+]?\\d+)?)",
         relevance = 0
     )
     var NAMED_FUN = Mode(
-        begin = "fun\\s+\" + BASIC_ATOM_RE + \"/\\d+"
+        begin = "fun\\s+" +
+            BASIC_ATOM_RE + "/\\d+"
     )
     var FUNCTION_CALL = Mode(
         begin = FUNCTION_NAME_RE + "\\(",
@@ -61,12 +76,14 @@ internal fun erlang(): Mode {
         relevance = 0
     )
     var RECORD_ACCESS = Mode(
-        begin = "#" + hljs.UNDERSCORE_IDENT_RE,
+        begin = "#" +
+            hljs.UNDERSCORE_IDENT_RE,
         relevance = 0,
         returnBegin = true,
         contains = listOf(
             Mode(
-                begin = "#" + hljs.UNDERSCORE_IDENT_RE,
+                begin = "#" +
+                    hljs.UNDERSCORE_IDENT_RE,
                 relevance = 0
             ),
             Mode(
@@ -105,11 +122,9 @@ internal fun erlang(): Mode {
         VAR1, VAR2,
         RECORD_ACCESS
     )
-    FUNCTION_CALL.contains[1]
-        .contains = BASIC_MODES
+    FUNCTION_CALL.contains[1].contains = BASIC_MODES
     TUPLE.contains = BASIC_MODES
-    RECORD_ACCESS.contains[1]
-        .contains = BASIC_MODES
+    RECORD_ACCESS.contains[1].contains = BASIC_MODES
     var PARAMS = Mode(
         className = "params",
         begin = "\\(",
@@ -123,7 +138,8 @@ internal fun erlang(): Mode {
         contains = listOf(
             Mode(
                 className = "function",
-                begin = "^\" + BASIC_ATOM_RE + \"\\s*\\(",
+                begin = "^" +
+                    BASIC_ATOM_RE + "\\s*\\(",
                 end = "->",
                 returnBegin = true,
                 illegal = "\\(|#|//|/\\*|\\\\|:|;",
@@ -144,8 +160,10 @@ internal fun erlang(): Mode {
                 relevance = 0,
                 excludeEnd = true,
                 returnBegin = true,
-                lexemes = "-" + hljs.IDENT_RE,
-                keywords = keywords("-module -record -undef -export -ifdef -ifndef -author -copyright -doc -vsn -import -include -include_lib -compile -define -else -endif -file -behaviour -behavior -spec"),
+                lexemes = "-" +
+                    hljs.IDENT_RE,
+                keywords =
+                    keywords("-module -record -undef -export -ifdef -ifndef -author -copyright -doc -vsn -import -include -include_lib -compile -define -else -endif -file -behaviour -behavior -spec"),
                 contains = listOf(PARAMS)
             ),
             NUMBER,

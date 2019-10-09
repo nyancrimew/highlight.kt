@@ -55,7 +55,8 @@ internal fun prolog(): Mode {
         contains = listOf(hljs.BACKSLASH_ESCAPE)
     )
     var CHAR_CODE = Mode(
-        className = "string", // 0'a etc.
+        className = "string",
+        // 0'a etc.
         begin =
             """0'(\\'|.)"""
     )

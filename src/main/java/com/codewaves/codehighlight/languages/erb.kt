@@ -16,7 +16,10 @@ internal fun erb(): Mode {
     return Mode(
         subLanguage = "xml",
         contains = listOf(
-            hljs.COMMENT("<%#\", \"%>"),
+            hljs.COMMENT(
+                "<%#",
+                "%>"
+            ),
             Mode(
                 begin = "<%[%=-]?",
                 end = "[%-]?%>",

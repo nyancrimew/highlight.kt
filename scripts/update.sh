@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ `uname -s` =~ (CYGWIN|MINGW32|MSYS)* ]]; then
+if [[ $(uname -s) =~ (CYGWIN|MINGW32|MSYS)* ]]; then
     echo "Running on Windows, setting python3 alias"
     alias python3="py -3"
 fi
@@ -33,4 +33,4 @@ echo "Generating language classes"
 python3 classgen.py
 
 echo "Formatting generated classes"
-./bin/ktlint --experimental -F "../src/main/java/com/codewaves/codehighlight/languages/*.kt"
+./bin/ktlint --experimental -F "../src/main/java/com/codewaves/codehighlight/languages/*.kt" | grep "Not a valid Kotlin" | tee >(wc -l)

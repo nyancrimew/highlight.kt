@@ -10,11 +10,14 @@ Author = Lucas Werkmeister <mail@lucaswerkmeister.de>
  */
 internal fun ceylon(): Mode {
     // 2.3. Identifiers and keywords
-    var KEYWORDS = "assembly module package import alias class interface object given value assign void function new of extends satisfies abstracts in out return break continue throw assert dynamic if else switch case for while try catch finally then let this outer super is exists nonempty"
+    var KEYWORDS =
+        "assembly module package import alias class interface object given value assign void function new of extends satisfies abstracts in out return break continue throw assert dynamic if else switch case for while try catch finally then let this outer super is exists nonempty"
     // 7.4.1 Declaration Modifiers
-    var DECLARATION_MODIFIERS = "shared abstract formal default actual variable late native deprecatedfinal sealed annotation suppressWarnings small"
+    var DECLARATION_MODIFIERS =
+        "shared abstract formal default actual variable late native deprecatedfinal sealed annotation suppressWarnings small"
     // 7.4.2 Documentation
-    var DOCUMENTATION = "doc by license see throws tagged"
+    var DOCUMENTATION =
+        "doc by license see throws tagged"
     var SUBST = Mode(
         className = "subst",
         excludeBegin = true,
@@ -50,7 +53,7 @@ internal fun ceylon(): Mode {
         Mode(
             // numeric literal
             className = "number",
-            begin = "#[0-9a-fA-F_]+|\\$[01_]+|[0-9_]+(?:\\.[0-9_](?:[eE][+-]?\\d+)?)?[kMGTPmunpf]?",
+            begin = "#[0-9a-fA-F_]+|\\\$[01_]+|[0-9_]+(?:\\.[0-9_](?:[eE][+-]?\\d+)?)?[kMGTPmunpf]?",
             relevance = 0
         )
     )
@@ -59,23 +62,27 @@ internal fun ceylon(): Mode {
         keywords = listOf(
             Keyword(
                 className = "keyword",
-                value = KEYWORDS + " " + DECLARATION_MODIFIERS
+                value = KEYWORDS + " " +
+                    DECLARATION_MODIFIERS
             ),
             Keyword(
                 className = "meta",
                 value = DOCUMENTATION
             )
         ),
-        illegal = "\\$[^01]|#[^0-9a-fA-F]",
+        illegal = "\\\$[^01]|#[^0-9a-fA-F]",
         contains = listOf(
             hljs.C_LINE_COMMENT_MODE,
-            hljs.COMMENT("/\\*", "\\*/", Mode(contains = listOf(hljs.SELF))),
+            hljs.COMMENT(
+                "/\\*",
+                "\\*/",
+                Mode(contains = listOf(hljs.SELF))
+            ),
             Mode(
                 // compiler annotation
                 className = "meta",
-                begin = "@[a-z]\\w*(?:\\:\"[^\"]*\")?"
+                begin = "@[a-z]\\w*(?:\:\"[^\"]*\")?"
             )
-        ) +
-            EXPRESSIONS
+        ) + EXPRESSIONS
     )
 }

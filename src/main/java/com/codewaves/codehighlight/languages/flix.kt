@@ -27,7 +27,7 @@ internal fun flix(): Mode {
     var NAME = Mode(
         className = "title",
         begin =
-            """[^0-9\n\t "'(),.`{}\[\]:;][^\n\t \"'(),.`{}\[\]:;]+|[^0-9\n\t "'(),.`{}\[\]:;=]"""
+            """[^0-9\n\t "'(),.`{}\[\]:;][^\n\t \"'(),.`{}\[\]:;]+|[^0-9\n\t \"'(),.`{}\[\]:;=]\"""
     )
     var METHOD = Mode(
         className = "function",

@@ -1,10 +1,5 @@
 package com.codewaves.codehighlight.languages
-
-import com.codewaves.codehighlight.core.Keyword
-import com.codewaves.codehighlight.core.Mode
-import com.codewaves.codehighlight.core.hljs
-import com.codewaves.codehighlight.core.keywords
-
+import com.codewaves.codehighlight.core.*
 /*
 Language = Haxe
 Author = Christopher Kaster <ikasoki@gmail.com> (Based on the actionscript.js language file by Alexander Myadzel)
@@ -28,28 +23,33 @@ internal fun haxe(): Mode {
             ),
             Keyword(
                 className = "built_in",
-                value = "trace this"
+                value =
+                    "trace this"
             ),
             Keyword(
                 className = "literal",
-                value = "true false null _"
+                value =
+                    "true false null _"
             )
         ),
         contains = listOf(
             Mode(
-                className = "string", // interpolate-able strings
+                className = "string",
+                // interpolate-able strings
                 begin = "'",
                 end = "'",
                 contains = listOf(
                     hljs.BACKSLASH_ESCAPE,
                     Mode(
-                        className = "subst", // interpolation
-                        begin = "\\$\\{",
+                        className = "subst",
+                        // interpolation
+                        begin = "\\\$\\{",
                         end = "\\}"
                     ),
                     Mode(
-                        className = "subst", // interpolation
-                        begin = "\\$",
+                        className = "subst",
+                        // interpolation
+                        begin = "\\\$",
                         end = "\\W}"
                     )
                 )
@@ -59,12 +59,14 @@ internal fun haxe(): Mode {
             hljs.C_BLOCK_COMMENT_MODE,
             hljs.C_NUMBER_MODE,
             Mode(
-                className = "meta", // compiler meta
+                className = "meta",
+                // compiler meta
                 begin = "@:",
                 end = "\$"
             ),
             Mode(
-                className = "meta", // compiler conditionals
+                className = "meta",
+                // compiler conditionals
                 begin = "#",
                 end = "\$",
                 keywords = listOf(
@@ -75,7 +77,8 @@ internal fun haxe(): Mode {
                 )
             ),
             Mode(
-                className = "type", // function types
+                className = "type",
+                // function types
                 begin = ":[ \t]*",
                 end = "[^A-Za-z0-9_ \t\\->]",
                 excludeBegin = true,
@@ -83,21 +86,24 @@ internal fun haxe(): Mode {
                 relevance = 0
             ),
             Mode(
-                className = "type", // types
+                className = "type",
+                // types
                 begin = ":[ \t]*",
                 end = "\\W",
                 excludeBegin = true,
                 excludeEnd = true
             ),
             Mode(
-                className = "type", // instantiation
+                className = "type",
+                // instantiation
                 begin = "new *",
                 end = "\\W",
                 excludeBegin = true,
                 excludeEnd = true
             ),
             Mode(
-                className = "class", // enums
+                className = "class",
+                // enums
                 beginKeywords = keywords("enum"),
                 end = "\\{",
                 contains = listOf(
@@ -105,7 +111,8 @@ internal fun haxe(): Mode {
                 )
             ),
             Mode(
-                className = "class", // abstracts
+                className = "class",
+                // abstracts
                 beginKeywords = keywords("abstract"),
                 end = "[\\{\$]",
                 contains = listOf(
@@ -140,9 +147,11 @@ internal fun haxe(): Mode {
                 )
             ),
             Mode(
-                className = "class", // classes
+                className = "class",
+                // classes
                 begin = "\\b(class|interface) +",
-                end = "[\\{\$]", excludeEnd = true,
+                end = "[\\{\$]",
+                excludeEnd = true,
                 keywords = keywords("class interface"),
                 contains = listOf(
                     Mode(

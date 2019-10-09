@@ -11,6 +11,7 @@ Description = Syntax highlighting for PureBASIC (v.5.00-5.60). No inline ASM hig
 Credits = I've taken inspiration from the PureBasic language file for GeSHi, created by Gustavo Julio Fiorenza (GuShH).
 */
 // Base deafult colors in PB IDE = background = #FFFFDF; foreground = #000000;
+
 /**
  * This function was automatically generated, avoid directly editing it if possible!
  * Origin highlight.js/src/languages/purebasic.js MD5 <4a988b296bf2a58d342d752e31de855c>
@@ -25,17 +26,24 @@ internal fun purebasic(): Mode {
     var CONSTANTS = Mode(// PB IDE color: #924B72 (Cannon Pink)
         //  "#\" + a letter or underscore + letters, digits or underscores + (optional) \"\$"
         className = "symbol",
-        begin = "#[a-zA-Z_]\\w*\\$?"
+        begin = "#[a-zA-Z_]\\w*\\\$?"
     )
     return Mode(
-        aliases = listOf("pb\", \"pbi"),
+        aliases = listOf(
+            "pb",
+            "pbi"
+        ),
         keywords = keywords(// PB IDE color: #006666 (Blue Stone) + Bold)
             // Keywords from all version of PureBASIC 5.00 upward ...
             "Align And Array As Break CallDebugger Case CompilerCase CompilerDefault CompilerElse CompilerElseIf CompilerEndIf CompilerEndSelect CompilerError CompilerIf CompilerSelect CompilerWarning Continue Data DataSection Debug DebugLevel Declare DeclareC DeclareCDLL DeclareDLL DeclareModule Default Define Dim DisableASM DisableDebugger DisableExplicit Else ElseIf EnableASM EnableDebugger EnableExplicit End EndDataSection EndDeclareModule EndEnumeration EndIf EndImport EndInterface EndMacro EndModule EndProcedure EndSelect EndStructure EndStructureUnion EndWith Enumeration EnumerationBinary Extends FakeReturn For ForEach ForEver Global Gosub Goto If Import ImportC IncludeBinary IncludeFile IncludePath Interface List Macro MacroExpandedCount Map Module NewList NewMap Next Not Or Procedure ProcedureC ProcedureCDLL ProcedureDLL ProcedureReturn Protected Prototype PrototypeC ReDim Read Repeat Restore Return Runtime Select Shared Static Step Structure StructureUnion Swap Threaded To UndefineMacro Until Until  UnuseModule UseModule Wend While With XIncludeFile XOr"
         ),
         contains = listOf(
             // COMMENTS | PB IDE color: #00AAAA (Persian Green)
-            hljs.COMMENT(";", "\$", Mode(relevance = 0)),
+            hljs.COMMENT(
+                ";",
+                "\$",
+                Mode(relevance = 0)
+            ),
             Mode(// PROCEDURES DEFINITIONS
                 className = "function",
                 begin = "\\b(Procedure|Declare)(C|CDLL|DLL)?\\b",
@@ -79,5 +87,6 @@ internal fun purebasic(): Mode {
     - v.1.0 (April 2016)
         -- First release
         -- Keywords list taken and adapted from GuShH's (Gustavo Julio Fiorenza)
-           PureBasic language file for GeSHi =            -- https = //github.com/easybook/geshi/blob/master/geshi/purebasic.php
+           PureBasic language file for GeSHi = 
+           -- https = //github.com/easybook/geshi/blob/master/geshi/purebasic.php
 */

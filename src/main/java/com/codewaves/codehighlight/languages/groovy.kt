@@ -1,10 +1,5 @@
 package com.codewaves.codehighlight.languages
-
-import com.codewaves.codehighlight.core.Keyword
-import com.codewaves.codehighlight.core.Mode
-import com.codewaves.codehighlight.core.hljs
-import com.codewaves.codehighlight.core.keywords
-
+import com.codewaves.codehighlight.core.*
 /*
  Language = Groovy
  Author = Guillaume Laforge <glaforge@gmail.com>
@@ -18,10 +13,14 @@ import com.codewaves.codehighlight.core.keywords
 internal fun groovy(): Mode {
     return Mode(
         keywords = listOf(
-            Keyword(className = "literal", value = "true false null"),
+            Keyword(
+                className = "literal",
+                value = "true false null"
+            ),
             Keyword(
                 className = "keyword",
-                value = "byte short char int long boolean float double void def as in assert trait super this abstract static volatile transient public private protected synchronized final class interface enum if else for while switch case break default continue throw throws try catch finally implements extends new import package return instanceof"
+                value =
+                    "byte short char int long boolean float double void def as in assert trait super this abstract static volatile transient public private protected synchronized final class interface enum if else for while switch case break default continue throw throws try catch finally implements extends new import package return instanceof"
             )
         ),
         contains = listOf(
@@ -58,8 +57,8 @@ internal fun groovy(): Mode {
             ),
             Mode(
                 className = "string",
-                begin = "\\${'$'}/",
-                end = "/\\${'$'}",
+                begin = "\\\${'\$'}/",
+                end = "/\\\${'\$'}",
                 relevance = 10
             ),
             hljs.APOS_STRING_MODE,
@@ -75,7 +74,7 @@ internal fun groovy(): Mode {
             Mode(
                 className = "meta",
                 begin = "^#!/usr/bin/env",
-                end = "\${'$'}",
+                end = "\${'\$'}",
                 illegal = "\n"
             ),
             hljs.BINARY_NUMBER_MODE,
@@ -111,7 +110,7 @@ internal fun groovy(): Mode {
             Mode(
                 // highlight labeled statements
                 className = "symbol",
-                begin = "^\\s*[A-Za-z0-9_\$]+:",
+                begin = "^\\s*[A-Za-z0-9_\${'\$'}]+:",
                 relevance = 0
             )
         ),

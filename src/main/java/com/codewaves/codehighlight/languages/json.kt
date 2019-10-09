@@ -1,10 +1,5 @@
 package com.codewaves.codehighlight.languages
-
-import com.codewaves.codehighlight.core.Keyword
-import com.codewaves.codehighlight.core.Mode
-import com.codewaves.codehighlight.core.hljs
-import com.codewaves.codehighlight.core.keywords
-
+import com.codewaves.codehighlight.core.*
 /*
 Language = JSON / JSON with Comments
 Author = Ivan Sagalaev <maniac@softwaremaniacs.org>
@@ -49,15 +44,9 @@ internal fun json(): Mode {
                 contains = listOf(hljs.BACKSLASH_ESCAPE),
                 illegal = "\\n"
             ),
-            hljs.inherit(
-                VALUE_CONTAINER,
-                Mode(
-                    begin =
-                        """:"""
-                )
-            )
-        ) +
-            ALLOWED_COMMENTS,
+            hljs.inherit(VALUE_CONTAINER, Mode(begin =
+                    """:"""))
+        ) + ALLOWED_COMMENTS,
         illegal = "\\S"
     )
     var ARRAY = Mode(
@@ -68,7 +57,7 @@ internal fun json(): Mode {
     )
     TYPES += listOf(OBJECT, ARRAY)
     ALLOWED_COMMENTS.forEach { rule ->
-        TYPES += rule
+        TYPES += listOf(rule)
     }
     return Mode(
         contains = TYPES,

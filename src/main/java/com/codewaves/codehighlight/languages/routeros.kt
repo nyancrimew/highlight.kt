@@ -8,12 +8,14 @@ import com.codewaves.codehighlight.core.hljs
 Language = Microtik RouterOS script
 Author = Ivan Dementev <ivan_div@mail.ru>
 Description = Scripting host provides a way to automate some router maintenance tasks by means of executing user-defined scripts bounded to some event occurrence
-URL = https://wiki.mikrotik.com/wiki/Manual:Scripting
+URL = https = //wiki.mikrotik.com/wiki/Manual:Scripting
 */
-// Colors from RouterOS terminal = //   green        - #0E9A00
+// Colors from RouterOS terminal = 
+//   green        - #0E9A00
 //   teal         - #0C9A9A
 //   purple       - #99069A
 //   light-brown  - #9A9900
+
 /**
  * This function was automatically generated, avoid directly editing it if possible!
  * Origin highlight.js/src/languages/routeros.js MD5 <6caa650eda28855908c68c6586af7a5b>
@@ -34,6 +36,7 @@ internal fun routeros(): Mode {
     // ToDo: var OPERATORS = "&& and ! not || or in ~ ^ & << >> + - * /";
     // ToDo: var TYPES = "num number bool boolean str string ip ip6-prefix id time array";
     // ToDo: The following tokens serve as delimiters in the grammar: ()  listOf()  {}  :   ;   $   /
+
     var VAR_PREFIX = "global local set for foreach"
     var VAR = Mode(
         className = "variable",
@@ -82,7 +85,10 @@ internal fun routeros(): Mode {
     var IPADDR_wBITMASK = IPADDR + "/(3[0-2]|[1-2][0-9]|\\d)"
     // ////////////////////////////////////////////////////////////////////
     return Mode(
-        aliases = listOf("routeros\", \"mikrotik"),
+        aliases = listOf(
+            "routeros",
+            "mikrotik"
+        ),
         case_insensitive = true,
         lexemes =
             """:?[\w-]+""",
@@ -93,9 +99,10 @@ internal fun routeros(): Mode {
             ),
             Keyword(
                 className = "keyword",
-                value = STATEMENTS + " :" + STATEMENTS.split(" ")
-                    .joinToString(" :") + " :" + GLOBAL_COMMANDS.split(" ")
-                    .joinToString(" :")
+                value = STATEMENTS + " :" +
+                    STATEMENTS.split(" ").joinToString(" :") +
+                    " :" +
+                    GLOBAL_COMMANDS.split(" ").joinToString(" :")
             )
         ),
         contains = listOf(
@@ -165,7 +172,7 @@ internal fun routeros(): Mode {
                     ),
                     // roboconf - лютый костыль )))
                     Mode(
-                        begin = "^1\\.\\.(\\d+)\${'$'}",
+                        begin = "^1\\.\\.(\\d+)\${'\$'}",
                         end =
                             """${'$'}"""
                     ) // tap
@@ -173,7 +180,10 @@ internal fun routeros(): Mode {
                 illegal =
                     """."""
             ),
-            hljs.COMMENT("^#", "\$"),
+            hljs.COMMENT(
+                "^#",
+                "\${'\$'}"
+            ),
             QUOTE_STRING,
             APOS_STRING,
             VAR,
@@ -199,17 +209,31 @@ internal fun routeros(): Mode {
                             VAR,
                             Mode(
                                 className = "literal",
-                                begin = "\\b(" + LITERALS.split(" ")
-                                    .joinToString(
-                                        "|\") + \")\\b"
-                                    )
+                                begin = "\\b(" +
+                                    LITERALS.split(" ").joinToString("|") +
+                                    ")\\b"
                             ),
-
+//              /*{
+//                // IPv4 addresses and subnets
+//                className = "number",
+//                variants = listOf(
+//                  Mode(begin = IPADDR_wBITMASK+"(,
+// "+IPADDR_wBITMASK+\")*"), //192.168.0.0/24,1.2.3.0/24
+//                  Mode(begin = IPADDR+"-"+IPADDR),       // 192.168.0.1-192.168.0.3
+//                  Mode(begin = IPADDR+"(,
+// "+IPADDR+\")*") // 192.168.0.1,192.168.0.34,192.168.24.1,192.168.0.1
+//                )
+//              ), //
+//              /*{
+//                // MAC addresses and DHCP Client IDs
+//                className = "number",
+//                begin = """\b(1 = )?([0-9A-Fa-f]{1,2}listOf(:-)){5}(listOf(0-9A-Fa-f)){1,2}\b"""
+//              ), //*/
                             Mode(
                                 // Не форматировать не классифицированные значения. Необходимо для исключения подсветки значений как built_in.
                                 // className: "number",
                                 begin =
-                                    """("[^\"]*"|[^\s\{\}\[\]]+)"""
+                                    """("[^\"]*\"|[^\s\{\}\[\]]+)\"""
                             ) // */
                         )
                     ) // */
@@ -217,23 +241,21 @@ internal fun routeros(): Mode {
             ),
             // */
             Mode(
-// HEX values
+                // HEX values
                 className = "number",
                 begin =
                     """\*[0-9a-fA-F]+"""
             ),
             // */
+
             Mode(
-                begin = "\\b(" + COMMON_COMMANDS.split(
-                    " "
-                )
-                    .joinToString(
-                        "|"
-                    ) + ")([\\s\\[\\(]|\\))",
+                begin = "\\b(" +
+                    COMMON_COMMANDS.split(" ").joinToString("|") + ")([\\s[(]|])",
                 returnBegin = true,
                 contains = listOf(
                     Mode(
-                        className = "builtin-name\", //'function",
+                        className = "builtin-name",
+                        // 'function",
                         begin =
                             """\w+"""
                     )
@@ -244,8 +266,9 @@ internal fun routeros(): Mode {
                 className = "built_in",
                 variants = listOf(
                     Mode(
-                        begin = "(\\.\\./|/|\\s)((" + OBJECTS.split(" ")
-                            .joinToString("|") + ");?\\s)+",
+                        begin = "(\\.\\./|/|\\s)((" +
+                            OBJECTS.split(" ").joinToString("|") +
+                            ");?\\s)+",
                         relevance = 10
                     ),
                     Mode(

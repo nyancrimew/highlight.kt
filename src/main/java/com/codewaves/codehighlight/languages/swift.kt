@@ -119,7 +119,7 @@ internal fun swift(): Mode {
                             Mode(begin = ":") // relevance booster
                         ),
                         illegal =
-                            """[""]"""
+                            """[""]\"""
                     )
                 ),
                 illegal =
@@ -137,7 +137,8 @@ internal fun swift(): Mode {
                 )
             ),
             Mode(
-                className = "meta", // @attributes
+                className = "meta",
+                // @attributes
                 begin = "(@discardableResult|@warn_unused_result|@exported|@lazy|@noescape|@NSCopying|@NSManaged|@objc|@objcMembers|@convention|@required|@noreturn|@IBAction|@IBDesignable|@IBInspectable|@IBOutlet|@infix|@prefix|@postfix|@autoclosure|@testable|@available|@nonobjc|@NSApplicationMain|@UIApplicationMain)"
             ),
             Mode(

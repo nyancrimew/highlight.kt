@@ -3,7 +3,7 @@ import com.codewaves.codehighlight.core.*
 /*
 Language = Stylus
 Author = Bryant Williams <b.n.williams@gmail.com>
-Description = Stylus (https://github.com/LearnBoost/stylus/)
+Description = Stylus (https = //github.com/LearnBoost/stylus/)
 Category = css
 */
 /**
@@ -13,7 +13,8 @@ Category = css
 internal fun stylus(): Mode {
     var VARIABLE = Mode(
         className = "variable",
-        begin = "\\$" + hljs.IDENT_RE
+        begin = "\\\$" +
+            hljs.IDENT_RE
     )
     var HEX_COLOR = Mode(
         className = "number",
@@ -120,7 +121,7 @@ internal fun stylus(): Mode {
         "var",
         "video"
     )
-    var TAG_END = "[\\.\\s\\n\\[\\:,]"
+    var TAG_END = "[\\.\\s\\n\\[\:,]"
     var ATTRIBUTES = listOf(
         "align-content",
         "align-items",
@@ -329,22 +330,33 @@ internal fun stylus(): Mode {
     // illegals
     var ILLEGAL = listOf(
         "\\?",
-        "(\\bReturn\\b)", // monkey
-        "(\\bEnd\\b)", // monkey
-        "(\\bend\\b)", // vbscript
-        "(\\bdef\\b)", // gradle
-        ";", // a whole lot of languages
-        "#\\s", // markdown
-        "\\*\\s", // markdown
-        "===\\s", // markdown
+        "(\\bReturn\\b)",
+        // monkey
+        "(\\bEnd\\b)",
+        // monkey
+        "(\\bend\\b)",
+        // vbscript
+        "(\\bdef\\b)",
+        // gradle
+        ";",
+        // a whole lot of languages
+        "#\\s",
+        // markdown
+        "\\*\\s",
+        // markdown
+        "===\\s",
+        // markdown
         "\\|",
-        "%" // prolog
+        "%"
+        // prolog
     )
     return Mode(
         aliases = listOf("styl"),
         case_insensitive = false,
         keywords = keywords("if else for in"),
-        illegal = "(\" + ILLEGAL.joinToString(\"|\") + \")",
+        illegal = "(" +
+            ILLEGAL.joinToString("|") +
+            ")",
         contains = listOf(
             // strings
             hljs.QUOTE_STRING_MODE,
@@ -356,7 +368,8 @@ internal fun stylus(): Mode {
             HEX_COLOR,
             // class tag
             Mode(
-                begin = "\\.[a-zA-Z][a-zA-Z0-9_-]*" + TAG_END,
+                begin = "\\.[a-zA-Z][a-zA-Z0-9_-]*" +
+                    TAG_END,
                 returnBegin = true,
                 contains = listOf(
                     Mode(
@@ -367,7 +380,8 @@ internal fun stylus(): Mode {
             ),
             // id tag
             Mode(
-                begin = "\\#[a-zA-Z][a-zA-Z0-9_-]*" + TAG_END,
+                begin = "\\#[a-zA-Z][a-zA-Z0-9_-]*" +
+                    TAG_END,
                 returnBegin = true,
                 contains = listOf(
                     Mode(
@@ -378,7 +392,10 @@ internal fun stylus(): Mode {
             ),
             // tags
             Mode(
-                begin = "\\b(\" + TAGS.joinToString(\"|\") + \")" + TAG_END,
+                begin = "\\b(" +
+                    TAGS.joinToString("|") +
+                    ")" +
+                    TAG_END,
                 returnBegin = true,
                 contains = listOf(
                     Mode(
@@ -389,11 +406,16 @@ internal fun stylus(): Mode {
             ),
             // psuedo selectors
             Mode(
-                begin = "&?:?:\\b(\" + PSEUDO_SELECTORS.joinToString(\"|\") + \")" + TAG_END
+                begin = "&?:?:\\b(" +
+                    PSEUDO_SELECTORS.joinToString("|") +
+                    ")" +
+                    TAG_END
             ),
             // @ keywords
             Mode(
-                begin = "\\@(\" + AT_KEYWORDS.joinToString(\"|\") + \")\\b"
+                begin = "\@(" +
+                    AT_KEYWORDS.joinToString("|") +
+                    ")\\b"
             ),
             // variables
             VARIABLE,
@@ -405,13 +427,13 @@ internal fun stylus(): Mode {
             //  - only from beginning of line + whitespace
             Mode(
                 className = "function",
-                begin = "^[a-zA-Z][a-zA-Z0-9_\\-]*\\(.*\\)",
+                begin = "^[a-zA-Z][a-zA-Z0-9_\-]*\\(.*\\)",
                 illegal = "[\\n]",
                 returnBegin = true,
                 contains = listOf(
                     Mode(
                         className = "title",
-                        begin = "\\b[a-zA-Z][a-zA-Z0-9_\\-]*"
+                        begin = "\\b[a-zA-Z][a-zA-Z0-9_\-]*"
                     ),
                     Mode(
                         className = "params",
@@ -435,8 +457,9 @@ internal fun stylus(): Mode {
             //  - must have whitespace after it
             Mode(
                 className = "attribute",
-                begin = "\\b(" + ATTRIBUTES.reversed()
-                    .joinToString("|") + ")\\b",
+                begin = "\\b(" +
+                    ATTRIBUTES.reverse().joinToString("|") +
+                    ")\\b",
                 starts = Mode(
                     // value container
                     end =

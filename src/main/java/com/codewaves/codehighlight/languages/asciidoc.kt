@@ -1,8 +1,5 @@
 package com.codewaves.codehighlight.languages
-
-import com.codewaves.codehighlight.core.Mode
-import com.codewaves.codehighlight.core.hljs
-
+import com.codewaves.codehighlight.core.*
 /*
 Language = AsciiDoc
 Requires = xml.js

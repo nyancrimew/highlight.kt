@@ -14,15 +14,18 @@ internal fun nix(): Mode {
     var NIX_KEYWORDS = listOf(
         Keyword(
             className = "keyword",
-            value = "rec with let in inherit assert if else then"
+            value =
+                "rec with let in inherit assert if else then"
         ),
         Keyword(
             className = "literal",
-            value = "true false or and null"
+            value =
+                "true false or and null"
         ),
         Keyword(
             className = "built_in",
-            value = "import abort baseNameOf dirOf isNull builtins map removeAttrs throw toString derivation"
+            value =
+                "import abort baseNameOf dirOf isNull builtins map removeAttrs throw toString derivation"
         )
     )
     var ANTIQUOTE = Mode(

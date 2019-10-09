@@ -10,7 +10,8 @@ Description = Syntax Highlighting for the AspectJ Language which is a general-pu
  * Origin highlight.js/src/languages/aspectj.js MD5 <009349d41eeb48614b6dfe37af878400>
  */
 internal fun aspectj(): Mode {
-    var KEYWORDS = "false synchronized int abstract float private char boolean static null if const for true while long throw strictfp finally protected import native final return void enum else extends implements break transient new catch instanceof byte super volatile case assert short package default double public try this switch continue throws privileged aspectOf adviceexecution proceed cflowbelow cflow initialization preinitialization staticinitialization withincode target within execution getWithinTypeName handler thisJoinPoint thisJoinPointStaticPart thisEnclosingJoinPointStaticPart declare parents warning error soft precedence thisAspectInstance"
+    var KEYWORDS =
+        "false synchronized int abstract float private char boolean static null if const for true while long throw strictfp finally protected import native final return void enum else extends implements break transient new catch instanceof byte super volatile case assert short package default double public try this switch continue throws privileged aspectOf adviceexecution proceed cflowbelow cflow initialization preinitialization staticinitialization withincode target within execution getWithinTypeName handler thisJoinPoint thisJoinPointStaticPart thisEnclosingJoinPointStaticPart declare parents warning error soft precedence thisAspectInstance"
     var SHORTKEYS = "get set args call"
     return Mode(
         keywords = keywords(KEYWORDS),
@@ -47,7 +48,7 @@ internal fun aspectj(): Mode {
                     """[{;=]""",
                 excludeEnd = true,
                 illegal =
-                    """[:;"\[\]]""",
+                    """[:;"\[\]]\""",
                 contains = listOf(
                     Mode(
                         beginKeywords = keywords("extends implements pertypewithin perthis pertarget percflowbelow percflow issingleton")
@@ -58,7 +59,10 @@ internal fun aspectj(): Mode {
                             """\([^\)]*""",
                         end =
                             """[)]+""",
-                        keywords = keywords(KEYWORDS + " " + SHORTKEYS),
+                        keywords = keywords(
+                            KEYWORDS + " " +
+                                SHORTKEYS
+                        ),
                         excludeEnd = false
                     )
                 )
@@ -72,9 +76,9 @@ internal fun aspectj(): Mode {
                 relevance = 0,
                 keywords = keywords("class interface"),
                 illegal =
-                    """[:"\[\]]""",
+                    """[:"\[\]]\""",
                 contains = listOf(
-                    Mode(beginKeywords = "extends implements"),
+                    Mode(beginKeywords = keywords("extends implements")),
                     hljs.UNDERSCORE_TITLE_MODE
                 )
             ),
@@ -85,7 +89,7 @@ internal fun aspectj(): Mode {
                     """[)]""",
                 excludeEnd = false,
                 illegal =
-                    """["\[\]]""",
+                    """["\[\]]\""",
                 contains = listOf(
                     Mode(
                         begin = hljs.UNDERSCORE_IDENT_RE + "\\s*\\(",
@@ -104,11 +108,14 @@ internal fun aspectj(): Mode {
                 excludeEnd = false,
                 keywords = keywords(KEYWORDS),
                 illegal =
-                    """["\[\]]""",
+                    """["\[\]]\""",
                 contains = listOf(
                     Mode(
                         begin = hljs.UNDERSCORE_IDENT_RE + "\\s*\\(",
-                        keywords = keywords(KEYWORDS + " " + SHORTKEYS),
+                        keywords = keywords(
+                            KEYWORDS + " " +
+                                SHORTKEYS
+                        ),
                         relevance = 0
                     ),
                     hljs.QUOTE_STRING_MODE

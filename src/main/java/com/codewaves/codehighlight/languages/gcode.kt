@@ -12,7 +12,8 @@ import com.codewaves.codehighlight.core.*
 internal fun gcode(): Mode {
     var GCODE_IDENT_RE = "[A-Z_][A-Z0-9_.]*"
     var GCODE_CLOSE_RE = "\\%"
-    var GCODE_KEYWORDS = "IF DO WHILE ENDWHILE CALL ENDIF SUB ENDSUB GOTO REPEAT ENDREPEAT EQ LT GT NE GE LE OR XOR"
+    var GCODE_KEYWORDS =
+        "IF DO WHILE ENDWHILE CALL ENDIF SUB ENDSUB GOTO REPEAT ENDREPEAT EQ LT GT NE GE LE OR XOR"
     var GCODE_START = Mode(
         className = "meta",
         begin = "([O))([0-9]+)"
@@ -21,7 +22,13 @@ internal fun gcode(): Mode {
         hljs.C_LINE_COMMENT_MODE,
         hljs.C_BLOCK_COMMENT_MODE,
         hljs.COMMENT("""\(""", """\)"""),
-        hljs.inherit(hljs.C_NUMBER_MODE, Mode(begin = "([-+]?([0-9]*\\.?[0-9]+\\.?))|" + hljs.C_NUMBER_RE)),
+        hljs.inherit(
+            hljs.C_NUMBER_MODE,
+            Mode(
+                begin = "([-+]?([0-9]*\\.?[0-9]+\\.?))|" +
+                    hljs.C_NUMBER_RE
+            )
+        ),
         hljs.inherit(hljs.APOS_STRING_MODE, Mode(illegal = null)),
         hljs.inherit(hljs.QUOTE_STRING_MODE, Mode(illegal = null)),
         Mode(
@@ -70,7 +77,6 @@ internal fun gcode(): Mode {
                 begin = GCODE_CLOSE_RE
             ),
             GCODE_START
-        ) +
-            GCODE_CODE
+        ) + GCODE_CODE
     )
 }

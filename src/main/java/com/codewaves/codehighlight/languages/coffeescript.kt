@@ -15,17 +15,20 @@ internal fun coffeescript(): Mode {
     var KEYWORDS = listOf(
         Keyword(
             className = "keyword",
-            value = // JS keywords
+            value =
+                // JS keywords
                 "in if for while finally new do return else break catch instanceof throw try this switch continue typeof delete debugger super yield import export from as default await then unless until loop of by when and or is isnt not"
         ),
         Keyword(
             className = "literal",
-            value = // JS literals
+            value =
+                // JS literals
                 "true false null undefined yes no on off"
         ),
         Keyword(
             className = "built_in",
-            value = "npm require console print module global window document"
+            value =
+                "npm require console print module global window document"
         )
     )
     var JS_IDENT_RE = "[A-Za-z\$_][0-9A-Za-z\$_]*"
@@ -102,7 +105,8 @@ internal fun coffeescript(): Mode {
             )
         ),
         Mode(
-            begin = "@" + JS_IDENT_RE // relevance booster
+            begin = "@" +
+                JS_IDENT_RE // relevance booster
         ),
         Mode(
             subLanguage = "javascript",
@@ -136,23 +140,29 @@ internal fun coffeescript(): Mode {
                 end =
                     """\)""",
                 keywords = keywords(KEYWORDS),
-                contains = listOf(hljs.SELF) +
-                    EXPRESSIONS
+                contains = listOf(hljs.SELF) + EXPRESSIONS
             )
         )
     )
     return Mode(
-        aliases = listOf("coffee\", \"cson\", \"iced"),
+        aliases = listOf(
+            "coffee",
+            "cson",
+            "iced"
+        ),
         keywords = keywords(KEYWORDS),
         illegal =
             """\/\*""",
         contains = EXPRESSIONS + listOf(
             hljs.COMMENT(
-                "###\", \"###",
+                "###",
+                "###",
                 hljs.HASH_COMMENT_MODE,
                 Mode(
                     className = "function",
-                    begin = "^\\s*\" + JS_IDENT_RE + \"\\s*=\\s*" + PARAMS_RE,
+                    begin = "^\\s*" +
+                        JS_IDENT_RE + "\\s*=\\s*" +
+                        PARAMS_RE,
                     end = "[-=]>",
                     returnBegin = true,
                     contains = listOf(TITLE, PARAMS)
@@ -175,15 +185,15 @@ internal fun coffeescript(): Mode {
                 Mode(
                     className = "class",
                     beginKeywords = keywords("class"),
-                    end = "\${'$'}",
+                    end = "\${'\$'}",
                     illegal =
-                        """[:="\[\]]""",
+                        """[:="\[\]]\""",
                     contains = listOf(
                         Mode(
                             beginKeywords = keywords("extends"),
                             endsWithParent = true,
                             illegal =
-                                """[:="\[\]]""",
+                                """[:="\[\]]\""",
                             contains = listOf(TITLE)
                         ),
                         TITLE

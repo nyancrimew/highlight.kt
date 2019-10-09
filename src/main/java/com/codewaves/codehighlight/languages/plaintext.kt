@@ -3,7 +3,8 @@ import com.codewaves.codehighlight.core.*
 /*
 Language = plaintext
 Author = Egor Rogov (e.rogov@postgrespro.ru)
-Description =     Plain text without any highlighting.
+Description = 
+    Plain text without any highlighting.
 */
 /**
  * This function was automatically generated, avoid directly editing it if possible!

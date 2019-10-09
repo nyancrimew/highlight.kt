@@ -40,16 +40,19 @@ internal fun twig(): Mode {
     var FILTER = Mode(
         begin =
             """\|[A-Za-z_]+:?""",
-        keywords = keywords("abs batch capitalize convert_encoding date date_modify default escape first format join json_encode keys last length lower merge nl2br number_format raw replace reverse round slice sort split striptags title trim upper url_encode"),
+        keywords =
+            keywords("abs batch capitalize convert_encoding date date_modify default escape first format join json_encode keys last length lower merge nl2br number_format raw replace reverse round slice sort split striptags title trim upper url_encode"),
         contains = listOf(
             FUNCTIONS
         )
     )
     var TAGS =
         "autoescape block do embed extends filter flush for if import include macro sandbox set spaceless use verbatim"
-    TAGS = TAGS + " " + TAGS.split(" ")
-        .map { t -> "end" + t }
-        .joinToString(" ")
+    TAGS = TAGS + " " +
+        TAGS.split(" ").map { t ->
+            "end" +
+                t
+        }.joinToString(" ")
     return Mode(
         aliases = listOf("craftcms"),
         case_insensitive = true,
@@ -82,7 +85,10 @@ internal fun twig(): Mode {
                     """\{\{""",
                 end =
                     """)}""",
-                contains = listOf(hljs.SELF, FILTER, FUNCTIONS)
+                contains = listOf(
+                    hljs.SELF,
+                    FILTER, FUNCTIONS
+                )
             )
         )
     )

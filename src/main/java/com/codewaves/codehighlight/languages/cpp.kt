@@ -33,7 +33,8 @@ internal fun cpp(): Mode {
                 contains = listOf(hljs.BACKSLASH_ESCAPE)
             ),
             Mode(
-                begin = "(u8?|U|L)?'(" + CHARACTER_ESCAPES + "|.)",
+                begin = "(u8?|U|L)?'(" +
+                    CHARACTER_ESCAPES + "|.)",
                 end = "'",
                 illegal = "."
             ),
@@ -61,7 +62,8 @@ internal fun cpp(): Mode {
         keywords = listOf(
             Keyword(
                 className = "meta-keyword",
-                value = "if else elif endif define undef warning error line pragma ifdef ifndef include"
+                value =
+                    "if else elif endif define undef warning error line pragma ifdef ifndef include"
             )
         ),
         contains = listOf(
@@ -106,7 +108,17 @@ internal fun cpp(): Mode {
         STRINGS
     )
     return Mode(
-        aliases = listOf("c", "cc", "h", "c++", "h++", "hpp", "hh", "hxx", "cxx"),
+        aliases = listOf(
+            "c",
+            "cc",
+            "h",
+            "c++",
+            "h++",
+            "hpp",
+            "hh",
+            "hxx",
+            "cxx"
+        ),
         keywords = keywords(CPP_KEYWORDS),
         illegal = "</",
         contains = EXPRESSION_CONTAINS + listOf(
@@ -115,7 +127,10 @@ internal fun cpp(): Mode {
                 begin = "\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array\\s*<",
                 end = ">",
                 keywords = keywords(CPP_KEYWORDS),
-                contains = listOf(hljs.SELF, CPP_PRIMITIVE_TYPES)
+                contains = listOf(
+                    hljs.SELF,
+                    CPP_PRIMITIVE_TYPES
+                )
             ),
             Mode(
                 begin = hljs.IDENT_RE + "::",
@@ -160,7 +175,9 @@ internal fun cpp(): Mode {
             ),
             Mode(
                 className = "function",
-                begin = "(" + hljs.IDENT_RE + "[\\*&\\s]+)+" + FUNCTION_TITLE,
+                begin = "(" +
+                    hljs.IDENT_RE + "[\\*&\\s]+)+" +
+                    FUNCTION_TITLE,
                 returnBegin = true,
                 end =
                     """[{;=]""",
@@ -230,6 +247,11 @@ internal fun cpp(): Mode {
                     hljs.TITLE_MODE
                 )
             )
+        ),
+        exports = Mode(
+            preprocessor = PREPROCESSOR,
+            strings = STRINGS,
+            keywords = keywords(CPP_KEYWORDS)
         )
     )
 }

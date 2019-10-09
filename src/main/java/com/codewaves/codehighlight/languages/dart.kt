@@ -16,7 +16,7 @@ internal fun dart(): Mode {
         className = "subst",
         variants = listOf(
             Mode(
-                begin = "\\$[A-Za-z0-9_]+"
+                begin = "\\\$[A-Za-z0-9_]+"
             )
         )
     )
@@ -85,7 +85,8 @@ internal fun dart(): Mode {
         ),
         Keyword(
             className = "built_in",
-            value = // dart:core
+            value =
+                // dart:core
                 "Comparable DateTime Duration Function Iterable Iterator List Map Match Null Object Pattern RegExp Set Stopwatch String StringBuffer StringSink Symbol Type Uri bool double dynamic int num print Element ElementList document querySelector querySelectorAll window"
         )
     )

@@ -20,11 +20,13 @@ internal fun r(): Mode {
                 keywords = listOf(
                     Keyword(
                         className = "keyword",
-                        value = "function if in break next repeat else for return switch while try tryCatch stop warning require library attach detach source setMethod setGeneric setGroupGeneric setClass ..."
+                        value =
+                            "function if in break next repeat else for return switch while try tryCatch stop warning require library attach detach source setMethod setGeneric setGroupGeneric setClass ..."
                     ),
                     Keyword(
                         className = "literal",
-                        value = "NULL NA TRUE FALSE T F Inf NaN NA_integer_|10 NA_real_|10 NA_character_|10 NA_complex_|10"
+                        value =
+                            "NULL NA TRUE FALSE T F Inf NaN NA_integer_|10 NA_real_|10 NA_character_|10 NA_complex_|10"
                     )
                 ),
                 relevance = 0

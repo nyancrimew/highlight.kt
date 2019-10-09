@@ -11,8 +11,11 @@ Category = common, enterprise
  */
 internal fun java(): Mode {
     var JAVA_IDENT_RE = "[\u00C0-\u02B8a-zA-Z_\$][\u00C0-\u02B8a-zA-Z_\$0-9]*"
-    var GENERIC_IDENT_RE = JAVA_IDENT_RE + "(<\" + JAVA_IDENT_RE + \"(\\s*,\\s*\" + JAVA_IDENT_RE + \")*>)?"
-    var KEYWORDS = "false synchronized int abstract float private char boolean var static null if const for true while long strictfp finally protected import native final void enum else break transient catch instanceof byte super volatile case assert short package default double public try this switch continue throws protected public private module requires exports do"
+    var GENERIC_IDENT_RE = JAVA_IDENT_RE + "(<" +
+        JAVA_IDENT_RE + "(\\s*,\\s*" +
+        JAVA_IDENT_RE + ")*>)?"
+    var KEYWORDS =
+        "false synchronized int abstract float private char boolean var static null if const for true while long strictfp finally protected import native final void enum else break transient catch instanceof byte super volatile case assert short package default double public try this switch continue throws protected public private module requires exports do"
     // https://docs.oracle.com/javase/7/docs/technotes/guides/language/underscores-literals.html
     var JAVA_NUMBER_RE = "\\b(0[bB]([01]+[01_]+[01]+|[01]+)|0[xX]([a-fA-F0-9]+[a-fA-F0-9_]+[a-fA-F0-9]+|[a-fA-F0-9]+)|(([\\d]+[\\d_]+[\\d]+|[\\d]+)(\\.([\\d]+[\\d_]+[\\d]+|[\\d]+))?|\\.([\\d]+[\\d_]+[\\d]+|[\\d]+))([eE][-+]?\\d+)?)[lLfF]?"
     var JAVA_NUMBER_MODE = Mode(
@@ -57,9 +60,9 @@ internal fun java(): Mode {
                 excludeEnd = true,
                 keywords = keywords("class interface"),
                 illegal =
-                    """[:"\[\]]""",
+                    """[:"\[\]]\""",
                 contains = listOf(
-                    Mode(beginKeywords = "extends implements"),
+                    Mode(beginKeywords = keywords("extends implements")),
                     hljs.UNDERSCORE_TITLE_MODE
                 )
             ),
@@ -71,7 +74,9 @@ internal fun java(): Mode {
             ),
             Mode(
                 className = "function",
-                begin = "(\" + GENERIC_IDENT_RE + \"\\s+)+\" + hljs.UNDERSCORE_IDENT_RE + \"\\s*\\(",
+                begin = "(" +
+                    GENERIC_IDENT_RE + "\\s+)+" +
+                    hljs.UNDERSCORE_IDENT_RE + "\\s*\\(",
                 returnBegin = true,
                 end =
                     """[{;=]""",

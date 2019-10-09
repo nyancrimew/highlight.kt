@@ -13,7 +13,8 @@ Category = functional
 internal fun elixir(): Mode {
     var ELIXIR_IDENT_RE = "[a-zA-Z_][a-zA-Z0-9_.]*(\\!|\\?)?"
     var ELIXIR_METHOD_RE = "[a-zA-Z_]\\w*[!?=]?|[-+~]\\@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\]=?"
-    var ELIXIR_KEYWORDS = "and false then defined module in return redo retry end for true self when next until do begin unless nil break not case cond alias while ensure or include use alias fn quote require import with|0"
+    var ELIXIR_KEYWORDS =
+        "and false then defined module in return redo retry end for true self when next until do begin unless nil break not case cond alias while ensure or include use alias fn quote require import with|0"
     var SUBST = Mode(
         className = "subst",
         begin = "#\\{",
@@ -89,13 +90,14 @@ internal fun elixir(): Mode {
         ),
         Mode(
             className = "variable",
-            begin = "(\\$\\W)|((\\$|\\@\\@?)(\\w+))"
+            begin = "(\\\$\\W)|((\\\$|\\@\\@?)(\\w+))"
         ),
         Mode(
             begin = "->"
         ),
         Mode(// regexp container
-            begin = "(\" + hljs.RE_STARTERS_RE + \")\\s*",
+            begin = "(" +
+                hljs.RE_STARTERS_RE + ")\\s*",
             contains = listOf(
                 hljs.HASH_COMMENT_MODE,
                 Mode(

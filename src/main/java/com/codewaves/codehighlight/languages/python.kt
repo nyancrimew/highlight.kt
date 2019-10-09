@@ -12,11 +12,13 @@ internal fun python(): Mode {
     var KEYWORDS = listOf(
         Keyword(
             className = "keyword",
-            value = "and elif is global as in if from raise for except finally print import pass return exec else break not with class assert yield try while continue del or def lambda async await nonlocal|10"
+            value =
+                "and elif is global as in if from raise for except finally print import pass return exec else break not with class assert yield try while continue del or def lambda async await nonlocal|10"
         ),
         Keyword(
             className = "built_in",
-            value = "Ellipsis NotImplemented"
+            value =
+                "Ellipsis NotImplemented"
         ),
         Keyword(
             className = "literal",
@@ -24,7 +26,8 @@ internal fun python(): Mode {
         )
     )
     var PROMPT = Mode(
-        className = "meta", begin =
+        className = "meta",
+        begin =
             """^(>>>|\.\.\.) """
     )
     var SUBST = Mode(
@@ -130,11 +133,18 @@ internal fun python(): Mode {
             """\(""",
         end =
             """\)""",
-        contains = listOf(hljs.SELF, PROMPT, NUMBER, STRING)
+        contains = listOf(
+            hljs.SELF,
+            PROMPT, NUMBER, STRING
+        )
     )
     SUBST.contains = listOf(STRING, NUMBER, PROMPT)
     return Mode(
-        aliases = listOf("py\", \"gyp\", \"ipython"),
+        aliases = listOf(
+            "py",
+            "gyp",
+            "ipython"
+        ),
         keywords = keywords(KEYWORDS),
         illegal =
             """(<\/|->|\?)|=>""",

@@ -1,10 +1,5 @@
 package com.codewaves.codehighlight.languages
-
-import com.codewaves.codehighlight.core.Keyword
-import com.codewaves.codehighlight.core.Mode
-import com.codewaves.codehighlight.core.hljs
-import com.codewaves.codehighlight.core.keywords
-
+import com.codewaves.codehighlight.core.*
 /*
 Language = Rust
 Author = Andrey Vlasovskikh <andrey.vlasovskikh@gmail.com>
@@ -16,7 +11,7 @@ Category = system
  * Origin highlight.js/src/languages/rust.js MD5 <944a870df40c227ab39873c82bc14bbb>
  */
 internal fun rust(): Mode {
-    var NUM_SUFFIX = "([ui](8|16|32|64|128|size)|f(32|64))\\?"
+    var NUM_SUFFIX = "([ui](8|16|32|64|128|size)|f(32|64))\?"
     var KEYWORDS =
         "abstract as async await become box break const continue crate do dyn else enum extern false final fn for if impl in let loop macro match mod move mut override priv pub ref return self Self static struct super trait true try type typeof unsafe unsized use virtual where while yield"
     var BUILTINS =
@@ -27,12 +22,18 @@ internal fun rust(): Mode {
         keywords = listOf(
             Keyword(
                 className = "keyword",
-                value = KEYWORDS
+                value =
+                    KEYWORDS
             ),
-            Keyword(className = "literal", value = "true false Some None Ok Err"),
+            Keyword(
+                className = "literal",
+                value =
+                    "true false Some None Ok Err"
+            ),
             Keyword(
                 className = "built_in",
-                value = BUILTINS
+                value =
+                    BUILTINS
             )
         ),
         lexemes = hljs.IDENT_RE + "!?",
@@ -40,7 +41,9 @@ internal fun rust(): Mode {
         contains = listOf(
             hljs.C_LINE_COMMENT_MODE,
             hljs.COMMENT(
-                "/\\*", "\\*/", Mode(contains = listOf(hljs.SELF))
+                "/\\*",
+                "\\*/",
+                Mode(contains = listOf(hljs.SELF))
             ),
             hljs.inherit(
                 hljs.QUOTE_STRING_MODE,
@@ -53,14 +56,10 @@ internal fun rust(): Mode {
             Mode(
                 className = "string",
                 variants = listOf(
-                    Mode(
-                        begin =
-                            """r(#*)"(.|\n)*?"\1(?!#)"""
-                    ),
-                    Mode(
-                        begin =
-                            """b?'\\?(x\w{2}|u\w{4}|U\w{8}|.)'"""
-                    )
+                    Mode(begin =
+                            """r(#*)"(.|\n)*?\"\1(?!#)\"""),
+                    Mode(begin =
+                            """b?'\\?(x\w{2}|u\w{4}|U\w{8}|.)'""")
                 )
             ),
             Mode(
@@ -71,9 +70,18 @@ internal fun rust(): Mode {
             Mode(
                 className = "number",
                 variants = listOf(
-                    Mode(begin = "\\b0b([01_]+)" + NUM_SUFFIX),
-                    Mode(begin = "\\b0o([0-7_]+)" + NUM_SUFFIX),
-                    Mode(begin = "\\b0x([A-Fa-f0-9_]+)" + NUM_SUFFIX),
+                    Mode(
+                        begin = "\\b0b([01_]+)" +
+                            NUM_SUFFIX
+                    ),
+                    Mode(
+                        begin = "\\b0o([0-7_]+)" +
+                            NUM_SUFFIX
+                    ),
+                    Mode(
+                        begin = "\\b0x([A-Fa-f0-9_]+)" +
+                            NUM_SUFFIX
+                    ),
                     Mode(
                         begin = "\\b(\\d[\\d_]*(\\.[0-9_]+)?([eE][+-]?[0-9_]+)?)" +
                             NUM_SUFFIX

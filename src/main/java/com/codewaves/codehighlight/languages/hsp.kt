@@ -28,7 +28,11 @@ internal fun hsp(): Mode {
                 end = "\"}",
                 contains = listOf(hljs.BACKSLASH_ESCAPE)
             ),
-            hljs.COMMENT(";\", \"\$", Mode(relevance = 0)),
+            hljs.COMMENT(
+                ";",
+                "\$",
+                Mode(relevance = 0)
+            ),
             Mode(
                 // pre-processor
                 className = "meta",

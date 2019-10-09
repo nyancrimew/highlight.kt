@@ -16,17 +16,20 @@ internal fun livescript(): Mode {
     var KEYWORDS = listOf(
         Keyword(
             className = "keyword",
-            value = // JS keywords
+            value =
+                // JS keywords
                 "in if for while finally new do return else break catch instanceof throw try this switch continue typeof delete debugger case default function var with then unless until loop of by when and or is isnt not it that otherwise from to til fallthrough super case default function var void const let enum export import native __hasProp __extends __slice __bind __indexOf"
         ),
         Keyword(
             className = "literal",
-            value = // JS literals
+            value =
+                // JS literals
                 "true false null undefined yes no on off it that void"
         ),
         Keyword(
             className = "built_in",
-            value = "npm require console print module global window document"
+            value =
+                "npm require console print module global window document"
         )
     )
     var JS_IDENT_RE = "[A-Za-z\$_](?:\-[0-9A-Za-z\$_]|[0-9A-Za-z\$_))*"
@@ -102,7 +105,8 @@ internal fun livescript(): Mode {
             className = "regexp",
             variants = listOf(
                 Mode(
-                    begin = "//\", end: \"//[gim]*",
+                    begin = "//",
+                    end = "//[gim]*",
                     contains = listOf(SUBST, hljs.HASH_COMMENT_MODE)
                 ),
                 Mode(
@@ -114,7 +118,8 @@ internal fun livescript(): Mode {
             )
         ),
         Mode(
-            begin = "@" + JS_IDENT_RE
+            begin = "@" +
+                JS_IDENT_RE
         ),
         Mode(
             begin = "``",
@@ -138,8 +143,7 @@ internal fun livescript(): Mode {
                 end =
                     """\)""",
                 keywords = keywords(KEYWORDS),
-                contains = listOf(hljs.SELF) +
-                    EXPRESSIONS
+                contains = listOf(hljs.SELF) + EXPRESSIONS
             )
         )
     )
@@ -150,7 +154,8 @@ internal fun livescript(): Mode {
             """\/\*""",
         contains = EXPRESSIONS + listOf(
             hljs.COMMENT(
-                "\\/\\*\", \"\\*\\/",
+                "\\/\\*",
+                "\\*\\/",
                 hljs.HASH_COMMENT_MODE,
                 Mode(
                     className = "function",
@@ -158,15 +163,18 @@ internal fun livescript(): Mode {
                     returnBegin = true,
                     variants = listOf(
                         Mode(
-                            begin = "(\" + JS_IDENT_RE + \"\\s*(?:=|:=)\\s*)?(\\(.*\\))?\\s*\\B\\->\\*?",
+                            begin = "(" +
+                                JS_IDENT_RE + "\\s*(?:=|:=)\\s*)?(\\(.*\\))?\\s*\\B\\->\\*?",
                             end = "\\->\\*?"
                         ),
                         Mode(
-                            begin = "(\" + JS_IDENT_RE + \"\\s*(?:=|:=)\\s*)?!?(\\(.*\\))?\\s*\\B[-~]{1,2}>\\*?",
+                            begin = "(" +
+                                JS_IDENT_RE + "\\s*(?:=|:=)\\s*)?!?(\\(.*\\))?\\s*\\B[-~]{1,2}>\\*?",
                             end = "[-~]{1,2}>\\*?"
                         ),
                         Mode(
-                            begin = "(\" + JS_IDENT_RE + \"\\s*(?:=|:=)\\s*)?(\\(.*\\))?\\s*\\B!?[-~]{1,2}>\\*?",
+                            begin = "(" +
+                                JS_IDENT_RE + "\\s*(?:=|:=)\\s*)?(\\(.*\\))?\\s*\\B!?[-~]{1,2}>\\*?",
                             end = "!?[-~]{1,2}>\\*?"
                         )
                     )
@@ -174,15 +182,15 @@ internal fun livescript(): Mode {
                 Mode(
                     className = "class",
                     beginKeywords = keywords("class"),
-                    end = "\${'$'}",
+                    end = "\${'\$'}",
                     illegal =
-                        """[:="\[\]]""",
+                        """[:="\[\]]\""",
                     contains = listOf(
                         Mode(
                             beginKeywords = keywords("extends"),
                             endsWithParent = true,
                             illegal =
-                                """[:="\[\]]""",
+                                """[:="\[\]]\""",
                             contains = listOf(TITLE)
                         ),
                         TITLE

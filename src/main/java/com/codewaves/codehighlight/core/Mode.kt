@@ -31,7 +31,11 @@ data class Mode(
     val returnEnd: Boolean = false,
     val excludeEnd: Boolean = false,
     val endsWithParent: Boolean = false,
-    val endsParent: Boolean = false
+    val endsParent: Boolean = false,
+    // Special
+    val exports: Mode = Mode(),
+    val preprocessor: Mode = Mode(),
+    val strings: Mode = Mode()
 ) {
   internal var compiled:Boolean = false
   internal var compiledKeywords = mapOf<String, Keyword>()
@@ -152,7 +156,7 @@ data class Mode(
     val APOS_STRING_MODE = Mode(className = "string", begin= "\'", end = "\'", illegal= "\\n", contains = listOf(BACKSLASH_ESCAPE))
     val QUOTE_STRING_MODE = Mode(className = "string", begin= "\"", end= "\"", illegal= "\\n", contains= listOf(BACKSLASH_ESCAPE))
     val PHRASAL_WORDS_MODE = Mode(begin = "\\b(a|an|the|are|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such|will|you|your|they|like|more)\\b")
-    fun COMMENT(begin:String, end:String? = null, inherits:Mode? = null) : Mode {
+    fun COMMENT(begin:String?, end:String? = null, inherits:Mode? = null) : Mode {
        var mode = Mode(
           className = "comment",
           begin = begin,

@@ -22,7 +22,10 @@ internal fun parser3(): Mode {
         subLanguage = "xml",
         relevance = 0,
         contains = listOf(
-            hljs.COMMENT("^#\", \"\$"),
+            hljs.COMMENT(
+                "^#",
+                "\$"
+            ),
             hljs.COMMENT(
                 "\\^rem{",
                 "}",
@@ -44,7 +47,7 @@ internal fun parser3(): Mode {
             ),
             Mode(
                 className = "variable",
-                begin = "\\$\\{?[\\w\\-\\.\:]+\\}?"
+                begin = "\\\$\\{?[\\w\\-\\.\:]+\\}?"
             ),
             Mode(
                 className = "keyword",

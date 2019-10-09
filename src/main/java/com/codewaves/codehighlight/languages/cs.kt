@@ -19,12 +19,14 @@ internal fun cs(): Mode {
     var KEYWORDS = listOf(
         Keyword(
             className = "keyword",
-            value = // Normal keywords.
+            value =
+                // Normal keywords.
                 "abstract as base bool break byte case catch char checked const continue decimal default delegate do double enum event explicit extern finally fixed float for foreach goto if implicit in int interface internal is lock long object operator out override params private protected public readonly ref sbyte sealed short sizeof stackalloc static string struct switch this try typeof uint ulong unchecked unsafe ushort using virtual void volatile while add alias ascending async await by descending dynamic equals from get global group into join let nameof on orderby partial remove select set value var when where yield"
         ),
         Keyword(
             className = "literal",
-            value = "null false true"
+            value =
+                "null false true"
         )
     )
     var NUMBERS = Mode(
@@ -119,26 +121,28 @@ internal fun cs(): Mode {
             hljs.QUOTE_STRING_MODE
         )
     )
-    var TYPE_IDENT_RE = hljs.IDENT_RE + "(<\" + hljs.IDENT_RE + \"(\\s*,\\s*\" + hljs.IDENT_RE + \")*>)?(\\[\\))?"
+    var TYPE_IDENT_RE = hljs.IDENT_RE + "(<" +
+        hljs.IDENT_RE + "(\\s*,\\s*" +
+        hljs.IDENT_RE + ")*>)?(\\[\\))?"
     return Mode(
-        aliases = listOf("csharp\", \"c#"),
+        aliases = listOf(
+            "csharp",
+            "c#"
+        ),
         keywords = keywords(KEYWORDS),
         illegal =
             """::""",
         contains = listOf(
             hljs.COMMENT(
                 "///",
-                "\${'$'}",
+                "\${'\$'}",
                 Mode(
                     returnBegin = true,
                     contains = listOf(
                         Mode(
                             className = "doctag",
                             variants = listOf(
-                                Mode(
-                                    begin = "///",
-                                    relevance = 0
-                                ),
+                                Mode(begin = "///", relevance = 0),
                                 Mode(
                                     begin = "<!--|-->"
                                 ),
@@ -156,7 +160,7 @@ internal fun cs(): Mode {
             Mode(
                 className = "meta",
                 begin = "#",
-                end = "\${'$'}",
+                end = "\${'\$'}",
                 keywords = listOf(
                     Keyword(
                         className = "meta-keyword",
@@ -215,7 +219,9 @@ internal fun cs(): Mode {
             ),
             Mode(
                 className = "function",
-                begin = "(\" + TYPE_IDENT_RE + \"\\s+)+\" + hljs.IDENT_RE + \"\\s*\\(",
+                begin = "(" +
+                    TYPE_IDENT_RE + "\\s+)+" +
+                    hljs.IDENT_RE + "\\s*\\(",
                 returnBegin = true,
                 end =
                     """\s*[{;=]""",

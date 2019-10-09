@@ -14,11 +14,13 @@ internal fun `erlang-repl`(): Mode {
         keywords = listOf(
             Keyword(
                 className = "built_in",
-                value = "spawn spawn_link self"
+                value =
+                    "spawn spawn_link self"
             ),
             Keyword(
                 className = "keyword",
-                value = "after and andalso|10 band begin bnot bor bsl bsr bxor case catch cond div end fun if let not of or orelse|10 query receive rem try when xor"
+                value =
+                    "after and andalso|10 band begin bnot bor bsl bsr bxor case catch cond div end fun if let not of or orelse|10 query receive rem try when xor"
             )
         ),
         contains = listOf(
@@ -27,7 +29,10 @@ internal fun `erlang-repl`(): Mode {
                 begin = "^[0-9]+> ",
                 relevance = 10
             ),
-            hljs.COMMENT("%\", \"\$"),
+            hljs.COMMENT(
+                "%",
+                "\$"
+            ),
             Mode(
                 className = "number",
                 begin = "\\b(\\d+#[a-fA-F0-9]+|\\d+(\\.\\d+)?([eE][-+]?\\d+)?)",

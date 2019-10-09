@@ -1,9 +1,5 @@
 package com.codewaves.codehighlight.languages
-
-import com.codewaves.codehighlight.core.Keyword
-import com.codewaves.codehighlight.core.Mode
-import com.codewaves.codehighlight.core.hljs
-
+import com.codewaves.codehighlight.core.*
 /*
 Language = Nginx
 Author = Peter Leonov <gojpeg@yandex.ru>
@@ -18,17 +14,18 @@ internal fun nginx(): Mode {
     var VAR = Mode(
         className = "variable",
         variants = listOf(
-            Mode(
-                begin =
-                    """\${'$'}\d+"""
-            ),
+            Mode(begin =
+                    """\${'$'}\d+"""),
             Mode(
                 begin =
                     """\${'$'}\{""",
                 end =
                     """}"""
             ),
-            Mode(begin = "[\\${'$'}\\@]" + hljs.UNDERSCORE_IDENT_RE)
+            Mode(
+                begin = "[\\\${'\$'}\\@]" +
+                    hljs.UNDERSCORE_IDENT_RE
+            )
         )
     )
     var DEFAULT = Mode(
@@ -37,7 +34,8 @@ internal fun nginx(): Mode {
         keywords = listOf(
             Keyword(
                 className = "literal",
-                value = "on off yes no true false none blocked debug info notice warn error crit select break last permanent redirect kqueue rtsig epoll poll /dev/poll"
+                value =
+                    "on off yes no true false none blocked debug info notice warn error crit select break last permanent redirect kqueue rtsig epoll poll /dev/poll"
             )
         ),
         relevance = 0,

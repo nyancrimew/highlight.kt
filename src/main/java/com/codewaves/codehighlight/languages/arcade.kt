@@ -15,21 +15,24 @@ internal fun arcade(): Mode {
     var KEYWORDS = listOf(
         Keyword(
             className = "keyword",
-            value = "if for while var new function do return void else break"
+            value =
+                "if for while var new function do return void else break"
         ),
         Keyword(
             className = "literal",
-            value = "BackSlash DoubleQuote false ForwardSlash Infinity NaN NewLine null PI SingleQuote Tab TextFormatting true undefined"
+            value =
+                "BackSlash DoubleQuote false ForwardSlash Infinity NaN NewLine null PI SingleQuote Tab TextFormatting true undefined"
         ),
         Keyword(
             className = "built_in",
-            value = "Abs Acos Angle Attachments Area AreaGeodetic Asin Atan Atan2 Average Bearing Boolean Buffer BufferGeodetic Ceil Centroid Clip Console Constrain Contains Cos Count Crosses Cut Date DateAdd DateDiff Day Decode DefaultValue Dictionary Difference Disjoint Distance DistanceGeodetic Distinct DomainCode DomainName Equals Exp Extent Feature FeatureSet FeatureSetByAssociation FeatureSetById FeatureSetByPortalItem FeatureSetByRelationshipName FeatureSetByTitle FeatureSetByUrl Filter First Floor Geometry GroupBy Guid HasKey Hour IIf IndexOf Intersection Intersects IsEmpty IsNan IsSelfIntersecting Length LengthGeodetic Log Max Mean Millisecond Min Minute Month MultiPartToSinglePart Multipoint NextSequenceValue Now Number OrderBy Overlaps Point Polygon Polyline Portal Pow Random Relate Reverse RingIsClockWise Round Second SetGeometry Sin Sort Sqrt Stdev Sum SymmetricDifference Tan Text Timestamp Today ToLocal Top Touches ToUTC TrackCurrentTime TrackGeometryWindow TrackIndex TrackStartTime TrackWindow TypeOf Union UrlEncode Variance Weekday When Within Year "
+            value =
+                "Abs Acos Angle Attachments Area AreaGeodetic Asin Atan Atan2 Average Bearing Boolean Buffer BufferGeodetic Ceil Centroid Clip Console Constrain Contains Cos Count Crosses Cut Date DateAdd DateDiff Day Decode DefaultValue Dictionary Difference Disjoint Distance DistanceGeodetic Distinct DomainCode DomainName Equals Exp Extent Feature FeatureSet FeatureSetByAssociation FeatureSetById FeatureSetByPortalItem FeatureSetByRelationshipName FeatureSetByTitle FeatureSetByUrl Filter First Floor Geometry GroupBy Guid HasKey Hour IIf IndexOf Intersection Intersects IsEmpty IsNan IsSelfIntersecting Length LengthGeodetic Log Max Mean Millisecond Min Minute Month MultiPartToSinglePart Multipoint NextSequenceValue Now Number OrderBy Overlaps Point Polygon Polyline Portal Pow Random Relate Reverse RingIsClockWise Round Second SetGeometry Sin Sort Sqrt Stdev Sum SymmetricDifference Tan Text Timestamp Today ToLocal Top Touches ToUTC TrackCurrentTime TrackGeometryWindow TrackIndex TrackStartTime TrackWindow TypeOf Union UrlEncode Variance Weekday When Within Year "
         )
     )
-    // var EXPRESSIONS
+    var EXPRESSIONS
     var SYMBOL = Mode(
         className = "symbol",
-        begin = "\\$[datastore|feature|layer|map|measure|sourcefeature|sourcelayer|targetfeature|targetlayer|value|view]+"
+        begin = "\\\$[datastore|feature|layer|map|measure|sourcefeature|sourcelayer|targetfeature|targetlayer|value|view]+"
     )
     var NUMBER = Mode(
         className = "number",
@@ -42,7 +45,7 @@ internal fun arcade(): Mode {
     )
     var SUBST = Mode(
         className = "subst",
-        begin = "\\$\\{",
+        begin = "\\\$\\{",
         end = "\\}",
         keywords = keywords(KEYWORDS),
         contains = listOf() // defined later
@@ -98,7 +101,8 @@ internal fun arcade(): Mode {
                 )
             ),
             Mode(// "value" container
-                begin = "(\" + hljs.RE_STARTERS_RE + \"|\\b(return)\\b)\\s*",
+                begin = "(" +
+                    hljs.RE_STARTERS_RE + "|\\b(return)\\b)\\s*",
                 keywords = keywords("return"),
                 contains = listOf(
                     hljs.C_LINE_COMMENT_MODE,
@@ -106,7 +110,8 @@ internal fun arcade(): Mode {
                     hljs.REGEXP_MODE,
                     Mode(
                         className = "function",
-                        begin = "(\\(.*?\\)|\" + IDENT_RE + \")\\s*=>",
+                        begin = "(\\(.*?\\)|" +
+                            IDENT_RE + ")\\s*=>",
                         returnBegin = true,
                         end = "\\s*=>",
                         contains = listOf(

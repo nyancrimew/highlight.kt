@@ -14,16 +14,19 @@ internal fun vala(): Mode {
         keywords = listOf(
             Keyword(
                 className = "keyword",
-                value = // Value types
+                value =
+                    // Value types
                     "char uchar unichar int uint long ulong short ushort int8 int16 int32 int64 uint8 uint16 uint32 uint64 float double bool struct enum string void weak unowned owned async signal static abstract interface override virtual delegate if while do for foreach else switch case break default return try catch public private protected internal using new this get set const stdout stdin stderr var"
             ),
             Keyword(
                 className = "built_in",
-                value = "DBus GLib CCode Gee Object Gtk Posix"
+                value =
+                    "DBus GLib CCode Gee Object Gtk Posix"
             ),
             Keyword(
                 className = "literal",
-                value = "false true null"
+                value =
+                    "false true null"
             )
         ),
         contains = listOf(

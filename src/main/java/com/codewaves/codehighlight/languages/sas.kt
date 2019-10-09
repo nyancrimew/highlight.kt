@@ -17,16 +17,21 @@ internal fun sas(): Mode {
     // Built-in macro functions
     var SAS_MACRO_FUN = "bquote|nrbquote|cmpres|qcmpres|compstor|datatyp|display|do|else|end|eval|global|goto|if|index|input|keydef|label|left|length|let|local|lowcase|macro|mend|nrbquote|nrquote|nrstr|put|qcmpres|qleft|qlowcase|qscan|qsubstr|qsysfunc|qtrim|quote|qupcase|scan|str|substr|superq|syscall|sysevalf|sysexec|sysfunc|sysget|syslput|sysprod|sysrc|sysrput|then|to|trim|unquote|until|upcase|verify|while|window"
     return Mode(
-        aliases = listOf("sas\", \"SAS"),
+        aliases = listOf(
+            "sas",
+            "SAS"
+        ),
         case_insensitive = true, // SAS is case-insensitive
         keywords = listOf(
             Keyword(
                 className = "literal",
-                value = "null missing _all_ _automatic_ _character_ _infile_ _n_ _name_ _null_ _numeric_ _user_ _webout_"
+                value =
+                    "null missing _all_ _automatic_ _character_ _infile_ _n_ _name_ _null_ _numeric_ _user_ _webout_"
             ),
             Keyword(
                 className = "meta",
-                value = SAS_KEYWORDS
+                value =
+                    SAS_KEYWORDS
             )
         ),
         contains = listOf(
@@ -52,7 +57,8 @@ internal fun sas(): Mode {
             ),
             Mode(// Built-in macro variables take precedence
                 className = "built_in",
-                begin = "%(\" + SAS_MACRO_FUN + \")"
+                begin = "%(" +
+                    SAS_MACRO_FUN + ")"
             ),
             Mode(
                 // User-defined macro functions highlighted after
@@ -62,7 +68,8 @@ internal fun sas(): Mode {
             ),
             Mode(
                 className = "meta",
-                begin = "[^%](\" + SAS_FUN + \")[\(]"
+                begin = "[^%](" +
+                    SAS_FUN + ")[\(]"
             ),
             Mode(
                 className = "string",
@@ -71,7 +78,10 @@ internal fun sas(): Mode {
                     hljs.QUOTE_STRING_MODE
                 )
             ),
-            hljs.COMMENT("\\*\", \";"),
+            hljs.COMMENT(
+                "\\*",
+                ";"
+            ),
             hljs.C_BLOCK_COMMENT_MODE
         )
     )

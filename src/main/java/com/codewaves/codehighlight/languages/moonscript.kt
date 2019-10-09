@@ -20,16 +20,19 @@ internal fun moonscript(): Mode {
     var KEYWORDS = listOf(
         Keyword(
             className = "keyword",
-            value = // Moonscript keywords
+            value =
+                // Moonscript keywords
                 "if then not for in while do return else elseif break continue switch and or unless when class extends super local import export from using"
         ),
         Keyword(
             className = "literal",
-            value = "true false nil"
+            value =
+                "true false nil"
         ),
         Keyword(
             className = "built_in",
-            value = "_G _VERSION assert collectgarbage dofile error getfenv getmetatable ipairs load loadfile loadstring module next pairs pcall print rawequal rawget rawset require select setfenv setmetatable tonumber tostring type unpack xpcall coroutine debug io math os package string table"
+            value =
+                "_G _VERSION assert collectgarbage dofile error getfenv getmetatable ipairs load loadfile loadstring module next pairs pcall print rawequal rawget rawset require select setfenv setmetatable tonumber tostring type unpack xpcall coroutine debug io math os package string table"
         )
     )
     var JS_IDENT_RE = "[A-Za-z\$_][0-9A-Za-z\$_]*"
@@ -73,13 +76,16 @@ internal fun moonscript(): Mode {
         ),
         Mode(
             className = "built_in",
-            begin = "@__" + hljs.IDENT_RE
+            begin = "@__" +
+                hljs.IDENT_RE
         ),
         Mode(
-            begin = "@" + hljs.IDENT_RE // relevance booster on par with CoffeeScript
+            begin = "@" +
+                hljs.IDENT_RE // relevance booster on par with CoffeeScript
         ),
         Mode(
-            begin = hljs.IDENT_RE + "\\" + hljs.IDENT_RE // inst\method
+            begin = hljs.IDENT_RE + "\\\\" +
+                hljs.IDENT_RE // inst\method
         )
     )
     SUBST.contains = EXPRESSIONS
@@ -98,8 +104,7 @@ internal fun moonscript(): Mode {
                 end =
                     """\)""",
                 keywords = keywords(KEYWORDS),
-                contains = listOf(hljs.SELF) +
-                    EXPRESSIONS
+                contains = listOf(hljs.SELF) + EXPRESSIONS
             )
         )
     )
@@ -110,14 +115,18 @@ internal fun moonscript(): Mode {
             """\/\*""",
         contains = EXPRESSIONS + listOf(
             hljs.COMMENT(
-                "--", "\${'$'}"
-            ),
-            Mode(
-                className = "function", // function: -> =>
-                begin = "^\\s*\" + JS_IDENT_RE + \"\\s*=\\s*" + PARAMS_RE,
-                end = "[-=]>",
-                returnBegin = true,
-                contains = listOf(TITLE, PARAMS)
+                "--",
+                "\${'\$'}",
+                Mode(
+                    className = "function",
+                    // function: -> =>
+                    begin = "^\\s*" +
+                        JS_IDENT_RE + "\\s*=\\s*" +
+                        PARAMS_RE,
+                    end = "[-=]>",
+                    returnBegin = true,
+                    contains = listOf(TITLE, PARAMS)
+                )
             ),
             Mode(
                 begin =
@@ -137,22 +146,23 @@ internal fun moonscript(): Mode {
             Mode(
                 className = "class",
                 beginKeywords = keywords("class"),
-                end = "\${'$'}",
+                end = "\${'\$'}",
                 illegal =
-                    """[:="\[\]]""",
+                    """[:="\[\]]\""",
                 contains = listOf(
                     Mode(
                         beginKeywords = keywords("extends"),
                         endsWithParent = true,
                         illegal =
-                            """[:="\[\]]""",
+                            """[:="\[\]]\""",
                         contains = listOf(TITLE)
                     ),
                     TITLE
                 )
             ),
             Mode(
-                className = "name", // table
+                className = "name",
+                // table
                 begin = JS_IDENT_RE + ":",
                 end = ":",
                 returnBegin = true,

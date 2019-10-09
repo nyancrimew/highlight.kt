@@ -15,7 +15,7 @@ Category = common, config
 internal fun apache(): Mode {
     var NUMBER = Mode(
         className = "number",
-        begin = "[\\$%]\\d+"
+        begin = "[\\\$%]\\d+"
     )
     return Mode(
         aliases = listOf("apacheconf"),
@@ -37,7 +37,8 @@ internal fun apache(): Mode {
                 keywords = listOf(
                     Keyword(
                         className = "nomarkup",
-                        value = "order deny allow setenv rewriterule rewriteengine rewritecond documentroot sethandler errordocument loadmodule options header listen serverroot servername"
+                        value =
+                            "order deny allow setenv rewriterule rewriteengine rewritecond documentroot sethandler errordocument loadmodule options header listen serverroot servername"
                     )
                 ),
                 starts = Mode(
@@ -54,13 +55,16 @@ internal fun apache(): Mode {
                         Mode(
                             className = "meta",
                             begin = "\\s\\[",
-                            end = "\\]\${'$'}"
+                            end = "\\]\${'\$'}"
                         ),
                         Mode(
                             className = "variable",
-                            begin = "[\\${'$'}%]\\{",
+                            begin = "[\\\${'\$'}%]\\{",
                             end = "\\}",
-                            contains = listOf(hljs.SELF, NUMBER)
+                            contains = listOf(
+                                hljs.SELF,
+                                NUMBER
+                            )
                         ),
                         NUMBER,
                         hljs.QUOTE_STRING_MODE

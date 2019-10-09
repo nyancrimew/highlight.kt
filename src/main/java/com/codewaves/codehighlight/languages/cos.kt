@@ -30,9 +30,11 @@ internal fun cos(): Mode {
         begin = "\\b(\\d+(\\.\\d*)?|\\.\\d+)",
         relevance = 0
     )
-    var COS_KEYWORDS = "property parameter class classmethod clientmethod extends as break catch close continue do d|0 else elseif for goto halt hang h|0 if job j|0 kill k|0 lock l|0 merge new open quit q|0 read r|0 return set s|0 tcommit throw trollback try tstart use view while write w|0 xecute x|0 zkill znspace zn ztrap zwrite zw zzdump zzwrite print zbreak zinsert zload zprint zremove zsave zzprint mv mvcall mvcrt mvdim mvprint zquit zsync ascii"
+    var COS_KEYWORDS =
+        "property parameter class classmethod clientmethod extends as break catch close continue do d|0 else elseif for goto halt hang h|0 if job j|0 kill k|0 lock l|0 merge new open quit q|0 read r|0 return set s|0 tcommit throw trollback try tstart use view while write w|0 xecute x|0 zkill znspace zn ztrap zwrite zw zzdump zzwrite print zbreak zinsert zload zprint zremove zsave zzprint mv mvcall mvcrt mvdim mvprint zquit zsync ascii"
     // registered function - no need in them due to all functions are highlighted,
     // but I'll just leave this here.
+
     // "\$bit\", \"\$bitcount",
     // "\$bitfind\", \"\$bitlogic\", \"\$case\", \"\$char\", \"\$classmethod\", \"\$classname",
     // "\$compile\", \"\$data\", \"\$decimal\", \"\$double\", \"\$extract\", \"\$factor",
@@ -66,9 +68,13 @@ internal fun cos(): Mode {
     // "\$zhorolog\", \"\$zio\", \"\$zjob\", \"\$zmode\", \"\$znspace\", \"\$zparent\", \"\$zpi",
     // "\$zpos\", \"\$zreference\", \"\$zstorage\", \"\$ztimestamp\", \"\$ztimezone",
     // "\$ztrap\", \"\$zversion"
+
     return Mode(
         case_insensitive = true,
-        aliases = listOf("cos\", \"cls"),
+        aliases = listOf(
+            "cos",
+            "cls"
+        ),
         keywords = keywords(COS_KEYWORDS),
         contains = listOf(
             NUMBERS,
@@ -79,7 +85,7 @@ internal fun cos(): Mode {
                 className = "comment",
                 begin =
                     """;""",
-                end = "\${'$'}",
+                end = "\${'\$'}",
                 relevance = 0
             ),
             Mode(// Functions and user-defined functions: write ${'$'}ztime(60*60*3), ${'$'}${'$'}myFunc(10), ${'$'}${'$'}^Val(1)
@@ -102,7 +108,7 @@ internal fun cos(): Mode {
                 begin =
                     """\^%?[a-zA-Z][\w]*"""
             ),
-            Mode(// Some control constructions: do ##class(Package.ClassName) .Method(), ##super()
+            Mode(// Some control constructions: do ##class(Package.ClassName).Method(), ##super()
                 className = "keyword",
                 begin =
                     """##class|##super|#define|#dim"""
@@ -111,8 +117,7 @@ internal fun cos(): Mode {
             // left for the future implementation.
             Mode(
                 begin =
-                    """&sql\(""",
-                end =
+                    """&sql\(""", end =
                     """\)""",
                 excludeBegin = true,
                 excludeEnd = true,

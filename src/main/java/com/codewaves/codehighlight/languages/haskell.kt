@@ -1,9 +1,5 @@
 package com.codewaves.codehighlight.languages
-
-import com.codewaves.codehighlight.core.Mode
-import com.codewaves.codehighlight.core.hljs
-import com.codewaves.codehighlight.core.keywords
-
+import com.codewaves.codehighlight.core.*
 /*
 Language = Haskell
 Author = Jeremy Hull <sourdrums@gmail.com>
@@ -17,7 +13,10 @@ Category = functional
 internal fun haskell(): Mode {
     var COMMENT = Mode(
         variants = listOf(
-            hljs.COMMENT("--\", \"\$"),
+            hljs.COMMENT(
+                "--",
+                "\$"
+            ),
             hljs.COMMENT(
                 "{-",
                 "-}",
@@ -39,7 +38,8 @@ internal fun haskell(): Mode {
     )
     var CONSTRUCTOR = Mode(
         className = "type",
-        begin = "\\b[A-Z][\\w\"]*", // TODO: other constructors (build-in, infix).
+        begin = "\\b[A-Z][\\w\"]*",
+        // TODO: other constructors (build-in, infix).
         relevance = 0
     )
     var LIST = Mode(
@@ -64,9 +64,11 @@ internal fun haskell(): Mode {
     )
     return Mode(
         aliases = listOf("hs"),
-        keywords = keywords("let in if then else case of where do module import hiding qualified type data newtype deriving class instance as default infix infixl infixr foreign export ccall stdcall cplusplus jvm dotnet safe unsafe family forall mdo proc rec"),
+        keywords =
+            keywords("let in if then else case of where do module import hiding qualified type data newtype deriving class instance as default infix infixl infixr foreign export ccall stdcall cplusplus jvm dotnet safe unsafe family forall mdo proc rec"),
         contains = listOf(
             // Top-level constructions.
+
             Mode(
                 beginKeywords = keywords("module"),
                 end = "where",
@@ -113,13 +115,15 @@ internal fun haskell(): Mode {
             ),
             Mode(
                 className = "meta",
-                begin = "#!\\/usr\\/bin\\/env\\ runhaskell",
+                begin = "#!\\/usr\\/bin\\/env\ runhaskell",
                 end = "\$"
             ),
             // "Whitespaces".
+
             PRAGMA,
             PREPROCESSOR,
             // Literals and names.
+
             // TODO: characters.
             hljs.QUOTE_STRING_MODE,
             hljs.C_NUMBER_MODE,
