@@ -1,8 +1,10 @@
 #!/bin/bash
 
-if [[ $(uname -s) =~ (CYGWIN|MINGW32|MSYS)* ]]; then
+PYTHON=python3
+
+if [ "$OSTYPE" == "msys" ]; then
     echo "Running on Windows, setting python3 alias"
-    alias python3="py -3"
+    PYTHON="py -3"
 fi
 
 if [ ! -d "bin/" ]; then
@@ -30,7 +32,7 @@ cp -r highlight.js/test/detect ../src/test/resources/detect/
 cp -r highlight.js/test/markup ../src/test/resources/markup/
 
 echo "Generating language classes"
-python3 classgen.py
+eval $PYTHON classgen.py
 
 echo "Formatting generated classes"
 ./bin/ktlint --experimental -F "../src/main/java/ch/deletescape/highlight/languages/*.kt" | grep "Not a valid Kotlin" | tee >(wc -l)
