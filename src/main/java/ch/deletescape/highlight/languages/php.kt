@@ -52,7 +52,7 @@ internal fun php(): Mode {
             hljs.HASH_COMMENT_MODE,
             hljs.COMMENT(
                 "//",
-                "\${'$'}",
+                "${'$'}",
                 Mode(contains = listOf(PREPROCESSOR))
             ),
             hljs.COMMENT(
@@ -88,10 +88,10 @@ internal fun php(): Mode {
                         className = "subst",
                         variants = listOf(
                             Mode(begin =
-                                    """\${'$'}\w+"""),
+                                    """${'$'}\w+"""),
                             Mode(
                                 begin =
-                                    """\{\${'$'}""",
+                                    """\{${'$'}""",
                                 end =
                                     """\}"""
                             )
@@ -103,7 +103,7 @@ internal fun php(): Mode {
             Mode(
                 className = "keyword",
                 begin =
-                    """\${'$'}this\b"""
+                    """${'$'}this\b"""
             ),
             VARIABLE,
             Mode(
@@ -117,7 +117,7 @@ internal fun php(): Mode {
                 end =
                     """[;{]""",
                 excludeEnd = true,
-                illegal = "\\\${'$'}|\\[|%",
+                illegal = "\\${'$'}|\\[|%",
                 contains = listOf(
                     hljs.UNDERSCORE_TITLE_MODE,
                     Mode(
@@ -140,7 +140,7 @@ internal fun php(): Mode {
                 end = "{",
                 excludeEnd = true,
                 illegal =
-                    """[:\(\${'$'}"]""",
+                    """[:\(${'$'}"]""",
                 contains = listOf(
                     Mode(beginKeywords = keywords("extends implements")),
                     hljs.UNDERSCORE_TITLE_MODE

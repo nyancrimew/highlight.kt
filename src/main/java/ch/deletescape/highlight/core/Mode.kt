@@ -33,9 +33,9 @@ data class Mode(
     val endsWithParent: Boolean = false,
     val endsParent: Boolean = false,
     // Special
-    val exports: Mode = Mode(),
-    val preprocessor: Mode = Mode(),
-    val strings: Mode = Mode()
+    val exports: Mode? = null,
+    val preprocessor: Mode? = null,
+    val strings: Mode? = null
 ) {
   internal var compiled:Boolean = false
   internal var compiledKeywords = mapOf<String, Keyword>()

@@ -91,12 +91,12 @@ internal fun cos(): Mode {
             Mode(// Functions and user-defined functions: write ${'$'}ztime(60*60*3), ${'$'}${'$'}myFunc(10), ${'$'}${'$'}^Val(1)
                 className = "built_in",
                 begin =
-                    """(?:\${'$'}\${'$'}?|\.\.)\^?[a-zA-Z]+"""
+                    """(?:${'$'}${'$'}?|\.\.)\^?[a-zA-Z]+"""
             ),
             Mode(// Macro command: quit ${'$'}${'$'}${'$'}OK
                 className = "built_in",
                 begin =
-                    """\${'$'}\${'$'}\${'$'}[a-zA-Z]+"""
+                    """${'$'}${'$'}${'$'}[a-zA-Z]+"""
             ),
             Mode(// Special (global) variables: write %request.Content; Built-in classes: %Library.Integer
                 className = "built_in",

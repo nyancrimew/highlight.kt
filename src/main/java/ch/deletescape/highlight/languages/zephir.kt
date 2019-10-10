@@ -72,7 +72,7 @@ internal fun zephir(): Mode {
                 end =
                     """[;{]""",
                 excludeEnd = true,
-                illegal = "\\\${'$'}|\\[|%",
+                illegal = "\\${'$'}|\\[|%",
                 contains = listOf(
                     hljs.UNDERSCORE_TITLE_MODE,
                     Mode(
@@ -94,7 +94,7 @@ internal fun zephir(): Mode {
                 end = "{",
                 excludeEnd = true,
                 illegal =
-                    """[:\(\${'$'}"]""",
+                    """[:\(${'$'}"]""",
                 contains = listOf(
                     Mode(beginKeywords = keywords("extends implements")),
                     hljs.UNDERSCORE_TITLE_MODE

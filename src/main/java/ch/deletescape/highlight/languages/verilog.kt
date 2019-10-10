@@ -37,7 +37,7 @@ internal fun verilog(): Mode {
         case_insensitive = false,
         keywords = keywords(SV_KEYWORDS),
         lexemes =
-            """[\w\${'$'}]+""",
+            """[\w${'$'}]+""",
         contains = listOf(
             hljs.C_BLOCK_COMMENT_MODE,
             hljs.C_LINE_COMMENT_MODE,

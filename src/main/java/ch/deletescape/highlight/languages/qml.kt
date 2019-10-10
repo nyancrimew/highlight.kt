@@ -113,7 +113,7 @@ internal fun qml(): Mode {
                     hljs.BACKSLASH_ESCAPE,
                     Mode(
                         className = "subst",
-                        begin = "\\\${'$'}\\{",
+                        begin = "\\${'$'}\\{",
                         end = "\\}"
                     )
                 )

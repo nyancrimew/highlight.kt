@@ -31,7 +31,7 @@ internal fun dns(): Mode {
             Mode(
                 className = "meta",
                 begin =
-                    """^\${'$'}(TTL|GENERATE|INCLUDE|ORIGIN)\b"""
+                    """^${'$'}(TTL|GENERATE|INCLUDE|ORIGIN)\b"""
             ),
             // IPv6
             Mode(

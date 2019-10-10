@@ -202,8 +202,9 @@ class Highlighter(val rendererFactory: StyleRendererFactory) {
             //END
         }
 
-        @JvmStatic
         fun findLanguage(name: String) = languageMap[name]
+
+        fun hasLanguage(name: String) = languageMap.containsKey(name)
 
         @JvmStatic
         private fun registerLanguage(name: String, language: Mode) {
@@ -222,14 +223,14 @@ class Highlighter(val rendererFactory: StyleRendererFactory) {
      *
      * @return the given code highlight result
      */
-    fun highlight(languageName: String, code: String): HighlightResult {
+    fun highlight(languageName: String, code: String, graceful: Boolean = true): HighlightResult {
         // Find Language
         val language = findLanguage(languageName) ?: return HighlightResult(0, null, code)
 
         // Parse
         val renderer = rendererFactory.create(languageName)
         val parser = HighlightParser(language, rendererFactory, renderer)
-        val relevance = parser.highlight(code, false, null)
+        val relevance = parser.highlight(code, false, null, graceful)
         return HighlightResult(relevance, languageName, renderer.getResult())
     }
 
@@ -242,7 +243,7 @@ class Highlighter(val rendererFactory: StyleRendererFactory) {
      *
      * @return the given code highlight result
      */
-    fun highlightAuto(code: String, languageSubset: List<String>? = null): HighlightResult {
+    fun highlightAuto(code: String, languageSubset: List<String>? = null, graceful: Boolean = true): HighlightResult {
         val langs = if (languageSubset.isNullOrEmpty()) languages else languageSubset
 
         var bestRelevance = -1
@@ -253,7 +254,7 @@ class Highlighter(val rendererFactory: StyleRendererFactory) {
 
             val renderer = rendererFactory.create(languageName)
             val parser = HighlightParser(language, rendererFactory, renderer)
-            val relevance = parser.highlight(code, false, null)
+            val relevance = parser.highlight(code, false, null, graceful)
             if (relevance > bestRelevance) {
                 bestRelevance = relevance
                 bestLanguageName = languageName

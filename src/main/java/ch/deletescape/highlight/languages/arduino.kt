@@ -18,7 +18,7 @@ internal fun arduino(): Mode {
                 className = "keyword",
                 value =
                     "boolean byte word string String array " +
-                        CPP.keywords.map { it.value }
+                        CPP!!.keywords.map { it.value }
             ),
             Keyword(
                 className = "built_in",
@@ -32,7 +32,7 @@ internal fun arduino(): Mode {
             )
         ),
         contains = listOf(
-            CPP.preprocessor,
+            CPP.preprocessor!!,
             hljs.C_LINE_COMMENT_MODE,
             hljs.C_BLOCK_COMMENT_MODE,
             hljs.APOS_STRING_MODE,

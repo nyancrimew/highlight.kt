@@ -31,7 +31,7 @@ internal fun nix(): Mode {
     var ANTIQUOTE = Mode(
         className = "subst",
         begin =
-            """\${'$'}\{""",
+            """${'$'}\{""",
         end =
             """}""",
         keywords = keywords(NIX_KEYWORDS)

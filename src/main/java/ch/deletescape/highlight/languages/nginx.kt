@@ -15,15 +15,15 @@ internal fun nginx(): Mode {
         className = "variable",
         variants = listOf(
             Mode(begin =
-                    """\${'$'}\d+"""),
+                    """${'$'}\d+"""),
             Mode(
                 begin =
-                    """\${'$'}\{""",
+                    """${'$'}\{""",
                 end =
                     """}"""
             ),
             Mode(
-                begin = "[\\\${'$'}\\@]" +
+                begin = "[\\${'$'}\\@]" +
                     hljs.UNDERSCORE_IDENT_RE
             )
         )

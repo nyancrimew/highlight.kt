@@ -22,7 +22,7 @@ internal fun makefile(): Mode {
             ),
             Mode(
                 begin =
-                    """\${'$'}[@%<?\^\+\*]"""
+                    """${'$'}[@%<?\^\+\*]"""
             )
         )
     )
@@ -42,7 +42,7 @@ internal fun makefile(): Mode {
     var FUNC = Mode(
         className = "variable",
         begin =
-            """\${'$'}\([\w-]+\s""",
+            """${'$'}\([\w-]+\s""",
         end =
             """\)""",
         keywords = listOf(

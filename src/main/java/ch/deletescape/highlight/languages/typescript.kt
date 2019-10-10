@@ -75,7 +75,7 @@ internal fun typescript(): Mode {
     )
     var SUBST = Mode(
         className = "subst",
-        begin = "\\\${'$'}\\{",
+        begin = "\\${'$'}\\{",
         end = "\\}",
         keywords = keywords(KEYWORDS),
         contains = listOf() // defined later
@@ -240,7 +240,7 @@ internal fun typescript(): Mode {
             ),
             Mode(
                 begin =
-                    """\${'$'}[(.]""" // relevance booster for a pattern common to JS libs: `$(something)` and `$.something`
+                    """${'$'}[(.]""" // relevance booster for a pattern common to JS libs: `$(something)` and `$.something`
             ),
             Mode(
                 begin = "\\." +

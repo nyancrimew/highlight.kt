@@ -23,7 +23,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile "com.google.code.gson:gson:2.8.6"
 
-    testCompile 'junit:junit:4.12'
+    testCompile 'org.junit.jupiter:junit-jupiter:5.5.2'
 }
 
 group = 'ch.deletescape.highlight'

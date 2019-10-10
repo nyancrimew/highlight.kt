@@ -12,6 +12,7 @@ def md5(fname):
     return hash_md5.hexdigest()
 
 MANUAL_MAP = {
+    'arduino': '0e2a1c2eeb594800015be691fea0a578',
     'armasm': '1ddfd69d5b5807cbe5267f24b731d574',
     'abnf': '4a74d5edda09e836fb627b7fdc75baf9',
     'crmsh': '76246f2aaa3792d0a01b031b8adb54d7',
@@ -48,7 +49,9 @@ MANUAL_MAP = {
     # TODO: improve end bracket regex to account for comments
     'purebasic': '4a988b296bf2a58d342d752e31de855c',
     'plaintext': '0c27fb547d7eb6bcb56f0b09c14dffbe',
-    'properties': 'c3a2ab075bc64a66c7e92bf798250736'
+    'properties': 'c3a2ab075bc64a66c7e92bf798250736',
+    # Ensure Mode( doesn't get added inside strings
+    'markdown': '9c568504b931710b0eb4a9202c3f107f'
 }
 
 # Languages which we'll probably have to port manually
@@ -226,6 +229,7 @@ try:
         content = re.sub(r"(?s)forEach\(function\((.*?)\) ?{(.*?)\)\)", "forEach { \g<1> -> \g<2> }", content)
         content = re.sub(r"(?m)\+= ?((?:[\w-]+(?:, ?))*[\w-]+)(;?\s*$)", "+= listOf(\g<1>)\g<2>", content)
         content = re.sub(r"([\w-]+).keywords.keyword", "\g<1>.keywords.map { it.value }", content)
+        content = re.sub(r"\\\${'\$", "${'$", content)
         # 17. Remove our custom escapes
         content = re.sub(r"\\:", ":", content)
 

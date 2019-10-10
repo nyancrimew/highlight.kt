@@ -18,7 +18,7 @@ internal fun dos(): Mode {
     )
     var LABEL = Mode(
         className = "symbol",
-        begin = "^\\s*[A-Za-z._?][A-Za-z0-9_\${'$'}#@~.?]*(:|\\s+label)",
+        begin = "^\\s*[A-Za-z._?][A-Za-z0-9_${'$'}#@~.?]*(:|\\s+label)",
         relevance = 0
     )
     return Mode(

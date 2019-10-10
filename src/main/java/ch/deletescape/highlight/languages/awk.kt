@@ -15,9 +15,9 @@ internal fun awk(): Mode {
         className = "variable",
         variants = listOf(
             Mode(begin =
-                    """\${'$'}[\w\d#@][\w\d_]*"""),
+                    """${'$'}[\w\d#@][\w\d_]*"""),
             Mode(begin =
-                    """\${'$'}\{(.*?)}""")
+                    """${'$'}\{(.*?)}""")
         )
     )
     var KEYWORDS = "BEGIN END if else while do for in break continue delete next nextfile function func exit|10"

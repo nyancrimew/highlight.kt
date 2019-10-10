@@ -25,12 +25,12 @@ internal fun perl(): Mode {
     var VAR = Mode(
         variants = listOf(
             Mode(begin =
-                    """\${'$'}\d"""),
+                    """${'$'}\d"""),
             Mode(begin =
-                    """[\${'$'}%@](\^\w\b|#\w+(::\w+)*|{\w+}|\w+(::\w*)*)"""),
+                    """[${'$'}%@](\^\w\b|#\w+(::\w+)*|{\w+}|\w+(::\w*)*)"""),
             Mode(
                 begin =
-                    """[\${'$'}%@][^\s\w{]""",
+                    """[${'$'}%@][^\s\w{]""",
                 relevance = 0
             )
         )

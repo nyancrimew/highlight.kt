@@ -28,7 +28,7 @@ internal fun stata(): Mode {
             Mode(
                 className = "variable",
                 begin =
-                    """\${'$'}\{?[a-zA-Z0-9_]+\}?"""
+                    """${'$'}\{?[a-zA-Z0-9_]+\}?"""
             ),
             Mode(
                 className = "string",

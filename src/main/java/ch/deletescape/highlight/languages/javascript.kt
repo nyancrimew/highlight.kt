@@ -241,7 +241,7 @@ internal fun javascript(): Mode {
             ),
             Mode(
                 begin =
-                    """\${'$'}[(.]""" // relevance booster for a pattern common to JS libs: `${'$'}(something)` and `${'$'}.something`
+                    """${'$'}[(.]""" // relevance booster for a pattern common to JS libs: `${'$'}(something)` and `${'$'}.something`
             ),
             hljs.METHOD_GUARD,
             Mode(// ES6 class
