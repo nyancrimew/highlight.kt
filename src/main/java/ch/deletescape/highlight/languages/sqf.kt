@@ -116,6 +116,6 @@ internal fun sqf(): Mode {
             PREPROCESSOR
         ),
         illegal =
-            """#|^\${'$'} """
+            """#|^${'$'} """
     )
 }

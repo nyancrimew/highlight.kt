@@ -15,9 +15,9 @@ internal fun bash(): Mode {
         className = "variable",
         variants = listOf(
             Mode(begin =
-                    """\${'$'}[\w\d#@][\w\d_]*"""),
+                    """${'$'}[\w\d#@][\w\d_]*"""),
             Mode(begin =
-                    """\${'$'}\{(.*?)}""")
+                    """${'$'}\{(.*?)}""")
         )
     )
     var QUOTE_STRING = Mode(
@@ -32,7 +32,7 @@ internal fun bash(): Mode {
             Mode(
                 className = "variable",
                 begin =
-                    """\${'$'}\(""",
+                    """${'$'}\(""",
                 end =
                     """\)""",
                 contains = listOf(hljs.BACKSLASH_ESCAPE)

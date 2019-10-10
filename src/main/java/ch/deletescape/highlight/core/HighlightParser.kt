@@ -17,6 +17,7 @@ class HighlightParser(
    private val continuations = mutableMapOf<String, ParentWrapper>()
    private var ignoreIllegals = false
    private var relevance = 0
+   private var graceful = true
 
    data class ParentWrapper(
       val mode: Mode,
@@ -108,7 +109,7 @@ class HighlightParser(
 
          val renderer = rendererFactory.create(languageName)
          val parser = HighlightParser(language, rendererFactory, renderer)
-         relevance = parser.highlight(modeBuffer, true, continuations.get(languageName))
+         relevance = parser.highlight(modeBuffer, true, continuations.get(languageName), graceful)
          resultLanguage = languageName
          continuations.put(languageName, parser.top)
       } else {
@@ -199,7 +200,9 @@ class HighlightParser(
       return Math.max(lexeme.length, 1)
    }
 
-   fun highlight(code: String, ignoreIllegals: Boolean, continuation: ParentWrapper?): Int {
+   @JvmOverloads
+   fun highlight(code: String, ignoreIllegals: Boolean, continuation: ParentWrapper?, graceful: Boolean = true): Int {
+      this.graceful = graceful
       try {
          blockRenderer.onStart()
          language.compile()
@@ -241,6 +244,9 @@ class HighlightParser(
          }
          blockRenderer.onFinish()
       } catch(e: Exception) {
+         if(!graceful) {
+            throw Exception("Aborted while highlighting $language", e)
+         }
          blockRenderer.onAbort(code)
          relevance = 0
       }

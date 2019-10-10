@@ -44,7 +44,7 @@ internal fun gams(): Mode {
             Mode(begin =
                     """\=[lgenxc]="""),
             Mode(begin =
-                    """\${'$'}""")
+                    """${'$'}""")
         )
     )
     var QSTR = Mode(// One-line quoted comment string
@@ -79,7 +79,7 @@ internal fun gams(): Mode {
         begin =
             """[a-z][a-z0-9_]*(\([a-z0-9_, ]*\))?[ \t]+""",
         excludeBegin = true,
-        end = "\${'$'}",
+        end = "${'$'}",
         endsWithParent = true,
         contains = listOf(
             QSTR,
@@ -97,22 +97,22 @@ internal fun gams(): Mode {
         case_insensitive = true,
         keywords = keywords(KEYWORDS),
         contains = listOf(
-            hljs.COMMENT("""^\${'$'}ontext""", """^\${'$'}offtext"""),
+            hljs.COMMENT("""^${'$'}ontext""", """^${'$'}offtext"""),
             Mode(
                 className = "meta",
-                begin = "^\\\${'$'}[a-z0-9]+",
-                end = "\${'$'}",
+                begin = "^\\${'$'}[a-z0-9]+",
+                end = "${'$'}",
                 returnBegin = true,
                 contains = listOf(
                     Mode(
                         className = "meta-keyword",
-                        begin = "^\\\${'$'}[a-z0-9]+"
+                        begin = "^\\${'$'}[a-z0-9]+"
                     )
                 )
             ),
             hljs.COMMENT(
                 "^\\*",
-                "\${'$'}"
+                "${'$'}"
             ),
             hljs.C_LINE_COMMENT_MODE,
             hljs.C_BLOCK_COMMENT_MODE,
@@ -126,7 +126,7 @@ internal fun gams(): Mode {
                 contains = listOf(
                     hljs.COMMENT(
                         "^\\*",
-                        "\${'$'}"
+                        "${'$'}"
                     ),
                     hljs.C_LINE_COMMENT_MODE,
                     hljs.C_BLOCK_COMMENT_MODE,
@@ -143,12 +143,12 @@ internal fun gams(): Mode {
                 contains = listOf(
                     Mode(// table header row
                         beginKeywords = keywords("table"),
-                        end = "\${'$'}",
+                        end = "${'$'}",
                         contains = listOf(DESCTEXT)
                     ),
                     hljs.COMMENT(
                         "^\\*",
-                        "\${'$'}"
+                        "${'$'}"
                     ),
                     hljs.C_LINE_COMMENT_MODE,
                     hljs.C_BLOCK_COMMENT_MODE,

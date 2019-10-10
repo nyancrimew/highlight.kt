@@ -14,19 +14,19 @@ internal fun nsis(): Mode {
     var CONSTANTS = Mode(
         className = "variable",
         begin =
-            """\${'$'}(ADMINTOOLS|APPDATA|CDBURN_AREA|CMDLINE|COMMONFILES32|COMMONFILES64|COMMONFILES|COOKIES|DESKTOP|DOCUMENTS|EXEDIR|EXEFILE|EXEPATH|FAVORITES|FONTS|HISTORY|HWNDPARENT|INSTDIR|INTERNET_CACHE|LANGUAGE|LOCALAPPDATA|MUSIC|NETHOOD|OUTDIR|PICTURES|PLUGINSDIR|PRINTHOOD|PROFILE|PROGRAMFILES32|PROGRAMFILES64|PROGRAMFILES|QUICKLAUNCH|RECENT|RESOURCES_LOCALIZED|RESOURCES|SENDTO|SMPROGRAMS|SMSTARTUP|STARTMENU|SYSDIR|TEMP|TEMPLATES|VIDEOS|WINDIR)"""
+            """${'$'}(ADMINTOOLS|APPDATA|CDBURN_AREA|CMDLINE|COMMONFILES32|COMMONFILES64|COMMONFILES|COOKIES|DESKTOP|DOCUMENTS|EXEDIR|EXEFILE|EXEPATH|FAVORITES|FONTS|HISTORY|HWNDPARENT|INSTDIR|INTERNET_CACHE|LANGUAGE|LOCALAPPDATA|MUSIC|NETHOOD|OUTDIR|PICTURES|PLUGINSDIR|PRINTHOOD|PROFILE|PROGRAMFILES32|PROGRAMFILES64|PROGRAMFILES|QUICKLAUNCH|RECENT|RESOURCES_LOCALIZED|RESOURCES|SENDTO|SMPROGRAMS|SMSTARTUP|STARTMENU|SYSDIR|TEMP|TEMPLATES|VIDEOS|WINDIR)"""
     )
     var DEFINES = Mode(
         // ${'$'}{defines)
         className = "variable",
         begin =
-            """\${'$'}+{[\w\.:-]+}"""
+            """${'$'}+{[\w\.:-]+}"""
     )
     var VARIABLES = Mode(
         // ${'$'}variables
         className = "variable",
         begin =
-            """\${'$'}+\w+""",
+            """${'$'}+\w+""",
         illegal =
             """\(\){}"""
     )
@@ -34,7 +34,7 @@ internal fun nsis(): Mode {
         // ${'$'}(language_strings)
         className = "variable",
         begin =
-            """\${'$'}+\([\w\^\.:-]+\)"""
+            """${'$'}+\([\w\^\.:-]+\)"""
     )
     var PARAMETERS = Mode(
         // command parameters
@@ -51,7 +51,7 @@ internal fun nsis(): Mode {
         // ${'$'}\n, ${'$'}\r, ${'$'}\t, ${'$'}${'$'}
         className = "meta",
         begin =
-            """\${'$'}(\\[nrt]|\${'$'})"""
+            """${'$'}(\\[nrt]|${'$'})"""
     )
     var PLUGINS = Mode(
         // plug::ins

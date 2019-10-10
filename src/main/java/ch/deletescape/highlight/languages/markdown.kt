@@ -76,7 +76,7 @@ internal fun markdown(): Mode {
                         begin = "`.+?`"
                     ),
                     Mode(
-                        begin = "^( Mode(4}|\\t)",
+                        begin = "^( {4}|\\t)",
                         end = "\$",
                         relevance = 0
                     )

@@ -17,12 +17,12 @@ internal fun powershell(): Mode {
     var VAR = Mode(
         className = "variable",
         variants = listOf(Mode(begin =
-                """\${'$'}[\w\d][\w\d_ = ]*"""))
+                """${'$'}[\w\d][\w\d_ = ]*"""))
     )
     var LITERAL = Mode(
         className = "literal",
         begin =
-            """\${'$'}(null|true|false)\b"""
+            """${'$'}(null|true|false)\b"""
     )
     var QUOTE_STRING = Mode(
         className = "string",
@@ -46,7 +46,7 @@ internal fun powershell(): Mode {
             Mode(
                 className = "variable",
                 begin =
-                    """\${'$'}[A-z]""",
+                    """${'$'}[A-z]""",
                 end =
                     """[^A-z]"""
             )
