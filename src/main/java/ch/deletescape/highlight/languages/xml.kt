@@ -180,7 +180,7 @@ internal fun xml(): Mode {
                 ),
                 contains = listOf(TAG_INTERNALS),
                 starts = Mode(
-                    end = "\<\/script\>",
+                    end = "\\<\\/script\\>",
                     returnEnd = true,
                     subLanguage = listOf(
                         "actionscript",

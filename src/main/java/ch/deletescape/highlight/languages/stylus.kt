@@ -413,7 +413,7 @@ internal fun stylus(): Mode {
             ),
             // @ keywords
             Mode(
-                begin = "\@(" +
+                begin = "\\@(" +
                     AT_KEYWORDS.joinToString("|") +
                     ")\\b"
             ),
@@ -427,13 +427,13 @@ internal fun stylus(): Mode {
             //  - only from beginning of line + whitespace
             Mode(
                 className = "function",
-                begin = "^[a-zA-Z][a-zA-Z0-9_\-]*\\(.*\\)",
+                begin = "^[a-zA-Z][a-zA-Z0-9_\\-]*\\(.*\\)",
                 illegal = "[\\n]",
                 returnBegin = true,
                 contains = listOf(
                     Mode(
                         className = "title",
-                        begin = "\\b[a-zA-Z][a-zA-Z0-9_\-]*"
+                        begin = "\\b[a-zA-Z][a-zA-Z0-9_\\-]*"
                     ),
                     Mode(
                         className = "params",

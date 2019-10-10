@@ -115,7 +115,7 @@ internal fun haskell(): Mode {
             ),
             Mode(
                 className = "meta",
-                begin = "#!\\/usr\\/bin\\/env\ runhaskell",
+                begin = "#!\\/usr\\/bin\\/env\\ runhaskell",
                 end = "\$"
             ),
             // "Whitespaces".

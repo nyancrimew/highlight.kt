@@ -12,7 +12,7 @@ Category = common
  */
 internal fun php(): Mode {
     var VARIABLE = Mode(
-        begin = "\\\$+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*"
+        begin = "\\\$+[a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*"
     )
     var PREPROCESSOR = Mode(
         className = "meta",

@@ -97,7 +97,7 @@ internal fun x86asm(): Mode {
             // Macro parameter
             Mode(
                 className = "subst",
-                begin = "%!\S+",
+                begin = "%!\\S+",
                 relevance = 0
             ),
             Mode(

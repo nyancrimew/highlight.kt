@@ -12,9 +12,9 @@ Description = Based on the BASIC reference from the Tandy 1000 guide
 internal fun basic(): Mode {
     return Mode(
         case_insensitive = true,
-        illegal = "^\.",
+        illegal = "^\\.",
         // Support explicitely typed variables that end with $%! or #.
-        lexemes = "[a-zA-Z][a-zA-Z0-9_\$\%\!\#]*",
+        lexemes = "[a-zA-Z][a-zA-Z0-9_\$\\%\\!\\#]*",
         keywords = listOf(
             Keyword(
                 className = "keyword",
@@ -37,24 +37,24 @@ internal fun basic(): Mode {
             Mode(
                 // Match line numbers
                 className = "symbol",
-                begin = "^[0-9]+\ ",
+                begin = "^[0-9]+\\ ",
                 relevance = 10
             ),
             Mode(
                 // Match typed numeric constants (1000, 12.34!, 1.2e5, 1.5#, 1.2D2)
                 className = "number",
-                begin = "\\b([0-9]+[0-9edED\.]*[#\!]?)",
+                begin = "\\b([0-9]+[0-9edED\\.]*[#\\!]?)",
                 relevance = 0
             ),
             Mode(
                 // Match hexadecimal numbers (&Hxxxx)
                 className = "number",
-                begin = "(\&[hH][0-9a-fA-F]{1,4))"
+                begin = "(\\&[hH][0-9a-fA-F]{1,4))"
             ),
             Mode(
                 // Match octal numbers (&Oxxxxxx)
                 className = "number",
-                begin = "(\&[oO][0-7]{1,6))"
+                begin = "(\\&[oO][0-7]{1,6))"
             )
         )
     )

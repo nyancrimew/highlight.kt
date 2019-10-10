@@ -51,7 +51,7 @@ internal fun `jboss-cli`(): Mode {
     )
     return Mode(
         aliases = listOf("wildfly-cli"),
-        lexemes = "[a-z\-]+",
+        lexemes = "[a-z\\-]+",
         keywords = listOf(
             Keyword(
                 className = "keyword",

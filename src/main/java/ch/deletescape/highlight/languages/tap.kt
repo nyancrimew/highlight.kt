@@ -25,7 +25,7 @@ internal fun tap(): Mode {
             ),
             // YAML block
             Mode(
-                begin = "(\s+)?---\$",
+                begin = "(\\s+)?---\$",
                 end = "\\.\\.\\.\$",
                 subLanguage = "yaml",
                 relevance = 0

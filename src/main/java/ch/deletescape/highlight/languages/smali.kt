@@ -126,7 +126,7 @@ internal fun smali(): Mode {
             ),
             Mode(
                 className = "class",
-                begin = "L[^\(;:\n]*;",
+                begin = "L[^\\(;:\n]*;",
                 relevance = 0
             ),
             Mode(

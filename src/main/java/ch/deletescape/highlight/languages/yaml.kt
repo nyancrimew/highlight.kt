@@ -30,13 +30,13 @@ internal fun yaml(): Mode {
         className = "template-variable",
         variants = listOf(
             Mode(
-                begin = "\{\{",
-                end = "\}\}"
+                begin = "\\{\\{",
+                end = "\\}\\}"
             ),
             // jinja templates Ansible
             Mode(
-                begin = "%\{",
-                end = "\}"
+                begin = "%\\{",
+                end = "\\}"
             ) // Ruby i18n
         )
     )
@@ -75,7 +75,7 @@ internal fun yaml(): Mode {
             KEY,
             Mode(
                 className = "meta",
-                begin = "^---\s*\$",
+                begin = "^---\\s*\$",
                 relevance = 10
             ),
             Mode(// multi line string

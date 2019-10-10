@@ -17,7 +17,7 @@ internal fun subunit(): Mode {
     )
     var TIME = Mode(
         className = "string",
-        begin = "\\d{4}-\\d{2}-\\d{2}(\\s+)\\d{2}:\\d{2}:\\d{2}\.\\d+Z"
+        begin = "\\d{4}-\\d{2}-\\d{2}(\\s+)\\d{2}:\\d{2}:\\d{2}\\.\\d+Z"
     )
     var PROGRESSVALUE = Mode(
         className = "string",
