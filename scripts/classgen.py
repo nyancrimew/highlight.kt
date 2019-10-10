@@ -234,17 +234,16 @@ except Exception as e:
     shutil.copytree("temp/", outputpath)
 registerCode = ""
 for lang in langmap.keys():
-    registerCode += f"            registerLanguage(\"{lang}\", {langmap[lang]}());\n"
-registerCode = registerCode[12:-1]
+    registerCode += f"            registerLanguage(\"{lang}\", {langmap[lang]}())\n"
+registerCode = registerCode[0:-1]
 
 with open(highlighterpath, 'r', encoding="utf8") as f:
     current = f.read()
 
 with open(highlighterpath, 'w', encoding="utf8") as f:
-    content = dedent(f"""\
-                         //START
-                         {registerCode}
-                         //END""")
+    content = f"""            //START
+{registerCode}
+            //END"""
     new = re.sub(r"(?sm)^\s*?//START.*?//END\s*?$", content, current)
     f.write(new)
 
