@@ -15,14 +15,16 @@ internal fun openscad(): Mode {
         className = "keyword",
         begin = "\\\$(f[asn]|t|vp[rtd]|children)"
     )
-    var LITERALS = listOf(
-        Keyword(
-            className = "className",
-            value = "literal"
-        ),
-        Keyword(
-            className = "begin",
-            value = "false|true|PI|undef"
+    var LITERALS = Mode(
+        keywords = listOf(
+            Keyword(
+                className = "className",
+                value = "literal"
+            ),
+            Keyword(
+                className = "begin",
+                value = "false|true|PI|undef"
+            )
         )
     )
     var NUMBERS = Mode(

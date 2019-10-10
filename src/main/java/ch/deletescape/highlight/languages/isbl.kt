@@ -490,7 +490,10 @@ internal fun isbl(): Mode {
         variants = listOf(
             Mode(
                 begin = "\"",
-                end = "\"' ), Mode( begin = ''",
+                end = "\""
+            ),
+            Mode(
+                begin = "\"",
                 end = "'"
             )
         )

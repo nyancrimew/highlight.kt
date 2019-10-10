@@ -1,5 +1,10 @@
 package ch.deletescape.highlight.languages
-import ch.deletescape.highlight.core.*
+
+import ch.deletescape.highlight.core.Keyword
+import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.hljs
+import ch.deletescape.highlight.core.keywords
+
 /*
 Language = LiveScript
 Author = Taneli Vatanen <taneli.vatanen@gmail.com>
@@ -134,8 +139,8 @@ internal fun livescript(): Mode {
         className = "params",
         begin = "\\(",
         returnBegin = true,
-    /* We need another contained nameless mode to not have every nested
-    pair of parens to be called "params" */
+        /* We need another contained nameless mode to not have every nested
+        pair of parens to be called "params" */
         contains = listOf(
             Mode(
                 begin =
@@ -156,53 +161,53 @@ internal fun livescript(): Mode {
             hljs.COMMENT(
                 "\\/\\*",
                 "\\*\\/",
-                hljs.HASH_COMMENT_MODE,
-                Mode(
-                    className = "function",
-                    contains = listOf(TITLE, PARAMS),
-                    returnBegin = true,
-                    variants = listOf(
-                        Mode(
-                            begin = "(" +
-                                JS_IDENT_RE + "\\s*(?:=|:=)\\s*)?(\\(.*\\))?\\s*\\B\\->\\*?",
-                            end = "\\->\\*?"
-                        ),
-                        Mode(
-                            begin = "(" +
-                                JS_IDENT_RE + "\\s*(?:=|:=)\\s*)?!?(\\(.*\\))?\\s*\\B[-~]{1,2}>\\*?",
-                            end = "[-~]{1,2}>\\*?"
-                        ),
-                        Mode(
-                            begin = "(" +
-                                JS_IDENT_RE + "\\s*(?:=|:=)\\s*)?(\\(.*\\))?\\s*\\B!?[-~]{1,2}>\\*?",
-                            end = "!?[-~]{1,2}>\\*?"
-                        )
+                hljs.HASH_COMMENT_MODE
+            ),
+            Mode(
+                className = "function",
+                contains = listOf(TITLE, PARAMS),
+                returnBegin = true,
+                variants = listOf(
+                    Mode(
+                        begin = "(" +
+                            JS_IDENT_RE + "\\s*(?:=|:=)\\s*)?(\\(.*\\))?\\s*\\B\\->\\*?",
+                        end = "\\->\\*?"
+                    ),
+                    Mode(
+                        begin = "(" +
+                            JS_IDENT_RE + "\\s*(?:=|:=)\\s*)?!?(\\(.*\\))?\\s*\\B[-~]{1,2}>\\*?",
+                        end = "[-~]{1,2}>\\*?"
+                    ),
+                    Mode(
+                        begin = "(" +
+                            JS_IDENT_RE + "\\s*(?:=|:=)\\s*)?(\\(.*\\))?\\s*\\B!?[-~]{1,2}>\\*?",
+                        end = "!?[-~]{1,2}>\\*?"
                     )
-                ),
-                Mode(
-                    className = "class",
-                    beginKeywords = keywords("class"),
-                    end = "\${'$'}",
-                    illegal =
-                        """[:="\[\]]""",
-                    contains = listOf(
-                        Mode(
-                            beginKeywords = keywords("extends"),
-                            endsWithParent = true,
-                            illegal =
-                                """[:="\[\]]""",
-                            contains = listOf(TITLE)
-                        ),
-                        TITLE
-                    )
-                ),
-                Mode(
-                    begin = JS_IDENT_RE + ":",
-                    end = ":",
-                    returnBegin = true,
-                    returnEnd = true,
-                    relevance = 0
                 )
+            ),
+            Mode(
+                className = "class",
+                beginKeywords = keywords("class"),
+                end = "\${'$'}",
+                illegal =
+                    """[:="\[\]]""",
+                contains = listOf(
+                    Mode(
+                        beginKeywords = keywords("extends"),
+                        endsWithParent = true,
+                        illegal =
+                            """[:="\[\]]""",
+                        contains = listOf(TITLE)
+                    ),
+                    TITLE
+                )
+            ),
+            Mode(
+                begin = JS_IDENT_RE + ":",
+                end = ":",
+                returnBegin = true,
+                returnEnd = true,
+                relevance = 0
             )
         )
     )

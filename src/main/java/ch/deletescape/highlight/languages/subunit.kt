@@ -1,5 +1,7 @@
 package ch.deletescape.highlight.languages
-import ch.deletescape.highlight.core.*
+
+import ch.deletescape.highlight.core.Mode
+
 /*
 Language = SubUnit
 Author = Sergey Bronnikov <sergeyb@bronevichok.ru>
@@ -23,23 +25,15 @@ internal fun subunit(): Mode {
         className = "string",
         begin = "(\\+|-)\\d+"
     )
-    var KEYWORDS = listOf(
-        Keyword(
-            className = "className",
-            value = "keyword"
-        ),
-        Keyword(
-            className = "relevance",
-            value = 10
-        ),
-        Keyword(
-            className = "variants",
-            value = listOf(
-                Mode(begin = "^(test|testing|success|successful|failure|error|skip|xfail|uxsuccess)(:?)\\s+(test)?")
-            ),
+    var KEYWORDS = Mode(
+        className = "keyword",
+        relevance = 10,
+        variants = listOf(
+            Mode(begin = "^(test|testing|success|successful|failure|error|skip|xfail|uxsuccess)(:?)\\s+(test)?"),
             Mode(begin = "^progress(:?)(\\s+)?(pop|push)?"),
             Mode(begin = "^tags = "),
             Mode(begin = "^time = ")
+
         )
     )
     return Mode(

@@ -35,7 +35,7 @@ internal fun lisp(): Mode {
             Mode(begin = "#(x|X)[0-9a-fA-F]+(/[0-9a-fA-F]+)?"),
             Mode(
                 begin = "#(c|C)\\(" +
-                    LISP_SIMPLE_NUMBER_RE + + LISP_SIMPLE_NUMBER_RE,
+                    LISP_SIMPLE_NUMBER_RE + " + " + LISP_SIMPLE_NUMBER_RE,
                 end = "\\)"
             )
         )

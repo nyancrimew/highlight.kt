@@ -47,11 +47,11 @@ internal fun parser3(): Mode {
             ),
             Mode(
                 className = "variable",
-                begin = "\\\$\\{?[\\w\\-\\.\:]+\\}?"
+                begin = "\\\$\\{?[\\w\\-\\.\\:]+\\}?"
             ),
             Mode(
                 className = "keyword",
-                begin = "\\^[\\w\\-\\.\:]+"
+                begin = "\\^[\\w\\-\\.\\:]+"
             ),
             Mode(
                 className = "number",

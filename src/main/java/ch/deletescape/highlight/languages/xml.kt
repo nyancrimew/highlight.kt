@@ -42,8 +42,10 @@ internal fun xml(): Mode {
                                 end =
                                     """'"""
                             ),
-                            Mode(begin =
-                                    """[^\s"'=<>`]+""")
+                            Mode(
+                                begin =
+                                    """[^\s"'=<>`]+"""
+                            )
                         )
                     )
                 )
@@ -126,7 +128,7 @@ internal fun xml(): Mode {
                         Mode(
                             illegal = null,
                             className = null,
-                            contains = null,
+                            contains = listOf(),
                             skip = true
                         )
                     ),
@@ -135,7 +137,7 @@ internal fun xml(): Mode {
                         Mode(
                             illegal = null,
                             className = null,
-                            contains = null,
+                            contains = listOf(),
                             skip = true
                         )
                     )
@@ -161,7 +163,7 @@ internal fun xml(): Mode {
                 starts = Mode(
                     end = "</style>",
                     returnEnd = true,
-                    subLanguage = listOf(
+                    subLanguages = listOf(
                         "css",
                         "xml"
                     )
@@ -182,7 +184,7 @@ internal fun xml(): Mode {
                 starts = Mode(
                     end = "\\<\\/script\\>",
                     returnEnd = true,
-                    subLanguage = listOf(
+                    subLanguages = listOf(
                         "actionscript",
                         "javascript",
                         "handlebars",
