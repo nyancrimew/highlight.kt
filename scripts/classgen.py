@@ -26,12 +26,29 @@ MANUAL_MAP = {
     'scala': '8368a4d7200da2cfc014c30c75dcb7a0',
     'scheme': 'ea5f497cccc18059f2c14814a96928a0',
     'twig': 'f74a14f620eba5879ada1a996262172d',
+    'lua': 'b2916995c0ab9af36d9706ff801a98a0',
+    'livescript': 'cfa609857ea99514348b49c7670c2d16',
+    'lisp': 'ceb2e573e0745639aeeea1784382d8dd',
+    'openscad': 'd4986c9572a30d4ae67139f584a34087',
+    'parser3': 'af8de20e7ac586dac61005a9e2967ca7',
+    'arcade': '833ba17c4f7fe568576d7464b38990bf',
+    'coffeescript': 'c636bce2955fe93d354d5f371a864e1f',
+    'http': '4299339f060ed2fd48a7d9bfb3b71a29',
+    'isbl': '5a372af48469608cc3d00602a9abef28',
+    'ruby': '8c93ef1e789f9fd59b8995339236901d',
+    'stylus': '48f6fdaf3175f31def6b3e6f550d0940',
+    'subunit': '1b63b50b36c86db99202ad74d99bf17f',
+    'vbnet': '19a6048635fedbb413732ecc85e8ade1',
+    'xml': '8d1fe692045603803f24f0f60fd6f450',
+    'ceylon': '436e1781b0c28b573d94547a23d3ac7d',
     # TODO: fix assignment conversion
     'cs': '655a3949a8d3e20b23d828760db9fea2',
     # TODO: get rid of extra closing brackets with concat
     'cpp': '49ca5457a543a3a99247661fc33540eb',
     # TODO: improve end bracket regex to account for comments
     'purebasic': '4a988b296bf2a58d342d752e31de855c',
+    'plaintext': '0c27fb547d7eb6bcb56f0b09c14dffbe',
+    'properties': 'c3a2ab075bc64a66c7e92bf798250736'
 }
 
 # Languages which we'll probably have to port manually

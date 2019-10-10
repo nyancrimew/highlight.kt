@@ -63,7 +63,7 @@ internal fun http(): Mode {
             Mode(
                 begin = "\\n\\n",
                 starts = Mode(
-                    subLanguage = listOf(),
+                    subLanguages = listOf(),
                     endsWithParent = true
                 )
             )

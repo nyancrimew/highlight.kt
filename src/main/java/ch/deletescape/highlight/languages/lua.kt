@@ -1,5 +1,10 @@
 package ch.deletescape.highlight.languages
-import ch.deletescape.highlight.core.*
+
+import ch.deletescape.highlight.core.Keyword
+import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.hljs
+import ch.deletescape.highlight.core.keywords
+
 /*
 Language = Lua
 Author = Andrew Fedorov <dmmdrs@mail.ru>
@@ -55,28 +60,28 @@ internal fun lua(): Mode {
             Mode(
                 className = "function",
                 beginKeywords = keywords(
-                    "function",
-                    end = "\\)",
-                    contains = listOf(
-                        hljs.inherit(hljs.TITLE_MODE, Mode(begin = "([_a-zA-Z]\\w*\\.)*([_a-zA-Z]\\w*:)?[_a-zA-Z]\\w*")),
-                        Mode(
-                            className = "params",
-                            begin = "\\(",
-                            endsWithParent = true,
-                            contains = COMMENTS
-                        )
-                    ) + COMMENTS
+                    "function"
                 ),
-                hljs.C_NUMBER_MODE,
-                hljs.APOS_STRING_MODE,
-                hljs.QUOTE_STRING_MODE,
-                Mode(
-                    className = "string",
-                    begin = OPENING_LONG_BRACKET,
-                    end = CLOSING_LONG_BRACKET,
-                    contains = listOf(LONG_BRACKETS),
-                    relevance = 5
-                )
+                end = "\\)",
+                contains = listOf(
+                    hljs.inherit(hljs.TITLE_MODE, Mode(begin = "([_a-zA-Z]\\w*\\.)*([_a-zA-Z]\\w*:)?[_a-zA-Z]\\w*")),
+                    Mode(
+                        className = "params",
+                        begin = "\\(",
+                        endsWithParent = true,
+                        contains = COMMENTS
+                    )
+                ) + COMMENTS
+            ),
+            hljs.C_NUMBER_MODE,
+            hljs.APOS_STRING_MODE,
+            hljs.QUOTE_STRING_MODE,
+            Mode(
+                className = "string",
+                begin = OPENING_LONG_BRACKET,
+                end = CLOSING_LONG_BRACKET,
+                contains = listOf(LONG_BRACKETS),
+                relevance = 5
             )
         )
     )

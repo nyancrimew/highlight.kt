@@ -121,7 +121,7 @@ internal fun stylus(): Mode {
         "var",
         "video"
     )
-    var TAG_END = "[\\.\\s\\n\\[\:,]"
+    var TAG_END = "[\\.\\s\\n\\[\\:,]"
     var ATTRIBUTES = listOf(
         "align-content",
         "align-items",

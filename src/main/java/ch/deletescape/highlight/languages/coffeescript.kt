@@ -1,5 +1,10 @@
 package ch.deletescape.highlight.languages
-import ch.deletescape.highlight.core.*
+
+import ch.deletescape.highlight.core.Keyword
+import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.hljs
+import ch.deletescape.highlight.core.keywords
+
 /*
 Language = CoffeeScript
 Author = Dmytrii Nagirniak <dnagir@gmail.com>
@@ -131,8 +136,8 @@ internal fun coffeescript(): Mode {
         className = "params",
         begin = "\\([^\\(]",
         returnBegin = true,
-    /* We need another contained nameless mode to not have every nested
-    pair of parens to be called "params" */
+        /* We need another contained nameless mode to not have every nested
+        pair of parens to be called "params" */
         contains = listOf(
             Mode(
                 begin =
@@ -157,55 +162,55 @@ internal fun coffeescript(): Mode {
             hljs.COMMENT(
                 "###",
                 "###",
-                hljs.HASH_COMMENT_MODE,
-                Mode(
-                    className = "function",
-                    begin = "^\\s*" +
-                        JS_IDENT_RE + "\\s*=\\s*" +
-                        PARAMS_RE,
-                    end = "[-=]>",
-                    returnBegin = true,
-                    contains = listOf(TITLE, PARAMS)
-                ),
-                Mode(
-                    // anonymous function start
-                    begin =
-                        """[:\(,=]\s*""",
-                    relevance = 0,
-                    contains = listOf(
-                        Mode(
-                            className = "function",
-                            begin = PARAMS_RE,
-                            end = "[-=]>",
-                            returnBegin = true,
-                            contains = listOf(PARAMS)
-                        )
+                hljs.HASH_COMMENT_MODE
+            ),
+            Mode(
+                className = "function",
+                begin = "^\\s*" +
+                    JS_IDENT_RE + "\\s*=\\s*" +
+                    PARAMS_RE,
+                end = "[-=]>",
+                returnBegin = true,
+                contains = listOf(TITLE, PARAMS)
+            ),
+            Mode(
+                // anonymous function start
+                begin =
+                    """[:\(,=]\s*""",
+                relevance = 0,
+                contains = listOf(
+                    Mode(
+                        className = "function",
+                        begin = PARAMS_RE,
+                        end = "[-=]>",
+                        returnBegin = true,
+                        contains = listOf(PARAMS)
                     )
-                ),
-                Mode(
-                    className = "class",
-                    beginKeywords = keywords("class"),
-                    end = "\${'$'}",
-                    illegal =
-                        """[:="\[\]]""",
-                    contains = listOf(
-                        Mode(
-                            beginKeywords = keywords("extends"),
-                            endsWithParent = true,
-                            illegal =
-                                """[:="\[\]]""",
-                            contains = listOf(TITLE)
-                        ),
-                        TITLE
-                    )
-                ),
-                Mode(
-                    begin = JS_IDENT_RE + ":",
-                    end = ":",
-                    returnBegin = true,
-                    returnEnd = true,
-                    relevance = 0
                 )
+            ),
+            Mode(
+                className = "class",
+                beginKeywords = keywords("class"),
+                end = "\${'$'}",
+                illegal =
+                    """[:="\[\]]""",
+                contains = listOf(
+                    Mode(
+                        beginKeywords = keywords("extends"),
+                        endsWithParent = true,
+                        illegal =
+                            """[:="\[\]]""",
+                        contains = listOf(TITLE)
+                    ),
+                    TITLE
+                )
+            ),
+            Mode(
+                begin = JS_IDENT_RE + ":",
+                end = ":",
+                returnBegin = true,
+                returnEnd = true,
+                relevance = 0
             )
         )
     )

@@ -12,6 +12,7 @@ Description =
  */
 internal fun plaintext(): Mode {
     return Mode(
-        disableAutodetect = true
+        aliases = listOf("txt")
+        // disableAutodetect = true
     )
 }

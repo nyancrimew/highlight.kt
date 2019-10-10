@@ -124,12 +124,15 @@ internal fun ruby(): Mode {
                     """<<[-~]?'?(\w+)(?:.|\n)*?\n\s*\1\b""",
                 returnBegin = true,
                 contains = listOf(
-                    Mode(begin =
-                            """<<[-~]?'?"""),
+                    Mode(
+                        begin =
+                            """<<[-~]?'?"""
+                    ),
                     Mode(
                         begin =
                             """\w+""",
-                        endSameAsBegin = true,
+                        end =
+                            """\w+""",
                         contains = listOf(hljs.BACKSLASH_ESCAPE, SUBST)
                     )
                 )

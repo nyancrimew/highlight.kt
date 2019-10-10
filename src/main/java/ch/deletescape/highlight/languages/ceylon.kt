@@ -81,7 +81,7 @@ internal fun ceylon(): Mode {
             Mode(
                 // compiler annotation
                 className = "meta",
-                begin = "@[a-z]\\w*(?:\:\"[^\"]*\")?"
+                begin = "@[a-z]\\w*(?:\\:\"[^\"]*\")?"
             )
         ) + EXPRESSIONS
     )
