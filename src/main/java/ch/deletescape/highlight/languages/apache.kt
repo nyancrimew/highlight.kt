@@ -55,11 +55,11 @@ internal fun apache(): Mode {
                         Mode(
                             className = "meta",
                             begin = "\\s\\[",
-                            end = "\\]\${'\$'}"
+                            end = "\\]\${'$'}"
                         ),
                         Mode(
                             className = "variable",
-                            begin = "[\\\${'\$'}%]\\{",
+                            begin = "[\\\${'$'}%]\\{",
                             end = "\\}",
                             contains = listOf(
                                 hljs.SELF,

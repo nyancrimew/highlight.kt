@@ -28,13 +28,13 @@ internal fun swift(): Mode {
     )
     var TYPE = Mode(
         className = "type",
-        begin = "\\b[A-Z][\\w\u00C0-\u02B8\"]*",
+        begin = "\\b[A-Z][\\w\u00C0-\u02B8']*",
         relevance = 0
     )
     // slightly more special to swift
     var OPTIONAL_USING_TYPE = Mode(
         className = "type",
-        begin = "\\b[A-Z][\\w\u00C0-\u02B8\"]*[!?]"
+        begin = "\\b[A-Z][\\w\u00C0-\u02B8']*[!?]"
     )
     var BLOCK_COMMENT = hljs.COMMENT(
         "/\\*",
@@ -119,7 +119,7 @@ internal fun swift(): Mode {
                             Mode(begin = ":") // relevance booster
                         ),
                         illegal =
-                            """[""]\"""
+                            """["']"""
                     )
                 ),
                 illegal =

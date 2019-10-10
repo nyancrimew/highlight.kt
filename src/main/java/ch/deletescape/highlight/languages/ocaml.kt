@@ -51,20 +51,20 @@ internal fun ocaml(): Mode {
             ),
             Mode(/* type variable */
                 className = "symbol",
-                begin = "'[A-Za-z_](?!\")[\\w\"]*"
-                /* the grammar is ambiguous on how "a'b should be interpreted but not the compiler */
+                begin = "'[A-Za-z_](?!')[\\w']*"
+                /* the grammar is ambiguous on how 'a'b should be interpreted but not the compiler */
             ),
             Mode(/* polymorphic variant */
                 className = "type",
-                begin = "`[A-Z][\\w\"]*"
+                begin = "`[A-Z][\\w']*"
             ),
             Mode(/* module or constructor */
                 className = "type",
-                begin = "\\b[A-Z][\\w\"]*",
+                begin = "\\b[A-Z][\\w']*",
                 relevance = 0
             ),
-            Mode(/* don't color identifiers, but safely catch all identifiers with "*/
-                begin = "[a-z_]\\w*'[\\w\"]*",
+            Mode(/* don't color identifiers, but safely catch all identifiers with '*/
+                begin = "[a-z_]\\w*'[\\w']*",
                 relevance = 0
             ),
             hljs.inherit(

@@ -15,7 +15,7 @@ internal fun properties(): Mode {
     var WS1 = "[ \\t\\f]+"
     // delimiter
     var DELIM = "(" +
-        WS0 + "[:=]\"+WS0+ \"|" +
+        WS0 + "[:=]'+WS0+ '|" +
         WS1 + ")"
     var KEY_ALPHANUM = "([^\\\\\\W = = \\t\\f\\n]|\\\\.)+"
     var KEY_OTHER = "([^\\\:= \\t\\f\\n]|\\\\.)+"

@@ -27,7 +27,7 @@ internal fun elm(): Mode {
     )
     var CONSTRUCTOR = Mode(
         className = "type",
-        begin = "\\b[A-Z][\\w\"]*",
+        begin = "\\b[A-Z][\\w']*",
         // TODO: other constructors (built-in, infix).
         relevance = 0
     )
@@ -97,7 +97,7 @@ internal fun elm(): Mode {
             hljs.QUOTE_STRING_MODE,
             hljs.C_NUMBER_MODE,
             CONSTRUCTOR,
-            hljs.inherit(hljs.TITLE_MODE, Mode(begin = "^[_a-z][\\w\"]*")),
+            hljs.inherit(hljs.TITLE_MODE, Mode(begin = "^[_a-z][\\w']*")),
             COMMENT,
             Mode(begin = "->|<-") // No markup, relevance booster
         ),

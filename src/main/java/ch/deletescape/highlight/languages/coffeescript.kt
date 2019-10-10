@@ -89,7 +89,7 @@ internal fun coffeescript(): Mode {
             className = "regexp",
             variants = listOf(
                 Mode(
-                    begin = "///\", end: \"///",
+                    begin = "///', end: '///",
                     contains = listOf(SUBST, hljs.HASH_COMMENT_MODE)
                 ),
                 Mode(
@@ -185,15 +185,15 @@ internal fun coffeescript(): Mode {
                 Mode(
                     className = "class",
                     beginKeywords = keywords("class"),
-                    end = "\${'\$'}",
+                    end = "\${'$'}",
                     illegal =
-                        """[:="\[\]]\""",
+                        """[:="\[\]]""",
                     contains = listOf(
                         Mode(
                             beginKeywords = keywords("extends"),
                             endsWithParent = true,
                             illegal =
-                                """[:="\[\]]\""",
+                                """[:="\[\]]""",
                             contains = listOf(TITLE)
                         ),
                         TITLE

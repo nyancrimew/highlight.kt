@@ -102,7 +102,7 @@ internal fun javascript(): Mode {
                 className = "meta",
                 relevance = 10,
                 begin =
-                    """^\s*["\"]use (strict|asm)[\""]\"""
+                    """^\s*['\"]use (strict|asm)['"]"""
             ),
             Mode(
                 className = "meta",
@@ -251,7 +251,7 @@ internal fun javascript(): Mode {
                     """[{;=]""",
                 excludeEnd = true,
                 illegal =
-                    """[:"\[\]]\""",
+                    """[:"\[\]]""",
                 contains = listOf(
                     Mode(beginKeywords = keywords("extends")),
                     hljs.UNDERSCORE_TITLE_MODE

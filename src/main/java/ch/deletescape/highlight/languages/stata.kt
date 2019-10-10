@@ -23,7 +23,7 @@ internal fun stata(): Mode {
             Mode(
                 className = "symbol",
                 begin =
-                    """`[a-zA-Z0-9_]+""""
+                    """`[a-zA-Z0-9_]+'"""
             ),
             Mode(
                 className = "variable",

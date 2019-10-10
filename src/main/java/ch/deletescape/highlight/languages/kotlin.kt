@@ -48,13 +48,13 @@ internal fun kt(): Mode {
     // for string templates
     var SUBST = Mode(
         className = "subst",
-        begin = "\\\${'\$'}{",
+        begin = "\\\${'$'}{",
         end = "}",
         contains = listOf(hljs.C_NUMBER_MODE)
     )
     var VARIABLE = Mode(
         className = "variable",
-        begin = "\\\${'\$'}" +
+        begin = "\\\${'$'}" +
             hljs.UNDERSCORE_IDENT_RE
     )
     var STRING = Mode(
@@ -164,7 +164,7 @@ internal fun kt(): Mode {
             Mode(
                 className = "function",
                 beginKeywords = keywords("fun"),
-                end = "[(]|\${'\$'}",
+                end = "[(]|\${'$'}",
                 returnBegin = true,
                 excludeEnd = true,
                 keywords = keywords(KEYWORDS),
@@ -225,7 +225,7 @@ internal fun kt(): Mode {
                 className = "class",
                 beginKeywords = keywords("class interface trait"),
                 end =
-                    """[:\{(]|${'$'}""", // remove "trait" when removed from KEYWORDS
+                    """[:\{(]|\${'$'}""", // remove "trait" when removed from KEYWORDS
                 excludeEnd = true,
                 illegal = "extends implements",
                 contains = listOf(

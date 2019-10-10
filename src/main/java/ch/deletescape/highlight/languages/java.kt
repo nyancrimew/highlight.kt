@@ -60,7 +60,7 @@ internal fun java(): Mode {
                 excludeEnd = true,
                 keywords = keywords("class interface"),
                 illegal =
-                    """[:"\[\]]\""",
+                    """[:"\[\]]""",
                 contains = listOf(
                     Mode(beginKeywords = keywords("extends implements")),
                     hljs.UNDERSCORE_TITLE_MODE

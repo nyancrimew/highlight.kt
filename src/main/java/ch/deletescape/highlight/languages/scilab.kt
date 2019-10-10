@@ -57,13 +57,13 @@ internal fun scilab(): Mode {
                 )
             ),
             Mode(
-                begin = "[a-zA-Z_][a-zA-Z_0-9]*(\"+[\\.\"]*|[\\.\"]+)",
+                begin = "[a-zA-Z_][a-zA-Z_0-9]*('+[\\.']*|[\\.']+)",
                 end = "",
                 relevance = 0
             ),
             Mode(
                 begin = "\\[",
-                end = "\\]'*[\\.\"]*",
+                end = "\\]'*[\\.']*",
                 relevance = 0,
                 contains = COMMON_CONTAINS
             ),

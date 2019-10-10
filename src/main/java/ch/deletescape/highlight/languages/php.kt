@@ -52,7 +52,7 @@ internal fun php(): Mode {
             hljs.HASH_COMMENT_MODE,
             hljs.COMMENT(
                 "//",
-                "\${'\$'}",
+                "\${'$'}",
                 Mode(contains = listOf(PREPROCESSOR))
             ),
             hljs.COMMENT(
@@ -79,7 +79,7 @@ internal fun php(): Mode {
             Mode(
                 className = "string",
                 begin =
-                    """<<<["\"]?\w+[\""]?\${'\$'}\""",
+                    """<<<['\"]?\w+['"]?${'$'}""",
                 end =
                     """^\w+;?${'$'}""",
                 contains = listOf(
@@ -117,7 +117,7 @@ internal fun php(): Mode {
                 end =
                     """[;{]""",
                 excludeEnd = true,
-                illegal = "\\\${'\$'}|\\[|%",
+                illegal = "\\\${'$'}|\\[|%",
                 contains = listOf(
                     hljs.UNDERSCORE_TITLE_MODE,
                     Mode(
@@ -140,7 +140,7 @@ internal fun php(): Mode {
                 end = "{",
                 excludeEnd = true,
                 illegal =
-                    """[:\(\${'$'}"]\""",
+                    """[:\(\${'$'}"]""",
                 contains = listOf(
                     Mode(beginKeywords = keywords("extends implements")),
                     hljs.UNDERSCORE_TITLE_MODE
@@ -150,7 +150,7 @@ internal fun php(): Mode {
                 beginKeywords = keywords("namespace"),
                 end = ";",
                 illegal =
-                    """[\."]\""",
+                    """[\.']""",
                 contains = listOf(hljs.UNDERSCORE_TITLE_MODE)
             ),
             Mode(

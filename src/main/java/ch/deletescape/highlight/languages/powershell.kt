@@ -37,7 +37,7 @@ internal fun powershell(): Mode {
                 begin =
                     """@"""",
                 end =
-                    """^"@\"""
+                    """^"@"""
             )
         ),
         contains = listOf(

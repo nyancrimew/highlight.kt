@@ -42,7 +42,7 @@ internal fun inform7(): Mode {
                 className = "section",
                 begin =
                     """^(Volume|Book|Part|Chapter|Section|Table)\b""",
-                end = "\${'\$'}"
+                end = "\${'$'}"
             ),
             Mode(
                 // Rule definition

@@ -76,7 +76,7 @@ internal fun lisp(): Mode {
         contains = listOf(NUMBER, STRING, VARIABLE, KEYWORD, QUOTED_LIST, IDENT),
         variants = listOf(
             Mode(
-                begin = "[\"`]\\(",
+                begin = "['`]\\(",
                 end = "\\)"
             ),
             Mode(

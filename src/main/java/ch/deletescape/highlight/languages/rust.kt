@@ -57,7 +57,7 @@ internal fun rust(): Mode {
                 className = "string",
                 variants = listOf(
                     Mode(begin =
-                            """r(#*)"(.|\n)*?\"\1(?!#)\"""),
+                            """r(#*)"(.|\n)*?"\1(?!#)"""),
                     Mode(begin =
                             """b?'\\?(x\w{2}|u\w{4}|U\w{8}|.)'""")
                 )

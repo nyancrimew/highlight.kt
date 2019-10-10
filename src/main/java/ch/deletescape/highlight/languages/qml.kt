@@ -101,7 +101,7 @@ internal fun qml(): Mode {
             Mode(
                 className = "meta",
                 begin =
-                    """^\s*["\"]use (strict|asm)[\""]\"""
+                    """^\s*['\"]use (strict|asm)['"]"""
             ),
             hljs.APOS_STRING_MODE,
             hljs.QUOTE_STRING_MODE,
@@ -113,7 +113,7 @@ internal fun qml(): Mode {
                     hljs.BACKSLASH_ESCAPE,
                     Mode(
                         className = "subst",
-                        begin = "\\\${'\$'}\\{",
+                        begin = "\\\${'$'}\\{",
                         end = "\\}"
                     )
                 )

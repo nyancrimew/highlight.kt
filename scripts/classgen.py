@@ -116,6 +116,14 @@ try:
         # content = re.sub(r"\svar\s", " val ", content)
         # 7. Turn concatenated strings into one long string
         content = re.sub(r"(?m)['\"]\s*?\+(\s|/[/\*].*$)*?['\"]", "", content)
+        # 8. Add missing escapes
+        # Escape ",$
+        content = re.sub(r"\"'\"", "'\''", content)
+        content = re.sub(r"\"''\"", "'\'\''", content)
+        content = re.sub(r"\"'''\"", "'\'\'\''", content)
+        p = re.compile(r"((?<!\\)'.*?)(?<=(?:(?<=[^\\]\\)\\|[^\\]))([\"$])(.*?(?<!\\)')")
+        while p.search(content):
+            content = p.sub(r"\g<1>\\\g<2>\g<3>", content)
         # 8. Convert chain instantiation to multiple variables
         p = re.compile(r"(?m)( *var +?[\w\-]+ = (?:{[^\r]*?}|(?:[^,]|[,](?! *$))*?)),( *$\s+)([\w\-]+ +?=(?: *?{[^\r]*?}|(?:[^,;]|[,;](?! *$))*?)[,;] *$)")
         while p.search(content):
@@ -139,24 +147,13 @@ try:
         p = re.compile(r"(^(?:(?<!//).)*?',) *?'")
         while p.search(content):
             content = p.sub("\g<1>',\n'", content)
-        # p = re.compile(r"(?m)(^\s+(?:(?<!//).)+)((?<=[\w\)\}\]])\.\w+)")
-        # while p.search(content):
-        #    content = p.sub("\g<1>\n\g<2>", content)
         # 5. Turn regex literal into Kotlin raw string
         p = re.compile(r"([\s(\[,:])\/(?!\/)([^\*].*?)(?<!(?<!\\)\/|(?<!\\)\\)\/[gimxa]*([\s;,})])")
         while p.search(content):
             content = p.sub("\g<1>\"\"\"\g<2>\"\"\"\g<3>", content)
-        # TODO: do proper quote escaping BEFORE converting to double quotes
         # 6. Turn string literals into Kotlin strings
-        # TODO: FIX QUOTING:
-        # '\\b((\\d+\'(b|h|o|d|B|H|O|D))[0-9xzXZa-fA-F_]+)' -> "\\b((\\d+\"(b|h|o|d|B|H|O|D))[0-9xzXZa-fA-F_]+)"
         content = re.sub(r"\\'", "'", content)
-        content = re.sub(r"([\s,;}(])'(.)\"'([\s,;}\)])", "\g<1>\"\g<2>\\\\\"\"\g<3>", content)
-        content = re.sub(r"([\s,;}(])'\"'([\s,;}\)])", "\g<1>\"\\\\\"\"\g<2>", content)
-        content = re.sub(r"([\s,;}(])'\"\"\"'([\s,;}\)])", "\g<1>\"\\\\\"\\\\\"\\\\\"\"\g<2>", content)
-        content = re.sub(r"([\s,;}(])'(.)\"\"\"'([\s,;}\)])", "\g<1>\"\g<2>\\\\\"\\\\\"\\\\\"\"\g<3>", content)
-        content = re.sub(r"'([\s,;}+)\]])", "\"\g<1>", content)
-        content = re.sub(r"([\s(\[,:+=])'", "\g<1>\"", content)
+        content = re.sub(r"(?<=[\s(\[,:+=])'(.*)'(?=[\s,;}+)\]])", "\"\g<1>\"", content)
         # 9. Turn array initializers into Kotlin list initializers
         content = re.sub(r"([\s,;:}(])\[", "\g<1>listOf(", content)
         content = re.sub(r"]([\s,;}.)])", ")\g<1>", content)
@@ -189,17 +186,10 @@ try:
         content = re.sub(r"^( *?).*?\"\"\"\n\s*?([^\s])", "\"\"\"\n\g<1>\g<2>", content)
         content = re.sub(r"\n *?\"\"\"", "\"\"\"", content)
         content = re.sub(r"\"\"\"(.*)\"\"\".trimIndent\(\)", "\"\"\"\g<1>\"\"\"", content)
-        #content = re.sub(r"([\s(\[,:])\"\\\"([,);/])", "\g<1>\"\\\\\"\g<2>", content)
-        # content = re.sub(r"(?s)\"([^$]*?)\$([^$]*?)\"", "\"\g<1>${\'$\'}\g<2>\"", content)
-        p = re.compile(r"(?<!\")\"(?!\"{2})(.*?)((?<!\\)[\"$])(.*)(?<!\")\"(?!\"{2})")
-        while p.search(content):
-            content = p.sub("\"\g<1>\\\\\g<2>\g<3>\"", content)
-        content = re.sub(r"(?<!\"{1})\"(?!\"{2})(.*?)((?<=\\\\\\)[\"$])(.*)\"(?!\"{2})", "\"\g<1>\\\\\g<2>\g<3>\"", content)
         p = re.compile(r"(?s)(?<!\")\"{3}(?!\")(.*?)((?<!\${')[$](?!{'))(.*)(?<!\")\"{3}(?!\")")
         while p.search(content):
             content = p.sub("\"\"\"\g<1>${'\g<2>'}\g<3>\"\"\"", content)
         content = re.sub(r"\s\"\"\"\"([\s,);}/])", " \"\\\"\\\"\"\g<1>", content)
-        # content = re.sub(r"(?<!\")\"\\\"", " \"\\\"", content)
         content = re.sub(r"(?m),((?:\s|//[^\n]*$)*)\)", "\g<1>)", content)
         content = re.sub(r"\"self\"(\s*[,\)])", "hljs.SELF\g<1>", content)
         content = re.sub(r"\[(\d+)\)", "[\g<1>]", content)
@@ -212,16 +202,6 @@ try:
         content = re.sub(r"(?s)forEach\(function\((.*?)\) ?{(.*?)\)\)", "forEach { \g<1> -> \g<2> }", content)
         content = re.sub(r"(?m)\+= ?((?:[\w-]+(?:, ?))*[\w-]+)(;?\s*$)", "+= listOf(\g<1>)\g<2>", content)
         content = re.sub(r"([\w-]+).keywords.keyword", "\g<1>.keywords.map { it.value }", content)
-        # 16. Clean up escape sequences
-        p = re.compile(r"(?<![\"\\])\"(?!\"{2})(.*?)((?<!(?:[^\\\"])\"|[\s\w]\(|.\\)[\"$](?![)\"]))(.*?)(?<!(?:[^\\\"]\"|[\w ]\(|.\\))\"(?!\"{2})")
-        while p.search(content):
-            content = p.sub("\"\g<1>\\\\\g<2>\g<3>\"", content)
-        p = re.compile(r"(?<!\")\"(?!\"{2})(.*?)((?<!\\)\\\\\$)(.*)(?<!\")\"(?!\"{2})")
-        while p.search(content):
-            content = p.sub("\"\g<1>\\\\\g<2>\g<3>\"", content)
-        p = re.compile(r"(?<!\")\"(?!\"{2})(.*?)((?<![\\\"])\")\"(?!\"{2})")
-        while p.search(content):
-            content = p.sub("\"\g<1>\\\\\g<2>\"", content)
         # 17. Remove our custom escapes
         content = re.sub(r"\\:", ":", content)
 

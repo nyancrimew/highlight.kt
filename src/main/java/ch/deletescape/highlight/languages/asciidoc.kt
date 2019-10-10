@@ -21,8 +21,8 @@ internal fun asciidoc(): Mode {
                 "^/{4,}\\n",
                 "\\n/{4,}\$",
                 // can also be done as...
-                // '^/{4,}$",
-                // '^/{4,}$",
+                // '^/{4,}\$',
+                // '^/{4,}\$',
                 Mode(
                     relevance = 10
                 )
@@ -126,8 +126,8 @@ internal fun asciidoc(): Mode {
             Mode(
                 className = "emphasis",
                 // must not follow a word character or be followed by a single quote or space
-                begin = "\\B'(?![\"\\s))",
-                end = "(\\n{2}|\")",
+                begin = "\\B'(?!['\\s))",
+                end = "(\\n{2}|')",
                 // allow escaped single quote followed by word char
                 contains = listOf(
                     Mode(

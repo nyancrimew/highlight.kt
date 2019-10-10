@@ -182,15 +182,15 @@ internal fun livescript(): Mode {
                 Mode(
                     className = "class",
                     beginKeywords = keywords("class"),
-                    end = "\${'\$'}",
+                    end = "\${'$'}",
                     illegal =
-                        """[:="\[\]]\""",
+                        """[:="\[\]]""",
                     contains = listOf(
                         Mode(
                             beginKeywords = keywords("extends"),
                             endsWithParent = true,
                             illegal =
-                                """[:="\[\]]\""",
+                                """[:="\[\]]""",
                             contains = listOf(TITLE)
                         ),
                         TITLE

@@ -53,11 +53,11 @@ internal fun `erlang-repl`(): Mode {
                 begin = "!"
             ),
             Mode(
-                begin = "(\\b[a-z\"][a-zA-Z0-9_\"]*:[a-z\"][a-zA-Z0-9_\"]*)|(\\b[a-z\"][a-zA-Z0-9_\"]*)",
+                begin = "(\\b[a-z'][a-zA-Z0-9_']*:[a-z'][a-zA-Z0-9_']*)|(\\b[a-z'][a-zA-Z0-9_']*)",
                 relevance = 0
             ),
             Mode(
-                begin = "[A-Z][a-zA-Z0-9_\"]*",
+                begin = "[A-Z][a-zA-Z0-9_']*",
                 relevance = 0
             )
         )
