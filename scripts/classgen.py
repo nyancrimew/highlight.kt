@@ -198,6 +198,7 @@ try:
         content = re.sub(r"\.concat\(([^\)]*)\)", " + \g<1>", content)
         content = re.sub(r"\.push\(([^\)]*)\)", " += \g<1>", content)
         content = re.sub(r"\.join\(", ".joinToString(", content)
+        content = re.sub(r"\.reverse\(", ".reversed(", content)
         content = re.sub(r"(?s)map\(function\((.*?)\) ?{\s*?return\s*(.*?)\)\)", "map { \g<1> -> \g<2> }", content)
         content = re.sub(r"(?s)forEach\(function\((.*?)\) ?{(.*?)\)\)", "forEach { \g<1> -> \g<2> }", content)
         content = re.sub(r"(?m)\+= ?((?:[\w-]+(?:, ?))*[\w-]+)(;?\s*$)", "+= listOf(\g<1>)\g<2>", content)

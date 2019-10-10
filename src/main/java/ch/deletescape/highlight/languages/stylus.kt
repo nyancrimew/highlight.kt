@@ -458,7 +458,7 @@ internal fun stylus(): Mode {
             Mode(
                 className = "attribute",
                 begin = "\\b(" +
-                    ATTRIBUTES.reverse().joinToString("|") +
+                    ATTRIBUTES.reversed().joinToString("|") +
                     ")\\b",
                 starts = Mode(
                     // value container
