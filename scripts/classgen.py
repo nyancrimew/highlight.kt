@@ -59,7 +59,9 @@ SKIP = [
     # ?!
     'less',
     'gauss',
-    'crystal'
+    'crystal',
+    # This one is literally impossible as the keywords string is far too long
+    'mathematica'
 ]
 
 folderpath = "highlight.js/src/languages/"

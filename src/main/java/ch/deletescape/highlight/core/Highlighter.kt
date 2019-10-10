@@ -147,7 +147,6 @@ class Highlighter(val rendererFactory: StyleRendererFactory) {
             registerLanguage("d", d())
             registerLanguage("vbnet", vbnet())
             registerLanguage("groovy", groovy())
-            registerLanguage("mathematica", mathematica())
             registerLanguage("verilog", verilog())
             registerLanguage("matlab", matlab())
             registerLanguage("asciidoc", asciidoc())
