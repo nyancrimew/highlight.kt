@@ -46,12 +46,12 @@ SKIP = [
 ]
 
 folderpath = "highlight.js/src/languages/"
-outputpath = "../src/main/java/com/codewaves/codehighlight/languages/"
-highlighterpath = "../src/main/java/com/codewaves/codehighlight/core/Highlighter.kt"
+outputpath = "../src/main/java/ch/deletescape/highlight/languages/"
+highlighterpath = "../src/main/java/ch/deletescape/highlight/core/Highlighter.kt"
 header = dedent("""\
-            package com.codewaves.codehighlight.languages
+            package ch.deletescape.highlight.languages
 
-            import com.codewaves.codehighlight.core.*
+            import ch.deletescape.highlight.core.*
 
 """)
 try:
