@@ -1,9 +1,5 @@
 package ch.deletescape.highlight.core
 
-import com.google.gson.Gson
-import com.google.gson.JsonObject
-import java.security.Key
-
 /**
  * Created by Sergej Kravcenko on 5/14/2017.
  * Copyright (c) 2017 Sergej Kravcenko
@@ -14,7 +10,13 @@ data class Keyword(
    val className: String = "keyword",
    // TODO: parse relevance from value and default to -1?
    val relevance: Int = 0
-)
+) {
+   constructor(value: List<Keyword>, className: String = "keyword", relevance: Int = 0) : this(
+      value.joinToString(" ") { it.value },
+      className,
+      relevance
+   )
+}
 
 fun keywords(vararg keywords: Any): List<Keyword> = keywords.flatMap {
    when (it) {
@@ -34,3 +36,4 @@ fun keywordsJson(jsonString: String): List<Keyword> {
       )
    }
 }
+
