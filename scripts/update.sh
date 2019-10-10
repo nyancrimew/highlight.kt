@@ -33,4 +33,4 @@ echo "Generating language classes"
 python3 classgen.py
 
 echo "Formatting generated classes"
-./bin/ktlint --experimental -F "../src/main/java/com/codewaves/codehighlight/languages/*.kt" | grep "Not a valid Kotlin" | tee >(wc -l)
+./bin/ktlint --experimental -F "../src/main/java/ch/deletescape/highlight/languages/*.kt" | grep "Not a valid Kotlin" | tee >(wc -l)
