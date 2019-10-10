@@ -69,7 +69,7 @@ internal fun sas(): Mode {
             Mode(
                 className = "meta",
                 begin = "[^%](" +
-                    SAS_FUN + ")[\(]"
+                    SAS_FUN + ")[\\(]"
             ),
             Mode(
                 className = "string",

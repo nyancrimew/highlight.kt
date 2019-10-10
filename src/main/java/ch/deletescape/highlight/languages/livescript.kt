@@ -32,7 +32,7 @@ internal fun livescript(): Mode {
                 "npm require console print module global window document"
         )
     )
-    var JS_IDENT_RE = "[A-Za-z\$_](?:\-[0-9A-Za-z\$_]|[0-9A-Za-z\$_))*"
+    var JS_IDENT_RE = "[A-Za-z\$_](?:\\-[0-9A-Za-z\$_]|[0-9A-Za-z\$_))*"
     var TITLE = hljs.inherit(hljs.TITLE_MODE, Mode(begin = JS_IDENT_RE))
     var SUBST = Mode(
         className = "subst",

@@ -101,7 +101,7 @@ internal fun perl(): Mode {
                     relevance = 0
                 ),
                 Mode(
-                    begin = "\-?\\w+\\s*\\=\\>",
+                    begin = "\\-?\\w+\\s*\\=\\>",
                     contains = listOf(),
                     relevance = 0
                 )

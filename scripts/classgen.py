@@ -124,6 +124,10 @@ try:
         p = re.compile(r"((?<!\\)'.*?)(?<=(?:(?<=[^\\]\\)\\|[^\\]))([\"$])(.*?(?<!\\)')")
         while p.search(content):
             content = p.sub(r"\g<1>\\\g<2>\g<3>", content)
+        # Escape illegal escapes
+        p = re.compile(r"((?<!\\)'.*?)(?<=(?:[^\\]\\))([sSx%:@\-{}<>/?(). &!#])(.*?(?<!\\)')")
+        while p.search(content):
+            content = p.sub(r"\g<1>\\\g<2>\g<3>", content)
         # 8. Convert chain instantiation to multiple variables
         p = re.compile(r"(?m)( *var +?[\w\-]+ = (?:{[^\r]*?}|(?:[^,]|[,](?! *$))*?)),( *$\s+)([\w\-]+ +?=(?: *?{[^\r]*?}|(?:[^,;]|[,;](?! *$))*?)[,;] *$)")
         while p.search(content):

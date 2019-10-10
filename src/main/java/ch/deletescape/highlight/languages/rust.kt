@@ -11,7 +11,7 @@ Category = system
  * Origin highlight.js/src/languages/rust.js MD5 <944a870df40c227ab39873c82bc14bbb>
  */
 internal fun rust(): Mode {
-    var NUM_SUFFIX = "([ui](8|16|32|64|128|size)|f(32|64))\?"
+    var NUM_SUFFIX = "([ui](8|16|32|64|128|size)|f(32|64))\\?"
     var KEYWORDS =
         "abstract as async await become box break const continue crate do dyn else enum extern false final fn for if impl in let loop macro match mod move mut override priv pub ref return self Self static struct super trait true try type typeof unsafe unsized use virtual where while yield"
     var BUILTINS =

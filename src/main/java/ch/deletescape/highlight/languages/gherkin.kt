@@ -12,7 +12,7 @@ import ch.deletescape.highlight.core.*
 internal fun gherkin(): Mode {
     return Mode(
         aliases = listOf("feature"),
-        keywords = keywords("Feature Background Ability Business\ Need Scenario Scenarios Scenario\ Outline Scenario\ Template Examples Given And Then But When"),
+        keywords = keywords("Feature Background Ability Business\\ Need Scenario Scenarios Scenario\\ Outline Scenario\\ Template Examples Given And Then But When"),
         contains = listOf(
             Mode(
                 className = "symbol",
