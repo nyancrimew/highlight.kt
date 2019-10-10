@@ -72,7 +72,7 @@ internal fun autoit(): Mode {
     var PREPROCESSOR = Mode(
         className = "meta",
         begin = "#",
-        end = "\${'\$'}",
+        end = "\${'$'}",
         keywords = listOf(
             Keyword(
                 className = "meta-keyword",
@@ -93,7 +93,7 @@ internal fun autoit(): Mode {
                         value = "include"
                     )
                 ),
-                end = "\${'\$'}",
+                end = "\${'$'}",
                 contains = listOf(
                     STRING,
                     Mode(
@@ -140,7 +140,7 @@ internal fun autoit(): Mode {
     var CONSTANT = Mode(
         className = "symbol",
         // begin: "@",
-        // end: "\${'\$'}",
+        // end: "\${'$'}",
         // keywords = keywords("AppDataCommonDir AppDataDir AutoItExe AutoItPID AutoItVersion AutoItX64 COM_EventObj CommonFilesDir Compiled ComputerName ComSpec CPUArch CR CRLF DesktopCommonDir DesktopDepth DesktopDir DesktopHeight DesktopRefresh DesktopWidth DocumentsCommonDir error exitCode exitMethod extended FavoritesCommonDir FavoritesDir GUI_CtrlHandle GUI_CtrlId GUI_DragFile GUI_DragId GUI_DropId GUI_WinHandle HomeDrive HomePath HomeShare HotKeyPressed HOUR IPAddress1 IPAddress2 IPAddress3 IPAddress4 KBLayout LF LocalAppDataDir LogonDNSDomain LogonDomain LogonServer MDAY MIN MON MSEC MUILang MyDocumentsDir NumParams OSArch OSBuild OSLang OSServicePack OSType OSVersion ProgramFilesDir ProgramsCommonDir ProgramsDir ScriptDir ScriptFullPath ScriptLineNumber ScriptName SEC StartMenuCommonDir StartMenuDir StartupCommonDir StartupDir SW_DISABLE SW_ENABLE SW_HIDE SW_LOCK SW_MAXIMIZE SW_MINIMIZE SW_RESTORE SW_SHOW SW_SHOWDEFAULT SW_SHOWMAXIMIZED SW_SHOWMINIMIZED SW_SHOWMINNOACTIVE SW_SHOWNA SW_SHOWNOACTIVATE SW_SHOWNORMAL SW_UNLOCK SystemDir TAB TempDir TRAY_ID TrayIconFlashing TrayIconVisible UserName UserProfileDir WDAY WindowsDir WorkingDir YDAY YEAR"),
         // relevance: 5
         begin = "@[A-z0-9_]+"
@@ -148,8 +148,8 @@ internal fun autoit(): Mode {
     var FUNCTION = Mode(
         className = "function",
         beginKeywords = keywords("Func"),
-        end = "\${'\$'}",
-        illegal = "\\\${'\$'}|\\[|%",
+        end = "\${'$'}",
+        illegal = "\\\${'$'}|\\[|%",
         contains = listOf(
             hljs.UNDERSCORE_TITLE_MODE,
             Mode(

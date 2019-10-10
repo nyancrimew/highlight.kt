@@ -48,7 +48,7 @@ internal fun aspectj(): Mode {
                     """[{;=]""",
                 excludeEnd = true,
                 illegal =
-                    """[:;"\[\]]\""",
+                    """[:;"\[\]]""",
                 contains = listOf(
                     Mode(
                         beginKeywords = keywords("extends implements pertypewithin perthis pertarget percflowbelow percflow issingleton")
@@ -76,7 +76,7 @@ internal fun aspectj(): Mode {
                 relevance = 0,
                 keywords = keywords("class interface"),
                 illegal =
-                    """[:"\[\]]\""",
+                    """[:"\[\]]""",
                 contains = listOf(
                     Mode(beginKeywords = keywords("extends implements")),
                     hljs.UNDERSCORE_TITLE_MODE
@@ -89,7 +89,7 @@ internal fun aspectj(): Mode {
                     """[)]""",
                 excludeEnd = false,
                 illegal =
-                    """["\[\]]\""",
+                    """["\[\]]""",
                 contains = listOf(
                     Mode(
                         begin = hljs.UNDERSCORE_IDENT_RE + "\\s*\\(",
@@ -108,7 +108,7 @@ internal fun aspectj(): Mode {
                 excludeEnd = false,
                 keywords = keywords(KEYWORDS),
                 illegal =
-                    """["\[\]]\""",
+                    """["\[\]]""",
                 contains = listOf(
                     Mode(
                         begin = hljs.UNDERSCORE_IDENT_RE + "\\s*\\(",

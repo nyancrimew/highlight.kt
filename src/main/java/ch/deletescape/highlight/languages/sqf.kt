@@ -26,7 +26,7 @@ internal fun sqf(): Mode {
             """[a-zA-Z][a-zA-Z0-9]+_fnc_\w*"""
     )
     // In SQF strings, quotes matching the start are escaped by adding a consecutive.
-    // Example of single escaped quotes: " \"\" \" and  \" \"\" ".
+    // Example of single escaped quotes: " "" " and  " '" '.
     var STRINGS = Mode(
         className = "string",
         variants = listOf(

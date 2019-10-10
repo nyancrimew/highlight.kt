@@ -112,14 +112,14 @@ internal fun smali(): Mode {
                 className = "built_in",
                 variants = listOf(
                     Mode(
-                        begin = "\\s(\"+smali_instr_low_prio.joinToString(\"|\")+\")\\s"
+                        begin = "\\s('+smali_instr_low_prio.joinToString('|')+')\\s"
                     ),
                     Mode(
-                        begin = "\\s(\"+smali_instr_low_prio.joinToString(\"|\")+\")((\\-|/)[a-zA-Z0-9]+)+\\s",
+                        begin = "\\s('+smali_instr_low_prio.joinToString('|')+')((\\-|/)[a-zA-Z0-9]+)+\\s",
                         relevance = 10
                     ),
                     Mode(
-                        begin = "\\s(\"+smali_instr_high_prio.joinToString(\"|\")+\")((\\-|/)[a-zA-Z0-9]+)*\\s",
+                        begin = "\\s('+smali_instr_high_prio.joinToString('|')+')((\\-|/)[a-zA-Z0-9]+)*\\s",
                         relevance = 10
                     )
                 )

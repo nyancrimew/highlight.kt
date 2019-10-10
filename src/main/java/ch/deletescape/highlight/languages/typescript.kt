@@ -75,7 +75,7 @@ internal fun typescript(): Mode {
     )
     var SUBST = Mode(
         className = "subst",
-        begin = "\\\${'\$'}\\{",
+        begin = "\\\${'$'}\\{",
         end = "\\}",
         keywords = keywords(KEYWORDS),
         contains = listOf() // defined later
@@ -132,7 +132,7 @@ internal fun typescript(): Mode {
             Mode(
                 className = "meta",
                 begin =
-                    """^\s*["\"]use strict[\""]\"""
+                    """^\s*['\"]use strict['"]"""
             ),
             hljs.APOS_STRING_MODE,
             hljs.QUOTE_STRING_MODE,

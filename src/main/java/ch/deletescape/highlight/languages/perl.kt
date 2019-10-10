@@ -146,13 +146,13 @@ internal fun perl(): Mode {
             relevance = 0
         ),
         Mode(
-            begin = "^__DATA__\${'\$'}",
-            end = "^__END__\${'\$'}",
+            begin = "^__DATA__${'$'}",
+            end = "^__END__${'$'}",
             subLanguage = "mojolicious",
             contains = listOf(
                 Mode(
                     begin = "^@@.*",
-                    end = "\${'\$'}",
+                    end = "${'$'}",
                     className = "comment"
                 )
             )

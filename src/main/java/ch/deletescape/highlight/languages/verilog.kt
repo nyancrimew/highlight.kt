@@ -46,8 +46,8 @@ internal fun verilog(): Mode {
                 className = "number",
                 contains = listOf(hljs.BACKSLASH_ESCAPE),
                 variants = listOf(
-                    Mode(begin = "\\b((\\d+\"(b|h|o|d|B|H|O|D))[0-9xzXZa-fA-F_]+)"),
-                    Mode(begin = "\\B((\"(b|h|o|d|B|H|O|D))[0-9xzXZa-fA-F_]+)"),
+                    Mode(begin = "\\b((\\d+'(b|h|o|d|B|H|O|D))[0-9xzXZa-fA-F_]+)"),
+                    Mode(begin = "\\B(('(b|h|o|d|B|H|O|D))[0-9xzXZa-fA-F_]+)"),
                     Mode(
                         begin = "\\b(listOf(0-9_))+",
                         relevance = 0

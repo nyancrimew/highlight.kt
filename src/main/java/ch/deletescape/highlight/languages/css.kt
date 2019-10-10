@@ -88,12 +88,12 @@ internal fun css(): Mode {
                     """\[""",
                 end =
                     """\]""",
-                illegal = "\${'\$'}"
+                illegal = "\${'$'}"
             ),
             Mode(
                 className = "selector-pseudo",
                 begin =
-                    """:(:)?[a-zA-Z0-9\_\-\+\(\)"'.]+\"""
+                    """:(:)?[a-zA-Z0-9\_\-\+\(\)"'.]+"""
             ),
             Mode(
                 begin = "@(font-face|page)",

@@ -23,7 +23,7 @@ internal fun nginx(): Mode {
                     """}"""
             ),
             Mode(
-                begin = "[\\\${'\$'}\\@]" +
+                begin = "[\\\${'$'}\\@]" +
                     hljs.UNDERSCORE_IDENT_RE
             )
         )

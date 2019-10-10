@@ -53,7 +53,7 @@ internal fun avrasm(): Mode {
                 className = "string",
                 begin = "'",
                 end = "[^\\\\]'",
-                illegal = "[^\\\\][^\"]"
+                illegal = "[^\\\\][^']"
             ),
             Mode(
                 className = "symbol",

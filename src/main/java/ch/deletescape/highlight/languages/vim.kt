@@ -53,7 +53,7 @@ internal fun vim(): Mode {
             ),
             hljs.COMMENT(
                 "\"",
-                "\${'\$'}"
+                "\${'$'}"
             ),
             Mode(
                 className = "variable",
@@ -63,7 +63,7 @@ internal fun vim(): Mode {
             Mode(
                 className = "function",
                 beginKeywords = keywords("function function!"),
-                end = "\${'\$'}",
+                end = "\${'$'}",
                 relevance = 0,
                 contains = listOf(
                     hljs.TITLE_MODE,

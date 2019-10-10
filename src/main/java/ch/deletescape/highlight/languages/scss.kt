@@ -44,7 +44,7 @@ internal fun scss(): Mode {
     )
     return Mode(
         case_insensitive = true,
-        illegal = "[=/|\"]",
+        illegal = "[=/|']",
         contains = listOf(
             hljs.C_LINE_COMMENT_MODE,
             hljs.C_BLOCK_COMMENT_MODE,

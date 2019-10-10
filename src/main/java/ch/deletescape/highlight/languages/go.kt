@@ -80,7 +80,7 @@ internal fun go(): Mode {
                             """\)""",
                         keywords = keywords(GO_KEYWORDS),
                         illegal =
-                            """[""]\"""
+                            """["']"""
                     )
                 )
             )

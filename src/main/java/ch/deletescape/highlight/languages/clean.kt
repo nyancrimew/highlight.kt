@@ -12,7 +12,7 @@ Website = http = //clean.cs.ru.nl
  */
 internal fun clean(): Mode {
     return Mode(
-        aliases = listOf("clean\",\"icl\",\"dcl"),
+        aliases = listOf("clean','icl','dcl"),
         keywords = listOf(
             Keyword(
                 className = "keyword",

@@ -11,7 +11,7 @@ Category = functional
  * Origin highlight.js/src/languages/erlang.js MD5 <b345c7cc92db3ded7ef125c3aa06d033>
  */
 internal fun erlang(): Mode {
-    var BASIC_ATOM_RE = "[a-z\"][a-zA-Z0-9_\"]*"
+    var BASIC_ATOM_RE = "[a-z'][a-zA-Z0-9_']*"
     var FUNCTION_NAME_RE = "(" +
         BASIC_ATOM_RE + ":" +
         BASIC_ATOM_RE + "|" +

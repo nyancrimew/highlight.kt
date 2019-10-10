@@ -490,7 +490,7 @@ internal fun isbl(): Mode {
         variants = listOf(
             Mode(
                 begin = "\"",
-                end = "\"\" ), Mode( begin = \"'",
+                end = "\"' ), Mode( begin = ''",
                 end = "'"
             )
         )
@@ -505,7 +505,7 @@ internal fun isbl(): Mode {
     var ISBL_LINE_COMMENT_MODE = Mode(
         className = "comment",
         begin = "//",
-        end = "\$",
+        end = "$",
         relevance = 0,
         contains = listOf(hljs.PHRASAL_WORDS_MODE, DOCTAGS)
     )
@@ -585,11 +585,11 @@ internal fun isbl(): Mode {
     var FUNCTIONS = Mode(
         className = "function",
         begin = FUNCTION_TITLE,
-        end = "\\)\$",
+        end = "\\)$",
         returnBegin = true,
         lexemes = UNDERSCORE_IDENT_RE,
         keywords = keywords(KEYWORDS),
-        illegal = "[\\[\\]\\|\\\$\\?%,~#@]",
+        illegal = "[\\[\\]\\|\\$\\?%,~#@]",
         contains = listOf(TITLE_MODE, METHODS, VARIABLES, STRINGS, NUMBERS, COMMENTS)
     )
     return Mode(
@@ -597,7 +597,7 @@ internal fun isbl(): Mode {
         case_insensitive = true,
         lexemes = UNDERSCORE_IDENT_RE,
         keywords = keywords(KEYWORDS),
-        illegal = "\\\$|\\?|%|,|;\$|~|#|@|</",
+        illegal = "\\$|\\?|%|,|;$|~|#|@|</",
         contains = listOf(
             FUNCTIONS,
             TYPES,

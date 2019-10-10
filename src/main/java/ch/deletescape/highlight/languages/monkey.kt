@@ -44,7 +44,7 @@ internal fun monkey(): Mode {
             ),
             hljs.COMMENT(
                 "'",
-                "\${'\$'}",
+                "\${'$'}",
                 Mode(
                     relevance = 0
                 )
@@ -52,7 +52,7 @@ internal fun monkey(): Mode {
             Mode(
                 className = "function",
                 beginKeywords = keywords("function method"),
-                end = "[(=:]|\${'\$'}",
+                end = "[(=:]|\${'$'}",
                 illegal =
                     """\n""",
                 contains = listOf(

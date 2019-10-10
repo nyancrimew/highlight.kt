@@ -43,7 +43,7 @@ internal fun xml(): Mode {
                                     """'"""
                             ),
                             Mode(begin =
-                                    """[^\s"'=<>`]+\""")
+                                    """[^\s"'=<>`]+""")
                         )
                     )
                 )
@@ -146,10 +146,10 @@ internal fun xml(): Mode {
         /*
         The lookahead pattern (?=...) ensures that "begin" only matches
         "<style" as a single word, followed by a whitespace or an
-        ending braket. The "\${'\$'}" is needed for the lexeme to be recognized
+        ending braket. The "\${'$'}" is needed for the lexeme to be recognized
         by hljs.subMode() that tests lexemes outside the stream.
         */
-                begin = "<style(?=\\s|>|\${'\$'})",
+                begin = "<style(?=\\s|>|\${'$'})",
                 end = ">",
                 keywords = listOf(
                     Keyword(
@@ -170,7 +170,7 @@ internal fun xml(): Mode {
             Mode(
                 className = "tag",
                 // See the comment in the <style tag about the lookahead pattern
-                begin = "<script(?=\\s|>|\${'\$'})",
+                begin = "<script(?=\\s|>|\${'$'})",
                 end = ">",
                 keywords = listOf(
                     Keyword(

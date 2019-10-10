@@ -53,7 +53,7 @@ internal fun dts(): Mode {
             ),
             Mode(
                 beginKeywords = keywords("include"),
-                end = "\${'\$'}",
+                end = "\${'$'}",
                 keywords = listOf(
                     Keyword(
                         className = "meta-keyword",

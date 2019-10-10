@@ -149,7 +149,7 @@ internal fun ruby(): Mode {
         Mode(
             className = "class",
             beginKeywords = keywords("class module"),
-            end = "\${'\$'}|;",
+            end = "\${'$'}|;",
             illegal =
                 """=""",
             contains = listOf(
@@ -169,7 +169,7 @@ internal fun ruby(): Mode {
         Mode(
             className = "function",
             beginKeywords = keywords("def"),
-            end = "\${'\$'}|;",
+            end = "\${'$'}|;",
             contains = listOf(
                 hljs.inherit(hljs.TITLE_MODE, Mode(begin = RUBY_METHOD_RE)),
                 PARAMS
@@ -196,7 +196,7 @@ internal fun ruby(): Mode {
             relevance = 0
         ),
         Mode(
-            begin = "(\\\${'\$'}\\W)|((\\\${'\$'}|\\@\\@?)(\\w+))" // variables
+            begin = "(\\\${'$'}\\W)|((\\\${'$'}|\\@\\@?)(\\w+))" // variables
         ),
         Mode(
             className = "params",
@@ -254,15 +254,15 @@ internal fun ruby(): Mode {
             begin =
                 """^\s*=>""",
             starts = Mode(
-                end = "\${'\$'}",
+                end = "\${'$'}",
                 contains = RUBY_DEFAULT_CONTAINS
             )
         ),
         Mode(
             className = "meta",
-            begin = "^(\"+SIMPLE_PROMPT+\"|\"+DEFAULT_PROMPT+\"|\"+RVM_PROMPT+\")",
+            begin = "^('+SIMPLE_PROMPT+\"|\"+DEFAULT_PROMPT+'|'+RVM_PROMPT+')",
             starts = Mode(
-                end = "\${'\$'}",
+                end = "\${'$'}",
                 contains = RUBY_DEFAULT_CONTAINS
             )
         )

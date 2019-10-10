@@ -15,7 +15,7 @@ Category = scientific
  * Origin highlight.js/src/languages/matlab.js MD5 <d5904e3885b0430bb642ba7faebb2c18>
  */
 internal fun matlab(): Mode {
-    var TRANSPOSE_RE = "(\"|\\.\")+"
+    var TRANSPOSE_RE = "('|\\.')+"
     var TRANSPOSE = Mode(
         relevance = 0,
         contains = listOf(

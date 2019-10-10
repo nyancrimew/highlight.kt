@@ -57,8 +57,8 @@ internal fun groovy(): Mode {
             ),
             Mode(
                 className = "string",
-                begin = "\\\${'\$'}/",
-                end = "/\\\${'\$'}",
+                begin = "\\${'$'}/",
+                end = "/\\${'$'}",
                 relevance = 10
             ),
             hljs.APOS_STRING_MODE,
@@ -74,7 +74,7 @@ internal fun groovy(): Mode {
             Mode(
                 className = "meta",
                 begin = "^#!/usr/bin/env",
-                end = "\${'\$'}",
+                end = "\${'$'}",
                 illegal = "\n"
             ),
             hljs.BINARY_NUMBER_MODE,
@@ -110,7 +110,7 @@ internal fun groovy(): Mode {
             Mode(
                 // highlight labeled statements
                 className = "symbol",
-                begin = "^\\s*[A-Za-z0-9_\${'\$'}]+:",
+                begin = "^\\s*[A-Za-z0-9_\${'$'}]+:",
                 relevance = 0
             )
         ),

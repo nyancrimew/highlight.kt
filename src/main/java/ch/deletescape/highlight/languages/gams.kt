@@ -79,7 +79,7 @@ internal fun gams(): Mode {
         begin =
             """[a-z][a-z0-9_]*(\([a-z0-9_, ]*\))?[ \t]+""",
         excludeBegin = true,
-        end = "\${'\$'}",
+        end = "\${'$'}",
         endsWithParent = true,
         contains = listOf(
             QSTR,
@@ -100,19 +100,19 @@ internal fun gams(): Mode {
             hljs.COMMENT("""^\${'$'}ontext""", """^\${'$'}offtext"""),
             Mode(
                 className = "meta",
-                begin = "^\\\${'\$'}[a-z0-9]+",
-                end = "\${'\$'}",
+                begin = "^\\\${'$'}[a-z0-9]+",
+                end = "\${'$'}",
                 returnBegin = true,
                 contains = listOf(
                     Mode(
                         className = "meta-keyword",
-                        begin = "^\\\${'\$'}[a-z0-9]+"
+                        begin = "^\\\${'$'}[a-z0-9]+"
                     )
                 )
             ),
             hljs.COMMENT(
                 "^\\*",
-                "\${'\$'}"
+                "\${'$'}"
             ),
             hljs.C_LINE_COMMENT_MODE,
             hljs.C_BLOCK_COMMENT_MODE,
@@ -126,7 +126,7 @@ internal fun gams(): Mode {
                 contains = listOf(
                     hljs.COMMENT(
                         "^\\*",
-                        "\${'\$'}"
+                        "\${'$'}"
                     ),
                     hljs.C_LINE_COMMENT_MODE,
                     hljs.C_BLOCK_COMMENT_MODE,
@@ -143,12 +143,12 @@ internal fun gams(): Mode {
                 contains = listOf(
                     Mode(// table header row
                         beginKeywords = keywords("table"),
-                        end = "\${'\$'}",
+                        end = "\${'$'}",
                         contains = listOf(DESCTEXT)
                     ),
                     hljs.COMMENT(
                         "^\\*",
-                        "\${'\$'}"
+                        "\${'$'}"
                     ),
                     hljs.C_LINE_COMMENT_MODE,
                     hljs.C_BLOCK_COMMENT_MODE,
@@ -162,7 +162,7 @@ internal fun gams(): Mode {
             Mode(
                 className = "function",
                 begin =
-                    """^[a-z][a-z0-9_,\-+" ()\${'\$'}]+\.{2}\""",
+                    """^[a-z][a-z0-9_,\-+' ()${'$'}]+\.{2}""",
                 returnBegin = true,
                 contains = listOf(
                     Mode(// Function title
