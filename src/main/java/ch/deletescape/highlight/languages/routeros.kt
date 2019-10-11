@@ -43,11 +43,11 @@ internal fun routeros(): Mode {
         variants = listOf(
             Mode(
                 begin =
-                    """\${'$'}[\w\d#@][\w\d_]*"""
+                    """${'$'}[\w\d#@][\w\d_]*"""
             ),
             Mode(
                 begin =
-                    """\${'$'}\{(.*?)}"""
+                    """${'$'}\{(.*?)}"""
             )
         )
     )
@@ -64,7 +64,7 @@ internal fun routeros(): Mode {
             Mode(
                 className = "variable",
                 begin =
-                    """\${'$'}\(""",
+                    """${'$'}\(""",
                 end =
                     """\)""",
                 contains = listOf(hljs.BACKSLASH_ESCAPE)
@@ -172,7 +172,7 @@ internal fun routeros(): Mode {
                     ),
                     // roboconf - лютый костыль )))
                     Mode(
-                        begin = "^1\\.\\.(\\d+)\${'\$'}",
+                        begin = "^1\\.\\.(\\d+)${'\$'}",
                         end =
                             """${'$'}"""
                     ) // tap
@@ -182,7 +182,7 @@ internal fun routeros(): Mode {
             ),
             hljs.COMMENT(
                 "^#",
-                "\${'\$'}"
+                "${'\$'}"
             ),
             QUOTE_STRING,
             APOS_STRING,

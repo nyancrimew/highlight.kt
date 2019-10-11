@@ -116,7 +116,7 @@ internal fun moonscript(): Mode {
         contains = EXPRESSIONS + listOf(
             hljs.COMMENT(
                 "--",
-                "\${'\$'}",
+                "${'\$'}",
                 Mode(
                     className = "function",
                     // function: -> =>
@@ -146,7 +146,7 @@ internal fun moonscript(): Mode {
             Mode(
                 className = "class",
                 beginKeywords = keywords("class"),
-                end = "\${'\$'}",
+                end = "${'\$'}",
                 illegal =
                     """[:="\[\]]\""",
                 contains = listOf(
