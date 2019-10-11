@@ -1,24 +1,9 @@
-[![Download](https://api.bintray.com/packages/codewaves/maven/codehighlight/images/download.svg?version=1.0.2) ](https://bintray.com/codewaves/maven/codehighlight/1.0.2/link)
-[![Build Status](https://travis-ci.org/Codewaves/Highlight.java.svg?branch=master)](https://travis-ci.org/Codewaves/Highlight.java)
-
-# Highlight.java
-Java port of popular Highlight.js library
+# highlight.kt
+Kotlin port of highlight.js
 
 ## Download
 
-Available on JCenter, grab via Gradle:
-```groovy
-compile 'com.codewaves.codehighlight:codehighlight:1.0.2'
-```
-or Maven:
-```xml
-<dependency>
-  <groupId>com.codewaves.codehighlight</groupId>
-  <artifactId>codehighlight</artifactId>
-  <version>1.0.2</version>
-  <type>pom</type>
-</dependency>
-```
+There are currently no artifacts available while most things are still broken.
 
 ## Usage
 
@@ -51,10 +36,11 @@ for every thread.
 
 ## Author, License, and Copyright
 
-Highlight.java is written and maintained by Sergej Kravcenko.
+highlight.kt is written and maintained by Till Kottmann.
 
-This library is based on Highlight.js (https://github.com/isagalaev/highlight.js).
+This library is based on [Highlight.java](https://github.com/codewaves/Highlight.java), which in turn is based on [highlight.js](https://github.com/highlightjs/highlight.js).
 
+    Copyright (c) 2019, Till Kottmann
     Copyright (c) 2017, Sergej Kravcenko
     Copyright (c) 2006, Ivan Sagalaev
     All rights reserved.
