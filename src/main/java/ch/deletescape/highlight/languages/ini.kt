@@ -85,7 +85,7 @@ internal fun ini(): Mode {
                                     Mode(begin =
                                             """${'$'}[\w\d"][\w\d_]*"""),
                                     Mode(begin =
-                                            """${'$'}\{(.*?)}""")
+                                            """${'$'}\{(.*?)\\}""")
                                 )
                             ),
                             STRING,

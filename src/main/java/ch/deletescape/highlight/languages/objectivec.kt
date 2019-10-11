@@ -96,7 +96,7 @@ internal fun objectivec(): Mode {
                 begin = "(" +
                     CLASS_KEYWORDS.split(" ").joinToString("|") +
                     ")\\b",
-                end = "(Mode(|\$)",
+                end = "(\\{|\$)",
                 excludeEnd = true,
                 keywords = keywords(CLASS_KEYWORDS),
                 lexemes = LEXEMES,

@@ -53,7 +53,7 @@ internal fun cs(): Mode {
     )
     var SUBST = Mode(
         className = "subst",
-        begin = "{",
+        begin = "\\{",
         end = "}",
         keywords = keywords(KEYWORDS)
     )
@@ -71,21 +71,21 @@ internal fun cs(): Mode {
         end = "\"",
         illegal =
             """\n""",
-        contains = listOf(Mode(begin = "{{\"), Mode(begin = \")}"), hljs.BACKSLASH_ESCAPE, SUBST_NO_LF)
+        contains = listOf(Mode(begin = "\\{\\{"), Mode(begin = "}}"), hljs.BACKSLASH_ESCAPE, SUBST_NO_LF)
     )
     var INTERPOLATED_VERBATIM_STRING = Mode(
         className = "string",
         begin =
             """${'$'}@"""",
         end = "\"",
-        contains = listOf(Mode(begin = "{{\"), Mode(begin = \")}\"), Mode(begin = \"\"\""), SUBST)
+        contains = listOf(Mode(begin = "\\{\\{"), Mode(begin = "}}"), Mode(begin = "\"\""), SUBST)
     )
     var INTERPOLATED_VERBATIM_STRING_NO_LF = hljs.inherit(
         INTERPOLATED_VERBATIM_STRING,
         Mode(
             illegal =
                 """\n""",
-            contains = listOf(Mode(begin = "{{\"), Mode(begin = \")}\"), Mode(begin = \"\"\""), SUBST_NO_LF)
+            contains = listOf(Mode(begin = "\\{\\{"), Mode(begin = "}}"), Mode(begin = "\"\""), SUBST_NO_LF)
         )
     )
     SUBST.contains = listOf(
@@ -185,7 +185,7 @@ internal fun cs(): Mode {
             Mode(
                 beginKeywords = keywords("namespace"),
                 end =
-                    """[{;=]""",
+                    """[\{;=]""",
                 illegal =
                     """[^\s = ]""",
                 contains = listOf(
@@ -224,7 +224,7 @@ internal fun cs(): Mode {
                     hljs.IDENT_RE + "\\s*\\(",
                 returnBegin = true,
                 end =
-                    """\s*[{;=]""",
+                    """\s*[\{;=]""",
                 excludeEnd = true,
                 keywords = keywords(KEYWORDS),
                 contains = listOf(

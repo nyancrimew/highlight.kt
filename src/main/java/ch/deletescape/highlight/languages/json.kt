@@ -32,7 +32,7 @@ internal fun json(): Mode {
         keywords = keywords(LITERALS)
     )
     var OBJECT = Mode(
-        begin = "{",
+        begin = "\\{",
         end = "}",
         contains = listOf(
             Mode(

@@ -42,7 +42,7 @@ internal fun bash(): Mode {
     var ESCAPED_QUOTE = Mode(
         className = "",
         begin =
-            """\\""""
+            """\\\""""
     )
     var APOS_STRING = Mode(
         className = "string",

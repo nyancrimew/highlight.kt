@@ -58,7 +58,7 @@ internal fun haskell(): Mode {
         )
     )
     var RECORD = Mode(
-        begin = "{",
+        begin = "\\{",
         end = "}",
         contains = LIST.contains
     )

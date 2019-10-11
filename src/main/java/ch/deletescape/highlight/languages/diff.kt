@@ -37,7 +37,7 @@ internal fun diff(): Mode {
                     ),
                     Mode(
                         begin =
-                            """=Mode(3,}""",
+                            """={3,}""",
                         end =
                             """${'$'}"""
                     ),

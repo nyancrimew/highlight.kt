@@ -134,7 +134,7 @@ internal fun css(): Mode {
                 relevance = 0
             ),
             Mode(
-                begin = "{",
+                begin = "\\{",
                 end = "}",
                 illegal =
                     """\S""",

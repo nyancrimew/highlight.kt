@@ -12,7 +12,7 @@ Category = template
  */
 internal fun parser3(): Mode {
     var CURLY_SUBCOMMENT = hljs.COMMENT(
-        "{",
+        "\\{",
         "}",
         Mode(
             contains = listOf(hljs.SELF)

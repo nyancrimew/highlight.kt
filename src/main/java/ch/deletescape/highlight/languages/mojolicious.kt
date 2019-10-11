@@ -21,14 +21,14 @@ internal fun mojolicious(): Mode {
             ),
             // mojolicious line
             Mode(
-                begin = "^\\s*%{1,2}=Mode(0,2}",
+                begin = "^\\s*%{1,2}={0,2}",
                 end = "\$",
                 subLanguage = "perl"
             ),
             // mojolicious block
             Mode(
-                begin = "<%{1,2}=Mode(0,2}",
-                end = "=Mode(0,1}%>",
+                begin = "<%{1,2}={0,2}",
+                end = "={0,1}%>",
                 subLanguage = "perl",
                 excludeBegin = true,
                 excludeEnd = true

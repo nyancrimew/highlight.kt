@@ -51,7 +51,7 @@ internal fun asciidoc(): Mode {
                 className = "section",
                 relevance = 10,
                 variants = listOf(
-                    Mode(begin = "^(=Mode(1,5)) .+?( \\1)?\$"),
+                    Mode(begin = "^(={1,5}) .+?( \\1)?\$"),
                     Mode(begin = "^[^\\[\\]\\n]+?\\n[=\\-~\\^\\+]{2,\\}\$")
                 )
             ),

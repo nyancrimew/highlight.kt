@@ -27,13 +27,13 @@ internal fun flix(): Mode {
     var NAME = Mode(
         className = "title",
         begin =
-            """[^0-9\n\t "'(),.`\\{\\}\[\]:;][^\n\t \"'(),.`\\{\\}\[\]:;]+|[^0-9\n\t \"'(),.`{}\[\]:;=]"""
+            """[^0-9\n\t "'(),.`\{\\}\[\]:;][^\n\t \"'(),.`\{\\}\[\]:;]+|[^0-9\n\t \"'(),.`{}\[\]:;=]"""
     )
     var METHOD = Mode(
         className = "function",
         beginKeywords = keywords("def"),
         end =
-            """[:=Mode(\[(\n;]""",
+            """[:=\{\[(\n;]""",
         excludeEnd = true,
         contains = listOf(NAME)
     )

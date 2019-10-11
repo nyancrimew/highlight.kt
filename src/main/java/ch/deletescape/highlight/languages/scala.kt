@@ -72,14 +72,14 @@ internal fun scala(): Mode {
     var NAME = Mode(
         className = "title",
         begin =
-            """[^0 - 9\ n \ t "'(),.`{}\[\]:;][^\n\t \"'(),.`{}\[\]:;]+|[^0-9\n\t \"'(),.`{}\[\]:;=]\""",
+            """[^0 - 9\ n \ t "'(),.`{}\[\]:;][^\n\t \"'(),.`{}\[\]:;]+|[^0-9\n\t \"'(),.`{}\[\]:;=]""",
         relevance = 0
     )
     var CLASS = Mode(
         className = "class",
         beginKeywords = keywords("class object trait type"),
         end =
-            """[:=Mode(\[\n;]""",
+            """[:=\{\[\n;]""",
         excludeEnd = true,
         contains = listOf(
             Mode(
@@ -114,7 +114,7 @@ internal fun scala(): Mode {
         className = "function",
         beginKeywords = keywords("def"),
         end =
-            """[:=Mode(\[(\n;]""",
+            """[:=\{\[(\n;]""",
         excludeEnd = true,
         contains = listOf(NAME)
     )
