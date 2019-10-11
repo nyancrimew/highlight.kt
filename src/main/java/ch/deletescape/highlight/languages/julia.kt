@@ -95,7 +95,7 @@ internal fun julia(): Mode {
     var INTERPOLATION = Mode(
         className = "subst",
         begin =
-            """\${'$'}\(""",
+            """${'$'}\(""",
         end =
             """\)""",
         keywords = keywords(KEYWORDS)
@@ -146,7 +146,7 @@ internal fun julia(): Mode {
             ),
             Mode(
                 begin = "#",
-                end = "\${'\$'}"
+                end = "${'\$'}"
             )
         )
     )

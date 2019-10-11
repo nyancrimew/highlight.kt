@@ -166,7 +166,7 @@ internal fun arcade(): Mode {
             ),
             Mode(
                 begin =
-                    """\${'$'}[(.]"""
+                    """${'$'}[(.]"""
             )
         ),
         illegal =

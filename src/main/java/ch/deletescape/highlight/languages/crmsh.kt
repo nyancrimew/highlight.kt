@@ -102,7 +102,7 @@ internal fun crmsh(): Mode {
             Mode(
                 className = "attr",
                 begin =
-                    """([A-Za-z\${'$'}_\#][\w_-]+)=""",
+                    """([A-Za-z${'$'}_\#][\w_-]+)=""",
                 relevance = 0
             ),
             Mode(

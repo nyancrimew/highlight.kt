@@ -191,7 +191,7 @@ internal fun coffeescript(): Mode {
             Mode(
                 className = "class",
                 beginKeywords = keywords("class"),
-                end = "\${'$'}",
+                end = "${'$'}",
                 illegal =
                     """[:="\[\]]""",
                 contains = listOf(

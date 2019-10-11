@@ -151,7 +151,7 @@ internal fun xml(): Mode {
         ending braket. The "\${'$'}" is needed for the lexeme to be recognized
         by hljs.subMode() that tests lexemes outside the stream.
         */
-                begin = "<style(?=\\s|>|\${'$'})",
+                begin = "<style(?=\\s|>|${'$'})",
                 end = ">",
                 keywords = listOf(
                     Keyword(
@@ -172,7 +172,7 @@ internal fun xml(): Mode {
             Mode(
                 className = "tag",
                 // See the comment in the <style tag about the lookahead pattern
-                begin = "<script(?=\\s|>|\${'$'})",
+                begin = "<script(?=\\s|>|${'$'})",
                 end = ">",
                 keywords = listOf(
                     Keyword(

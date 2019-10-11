@@ -67,7 +67,7 @@ internal fun cs(): Mode {
     var INTERPOLATED_STRING = Mode(
         className = "string",
         begin =
-            """\${'$'}"""",
+            """${'$'}"""",
         end = "\"",
         illegal =
             """\n""",
@@ -76,7 +76,7 @@ internal fun cs(): Mode {
     var INTERPOLATED_VERBATIM_STRING = Mode(
         className = "string",
         begin =
-            """\${'$'}@"""",
+            """${'$'}@"""",
         end = "\"",
         contains = listOf(Mode(begin = "{{\"), Mode(begin = \")}\"), Mode(begin = \"\"\""), SUBST)
     )
@@ -135,7 +135,7 @@ internal fun cs(): Mode {
         contains = listOf(
             hljs.COMMENT(
                 "///",
-                "\${'\$'}",
+                "${'\$'}",
                 Mode(
                     returnBegin = true,
                     contains = listOf(
@@ -160,7 +160,7 @@ internal fun cs(): Mode {
             Mode(
                 className = "meta",
                 begin = "#",
-                end = "\${'\$'}",
+                end = "${'\$'}",
                 keywords = listOf(
                     Keyword(
                         className = "meta-keyword",

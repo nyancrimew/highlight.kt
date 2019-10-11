@@ -18,7 +18,7 @@ internal fun pf(): Mode {
     var MACRO = Mode(
         className = "variable",
         begin =
-            """\${'$'}[\w\d#@][\w\d_]*"""
+            """${'$'}[\w\d#@][\w\d_]*"""
     )
     var TABLE = Mode(
         className = "variable",
