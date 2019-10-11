@@ -62,7 +62,7 @@ internal fun erlang(): Mode {
         )
     )
     var TUPLE = Mode(
-        begin = "{",
+        begin = "\\{",
         end = "}",
         relevance = 0
         // "contains" defined later
@@ -87,7 +87,7 @@ internal fun erlang(): Mode {
                 relevance = 0
             ),
             Mode(
-                begin = "{",
+                begin = "\\{",
                 end = "}",
                 relevance = 0
                 // "contains" defined later

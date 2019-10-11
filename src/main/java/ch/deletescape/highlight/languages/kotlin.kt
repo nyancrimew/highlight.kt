@@ -225,7 +225,7 @@ internal fun kt(): Mode {
                 className = "class",
                 beginKeywords = keywords("class interface trait"),
                 end =
-                    """[:\\{(]|${'$'}""", // remove "trait" when removed from KEYWORDS
+                    """[:\{(]|${'$'}""", // remove "trait" when removed from KEYWORDS
                 excludeEnd = true,
                 illegal = "extends implements",
                 contains = listOf(

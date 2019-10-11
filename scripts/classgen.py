@@ -53,7 +53,9 @@ MANUAL_MAP = {
     # Ensure Mode( doesn't get added inside strings
     'markdown': '9c568504b931710b0eb4a9202c3f107f',
     'powershell': 'eeefb299ee3b9e7997b0964ef8bfc2dc',
-    'rust': '944a870df40c227ab39873c82bc14bbb'
+    'rust': '944a870df40c227ab39873c82bc14bbb',
+    'diff': '52c96b6ffaeebb6cc98f3bdf03c6cced',
+    'scala': '8368a4d7200da2cfc014c30c75dcb7a0'
 }
 
 # Languages which we'll probably have to port manually
@@ -151,7 +153,7 @@ try:
         while p.search(content):
             content = p.sub(r"\g<1>\\\g<2>\g<3>", content)
         # Escape illegal escapes
-        p = re.compile(r"((?<!\\)'.*?)(?<=(?:[^\\]\\|(?<=[^\\]\\)\\\\))([sSx%:@\-{}<>/?(). &!#])(.*?(?<!\\)')")
+        p = re.compile(r"((?<!\\)'.*?)(?<=(?:[^\\]\\|(?<=[^\\]\\)\\\\))([bsSx%:@\-{}<>/?(). &!#])(.*?(?<!\\)')")
         while p.search(content):
             content = p.sub(r"\g<1>\\\g<2>\g<3>", content)
         # 8. Convert chain instantiation to multiple variables
