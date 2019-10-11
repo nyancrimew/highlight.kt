@@ -87,7 +87,7 @@ internal fun d(): Mode {
      *
      * @type {String)
      */
-    var escape_sequence_re = "\\\\(['\"\\?\\\\abfnrtv]|u[\\dA-Fa-f]{4}|[0-7]{1,3}|x[\\dA-Fa-f]{2}|U[\\dA-Fa-f]{8))|&[a-zA-Z\\d]{2);"; // named character entity
+    var escape_sequence_re = "\\\\(['\"\\?\\\\abfnrtv]|u[\\dA-Fa-f]{4}|[0-7]{1,3}|x[\\dA-Fa-f]{2}|U[\\dA-Fa-f]{8))|&[a-zA-Z\\d]{2,\\);"; // named character entity
 
     /**
      * D integer number literals
@@ -181,8 +181,8 @@ internal fun d(): Mode {
      */
     var D_TOKEN_STRING_MODE = Mode(
         className = "string",
-        begin = "q\"\\{",
-        end = "\\}\""
+        begin = "q\"\\\\{",
+        end = "\\\\}\""
     )
     /**
      * Hashbang support

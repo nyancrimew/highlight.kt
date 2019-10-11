@@ -23,7 +23,7 @@ internal fun tcl(): Mode {
             ),
             Mode(
                 beginKeywords = keywords("proc"),
-                end = "[\\{]",
+                end = "[\\\\{]",
                 excludeEnd = true,
                 contains = listOf(
                     Mode(
@@ -39,12 +39,12 @@ internal fun tcl(): Mode {
                 excludeEnd = true,
                 variants = listOf(
                     Mode(
-                        begin = "\\\$(\\{)?(::)?[a-zA-Z_]((::)?[a-zA-Z0-9_))*\\((listOf(a-zA-Z0-9_))*\\)",
-                        end = "[^a-zA-Z0-9_\\}\\\$]"
+                        begin = "\\\$(\\\\{)?(::)?[a-zA-Z_]((::)?[a-zA-Z0-9_))*\\((listOf(a-zA-Z0-9_))*\\)",
+                        end = "[^a-zA-Z0-9_\\\\}\\\$]"
                     ),
                     Mode(
-                        begin = "\\\$(\\{)?(::)?[a-zA-Z_]((::)?[a-zA-Z0-9_))*",
-                        end = "(\\))?[^a-zA-Z0-9_\\}\\\$]"
+                        begin = "\\\$(\\\\{)?(::)?[a-zA-Z_]((::)?[a-zA-Z0-9_))*",
+                        end = "(\\))?[^a-zA-Z0-9_\\\\}\\\$]"
                     )
                 )
             ),

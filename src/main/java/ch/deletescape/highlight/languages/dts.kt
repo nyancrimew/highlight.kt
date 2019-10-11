@@ -107,7 +107,7 @@ internal fun dts(): Mode {
     )
     var DTS_ROOT_NODE = Mode(
         className = "class",
-        begin = "/\\s*{",
+        begin = "/\\s*\\{",
         end = ");",
         relevance = 10,
         contains = listOf(

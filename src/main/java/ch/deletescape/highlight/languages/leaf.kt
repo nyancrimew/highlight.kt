@@ -15,7 +15,7 @@ internal fun leaf(): Mode {
             Mode(
                 className = "function",
                 begin = "#+[A-Za-z_0-9]*\\(",
-                end = " {",
+                end = " \\{",
                 returnBegin = true,
                 excludeEnd = true,
                 contains = listOf(

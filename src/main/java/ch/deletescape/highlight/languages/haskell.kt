@@ -18,8 +18,8 @@ internal fun haskell(): Mode {
                 "\$"
             ),
             hljs.COMMENT(
-                "{-",
-                "-}",
+                "\\{-",
+                "-\\}",
                 Mode(
                     contains = listOf(hljs.SELF)
                 )
@@ -28,8 +28,8 @@ internal fun haskell(): Mode {
     )
     var PRAGMA = Mode(
         className = "meta",
-        begin = "{-#",
-        end = "#-}"
+        begin = "\\{-#",
+        end = "#-\\}"
     )
     var PREPROCESSOR = Mode(
         className = "meta",

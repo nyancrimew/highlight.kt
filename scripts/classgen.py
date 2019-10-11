@@ -51,7 +51,9 @@ MANUAL_MAP = {
     'plaintext': '0c27fb547d7eb6bcb56f0b09c14dffbe',
     'properties': 'c3a2ab075bc64a66c7e92bf798250736',
     # Ensure Mode( doesn't get added inside strings
-    'markdown': '9c568504b931710b0eb4a9202c3f107f'
+    'markdown': '9c568504b931710b0eb4a9202c3f107f',
+    'powershell': 'eeefb299ee3b9e7997b0964ef8bfc2dc',
+    'rust': '944a870df40c227ab39873c82bc14bbb'
 }
 
 # Languages which we'll probably have to port manually
@@ -107,7 +109,6 @@ try:
         tempfilepath = "temp/" + className + '.kt'
         outfilepath = outputpath + className + '.kt'
         langmap[language] = classNameCode
-        print(f"Starting to parse {filename}")
         with open(folderpath + filename, 'r', encoding="utf8") as f:
             content = f.read()
 
@@ -139,15 +140,18 @@ try:
         # 7. Turn concatenated strings into one long string
         content = re.sub(r"(?m)['\"]\s*?\+(\s|/[/\*].*$)*?['\"]", "", content)
         # 8. Add missing escapes
-        # Escape ",$
+        # Escape "${}
         content = re.sub(r"\"'\"", "'\''", content)
         content = re.sub(r"\"''\"", "'\'\''", content)
         content = re.sub(r"\"'''\"", "'\'\'\''", content)
         p = re.compile(r"((?<!\\)'.*?)(?<=(?:(?<=[^\\]\\)\\|[^\\]))([\"$])(.*?(?<!\\)')")
         while p.search(content):
             content = p.sub(r"\g<1>\\\g<2>\g<3>", content)
+        p = re.compile(r"((?<!\\)'.*?)(?<=(?:(?<=[^\\]\\)\\|[^\\]))({(?![\d'](?=.*}))|(?<=[^\d'])})(.*?(?<!\\)')")
+        while p.search(content):
+            content = p.sub(r"\g<1>\\\g<2>\g<3>", content)
         # Escape illegal escapes
-        p = re.compile(r"((?<!\\)'.*?)(?<=(?:[^\\]\\))([sSx%:@\-{}<>/?(). &!#])(.*?(?<!\\)')")
+        p = re.compile(r"((?<!\\)'.*?)(?<=(?:[^\\]\\|(?<=[^\\]\\)\\\\))([sSx%:@\-{}<>/?(). &!#])(.*?(?<!\\)')")
         while p.search(content):
             content = p.sub(r"\g<1>\\\g<2>\g<3>", content)
         # 8. Convert chain instantiation to multiple variables
@@ -241,8 +245,14 @@ except Exception as e:
     shutil.rmtree(outputpath)
     shutil.copytree("temp/", outputpath)
 registerCode = ""
-for lang in langmap.keys():
-    registerCode += f"            registerLanguage(\"{lang}\", {langmap[lang]}())\n"
+cpp = langmap["cpp"]
+if cpp:
+    # While languages are not lazily loaded yet we need to ensure that cpp is loaded before arduino
+    registerCode += f"            registerLanguage(\"cpp\", {cpp}())\n"
+# Sort the languages to ensure stable behavior
+for lang in sorted(langmap.keys()):
+    if lang != "cpp":
+        registerCode += f"            registerLanguage(\"{lang}\", {langmap[lang]}())\n"
 registerCode = registerCode[0:-1]
 
 with open(highlighterpath, 'r', encoding="utf8") as f:

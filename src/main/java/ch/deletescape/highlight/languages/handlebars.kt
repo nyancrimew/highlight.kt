@@ -28,8 +28,8 @@ internal fun handlebars(): Mode {
         subLanguage = "xml",
         contains = listOf(
             hljs.COMMENT(
-                "{{!(--)?",
-                "(--)?)}"
+                "\\{\\{!(--)?",
+                "(--)?\\}\\}"
             ),
             Mode(
                 className = "template-tag",

@@ -53,8 +53,8 @@ internal fun haml(): Mode {
                         begin = "\\.[\\w-]+"
                     ),
                     Mode(
-                        begin = "{\\s*",
-                        end = "\\s*}",
+                        begin = "\\{\\s*",
+                        end = "\\s*\\}",
                         contains = listOf(
                             Mode(
                                 begin = ":\\w+\\s*=>",
@@ -108,7 +108,7 @@ internal fun haml(): Mode {
                 begin = "^\\s*[=~]\\s*"
             ),
             Mode(
-                begin = "#{",
+                begin = "#\\{",
                 starts = Mode(
                     end = "}",
                     subLanguage = "ruby"

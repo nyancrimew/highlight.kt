@@ -14,7 +14,7 @@ internal fun perl(): Mode {
     var SUBST = Mode(
         className = "subst",
         begin = "[\$@]\\{",
-        end = "\\}",
+        end = "\\\\}",
         keywords = keywords(PERL_KEYWORDS)
     )
     var METHOD = Mode(
@@ -63,7 +63,7 @@ internal fun perl(): Mode {
                 ),
                 Mode(
                     begin = "q[qwxr]?\\s*\\{",
-                    end = "\\}",
+                    end = "\\\\}",
                     relevance = 5
                 ),
                 Mode(
@@ -96,7 +96,7 @@ internal fun perl(): Mode {
                     contains = listOf(hljs.BACKSLASH_ESCAPE)
                 ),
                 Mode(
-                    begin = "{\\w+}",
+                    begin = "\\{\\w+\\}",
                     contains = listOf(),
                     relevance = 0
                 ),
@@ -136,7 +136,7 @@ internal fun perl(): Mode {
         Mode(
             className = "function",
             beginKeywords = keywords("sub"),
-            end = "(\\s*\\(.*?\\))?[;{]",
+            end = "(\\s*\\(.*?\\))?[;\\{]",
             excludeEnd = true,
             relevance = 5,
             contains = listOf(hljs.TITLE_MODE)

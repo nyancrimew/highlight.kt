@@ -102,7 +102,7 @@ internal fun css(): Mode {
             ),
             Mode(
                 begin = "@",
-                end = "[{;]",
+                end = "[\\{;]",
                 // at_rule eating first "{" is a good thing
                 // because it doesn’t let it to be parsed as
                 // a rule set but instead drops parser into

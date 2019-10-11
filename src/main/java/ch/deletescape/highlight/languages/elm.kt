@@ -17,8 +17,8 @@ internal fun elm(): Mode {
                 "\$"
             ),
             hljs.COMMENT(
-                "{-",
-                "-}",
+                "\\{-",
+                "-\\}",
                 Mode(
                     contains = listOf(hljs.SELF)
                 )

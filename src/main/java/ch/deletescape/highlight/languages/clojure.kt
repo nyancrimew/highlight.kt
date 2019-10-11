@@ -48,8 +48,8 @@ internal fun clojure(): Mode {
             """\b(true|false|nil)\b"""
     )
     var COLLECTION = Mode(
-        begin = "[\\[\\{]",
-        end = "[\\]\\}]"
+        begin = "[\\[\\\\{]",
+        end = "[\\]\\\\}]"
     )
     var HINT = Mode(
         className = "comment",
@@ -58,7 +58,7 @@ internal fun clojure(): Mode {
     )
     var HINT_COL = hljs.COMMENT(
         "\\^\\{",
-        "\\}"
+        "\\\\}"
     )
     var KEY = Mode(
         className = "symbol",

@@ -6,7 +6,7 @@ Category = common, scripting
 */
 /**
  * This function was automatically generated, avoid directly editing it if possible!
- * Origin highlight.js/src/languages/javascript.js MD5 <25eaaa93c794a55ca6973f622674dde2>
+ * Origin highlight.js/src/languages/javascript.js MD5 <c8e9a3f0d9a397cf8d61a3e1c80daea7>
  */
 internal fun javascript(): Mode {
     var IDENT_RE = "[A-Za-z\$_][0-9A-Za-z\$_]*"
@@ -39,7 +39,7 @@ internal fun javascript(): Mode {
     var SUBST = Mode(
         className = "subst",
         begin = "\\\$\\{",
-        end = "\\}",
+        end = "\\\\}",
         keywords = keywords(KEYWORDS),
         contains = listOf() // defined later
     )
@@ -121,7 +121,7 @@ internal fun javascript(): Mode {
             NUMBER,
             Mode(// object attr container
                 begin =
-                    """[{,]\s*""",
+                    """[{,\n]\s*""",
                 relevance = 0,
                 contains = listOf(
                     Mode(

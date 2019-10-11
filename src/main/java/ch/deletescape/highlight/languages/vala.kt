@@ -33,7 +33,7 @@ internal fun vala(): Mode {
             Mode(
                 className = "class",
                 beginKeywords = keywords("class interface namespace"),
-                end = "{",
+                end = "\\{",
                 excludeEnd = true,
                 illegal = "[^,:\\n\\s\\.]",
                 contains = listOf(

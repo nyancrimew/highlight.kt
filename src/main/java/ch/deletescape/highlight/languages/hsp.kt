@@ -24,8 +24,8 @@ internal fun hsp(): Mode {
             Mode(
                 // multi-line string
                 className = "string",
-                begin = "{\"",
-                end = "\"}",
+                begin = "\\{\"",
+                end = "\"\\}",
                 contains = listOf(hljs.BACKSLASH_ESCAPE)
             ),
             hljs.COMMENT(

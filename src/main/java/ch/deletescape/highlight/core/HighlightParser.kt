@@ -1,7 +1,5 @@
 package ch.deletescape.highlight.core;
 
-import java.util.regex.Pattern;
-
 /**
  * Created by Sergej Kravcenko on 5/13/2017.
  * Copyright (c) 2017 Sergej Kravcenko
@@ -24,12 +22,12 @@ class HighlightParser(
       val parent: ParentWrapper?
    )
 
-   private fun testRe(re: Pattern?, lexeme: String): Boolean {
+   private fun testRe(re: Regex?, lexeme: String): Boolean {
       if (re == null) {
          return false
       }
-      val matcher = re.matcher(lexeme)
-      return matcher.find() && matcher.start() == 0
+      val match = re.find(lexeme)
+      return match != null && match.range.start == 0
    }
 
    private fun subMode(lexeme: String, mode: Mode) = mode.contains.firstOrNull { testRe(it.beginRe, lexeme) }
@@ -76,20 +74,19 @@ class HighlightParser(
       }
 
       var lastIndex = 0
-      val matcher = top.mode.lexemesRe!!.matcher(modeBuffer)
-      while (matcher.find()) {
-         blockRenderer.onPushCodeBlock(modeBuffer.substring(lastIndex, matcher.start()))
-         val keyword = keywordMatch(top.mode, matcher.group())
+      top.mode.lexemesRe!!.findAll(modeBuffer).forEach { match ->
+         blockRenderer.onPushCodeBlock(modeBuffer.substring(lastIndex, match.range.start))
+         val keyword = keywordMatch(top.mode, match.groupValues[0])
          if (keyword != null) {
             relevance += keyword.relevance
             blockRenderer.onPushStyle(keyword.className)
-            blockRenderer.onPushCodeBlock(matcher.group())
+            blockRenderer.onPushCodeBlock(match.groupValues[0])
             blockRenderer.onPopStyle()
          } else {
-            blockRenderer.onPushCodeBlock(matcher.group())
+            blockRenderer.onPushCodeBlock(match.groupValues[0])
          }
-         lastIndex = matcher.end()
-      }
+         lastIndex = match.range.endInclusive + 1
+       }
       blockRenderer.onPushCodeBlock(modeBuffer.substring(lastIndex))
    }
 
@@ -227,11 +224,11 @@ class HighlightParser(
 
          var index = 0
          while (top.mode.terminators != null) {
-            val matcher = (top.mode.terminators as Pattern).matcher(code)
-            if (!matcher.find(index)) break
-
-            val count = processLexeme(code.substring(index, matcher.start()), matcher.group())
-            index = matcher.start() + count  
+            val match = top.mode.terminators?.find(code, index)
+            if (match == null || match.range.endInclusive < 0) break
+            val start = match.range.start
+            val count = processLexeme(code.substring(index, start), match.groupValues[0])
+            index = start + count  
          }
          processLexeme(code.substring(index), null)
 
