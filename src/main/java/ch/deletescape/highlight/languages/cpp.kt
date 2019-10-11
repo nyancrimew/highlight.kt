@@ -40,7 +40,7 @@ internal fun cpp(): Mode {
             ),
             Mode(
                 begin =
-                    """(?:u8?|U|L)?R"([^()\\ ]{0,16})\((?:.|\n)*?\)\1""""
+                    """(?:u8?|U|L)?R"([^()\\ ]{0,16})\((?:.|\n)*?\)\1\""""
             )
         )
     )
@@ -124,7 +124,7 @@ internal fun cpp(): Mode {
         contains = EXPRESSION_CONTAINS + listOf(
             PREPROCESSOR,
             Mode(
-                begin = "\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array\\s*<",
+                begin = "\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",
                 end = ">",
                 keywords = keywords(CPP_KEYWORDS),
                 contains = listOf(
@@ -165,7 +165,7 @@ internal fun cpp(): Mode {
                         begin =
                             """\(""",
                         end =
-                            """\""",
+                            """\\""",
                         keywords = keywords(CPP_KEYWORDS),
                         contains = EXPRESSION_CONTAINS + listOf(hljs.SELF),
                         relevance = 0

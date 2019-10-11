@@ -90,7 +90,7 @@ internal fun ruby(): Mode {
                 end = "\\]"
             ),
             Mode(
-                begin = "%[qQwWx]?{",
+                begin = "%[qQwWx]?\\{",
                 end = "}"
             ),
             Mode(
@@ -199,7 +199,7 @@ internal fun ruby(): Mode {
             relevance = 0
         ),
         Mode(
-            begin = "(\\\${'$'}\\W)|((\\\${'$'}|\\@\\@?)(\\w+))" // variables
+            begin = "(\\$\\W)|((\\$|\\@\\@?)(\\w+))" // variables
         ),
         Mode(
             className = "params",
@@ -226,7 +226,7 @@ internal fun ruby(): Mode {
                             end = "/[a-z]*"
                         ),
                         Mode(
-                            begin = "%r{",
+                            begin = "%r\\{",
                             end = "}[a-z]*"
                         ),
                         Mode(

@@ -24,9 +24,9 @@ internal fun scala(): Mode {
     var SUBST = Mode(
         className = "subst",
         variants = listOf(
-            Mode(begin = "\\\$[A-Za-z0-9_]+"),
+            Mode(begin = "\\$[A-Za-z0-9_]+"),
             Mode(
-                begin = "\\\${",
+                begin = "\\$\\{",
                 end = "}"
             )
         )

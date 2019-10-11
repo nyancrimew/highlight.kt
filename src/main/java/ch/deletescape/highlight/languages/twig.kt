@@ -84,7 +84,7 @@ internal fun twig(): Mode {
                 begin =
                     """\{\{""",
                 end =
-                    """)}""",
+                    """}}""",
                 contains = listOf(
                     hljs.SELF,
                     FILTER, FUNCTIONS

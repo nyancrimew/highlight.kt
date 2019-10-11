@@ -32,9 +32,9 @@ internal fun xml(): Mode {
                         variants = listOf(
                             Mode(
                                 begin =
-                                    """"""",
+                                    """\"""",
                                 end =
-                                    """""""
+                                    """\""""
                             ),
                             Mode(
                                 begin =

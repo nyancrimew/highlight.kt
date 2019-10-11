@@ -34,7 +34,7 @@ class HtmlRenderer(private val prefix: String) : StyleRenderer {
    }
 
    override fun onPushSubLanguage(name: String?, code: CharSequence?) {
-      result += "<span class=\"$name\">$code</span>"
+      result += "<span class=\"$name\">${code ?: ""}</span>"
    }
 
    override fun onAbort(code: CharSequence) {

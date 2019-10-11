@@ -89,7 +89,7 @@ internal fun markdown(): Mode {
             ),
             // using links - title and link
             Mode(
-                begin = "\\[.+?\\][\\(\\[).*?[\\)\\]]",
+                begin = "\\[.+?\\][\\(\\[].*?[\\)\\]]",
                 returnBegin = true,
                 contains = listOf(
                     Mode(

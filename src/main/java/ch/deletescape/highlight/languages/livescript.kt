@@ -37,7 +37,7 @@ internal fun livescript(): Mode {
                 "npm require console print module global window document"
         )
     )
-    var JS_IDENT_RE = "[A-Za-z\$_](?:\\-[0-9A-Za-z\$_]|[0-9A-Za-z\$_))*"
+    var JS_IDENT_RE = "[A-Za-z\$_](?:\\-[0-9A-Za-z\$_]|[0-9A-Za-z\$_])*"
     var TITLE = hljs.inherit(hljs.TITLE_MODE, Mode(begin = JS_IDENT_RE))
     var SUBST = Mode(
         className = "subst",
@@ -52,7 +52,7 @@ internal fun livescript(): Mode {
         begin =
             """#[A-Za-z${'$'}_]""",
         end =
-            """(?:\-[0-9A-Za-z${'$'}_]|[0-9A-Za-z${'$'}_))*""",
+            """(?:\-[0-9A-Za-z${'$'}_]|[0-9A-Za-z${'$'}_])*""",
         keywords = keywords(KEYWORDS)
     )
     var EXPRESSIONS = listOf(
@@ -118,7 +118,7 @@ internal fun livescript(): Mode {
                     // regex can't start with space to parse x """ 2 """ 3 as two divisions
                     // regex can't start with *, and it supports an "illegal" in the main mode
                     begin =
-                        """\/(?![ *))(\\\/|.)*?\/[gim]*(?=\W|${'$'})"""
+                        """\/(?![ *])(\\\/|.)*?\/[gim]*(?=\W|${'$'})"""
                 )
             )
         ),

@@ -33,14 +33,13 @@ class HighlightParser(
    private fun subMode(lexeme: String, mode: Mode) = mode.contains.firstOrNull { testRe(it.beginRe, lexeme) }
 
    private fun startNewMode(mode: Mode) {
-      if (mode.className != null) {
+      if (!mode.className.isNullOrBlank()) {
          blockRenderer.onPushStyle(mode.className)
       }
       top = ParentWrapper(mode, top)
    }
 
-   // TODO: tail recursion?
-   private fun endOfMode(mode: ParentWrapper?, lexeme: String): ParentWrapper? {
+   private tailrec fun endOfMode(mode: ParentWrapper?, lexeme: String): ParentWrapper? {
       var iterMode = mode ?: return null
       if (testRe(iterMode.mode.endRe, lexeme)) {
          while(iterMode.mode.endsParent && iterMode.parent != null) {
@@ -91,7 +90,7 @@ class HighlightParser(
    }
 
    private fun processSubLanguage() {
-      val explicit = top.mode.subLanguage != null
+      val explicit = !top.mode.subLanguage.isNullOrBlank()
       var relevance = 0
       var resultCode: CharSequence? = null
       var resultLanguage: String? = null
@@ -107,6 +106,7 @@ class HighlightParser(
          val renderer = rendererFactory.create(languageName)
          val parser = HighlightParser(language, rendererFactory, renderer)
          relevance = parser.highlight(modeBuffer, true, continuations.get(languageName), graceful)
+         resultCode = renderer.getResult();
          resultLanguage = languageName
          continuations.put(languageName, parser.top)
       } else {
@@ -169,7 +169,7 @@ class HighlightParser(
          }
 
          do {
-            if (top.mode.className != null) {
+            if (!top.mode.className.isNullOrBlank()) {
                blockRenderer.onPopStyle()
             }
             if (!top.mode.skip && top.mode.subLanguage == null) {
@@ -212,8 +212,8 @@ class HighlightParser(
          var current: ParentWrapper? = top
          val stack = mutableListOf<String>()
          while (current != null && current.mode != language) {
-            if (current.mode.className != null) {
-               stack.add(0, current.mode.className as String)
+            if (!current.mode.className.isNullOrBlank()) {
+               stack.add(0, current.mode.className!!)
             }
             current = current.parent
          }
@@ -228,21 +228,21 @@ class HighlightParser(
             if (match == null || match.range.endInclusive < 0) break
             val start = match.range.start
             val count = processLexeme(code.substring(index, start), match.groupValues[0])
-            index = start + count  
+            index = start + count
          }
          processLexeme(code.substring(index), null)
 
          current = top
          while (current != null && current.mode != language) {
-            if (current.mode.className != null) {
+            if (!current.mode.className.isNullOrBlank()) {
                blockRenderer.onPopStyle()
             }
             current = current.parent
          }
          blockRenderer.onFinish()
       } catch(e: Exception) {
-         if(!graceful) {
-            throw Exception("Aborted while highlighting $language", e)
+         if(!graceful && e.message?.contains("Illegal lexeme") != true) {
+            throw Exception("Aborted", e)
          }
          blockRenderer.onAbort(code)
          relevance = 0

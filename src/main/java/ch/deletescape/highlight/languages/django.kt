@@ -66,7 +66,7 @@ internal fun django(): Mode {
                 begin =
                     """\{\{""",
                 end =
-                    """)}""",
+                    """}}""",
                 contains = listOf(FILTER)
             )
         )

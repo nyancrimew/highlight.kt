@@ -28,7 +28,7 @@ internal fun tcl(): Mode {
                 contains = listOf(
                     Mode(
                         className = "title",
-                        begin = "[ \\t\\n\\r]+(::)?[a-zA-Z_]((::)?[a-zA-Z0-9_))*",
+                        begin = "[ \\t\\n\\r]+(::)?[a-zA-Z_]((::)?[a-zA-Z0-9_])*",
                         end = "[ \\t\\n\\r]",
                         endsWithParent = true,
                         excludeEnd = true
@@ -39,11 +39,11 @@ internal fun tcl(): Mode {
                 excludeEnd = true,
                 variants = listOf(
                     Mode(
-                        begin = "\\\$(\\\\{)?(::)?[a-zA-Z_]((::)?[a-zA-Z0-9_))*\\((listOf(a-zA-Z0-9_))*\\)",
+                        begin = "\\\$(\\\\{)?(::)?[a-zA-Z_]((::)?[a-zA-Z0-9_])*\\((listOf(a-zA-Z0-9_))*\\)",
                         end = "[^a-zA-Z0-9_\\\\}\\\$]"
                     ),
                     Mode(
-                        begin = "\\\$(\\\\{)?(::)?[a-zA-Z_]((::)?[a-zA-Z0-9_))*",
+                        begin = "\\\$(\\\\{)?(::)?[a-zA-Z_]((::)?[a-zA-Z0-9_])*",
                         end = "(\\))?[^a-zA-Z0-9_\\\\}\\\$]"
                     )
                 )

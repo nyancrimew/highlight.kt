@@ -102,7 +102,7 @@ internal fun matlab(): Mode {
                 starts = TRANSPOSE
             ),
             hljs.COMMENT(
-                "^\\s*\\%\\\\{\\s*\$",
+                "^\\s*\\%\\\\\\{\\s*\$",
                 "^\\s*\\%\\\\}\\s*\$"
             ),
             hljs.COMMENT(

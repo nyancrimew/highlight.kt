@@ -10,7 +10,7 @@ Category = scientific
  * Origin highlight.js/src/languages/r.js MD5 <ca8be3e0974100a2fb7b1aa69829a548>
  */
 internal fun r(): Mode {
-    var IDENT_RE = "([a-zA-Z]|\\.[a-zA-Z.))[a-zA-Z0-9._]*"
+    var IDENT_RE = "([a-zA-Z]|\\.[a-zA-Z.])[a-zA-Z0-9._]*"
     return Mode(
         contains = listOf(
             hljs.HASH_COMMENT_MODE,

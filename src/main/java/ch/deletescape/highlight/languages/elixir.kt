@@ -74,7 +74,7 @@ internal fun elixir(): Mode {
         ),
         Mode(
             className = "symbol",
-            begin = ":(?![\\s = ))",
+            begin = ":(?![\\s = ])",
             contains = listOf(STRING, Mode(begin = ELIXIR_METHOD_RE)),
             relevance = 0
         ),

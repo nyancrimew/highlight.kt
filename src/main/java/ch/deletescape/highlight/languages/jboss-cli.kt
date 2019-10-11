@@ -42,7 +42,7 @@ internal fun `jboss-cli`(): Mode {
     var PATH = Mode(
         className = "string",
         begin =
-            """\B(([\/.))[\w\-.\/=]+)+"""
+            """\B(([\/.])[\w\-.\/=]+)+"""
     )
     var COMMAND_PARAMS = Mode(
         className = "params",

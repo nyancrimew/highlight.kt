@@ -68,7 +68,7 @@ internal fun vhdl(): Mode {
             ),
             Mode(
                 className = "symbol",
-                begin = "'[A-Za-z](_?[A-Za-z0-9))*",
+                begin = "'[A-Za-z](_?[A-Za-z0-9])*",
                 contains = listOf(hljs.BACKSLASH_ESCAPE)
             )
         )

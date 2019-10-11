@@ -80,7 +80,7 @@ internal fun yaml(): Mode {
             ),
             Mode(// multi line string
                 className = "string",
-                begin = "[\\|>) *\$",
+                begin = "[\\|>] *\$",
                 returnEnd = true,
                 contains = STRING.contains,
                 // very simple termination: next hash key

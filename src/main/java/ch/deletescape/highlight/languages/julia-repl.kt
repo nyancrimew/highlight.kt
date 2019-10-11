@@ -34,7 +34,7 @@ internal fun `julia-repl`(): Mode {
                     // end the highlighting if we are on a new line and the line does not have at
                     // least six spaces in the beginning
                     end =
-                        """^(?![ ]{6))""",
+                        """^(?![ ]{6})""",
                     subLanguage = "julia"
                 ),
                 // jldoctest Markdown blocks are used in the Julia manual and package docs indicate
