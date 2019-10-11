@@ -152,7 +152,7 @@ internal fun xquery(): Mode {
     // see https://www.regexpal.com/?fam=99749
     var COMPUTED = Mode(
         beginKeywords = keywords("element attribute comment document processing-instruction"),
-        end = "{",
+        end = "\\{",
         excludeEnd = true
     )
     // mocha: direct_method
@@ -164,7 +164,7 @@ internal fun xquery(): Mode {
         subLanguage = "xml",
         contains = listOf(
             Mode(
-                begin = "{",
+                begin = "\\{",
                 end = "}",
                 subLanguage = "xquery"
             ),
@@ -185,7 +185,7 @@ internal fun xquery(): Mode {
     )
 
     var METHOD = Mode(
-        begin = "{",
+        begin = "\\{",
         end = "}",
         contains = CONTAINS
     )

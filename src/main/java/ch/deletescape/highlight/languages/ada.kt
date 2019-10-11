@@ -45,7 +45,7 @@ internal fun ada(): Mode {
     // Identifier regex
     var ID_REGEX = "[A-Za-z](_?[A-Za-z0-9.))*"
     // bad chars, only allowed in literals
-    var BAD_CHARS = "[]{}%#'\""
+    var BAD_CHARS = "[]\\{\\}%#'\""
     // Ada doesn't have block comments, only line comments
     var COMMENTS = hljs.COMMENT(
         "--",

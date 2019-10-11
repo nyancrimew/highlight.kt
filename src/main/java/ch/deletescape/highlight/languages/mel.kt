@@ -26,7 +26,7 @@ internal fun mel(): Mode {
                 contains = listOf(hljs.BACKSLASH_ESCAPE)
             ),
             Mode(// eats variables
-                begin = "[\\\$\\%\\@](\\^\\w\\b|#\\w+|[^\\s\\w{]|{\\w+}|\\w+)"
+                begin = "[\\\$\\%\\@](\\^\\w\\b|#\\w+|[^\\s\\w\\{]|\\{\\w+\\}|\\w+)"
             ),
             hljs.C_LINE_COMMENT_MODE,
             hljs.C_BLOCK_COMMENT_MODE

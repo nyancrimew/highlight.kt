@@ -39,13 +39,13 @@ internal fun actionscript(): Mode {
             Mode(
                 className = "class",
                 beginKeywords = keywords("package"),
-                end = "{",
+                end = "\\{",
                 contains = listOf(hljs.TITLE_MODE)
             ),
             Mode(
                 className = "class",
                 beginKeywords = keywords("class interface"),
-                end = "{",
+                end = "\\{",
                 excludeEnd = true,
                 contains = listOf(
                     Mode(
@@ -68,7 +68,7 @@ internal fun actionscript(): Mode {
             Mode(
                 className = "function",
                 beginKeywords = keywords("function"),
-                end = "[{;]",
+                end = "[\\{;]",
                 excludeEnd = true,
                 illegal = "\\S",
                 contains = listOf(

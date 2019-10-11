@@ -49,17 +49,21 @@ internal fun rust(): Mode {
                 hljs.QUOTE_STRING_MODE,
                 Mode(
                     begin =
-                        """b?"""",
+                        """b?\"""",
                     illegal = null
                 )
             ),
             Mode(
                 className = "string",
                 variants = listOf(
-                    Mode(begin =
-                            """r(#*)"(.|\n)*?"\1(?!#)"""),
-                    Mode(begin =
-                            """b?'\\?(x\w{2}|u\w{4}|U\w{8}|.)'""")
+                    Mode(
+                        begin =
+                            """r(#*)"(.|\n)*?"\1(?!#)"""
+                    ),
+                    Mode(
+                        begin =
+                            """b?'\\?(x\w{2}|u\w{4}|U\w{8}|.)'"""
+                    )
                 )
             ),
             Mode(
@@ -122,7 +126,7 @@ internal fun rust(): Mode {
             Mode(
                 className = "class",
                 beginKeywords = keywords("trait enum struct union"),
-                end = "{",
+                end = "\\{",
                 contains = listOf(
                     hljs.inherit(hljs.UNDERSCORE_TITLE_MODE, Mode(endsParent = true))
                 ),

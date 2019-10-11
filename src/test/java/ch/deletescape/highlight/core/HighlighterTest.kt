@@ -17,8 +17,9 @@ class HighlighterTest {
     @Test
     fun `Highlight simple Java`() {
         val highlighter = Highlighter(TestRendererFactory())
-        val result = highlighter.highlight("java", "import test;")
-        assertTrue(result.result != null)
+        val input = "import test;"
+        val result = highlighter.highlight("java", input)
+        assertTrue(result.result != input)
     }
 
     @Disabled //TODO: we currently stalls completely for some import

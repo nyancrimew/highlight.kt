@@ -1,5 +1,4 @@
 package ch.deletescape.highlight.core
-import java.util.regex.Pattern
 /**
 * Created by Sergej Kravcenko on 5/12/2017.
 * Copyright (c) 2017 Sergej Kravcenko
@@ -21,7 +20,7 @@ data class Mode(
     var begin: String? = null,
     var end: String? = null,
     val lexemes: String? = null,
-    var terminators: Pattern? = null,
+    var terminators: Regex? = null,
     val illegal: String? = null,
     var terminatorEnd: String? = null,
     var relevance: Int = -1,
@@ -39,10 +38,10 @@ data class Mode(
 ) {
   internal var compiled:Boolean = false
   internal var compiledKeywords = mapOf<String, Keyword>()
-  internal var beginRe:Pattern? = null
-  internal var endRe : Pattern? = null
-  internal var lexemesRe : Pattern? = null
-  internal var illegalRe : Pattern? = null
+  internal var beginRe: Regex? = null
+  internal var endRe : Regex? = null
+  internal var lexemesRe : Regex? = null
+  internal var illegalRe : Regex? = null
 
   private fun langRe(re: String) = "(?m" + (if(case_insensitive) "i" else "") + ")" + re
 
@@ -72,7 +71,7 @@ data class Mode(
       }
 
       // Lexemes
-      mode.lexemesRe = if (mode.lexemes == null) emptyLexemePattern else Pattern.compile(langRe(mode.lexemes))
+      mode.lexemesRe = if (mode.lexemes == null) emptyLexemePattern else langRe(mode.lexemes).toRegex()
       
       // Parent
       if (parent != null) {
@@ -83,14 +82,14 @@ data class Mode(
             mode.begin = "\\B|\\b"
             mode.beginRe = emptyBeginEndPattern
          } else {
-            mode.beginRe = Pattern.compile(langRe(mode.begin!!))
+            mode.beginRe = langRe(mode.begin!!).toRegex()
          }
          
          if(mode.end == null && !mode.endsWithParent) {
             mode.end = "\\B|\\b"
             mode.endRe = emptyBeginEndPattern
          } else if (!mode.end.isNullOrEmpty()) {
-            mode.endRe = Pattern.compile(langRe(mode.end as String))
+            mode.endRe = langRe(mode.end!!).toRegex()
          }
 
          mode.terminatorEnd = mode.end ?: ""
@@ -106,7 +105,7 @@ data class Mode(
 
       // Illegal
       if (mode.illegal != null) {
-         mode.illegalRe = Pattern.compile(langRe(mode.illegal))
+         mode.illegalRe = langRe(mode.illegal).toRegex()
       }
 
       // Contains
@@ -135,7 +134,7 @@ data class Mode(
       if (!mode.illegal.isNullOrEmpty()) {
          terminators += mode.illegal
       }
-      mode.terminators = if (terminators.isNotEmpty()) Pattern.compile(langRe(terminators.joinToString("|"))) else null
+      mode.terminators = if (terminators.isNotEmpty()) langRe(terminators.joinToString("|")).toRegex() else null
    }
 
    fun compile() {
@@ -143,8 +142,8 @@ data class Mode(
    }
 
   companion object {
-     private val emptyLexemePattern = Pattern.compile("\\w+", Pattern.MULTILINE)
-     private val emptyBeginEndPattern = Pattern.compile("\\B|\\b", Pattern.MULTILINE)
+    private val emptyLexemePattern = Regex("\\w+", RegexOption.MULTILINE)
+    private val emptyBeginEndPattern = Regex("\\B|\\b", RegexOption.MULTILINE)
     val SELF = Mode(self = true)
     val IDENT_RE = "[a-zA-Z]\\w*"
     val UNDERSCORE_IDENT_RE = "[a-zA-Z_]\\w*"

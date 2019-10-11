@@ -24,7 +24,7 @@ internal fun dart(): Mode {
         className = "subst",
         variants = listOf(
             Mode(
-                begin = "\\\${",
+                begin = "\\\$\\{",
                 end = "}"
             )
         ),
@@ -119,7 +119,7 @@ internal fun dart(): Mode {
             Mode(
                 className = "class",
                 beginKeywords = keywords("class interface"),
-                end = "{",
+                end = "\\{",
                 excludeEnd = true,
                 contains = listOf(
                     Mode(

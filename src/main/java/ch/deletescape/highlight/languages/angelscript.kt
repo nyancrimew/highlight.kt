@@ -60,7 +60,7 @@ internal fun angelscript(): Mode {
 
             Mode(// interface or namespace declaration
                 beginKeywords = keywords("interface namespace"),
-                end = "{",
+                end = "\\{",
                 illegal = "[;.\\-]",
                 contains = listOf(
                     Mode(// interface or namespace name
@@ -71,7 +71,7 @@ internal fun angelscript(): Mode {
             ),
             Mode(// class declaration
                 beginKeywords = keywords("class"),
-                end = "{",
+                end = "\\{",
                 illegal = "[;.\\-]",
                 contains = listOf(
                     Mode(// class name

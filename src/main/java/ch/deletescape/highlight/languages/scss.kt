@@ -102,7 +102,7 @@ internal fun scss(): Mode {
             ),
             Mode(
                 begin = "@",
-                end = "[{;]",
+                end = "[\\{;]",
                 keywords = keywords("mixin include extend for if else each while charset import debug media page content font-face namespace warn"),
                 contains = listOf(
                     VARIABLE,

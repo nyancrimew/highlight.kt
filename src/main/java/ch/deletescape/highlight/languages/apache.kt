@@ -60,7 +60,7 @@ internal fun apache(): Mode {
                         Mode(
                             className = "variable",
                             begin = "[\\${'$'}%]\\{",
-                            end = "\\}",
+                            end = "\\\\}",
                             contains = listOf(
                                 hljs.SELF,
                                 NUMBER

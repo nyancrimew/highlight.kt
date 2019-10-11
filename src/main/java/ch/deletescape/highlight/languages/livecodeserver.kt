@@ -123,6 +123,6 @@ internal fun livecodeserver(): Mode {
             hljs.C_NUMBER_MODE,
             TITLE1
         ) + COMMENT_MODES,
-        illegal = ";\$|^\\[|^=|&|{"
+        illegal = ";\$|^\\[|^=|&|\\{"
     )
 }

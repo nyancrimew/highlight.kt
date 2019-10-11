@@ -57,8 +57,8 @@ internal fun groovy(): Mode {
             ),
             Mode(
                 className = "string",
-                begin = "${'$'}/",
-                end = "/${'$'}",
+                begin = "\${'$'}/",
+                end = "/\${'$'}",
                 relevance = 10
             ),
             hljs.APOS_STRING_MODE,
@@ -81,7 +81,7 @@ internal fun groovy(): Mode {
             Mode(
                 className = "class",
                 beginKeywords = keywords("class interface trait enum"),
-                end = "{",
+                end = "\\{",
                 illegal = ":",
                 contains = listOf(
                     Mode(beginKeywords = keywords("extends implements")),

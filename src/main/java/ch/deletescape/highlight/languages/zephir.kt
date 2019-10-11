@@ -91,7 +91,7 @@ internal fun zephir(): Mode {
             Mode(
                 className = "class",
                 beginKeywords = keywords("class interface"),
-                end = "{",
+                end = "\\{",
                 excludeEnd = true,
                 illegal =
                     """[:\(${'$'}"]""",

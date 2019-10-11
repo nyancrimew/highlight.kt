@@ -16,8 +16,12 @@ internal fun powershell(): Mode {
     )
     var VAR = Mode(
         className = "variable",
-        variants = listOf(Mode(begin =
-                """${'$'}[\w\d][\w\d_ = ]*"""))
+        variants = listOf(
+            Mode(
+                begin =
+                    """${'$'}[\w\d][\w\d_ = ]*"""
+            )
+        )
     )
     var LITERAL = Mode(
         className = "literal",

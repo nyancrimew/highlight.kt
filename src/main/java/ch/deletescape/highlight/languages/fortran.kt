@@ -56,7 +56,7 @@ internal fun fortran(): Mode {
             Mode(
                 className = "function",
                 beginKeywords = keywords("subroutine function program"),
-                illegal = "[\${=\\n]",
+                illegal = "[\$\\{=\\n]",
                 contains = listOf(hljs.UNDERSCORE_TITLE_MODE, PARAMS)
             ),
             hljs.COMMENT(

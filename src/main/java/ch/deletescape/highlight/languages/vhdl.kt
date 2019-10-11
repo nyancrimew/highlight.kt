@@ -48,7 +48,7 @@ internal fun vhdl(): Mode {
                     "false true note warning error failure line text side width" // textio
             )
         ),
-        illegal = "{",
+        illegal = "\\{",
         contains = listOf(
             hljs.C_BLOCK_COMMENT_MODE, // VHDL-2008 block commenting.
             hljs.COMMENT(

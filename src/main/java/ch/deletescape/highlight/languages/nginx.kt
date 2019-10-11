@@ -108,9 +108,9 @@ internal fun nginx(): Mode {
         contains = listOf(
             hljs.HASH_COMMENT_MODE,
             Mode(
-                begin = hljs.UNDERSCORE_IDENT_RE + "\\s+{",
+                begin = hljs.UNDERSCORE_IDENT_RE + "\\s+\\{",
                 returnBegin = true,
-                end = "{",
+                end = "\\{",
                 contains = listOf(
                     Mode(
                         className = "section",
@@ -121,7 +121,7 @@ internal fun nginx(): Mode {
             ),
             Mode(
                 begin = hljs.UNDERSCORE_IDENT_RE + "\\s",
-                end = ";|{",
+                end = ";|\\{",
                 returnBegin = true,
                 contains = listOf(
                     Mode(
@@ -133,6 +133,6 @@ internal fun nginx(): Mode {
                 relevance = 0
             )
         ),
-        illegal = "[^\\s\\}]"
+        illegal = "[^\\s\\\\}]"
     )
 }

@@ -87,7 +87,7 @@ internal fun swift(): Mode {
             Mode(
                 className = "function",
                 beginKeywords = keywords("func"),
-                end = "{",
+                end = "\\{",
                 excludeEnd = true,
                 contains = listOf(
                     hljs.inherit(
@@ -129,7 +129,7 @@ internal fun swift(): Mode {
                 className = "class",
                 beginKeywords = keywords("struct protocol class extension enum"),
                 keywords = keywords(SWIFT_KEYWORDS),
-                end = "\\{",
+                end = "\\\\{",
                 excludeEnd = true,
                 contains = listOf(
                     hljs.inherit(hljs.TITLE_MODE, Mode(begin =

@@ -26,7 +26,7 @@ internal fun axapta(): Mode {
             Mode(
                 className = "class",
                 beginKeywords = keywords("class interface"),
-                end = "{",
+                end = "\\{",
                 excludeEnd = true,
                 illegal = ":",
                 contains = listOf(

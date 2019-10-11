@@ -76,7 +76,7 @@ internal fun typescript(): Mode {
     var SUBST = Mode(
         className = "subst",
         begin = "\\${'$'}\\{",
-        end = "\\}",
+        end = "\\\\}",
         keywords = keywords(KEYWORDS),
         contains = listOf() // defined later
     )
