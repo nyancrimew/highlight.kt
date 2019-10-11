@@ -66,6 +66,8 @@ class HighlightParser(
 
    private fun keywordMatch(mode: Mode, match: String) = mode.compiledKeywords.get(if(language.case_insensitive) match.toLowerCase() else match)
 
+   private fun commonKeyword(keyword: String) = keyword in COMMON_KEYWORDS
+
    private fun processKeywords() {
       if (top.mode.compiledKeywords.isEmpty()) {
          blockRenderer.onPushCodeBlock(modeBuffer)
@@ -77,7 +79,8 @@ class HighlightParser(
          blockRenderer.onPushCodeBlock(modeBuffer.substring(lastIndex, match.range.start))
          val keyword = keywordMatch(top.mode, match.groupValues[0])
          if (keyword != null) {
-            relevance += keyword.relevance
+            if (keyword.relevance > 1 || !commonKeyword(keyword.value))
+               relevance += keyword.relevance
             blockRenderer.onPushStyle(keyword.className)
             blockRenderer.onPushCodeBlock(match.groupValues[0])
             blockRenderer.onPopStyle()
@@ -249,5 +252,11 @@ class HighlightParser(
       }
       
       return relevance
+   }
+
+   companion object {
+      val COMMON_KEYWORDS = listOf(
+         "if"
+      )
    }
 }

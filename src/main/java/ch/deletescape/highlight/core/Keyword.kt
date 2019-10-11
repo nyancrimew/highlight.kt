@@ -8,7 +8,6 @@ package ch.deletescape.highlight.core
 data class Keyword(
    val value: String,
    val className: String = "keyword",
-   // TODO: parse relevance from value and default to -1?
    val relevance: Int = 0
 ) {
    constructor(value: List<Keyword>, className: String = "keyword", relevance: Int = 0) : this(
