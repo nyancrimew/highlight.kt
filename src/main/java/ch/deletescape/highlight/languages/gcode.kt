@@ -16,7 +16,7 @@ internal fun gcode(): Mode {
         "IF DO WHILE ENDWHILE CALL ENDIF SUB ENDSUB GOTO REPEAT ENDREPEAT EQ LT GT NE GE LE OR XOR"
     var GCODE_START = Mode(
         className = "meta",
-        begin = "([O))([0-9]+)"
+        begin = "([O])([0-9]+)"
     )
     var GCODE_CODE = listOf(
         hljs.C_LINE_COMMENT_MODE,
@@ -33,11 +33,11 @@ internal fun gcode(): Mode {
         hljs.inherit(hljs.QUOTE_STRING_MODE, Mode(illegal = null)),
         Mode(
             className = "name",
-            begin = "([G))([0-9]+\\.?[0-9]?)"
+            begin = "([G])([0-9]+\\.?[0-9]?)"
         ),
         Mode(
             className = "name",
-            begin = "([M))([0-9]+\\.?[0-9]?)"
+            begin = "([M])([0-9]+\\.?[0-9]?)"
         ),
         Mode(
             className = "attr",

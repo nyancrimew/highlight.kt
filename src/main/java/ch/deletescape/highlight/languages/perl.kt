@@ -121,7 +121,7 @@ internal fun perl(): Mode {
                 hljs.HASH_COMMENT_MODE,
                 Mode(
                     className = "regexp",
-                    begin = "(s|tr|y)/(\\\\.|[^/))*/(\\\\.|[^/))*/[a-z]*",
+                    begin = "(s|tr|y)/(\\\\.|[^/])*/(\\\\.|[^/])*/[a-z]*",
                     relevance = 10
                 ),
                 Mode(

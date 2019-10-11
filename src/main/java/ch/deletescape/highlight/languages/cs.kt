@@ -123,7 +123,7 @@ internal fun cs(): Mode {
     )
     var TYPE_IDENT_RE = hljs.IDENT_RE + "(<" +
         hljs.IDENT_RE + "(\\s*,\\s*" +
-        hljs.IDENT_RE + ")*>)?(\\[\\))?"
+        hljs.IDENT_RE + ")*>)?(\\[\\])?"
     return Mode(
         aliases = listOf(
             "csharp",

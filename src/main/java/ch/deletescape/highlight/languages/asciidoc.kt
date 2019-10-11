@@ -112,7 +112,7 @@ internal fun asciidoc(): Mode {
             Mode(
                 className = "strong",
                 // must not follow a word character or be followed by an asterisk or space
-                begin = "\\B\\*(?![\\*\\s))",
+                begin = "\\B\\*(?![\\*\\s])",
                 end = "(\\n{2}|\\*)",
                 // allow escaped asterisk followed by word char
                 contains = listOf(
@@ -126,7 +126,7 @@ internal fun asciidoc(): Mode {
             Mode(
                 className = "emphasis",
                 // must not follow a word character or be followed by a single quote or space
-                begin = "\\B'(?!['\\s))",
+                begin = "\\B'(?!['\\s])",
                 end = "(\\n{2}|')",
                 // allow escaped single quote followed by word char
                 contains = listOf(
@@ -141,7 +141,7 @@ internal fun asciidoc(): Mode {
             Mode(
                 className = "emphasis",
                 // must not follow a word character or be followed by an underline or space
-                begin = "_(?![_\\s))",
+                begin = "_(?![_\\s])",
                 end = "(\\n{2}|_)",
                 relevance = 0
             ),

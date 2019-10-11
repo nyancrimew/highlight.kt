@@ -174,7 +174,7 @@ internal fun `1c`(): Mode {
         contains = listOf(
             Mode(
                 className = "number",
-                begin = "\\d{4}([\\.\\\\/:-]?\\d{2)){0,5}"
+                begin = "\\d{4}([\\.\\\\/:-]?\\d{2}){0,5}"
             )
         )
     )

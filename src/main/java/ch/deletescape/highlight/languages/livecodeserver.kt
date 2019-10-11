@@ -16,7 +16,7 @@ internal fun livecodeserver(): Mode {
     var VARIABLE = Mode(
         className = "variable",
         variants = listOf(
-            Mode(begin = "\\b([gtps][A-Z]{1}[a-zA-Z0-9]*)(\\[.+\\))?(?:\\s*?)"),
+            Mode(begin = "\\b([gtps][A-Z]{1}[a-zA-Z0-9]*)(\\[.+\\])?(?:\\s*?)"),
             Mode(begin = "\\\$_[A-Z]+")
         ),
         relevance = 0

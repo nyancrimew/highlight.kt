@@ -65,7 +65,7 @@ internal fun fsharp(): Mode {
             ),
             Mode(
                 className = "symbol",
-                begin = "\\B('[A-Za-z))\\b",
+                begin = "\\B('[A-Za-z])\\b",
                 contains = listOf(hljs.BACKSLASH_ESCAPE)
             ),
             hljs.C_LINE_COMMENT_MODE,

@@ -18,7 +18,7 @@ internal fun stylus(): Mode {
     )
     var HEX_COLOR = Mode(
         className = "number",
-        begin = "#([a-fA-F0-9]{6}|[a-fA-F0-9]{3))"
+        begin = "#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})"
     )
     var AT_KEYWORDS = listOf(
         "charset",

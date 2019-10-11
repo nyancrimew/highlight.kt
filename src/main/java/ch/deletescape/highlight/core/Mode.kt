@@ -51,6 +51,7 @@ data class Mode(
         listOf(inherit(mode, null))
      } else listOf(mode)
 
+   // TODO: Find a way to do this without recursion as we get StackOverflow for some languages 
    private fun compileMode(mode: Mode, parent: Mode?) {
       if (mode.compiled) {
          return
@@ -122,9 +123,6 @@ data class Mode(
       }
 
       // Terminators
-      for (child in mode.contains) {
-
-      }
       val terminators = mode.contains.mapNotNull {
          if (it.beginKeywords.isNotEmpty()) "\\.?(" + it.begin + ")\\.?" else it.begin
       }.toMutableList()

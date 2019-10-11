@@ -49,7 +49,7 @@ internal fun vim(): Mode {
             Mode(
                 className = "string",
                 begin =
-                    """"(\\"|\n\\|[^"\n))*""""
+                    """"(\\"|\n\\|[^"\n])*""""
             ),
             hljs.COMMENT(
                 "\"",
