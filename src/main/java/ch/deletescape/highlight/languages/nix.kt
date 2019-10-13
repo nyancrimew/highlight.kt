@@ -12,26 +12,26 @@ Description = Nix functional language. See http = //nixos.org/nix
  */
 internal fun nix(): Mode {
     var NIX_KEYWORDS = listOf(
-        Keyword(
+        keyword(
             className = "keyword",
             value =
                 "rec with let in inherit assert if else then"
         ),
-        Keyword(
+        keyword(
             className = "literal",
             value =
                 "true false or and null"
         ),
-        Keyword(
+        keyword(
             className = "built_in",
             value =
                 "import abort baseNameOf dirOf isNull builtins map removeAttrs throw toString derivation"
         )
-    )
+    ).flatten()
     var ANTIQUOTE = Mode(
         className = "subst",
         begin =
-            """${'$'}\{""",
+            """\${'$'}\{""",
         end =
             """}""",
         keywords = keywords(NIX_KEYWORDS)

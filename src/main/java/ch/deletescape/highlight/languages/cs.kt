@@ -1,9 +1,7 @@
 package ch.deletescape.highlight.languages
 
-import ch.deletescape.highlight.core.Keyword
-import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.*
 import ch.deletescape.highlight.core.hljs
-import ch.deletescape.highlight.core.keywords
 
 /*
 Language = C#
@@ -17,18 +15,18 @@ Category = common
  */
 internal fun cs(): Mode {
     var KEYWORDS = listOf(
-        Keyword(
+        keyword(
             className = "keyword",
             value =
                 // Normal keywords.
                 "abstract as base bool break byte case catch char checked const continue decimal default delegate do double enum event explicit extern finally fixed float for foreach goto if implicit in int interface internal is lock long object operator out override params private protected public readonly ref sbyte sealed short sizeof stackalloc static string struct switch this try typeof uint ulong unchecked unsafe ushort using virtual void volatile while add alias ascending async await by descending dynamic equals from get global group into join let nameof on orderby partial remove select set value var when where yield"
         ),
-        Keyword(
+        keyword(
             className = "literal",
             value =
                 "null false true"
         )
-    )
+    ).flatten()
     var NUMBERS = Mode(
         className = "number",
         variants = listOf(
@@ -67,7 +65,7 @@ internal fun cs(): Mode {
     var INTERPOLATED_STRING = Mode(
         className = "string",
         begin =
-            """${'$'}"""",
+            """\$"""",
         end = "\"",
         illegal =
             """\n""",
@@ -76,7 +74,7 @@ internal fun cs(): Mode {
     var INTERPOLATED_VERBATIM_STRING = Mode(
         className = "string",
         begin =
-            """${'$'}@"""",
+            """\$@"""",
         end = "\"",
         contains = listOf(Mode(begin = "\\{\\{"), Mode(begin = "}}"), Mode(begin = "\"\""), SUBST)
     )
@@ -135,7 +133,7 @@ internal fun cs(): Mode {
         contains = listOf(
             hljs.COMMENT(
                 "///",
-                "${'\$'}",
+                "$",
                 Mode(
                     returnBegin = true,
                     contains = listOf(
@@ -160,13 +158,11 @@ internal fun cs(): Mode {
             Mode(
                 className = "meta",
                 begin = "#",
-                end = "${'\$'}",
-                keywords = listOf(
-                    Keyword(
+                end = "$",
+                keywords = keyword(
                         className = "meta-keyword",
                         value = "if else elif endif define undef warning error line region endregion pragma checksum"
                     )
-                )
             ),
             STRING,
             NUMBERS,

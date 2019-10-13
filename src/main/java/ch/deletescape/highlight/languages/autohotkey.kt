@@ -18,25 +18,25 @@ internal fun autohotkey(): Mode {
         case_insensitive = true,
         aliases = listOf("ahk"),
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value = "Break Continue Critical Exit ExitApp Gosub Goto New OnExit Pause return SetBatchLines SetTimer Suspend Thread Throw Until ahk_id ahk_class ahk_pid ahk_exe ahk_group"
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value = "true false NOT AND OR"
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value = "ComSpec Clipboard ClipboardAll ErrorLevel"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             BACKTICK_ESCAPE,
             hljs.inherit(hljs.QUOTE_STRING_MODE, Mode(contains = listOf(BACKTICK_ESCAPE))),
             hljs.COMMENT(
                 ";",
-                "\$",
+                "$",
                 Mode(relevance = 0)
             ),
             hljs.C_BLOCK_COMMENT_MODE,
@@ -71,7 +71,7 @@ internal fun autohotkey(): Mode {
             Mode(
                 className = "meta",
                 begin = "^\\s*#\\w+",
-                end = "\$",
+                end = "$",
                 relevance = 0
             ),
             Mode(

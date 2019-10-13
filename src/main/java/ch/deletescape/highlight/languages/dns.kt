@@ -1,5 +1,9 @@
 package ch.deletescape.highlight.languages
-import ch.deletescape.highlight.core.*
+
+import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.hljs
+import ch.deletescape.highlight.core.keyword
+
 /*
 Language = DNS Zone file
 Author = Tim Schumacher <tim@datenknoten.me>
@@ -15,23 +19,21 @@ internal fun dns(): Mode {
             "bind",
             "zone"
         ),
-        keywords = listOf(
-            Keyword(
-                className = "keyword",
-                value =
-                    "IN A AAAA AFSDB APL CAA CDNSKEY CDS CERT CNAME DHCID DLV DNAME DNSKEY DS HIP IPSECKEY KEY KX LOC MX NAPTR NS NSEC NSEC3 NSEC3PARAM PTR RRSIG RP SIG SOA SRV SSHFP TA TKEY TLSA TSIG TXT"
-            )
+        keywords = keyword(
+            className = "keyword",
+            value =
+            "IN A AAAA AFSDB APL CAA CDNSKEY CDS CERT CNAME DHCID DLV DNAME DNSKEY DS HIP IPSECKEY KEY KX LOC MX NAPTR NS NSEC NSEC3 NSEC3PARAM PTR RRSIG RP SIG SOA SRV SSHFP TA TKEY TLSA TSIG TXT"
         ),
         contains = listOf(
             hljs.COMMENT(
                 ";",
-                "\$",
+                "$",
                 Mode(relevance = 0)
             ),
             Mode(
                 className = "meta",
                 begin =
-                    """^${'$'}(TTL|GENERATE|INCLUDE|ORIGIN)\b"""
+                """^\${'$'}(TTL|GENERATE|INCLUDE|ORIGIN)\b"""
             ),
             // IPv6
             Mode(
@@ -43,8 +45,12 @@ internal fun dns(): Mode {
                 className = "number",
                 begin = "((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}listOf(0-9)){0,1}listOf(0-9))\\b"
             ),
-            hljs.inherit(hljs.NUMBER_MODE, Mode(begin =
-                    """\b\d+[dhwm]?"""))
+            hljs.inherit(
+                hljs.NUMBER_MODE, Mode(
+                    begin =
+                    """\b\d+[dhwm]?"""
+                )
+            )
         )
     )
 }

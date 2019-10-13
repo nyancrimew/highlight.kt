@@ -34,32 +34,28 @@ internal fun apache(): Mode {
                 relevance = 0,
                 // keywords aren’t needed for highlighting per se, they only boost relevance
                 // for a very generally defined mode (starts with a word, ends with line-end
-                keywords = listOf(
-                    Keyword(
+                keywords = keyword(
                         className = "nomarkup",
                         value =
                             "order deny allow setenv rewriterule rewriteengine rewritecond documentroot sethandler errordocument loadmodule options header listen serverroot servername"
-                    )
-                ),
+                    ),
                 starts = Mode(
                     end =
-                        """${'$'}""",
+                        """$""",
                     relevance = 0,
-                    keywords = listOf(
-                        Keyword(
+                    keywords = keyword(
                             className = "literal",
                             value = "on off all"
-                        )
-                    ),
+                        ),
                     contains = listOf(
                         Mode(
                             className = "meta",
                             begin = "\\s\\[",
-                            end = "\\]${'$'}"
+                            end = "\\]$"
                         ),
                         Mode(
                             className = "variable",
-                            begin = "[\\${'$'}%]\\{",
+                            begin = "[\\$%]\\{",
                             end = "\\\\}",
                             contains = listOf(
                                 hljs.SELF,

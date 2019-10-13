@@ -23,17 +23,17 @@ internal fun sas(): Mode {
         ),
         case_insensitive = true, // SAS is case-insensitive
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "literal",
                 value =
                     "null missing _all_ _automatic_ _character_ _infile_ _n_ _name_ _null_ _numeric_ _user_ _webout_"
             ),
-            Keyword(
+            keyword(
                 className = "meta",
                 value =
                     SAS_KEYWORDS
             )
-        ),
+        ).flatten(),
         contains = listOf(
             Mode(
                 // Distinct highlight for proc <proc>, data, run, quit

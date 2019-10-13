@@ -1,5 +1,10 @@
 package ch.deletescape.highlight.languages
-import ch.deletescape.highlight.core.*
+
+import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.hljs
+import ch.deletescape.highlight.core.keyword
+import ch.deletescape.highlight.core.keywords
+
 /*
 Language = Device Tree
 Description = *.dts files used in the Linux kernel
@@ -38,27 +43,23 @@ internal fun dts(): Mode {
     var PREPROCESSOR = Mode(
         className = "meta",
         begin = "#",
-        end = "\$",
-        keywords = listOf(
-            Keyword(
-                className = "meta-keyword",
-                value = "if else elif endif define undef ifdef ifndef"
-            )
+        end = "$",
+        keywords = keyword(
+            className = "meta-keyword",
+            value = "if else elif endif define undef ifdef ifndef"
         ),
         contains = listOf(
             Mode(
                 begin =
-                    """\\\n""",
+                """\\\n""",
                 relevance = 0
             ),
             Mode(
                 beginKeywords = keywords("include"),
                 end = "${'$'}",
-                keywords = listOf(
-                    Keyword(
-                        className = "meta-keyword",
-                        value = "include"
-                    )
+                keywords = keyword(
+                    className = "meta-keyword",
+                    value = "include"
                 ),
                 contains = listOf(
                     hljs.inherit(STRINGS, Mode(className = "meta-string")),
@@ -99,9 +100,9 @@ internal fun dts(): Mode {
     var DTS_NODE = Mode(
         className = "class",
         begin =
-            """[a-zA-Z_][a-zA-Z\d_@]*\s{""",
+        """[a-zA-Z_][a-zA-Z\d_@]*\s{""",
         end =
-            """[{;=]""",
+        """[{;=]""",
         returnBegin = true,
         excludeEnd = true
     )

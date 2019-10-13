@@ -30,7 +30,7 @@ internal fun asciidoc(): Mode {
             // line comment
             hljs.COMMENT(
                 "^//",
-                "\$",
+                "$",
                 Mode(
                     relevance = 0
                 )
@@ -163,7 +163,7 @@ internal fun asciidoc(): Mode {
             Mode(
                 className = "code",
                 begin = "^[ \\t]",
-                end = "\$",
+                end = "$",
                 relevance = 0
             ),
             // horizontal rules

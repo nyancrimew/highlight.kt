@@ -1,9 +1,7 @@
 package ch.deletescape.highlight.languages
 
-import ch.deletescape.highlight.core.Keyword
-import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.*
 import ch.deletescape.highlight.core.hljs
-import ch.deletescape.highlight.core.keywords
 
 /*
 Language = Scala
@@ -120,15 +118,15 @@ internal fun scala(): Mode {
     )
     return Mode(
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "literal",
                 value = "true false null"
             ),
-            Keyword(
+            keyword(
                 className = "keyword",
                 value = "type yield lazy override def with val var sealed abstract private trait object if forSome for while throw finally protected extends import final return else break new catch super class case package default try this match continue throws implicit"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             hljs.C_LINE_COMMENT_MODE,
             hljs.C_BLOCK_COMMENT_MODE,

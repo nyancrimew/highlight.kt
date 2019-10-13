@@ -1,9 +1,7 @@
 package ch.deletescape.highlight.languages
 
-import ch.deletescape.highlight.core.Keyword
-import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.*
 import ch.deletescape.highlight.core.hljs
-import ch.deletescape.highlight.core.keywords
 
 /*
 Language = Twig
@@ -26,11 +24,9 @@ internal fun twig(): Mode {
         "attribute block constant cycle date dump include max min parent random range source template_from_string"
     var FUNCTIONS = Mode(
         beginKeywords = keywords(FUNCTION_NAMES),
-        keywords = listOf(
-            Keyword(
+        keywords = keyword(
                 className = "name",
                 value = FUNCTION_NAMES
-            )
         ),
         relevance = 0,
         contains = listOf(

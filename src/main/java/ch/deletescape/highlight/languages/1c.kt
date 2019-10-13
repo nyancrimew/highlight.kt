@@ -187,13 +187,11 @@ internal fun `1c`(): Mode {
         className = "meta",
         lexemes = UNDERSCORE_IDENT_RE,
         begin = "#|&",
-        end = "\$",
-        keywords = listOf(
-            Keyword(
+        end = "$",
+        keywords = keyword(
                 className = "meta-keyword",
-                value = KEYWORD + METAKEYWORD
-            )
-        ),
+                value = (KEYWORD + METAKEYWORD).joinToString(" ")
+            ),
         contains = listOf(
             COMMENTS
         )
@@ -236,15 +234,15 @@ internal fun `1c`(): Mode {
                         excludeEnd = true,
                         endsWithParent = true,
                         keywords = listOf(
-                            Keyword(
+                            keyword(
                                 className = "keyword",
                                 value = "знач"
                             ),
-                            Keyword(
+                            keyword(
                                 className = "literal",
                                 value = LITERAL
                             )
-                        ),
+                        ).flatten(),
                         contains = listOf(
                             NUMBERS,
                             STRINGS,
@@ -261,27 +259,27 @@ internal fun `1c`(): Mode {
         case_insensitive = true,
         lexemes = UNDERSCORE_IDENT_RE,
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
-                value = KEYWORD
+                value = KEYWORD.joinToString(" ")
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value = BUILTIN
             ),
-            Keyword(
+            keyword(
                 className = "class",
                 value = CLASS
             ),
-            Keyword(
+            keyword(
                 className = "type",
                 value = TYPE
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value = LITERAL
             )
-        ),
+        ).flatten(),
         contains = listOf(
             META,
             FUNCTION,

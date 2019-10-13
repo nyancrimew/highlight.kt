@@ -14,21 +14,21 @@ import ch.deletescape.highlight.core.*
  */
 internal fun gams(): Mode {
     var KEYWORDS = listOf(
-        Keyword(
+        keyword(
             className = "keyword",
             value =
                 "abort acronym acronyms alias all and assign binary card diag display else eq file files for free ge gt if integer le loop lt maximizing minimizing model models ne negative no not option options or ord positive prod put putpage puttl repeat sameas semicont semiint smax smin solve sos1 sos2 sum system table then until using while xor yes"
         ),
-        Keyword(
+        keyword(
             className = "literal",
             value = "eps inf na"
         ),
-        Keyword(
+        keyword(
             className = "built-in",
             value =
                 "abs arccos arcsin arctan arctan2 Beta betaReg binomial ceil centropy cos cosh cvPower div div0 eDist entropy errorf execSeed exp fact floor frac gamma gammaReg log logBeta logGamma log10 log2 mapVal max min mod ncpCM ncpF ncpVUpow ncpVUsin normal pi poly power randBinomial randLinear randTriangle round rPower sigmoid sign signPower sin sinh slexp sllog10 slrec sqexp sqlog10 sqr sqrec sqrt tan tanh trunc uniform uniformInt vcPower bool_and bool_eqv bool_imp bool_not bool_or bool_xor ifThen rel_eq rel_ge rel_gt rel_le rel_lt rel_ne gday gdow ghour gleap gmillisec gminute gmonth gsecond gyear jdate jnow jstart jtime errorLevel execError gamsRelease gamsVersion handleCollect handleDelete handleStatus handleSubmit heapFree heapLimit heapSize jobHandle jobKill jobStatus jobTerminate licenseLevel licenseStatus maxExecError sleep timeClose timeComp timeElapsed timeExec timeStart"
         )
-    )
+    ).flatten()
     var PARAMS = Mode(
         className = "params",
         begin =
@@ -44,7 +44,7 @@ internal fun gams(): Mode {
             Mode(begin =
                     """\=[lgenxc]="""),
             Mode(begin =
-                    """${'$'}""")
+                    """\${'$'}""")
         )
     )
     var QSTR = Mode(// One-line quoted comment string
@@ -97,7 +97,7 @@ internal fun gams(): Mode {
         case_insensitive = true,
         keywords = keywords(KEYWORDS),
         contains = listOf(
-            hljs.COMMENT("""^${'$'}ontext""", """^${'$'}offtext"""),
+            hljs.COMMENT("""^\${'$'}ontext""", """^\${'$'}offtext"""),
             Mode(
                 className = "meta",
                 begin = "^\\${'$'}[a-z0-9]+",

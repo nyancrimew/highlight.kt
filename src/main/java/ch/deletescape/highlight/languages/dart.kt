@@ -79,17 +79,17 @@ internal fun dart(): Mode {
         hljs.C_NUMBER_MODE, STRING
     )
     var KEYWORDS = listOf(
-        Keyword(
+        keyword(
             className = "keyword",
             value = "abstract as assert async await break case catch class const continue covariant default deferred do dynamic else enum export extends extension external factory false final finally for Function get hide if implements import in inferface is library mixin new null on operator part rethrow return set show static super switch sync this throw true try typedef var void while with yield"
         ),
-        Keyword(
+        keyword(
             className = "built_in",
             value =
                 // dart:core
                 "Comparable DateTime Duration Function Iterable Iterator List Map Match Null Object Pattern RegExp Set Stopwatch String StringBuffer StringSink Symbol Type Uri bool double dynamic int num print Element ElementList document querySelector querySelectorAll window"
         )
-    )
+    ).flatten()
     return Mode(
         keywords = keywords(KEYWORDS),
         contains = listOf(
@@ -103,13 +103,13 @@ internal fun dart(): Mode {
             ),
             hljs.COMMENT(
                 "///+\\s*",
-                "\$",
+                "$",
                 Mode(
                     contains = listOf(
                         Mode(
                             subLanguage = "markdown",
                             begin = ".",
-                            end = "\$"
+                            end = "$"
                         )
                     )
                 )

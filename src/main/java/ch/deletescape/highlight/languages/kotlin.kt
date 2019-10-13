@@ -11,22 +11,22 @@ import ch.deletescape.highlight.core.*
  */
 internal fun kt(): Mode {
     var KEYWORDS = listOf(
-        Keyword(
+        keyword(
             className = "keyword",
             value =
                 "abstract as val var vararg get set class object open private protected public noinline crossinline dynamic final enum if else do while for when throw try catch finally import package is in fun override companion reified inline lateinit init interface annotation data sealed internal infix operator out by constructor super tailrec where const inner suspend typealias external expect actual trait volatile transient native default"
         ),
-        Keyword(
+        keyword(
             className = "built_in",
             value =
                 "Byte Short Char Int Long Boolean Float Double Void Unit Nothing"
         ),
-        Keyword(
+        keyword(
             className = "literal",
             value =
                 "true false null"
         )
-    )
+    ).flatten()
     var KEYWORDS_WITH_LABEL = Mode(
         className = "keyword",
         begin =
@@ -258,7 +258,7 @@ internal fun kt(): Mode {
             Mode(
                 className = "meta",
                 begin = "^#!/usr/bin/env",
-                end = "\$",
+                end = "$",
                 illegal = "\n"
             ),
             KOTLIN_NUMBER_MODE

@@ -1,5 +1,9 @@
 package ch.deletescape.highlight.languages
-import ch.deletescape.highlight.core.*
+
+import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.hljs
+import ch.deletescape.highlight.core.keyword
+
 /*
 Language = Nginx
 Author = Peter Leonov <gojpeg@yandex.ru>
@@ -14,29 +18,30 @@ internal fun nginx(): Mode {
     var VAR = Mode(
         className = "variable",
         variants = listOf(
-            Mode(begin =
-                    """${'$'}\d+"""),
             Mode(
                 begin =
-                    """${'$'}\{""",
+                """\${'$'}\d+"""
+            ),
+            Mode(
+                begin =
+                """\${'$'}\{""",
                 end =
-                    """}"""
+                """}"""
             ),
             Mode(
                 begin = "[\\${'$'}\\@]" +
-                    hljs.UNDERSCORE_IDENT_RE
+                        hljs.UNDERSCORE_IDENT_RE
             )
         )
     )
     var DEFAULT = Mode(
         endsWithParent = true,
         lexemes = "[a-z/_]+",
-        keywords = listOf(
-            Keyword(
-                className = "literal",
-                value =
-                    "on off yes no true false none blocked debug info notice warn error crit select break last permanent redirect kqueue rtsig epoll poll /dev/poll"
-            )
+        keywords =
+        keyword(
+            className = "literal",
+            value =
+            "on off yes no true false none blocked debug info notice warn error crit select break last permanent redirect kqueue rtsig epoll poll /dev/poll"
         ),
         relevance = 0,
         illegal = "=>",
@@ -48,15 +53,15 @@ internal fun nginx(): Mode {
                 variants = listOf(
                     Mode(
                         begin =
-                            """"""",
+                        """"""",
                         end =
-                            """""""
+                        """""""
                     ),
                     Mode(
                         begin =
-                            """'""",
+                        """'""",
                         end =
-                            """'"""
+                        """'"""
                     )
                 )
             ),

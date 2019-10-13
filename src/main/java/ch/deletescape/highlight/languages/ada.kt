@@ -49,7 +49,7 @@ internal fun ada(): Mode {
     // Ada doesn't have block comments, only line comments
     var COMMENTS = hljs.COMMENT(
         "--",
-        "\$"
+        "$"
     )
     // variable declarations of the form
     // Foo : Bar := Baz;
@@ -86,17 +86,17 @@ internal fun ada(): Mode {
     return Mode(
         case_insensitive = true,
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value =
                     "abort else new return abs elsif not reverse abstract end accept entry select access exception of separate aliased exit or some all others subtype and for out synchronized array function overriding at tagged generic package task begin goto pragma terminate body private then if procedure type case in protected constant interface is raise use declare range delay limited record when delta loop rem while digits renames with do mod requeue xor"
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value =
                     "True False"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             COMMENTS,
             // strings "foobar"

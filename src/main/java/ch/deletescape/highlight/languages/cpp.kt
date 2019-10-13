@@ -1,8 +1,8 @@
 package ch.deletescape.highlight.languages
 
-import ch.deletescape.highlight.core.Keyword
 import ch.deletescape.highlight.core.Mode
 import ch.deletescape.highlight.core.hljs
+import ch.deletescape.highlight.core.keyword
 import ch.deletescape.highlight.core.keywords
 
 /*
@@ -34,13 +34,13 @@ internal fun cpp(): Mode {
             ),
             Mode(
                 begin = "(u8?|U|L)?'(" +
-                    CHARACTER_ESCAPES + "|.)",
+                        CHARACTER_ESCAPES + "|.)",
                 end = "'",
                 illegal = "."
             ),
             Mode(
                 begin =
-                    """(?:u8?|U|L)?R"([^()\\ ]{0,16})\((?:.|\n)*?\)\1\""""
+                """(?:u8?|U|L)?R"([^()\\ ]{0,16})\((?:.|\n)*?\)\1\""""
             )
         )
     )
@@ -56,29 +56,27 @@ internal fun cpp(): Mode {
     var PREPROCESSOR = Mode(
         className = "meta",
         begin =
-            """#\s*[a-z]+\b""",
+        """#\s*[a-z]+\b""",
         end =
-            """${'$'}""",
-        keywords = listOf(
-            Keyword(
-                className = "meta-keyword",
-                value =
-                    "if else elif endif define undef warning error line pragma ifdef ifndef include"
-            )
+        """${'$'}""",
+        keywords = keyword(
+            className = "meta-keyword",
+            value =
+            "if else elif endif define undef warning error line pragma ifdef ifndef include"
         ),
         contains = listOf(
             Mode(
                 begin =
-                    """\\\n""",
+                """\\\n""",
                 relevance = 0
             ),
             hljs.inherit(STRINGS, Mode(className = "meta-string")),
             Mode(
                 className = "meta-string",
                 begin =
-                    """<[^\n>]*>""",
+                """<[^\n>]*>""",
                 end =
-                    """${'$'}""",
+                """${'$'}""",
                 illegal = "\\n"
             ),
             hljs.C_LINE_COMMENT_MODE,
@@ -87,19 +85,19 @@ internal fun cpp(): Mode {
     )
     var FUNCTION_TITLE = hljs.IDENT_RE + "\\s*\\("
     var CPP_KEYWORDS = listOf(
-        Keyword(
+        keyword(
             className = "keyword",
             value = "int float while private char catch import module export virtual operator sizeof dynamic_cast|10 typedef const_cast|10 const for static_cast|10 union namespace unsigned long volatile static protected bool template mutable if public friend do goto auto void enum else break extern using asm case typeid short reinterpret_cast|10 default double register explicit signed typename try this switch continue inline delete alignof constexpr consteval constinit decltype concept co_await co_return co_yield requires noexcept static_assert thread_local restrict _Bool complex _Complex _Imaginary atomic_bool atomic_char atomic_schar atomic_uchar atomic_short atomic_ushort atomic_int atomic_uint atomic_long atomic_ulong atomic_llong atomic_ullong new throw return and or not"
         ),
-        Keyword(
+        keyword(
             className = "built_in",
             value = "std string wstring cin cout cerr clog stdin stdout stderr stringstream istringstream ostringstream auto_ptr deque list queue stack vector map set bitset multiset multimap unordered_set unordered_map unordered_multiset unordered_multimap array shared_ptr abort abs acos asin atan2 atan calloc ceil cosh cos exit exp fabs floor fmod fprintf fputs free frexp fscanf isalnum isalpha iscntrl isdigit isgraph islower isprint ispunct isspace isupper isxdigit tolower toupper labs ldexp log10 log malloc realloc memchr memcmp memcpy memset modf pow printf putchar puts scanf sinh sin snprintf sprintf sqrt sscanf strcat strchr strcmp strcpy strcspn strlen strncat strncmp strncpy strpbrk strrchr strspn strstr tanh tan vfprintf vprintf vsprintf endl initializer_list unique_ptr"
         ),
-        Keyword(
+        keyword(
             className = "literal",
             value = "true false nullptr NULL"
         )
-    )
+    ).flatten()
     var EXPRESSION_CONTAINS = listOf(
         CPP_PRIMITIVE_TYPES,
         hljs.C_LINE_COMMENT_MODE,
@@ -143,29 +141,29 @@ internal fun cpp(): Mode {
                 variants = listOf(
                     Mode(
                         begin =
-                            """=""",
+                        """=""",
                         end =
-                            """;"""
+                        """;"""
                     ),
                     Mode(
                         begin =
-                            """\(""",
+                        """\(""",
                         end =
-                            """\)"""
+                        """\)"""
                     ),
                     Mode(
                         beginKeywords = keywords("new throw return else"),
                         end =
-                            """;"""
+                        """;"""
                     )
                 ),
                 keywords = keywords(CPP_KEYWORDS),
                 contains = EXPRESSION_CONTAINS + listOf(
                     Mode(
                         begin =
-                            """\(""",
+                        """\(""",
                         end =
-                            """\\""",
+                        """\\""",
                         keywords = keywords(CPP_KEYWORDS),
                         contains = EXPRESSION_CONTAINS + listOf(hljs.SELF),
                         relevance = 0
@@ -176,15 +174,15 @@ internal fun cpp(): Mode {
             Mode(
                 className = "function",
                 begin = "(" +
-                    hljs.IDENT_RE + "[\\*&\\s]+)+" +
-                    FUNCTION_TITLE,
+                        hljs.IDENT_RE + "[\\*&\\s]+)+" +
+                        FUNCTION_TITLE,
                 returnBegin = true,
                 end =
-                    """[{;=]""",
+                """[{;=]""",
                 excludeEnd = true,
                 keywords = keywords(CPP_KEYWORDS),
                 illegal =
-                    """[^\w\s\*&]""",
+                """[^\w\s\*&]""",
                 contains = listOf(
                     Mode(
                         begin = FUNCTION_TITLE,
@@ -195,9 +193,9 @@ internal fun cpp(): Mode {
                     Mode(
                         className = "params",
                         begin =
-                            """\(""",
+                        """\(""",
                         end =
-                            """\)""",
+                        """\)""",
                         keywords = keywords(CPP_KEYWORDS),
                         relevance = 0,
                         contains = listOf(
@@ -209,9 +207,9 @@ internal fun cpp(): Mode {
                             // Count matching parentheses.
                             Mode(
                                 begin =
-                                    """\(""",
+                                """\(""",
                                 end =
-                                    """\)""",
+                                """\)""",
                                 keywords = keywords(CPP_KEYWORDS),
                                 relevance = 0,
                                 contains = listOf(
@@ -234,13 +232,13 @@ internal fun cpp(): Mode {
                 className = "class",
                 beginKeywords = keywords("class struct"),
                 end =
-                    """[{;:]""",
+                """[{;:]""",
                 contains = listOf(
                     Mode(
                         begin =
-                            """<""",
+                        """<""",
                         end =
-                            """>""",
+                        """>""",
                         contains = listOf(hljs.SELF)
                     ),
                     // skip generic stuff

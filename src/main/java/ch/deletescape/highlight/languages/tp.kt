@@ -44,17 +44,17 @@ internal fun tp(): Mode {
     )
     return Mode(
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value =
                     "ABORT ACC ADJUST AND AP_LD BREAK CALL CNT COL CONDITION CONFIG DA DB DIV DETECT ELSE END ENDFOR ERR_NUM ERROR_PROG FINE FOR GP GUARD INC IF JMP LINEAR_MAX_SPEED LOCK MOD MONITOR OFFSET Offset OR OVERRIDE PAUSE PREG PTH RT_LD RUN SELECT SKIP Skip TA TB TO TOOL_OFFSET Tool_Offset UF UT UFRAME_NUM UTOOL_NUM UNLOCK WAIT X Y Z W P R STRLEN SUBSTR FINDSTR VOFFSET PROG ATTR MN POS"
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value =
                     "ON OFF max_speed LPOS JPOS ENABLE DISABLE START STOP RESET"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             TPDATA,
             TPIO,

@@ -1,9 +1,7 @@
 package ch.deletescape.highlight.languages
 
-import ch.deletescape.highlight.core.Keyword
-import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.*
 import ch.deletescape.highlight.core.hljs
-import ch.deletescape.highlight.core.keywords
 
 /*
 Language = Julia
@@ -28,7 +26,7 @@ internal fun julia(): Mode {
         //         println(kw)
         //     end
         // end
-        Keyword(
+        keyword(
             className = "keyword",
             value =
                 "in isa where baremodule begin break catch ccall const continue do else elseif end export false finally for function global if import importall let local macro module quote return true try using while type immutable abstract bitstype typealias "
@@ -44,12 +42,12 @@ internal fun julia(): Mode {
         //         end
         //     end
         // end
-        Keyword(
+        keyword(
             className = "literal",
             value =
                 "true false ARGS C_NULL DevNull ENDIAN_BOM ENV I Inf Inf16 Inf32 Inf64 InsertionSort JULIA_HOME LOAD_PATH MergeSort NaN NaN16 NaN32 NaN64 PROGRAM_FILE QuickSort RoundDown RoundFromZero RoundNearest RoundNearestTiesAway RoundNearestTiesUp RoundToZero RoundUp STDERR STDIN STDOUT VERSION catalan e|0 eu|0 eulergamma golden im nothing pi γ π φ "
         ),
-        // # built_in Keyword(className = "generator", value =
+        // # built_in keyword(className = "generator", value =
         // for name in Base.REPLCompletions.completions(""), 0)[1]
         //     try
         //         v = eval(Symbol(name))
@@ -58,12 +56,12 @@ internal fun julia(): Mode {
         //         end
         //     end
         // end
-        Keyword(
+        keyword(
             className = "built_in",
             value =
                 "ANY AbstractArray AbstractChannel AbstractFloat AbstractMatrix AbstractRNG AbstractSerializer AbstractSet AbstractSparseArray AbstractSparseMatrix AbstractSparseVector AbstractString AbstractUnitRange AbstractVecOrMat AbstractVector Any ArgumentError Array AssertionError Associative Base64DecodePipe Base64EncodePipe Bidiagonal BigFloat BigInt BitArray BitMatrix BitVector Bool BoundsError BufferStream CachingPool CapturedException CartesianIndex CartesianRange Cchar Cdouble Cfloat Channel Char Cint Cintmax_t Clong Clonglong ClusterManager Cmd CodeInfo Colon Complex Complex128 Complex32 Complex64 CompositeException Condition ConjArray ConjMatrix ConjVector Cptrdiff_t Cshort Csize_t Cssize_t Cstring Cuchar Cuint Cuintmax_t Culong Culonglong Cushort Cwchar_t Cwstring DataType Date DateFormat DateTime DenseArray DenseMatrix DenseVecOrMat DenseVector Diagonal Dict DimensionMismatch Dims DirectIndexString Display DivideError DomainError EOFError EachLine Enum Enumerate ErrorException Exception ExponentialBackOff Expr Factorization FileMonitor Float16 Float32 Float64 Function Future GlobalRef GotoNode HTML Hermitian IO IOBuffer IOContext IOStream IPAddr IPv4 IPv6 IndexCartesian IndexLinear IndexStyle InexactError InitError Int Int128 Int16 Int32 Int64 Int8 IntSet Integer InterruptException InvalidStateException Irrational KeyError LabelNode LinSpace LineNumberNode LoadError LowerTriangular MIME Matrix MersenneTwister Method MethodError MethodTable Module NTuple NewvarNode NullException Nullable Number ObjectIdDict OrdinalRange OutOfMemoryError OverflowError Pair ParseError PartialQuickSort PermutedDimsArray Pipe PollingFileWatcher ProcessExitedException Ptr QuoteNode RandomDevice Range RangeIndex Rational RawFD ReadOnlyMemoryError Real ReentrantLock Ref Regex RegexMatch RemoteChannel RemoteException RevString RoundingMode RowVector SSAValue SegmentationFault SerializationState Set SharedArray SharedMatrix SharedVector Signed SimpleVector Slot SlotNumber SparseMatrixCSC SparseVector StackFrame StackOverflowError StackTrace StepRange StepRangeLen StridedArray StridedMatrix StridedVecOrMat StridedVector String SubArray SubString SymTridiagonal Symbol Symmetric SystemError TCPSocket Task Text TextDisplay Timer Tridiagonal Tuple Type TypeError TypeMapEntry TypeMapLevel TypeName TypeVar TypedSlot UDPSocket UInt UInt128 UInt16 UInt32 UInt64 UInt8 UndefRefError UndefVarError UnicodeError UniformScaling Union UnionAll UnitRange Unsigned UpperTriangular Val Vararg VecElement VecOrMat Vector VersionNumber Void WeakKeyDict WeakRef WorkerConfig WorkerPool "
         )
-    )
+    ).flatten()
     // ref: http://julia.readthedocs.org/en/latest/manual/variables/#allowed-variable-names
     var VARIABLE_NAME_RE = "[A-Za-z_\\u00A1-\\uFFFF][A-Za-z_0-9\\u00A1-\\uFFFF]*"
     // placeholder for recursive self-reference
@@ -95,7 +93,7 @@ internal fun julia(): Mode {
     var INTERPOLATION = Mode(
         className = "subst",
         begin =
-            """${'$'}\(""",
+            """\${'$'}\(""",
         end =
             """\)""",
         keywords = keywords(KEYWORDS)
@@ -146,7 +144,7 @@ internal fun julia(): Mode {
             ),
             Mode(
                 begin = "#",
-                end = "${'\$'}"
+                end = "\\${'\$'}"
             )
         )
     )

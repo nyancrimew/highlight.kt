@@ -21,7 +21,7 @@ internal fun axapta(): Mode {
             Mode(
                 className = "meta",
                 begin = "#",
-                end = "\$"
+                end = "$"
             ),
             Mode(
                 className = "class",

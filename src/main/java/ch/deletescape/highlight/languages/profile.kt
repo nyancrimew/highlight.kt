@@ -20,13 +20,13 @@ internal fun profile(): Mode {
             ),
             Mode(
                 begin = "(ncalls|tottime|cumtime)",
-                end = "\$",
+                end = "$",
                 keywords = keywords("ncalls tottime|10 cumtime|10 filename"),
                 relevance = 10
             ),
             Mode(
                 begin = "function calls",
-                end = "\$",
+                end = "$",
                 contains = listOf(hljs.C_NUMBER_MODE),
                 relevance = 10
             ),

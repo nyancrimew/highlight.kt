@@ -1,5 +1,9 @@
 package ch.deletescape.highlight.languages
-import ch.deletescape.highlight.core.*
+
+import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.hljs
+import ch.deletescape.highlight.core.keyword
+
 /*
 Language = Awk
 Author = Matthew Daly <matthewbdaly@gmail.com>
@@ -14,10 +18,14 @@ internal fun awk(): Mode {
     var VARIABLE = Mode(
         className = "variable",
         variants = listOf(
-            Mode(begin =
-                    """${'$'}[\w\d#@][\w\d_]*"""),
-            Mode(begin =
-                    """${'$'}\{(.*?)}""")
+            Mode(
+                begin =
+                """\$[\w\d#@][\w\d_]*"""
+            ),
+            Mode(
+                begin =
+                """\$\{(.*?)}"""
+            )
         )
     )
     var KEYWORDS = "BEGIN END if else while do for in break continue delete next nextfile function func exit|10"
@@ -27,54 +35,52 @@ internal fun awk(): Mode {
         variants = listOf(
             Mode(
                 begin =
-                    """(u|b)?r?'''""",
+                """(u|b)?r?'''""",
                 end =
-                    """'''""",
+                """'''""",
                 relevance = 10
             ),
             Mode(
                 begin =
-                    """(u|b)?r?"""""",
+                """(u|b)?r?"""""",
                 end =
-                    """"""""",
+                """"""""",
                 relevance = 10
             ),
             Mode(
                 begin =
-                    """(u|r|ur)'""",
+                """(u|r|ur)'""",
                 end =
-                    """'""",
+                """'""",
                 relevance = 10
             ),
             Mode(
                 begin =
-                    """(u|r|ur)"""",
+                """(u|r|ur)"""",
                 end =
-                    """"""",
+                """"""",
                 relevance = 10
             ),
             Mode(
                 begin =
-                    """(b|br)'""",
+                """(b|br)'""",
                 end =
-                    """'"""
+                """'"""
             ),
             Mode(
                 begin =
-                    """(b|br)"""",
+                """(b|br)"""",
                 end =
-                    """""""
+                """""""
             ),
             hljs.APOS_STRING_MODE,
             hljs.QUOTE_STRING_MODE
         )
     )
     return Mode(
-        keywords = listOf(
-            Keyword(
-                className = "keyword",
-                value = KEYWORDS
-            )
+        keywords = keyword(
+            className = "keyword",
+            value = KEYWORDS
         ),
         contains = listOf(
             VARIABLE,

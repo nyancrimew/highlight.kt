@@ -14,12 +14,10 @@ internal fun csp(): Mode {
     return Mode(
         case_insensitive = false,
         lexemes = "[a-zA-Z][a-zA-Z0-9_-]*",
-        keywords = listOf(
-            Keyword(
+        keywords = keyword(
                 className = "keyword",
                 value = "base-uri child-src connect-src default-src font-src form-action frame-ancestors frame-src img-src media-src object-src plugin-types report-uri sandbox script-src style-src"
-            )
-        ),
+            ),
         contains = listOf(
             Mode(
                 className = "string",

@@ -60,16 +60,16 @@ internal fun ceylon(): Mode {
     SUBST.contains = EXPRESSIONS
     return Mode(
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value = KEYWORDS + " " +
                     DECLARATION_MODIFIERS
             ),
-            Keyword(
+            keyword(
                 className = "meta",
                 value = DOCUMENTATION
             )
-        ),
+        ).flatten(),
         illegal = "\\\$[^01]|#[^0-9a-fA-F]",
         contains = listOf(
             hljs.C_LINE_COMMENT_MODE,

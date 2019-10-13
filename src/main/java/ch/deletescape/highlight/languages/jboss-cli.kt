@@ -53,16 +53,16 @@ internal fun `jboss-cli`(): Mode {
         aliases = listOf("wildfly-cli"),
         lexemes = "[a-z\\-]+",
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value = "alias batch cd clear command connect connection-factory connection-info data-source deploy deployment-info deployment-overlay echo echo-dmr help history if jdbc-driver-info jms-queue|20 jms-topic|20 ls patch pwd quit read-attribute read-operation reload rollout-plan run-batch set shutdown try unalias undeploy unset version xa-data-source"
             ),
             // module
-            Keyword(
+            keyword(
                 className = "literal",
                 value = "true false"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             hljs.HASH_COMMENT_MODE,
             hljs.QUOTE_STRING_MODE,

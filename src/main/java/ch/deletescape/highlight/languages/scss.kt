@@ -62,7 +62,7 @@ internal fun scss(): Mode {
                 className = "selector-attr",
                 begin = "\\[",
                 end = "\\]",
-                illegal = "\$"
+                illegal = "\\\$"
             ),
             Mode(
                 className = "selector-tag",

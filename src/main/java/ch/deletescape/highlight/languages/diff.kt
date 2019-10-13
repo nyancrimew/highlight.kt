@@ -19,11 +19,11 @@ internal fun diff(): Mode {
                 relevance = 10,
                 variants = listOf(
                     Mode(begin =
-                            """^@@ +\-\d+,\d+ +\+\d+,\d+ +@@${'$'}"""),
+                            """^@@ +\-\d+,\d+ +\+\d+,\d+ +@@\${'$'}"""),
                     Mode(begin =
-                            """^\*\*\* +\d+,\d+ +\*\*\*\*${'$'}"""),
+                            """^\*\*\* +\d+,\d+ +\*\*\*\*\${'$'}"""),
                     Mode(begin =
-                            """^\-\-\- +\d+,\d+ +\-\-\-\-${'$'}""")
+                            """^\-\-\- +\d+,\d+ +\-\-\-\-\${'$'}""")
                 )
             ),
             Mode(
@@ -60,23 +60,23 @@ internal fun diff(): Mode {
                             """${'$'}"""
                     ),
                     Mode(begin =
-                            """^\*{15}${'$'}""")
+                            """^\*{15}\${'$'}""")
                 )
             ),
             Mode(
                 className = "addition",
                 begin = "^\\+",
-                end = "\$"
+                end = "$"
             ),
             Mode(
                 className = "deletion",
                 begin = "^\\-",
-                end = "\$"
+                end = "$"
             ),
             Mode(
                 className = "addition",
                 begin = "^\\!",
-                end = "\$"
+                end = "$"
             )
         )
     )

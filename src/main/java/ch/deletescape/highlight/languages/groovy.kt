@@ -13,16 +13,16 @@ import ch.deletescape.highlight.core.*
 internal fun groovy(): Mode {
     return Mode(
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "literal",
                 value = "true false null"
             ),
-            Keyword(
+            keyword(
                 className = "keyword",
                 value =
                     "byte short char int long boolean float double void def as in assert trait super this abstract static volatile transient public private protected synchronized final class interface enum if else for while switch case break default continue throw throws try catch finally implements extends new import package return instanceof"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             hljs.COMMENT(
                 "/\\*\\*",

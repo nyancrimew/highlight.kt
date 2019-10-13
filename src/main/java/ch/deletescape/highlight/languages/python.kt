@@ -10,21 +10,21 @@ Category = common
  */
 internal fun python(): Mode {
     var KEYWORDS = listOf(
-        Keyword(
+        keyword(
             className = "keyword",
             value =
                 "and elif is global as in if from raise for except finally print import pass return exec else break not with class assert yield try while continue del or def lambda async await nonlocal|10"
         ),
-        Keyword(
+        keyword(
             className = "built_in",
             value =
                 "Ellipsis NotImplemented"
         ),
-        Keyword(
+        keyword(
             className = "literal",
             value = "False None True"
         )
-    )
+    ).flatten()
     var PROMPT = Mode(
         className = "meta",
         begin =

@@ -26,27 +26,27 @@ internal fun scilab(): Mode {
         lexemes =
             """%?\w+""",
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value = "abort break case clear catch continue do elseif else endfunction end for function global if pause return resume select try then while"
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value =
                     "%f %F %t %T %pi %eps %inf %nan %e %i %z %s"
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value = // Scilab has more than 2000 functions. Just list the most commons
                     "abs and acos asin atan ceil cd chdir clearglobal cosh cos cumprod deff disp error exec execstr exists exp eye gettext floor fprintf fread fsolve imag isdef isempty isinfisnan isvector lasterror length load linspace list listfiles log10 log2 log max min msprintf mclose mopen ones or pathconvert poly printf prod pwd rand real round sinh sin size gsort sprintf sqrt strcat strcmps tring sum system tanh tan type typename warning zeros matrix"
             )
-        ),
+        ).flatten(),
         illegal = "(\"|#|/\\*|\\s+/\\w+)",
         contains = listOf(
             Mode(
                 className = "function",
                 beginKeywords = keywords("function"),
-                end = "\$",
+                end = "$",
                 contains = listOf(
                     hljs.UNDERSCORE_TITLE_MODE,
                     Mode(

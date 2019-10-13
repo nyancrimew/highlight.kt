@@ -64,7 +64,7 @@ internal fun lsl(): Mode {
                 variants = listOf(
                     hljs.COMMENT(
                         "//",
-                        "\$"
+                        "$"
                     ),
                     hljs.COMMENT(
                         "/\\*",

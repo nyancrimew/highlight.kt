@@ -14,22 +14,22 @@ internal fun thrift(): Mode {
     var BUILT_IN_TYPES = "bool byte i16 i32 i64 double string binary"
     return Mode(
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value =
                     "namespace const typedef struct enum service exception void oneway set list map required optional"
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value =
                     BUILT_IN_TYPES
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value =
                     "true false"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             hljs.QUOTE_STRING_MODE,
             hljs.NUMBER_MODE,

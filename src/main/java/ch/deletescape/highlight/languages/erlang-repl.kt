@@ -12,17 +12,17 @@ Category = functional
 internal fun `erlang-repl`(): Mode {
     return Mode(
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "built_in",
                 value =
                     "spawn spawn_link self"
             ),
-            Keyword(
+            keyword(
                 className = "keyword",
                 value =
                     "after and andalso|10 band begin bnot bor bsl bsr bxor case catch cond div end fun if let not of or orelse|10 query receive rem try when xor"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             Mode(
                 className = "meta",
@@ -31,7 +31,7 @@ internal fun `erlang-repl`(): Mode {
             ),
             hljs.COMMENT(
                 "%",
-                "\$"
+                "$"
             ),
             Mode(
                 className = "number",

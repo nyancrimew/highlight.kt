@@ -17,20 +17,20 @@ internal fun erlang(): Mode {
         BASIC_ATOM_RE + "|" +
         BASIC_ATOM_RE + ")"
     var ERLANG_RESERVED = listOf(
-        Keyword(
+        keyword(
             className = "keyword",
             value =
                 "after and andalso|10 band begin bnot bor bsl bzr bxor case catch cond div end fun if let not of orelse|10 query receive rem try when xor"
         ),
-        Keyword(
+        keyword(
             className = "literal",
             value =
                 "false true"
         )
-    )
+    ).flatten()
     var COMMENT = hljs.COMMENT(
         "%",
-        "\$"
+        "$"
     )
     var NUMBER = Mode(
         className = "number",

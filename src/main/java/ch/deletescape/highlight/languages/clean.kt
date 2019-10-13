@@ -14,22 +14,22 @@ internal fun clean(): Mode {
     return Mode(
         aliases = listOf("clean','icl','dcl"),
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value =
                     "if let in with where case of class instance otherwise implementation definition system module from import qualified as special code inline foreign export ccall stdcall generic derive infix infixl infixr"
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value =
                     "Int Real Char Bool"
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value =
                     "True False"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             hljs.C_LINE_COMMENT_MODE,
             hljs.C_BLOCK_COMMENT_MODE,

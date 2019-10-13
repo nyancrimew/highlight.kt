@@ -16,7 +16,7 @@ internal fun mizar(): Mode {
         contains = listOf(
             hljs.COMMENT(
                 "::",
-                "\$"
+                "$"
             )
         )
     )

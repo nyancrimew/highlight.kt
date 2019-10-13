@@ -1,9 +1,7 @@
 package ch.deletescape.highlight.languages
 
-import ch.deletescape.highlight.core.Keyword
-import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.*
 import ch.deletescape.highlight.core.hljs
-import ch.deletescape.highlight.core.keywords
 
 /*
 Language = crmsh
@@ -33,17 +31,17 @@ internal fun crmsh(): Mode {
         ),
         case_insensitive = true,
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value = KEYWORDS + " " +
                     OPERATORS + " " +
                     TYPES
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value = LITERALS
             )
-        ),
+        ).flatten(),
         contains = listOf(
             hljs.HASH_COMMENT_MODE,
             Mode(

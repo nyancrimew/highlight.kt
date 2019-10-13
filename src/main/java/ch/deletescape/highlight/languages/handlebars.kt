@@ -12,12 +12,10 @@ Category = template
  * Origin highlight.js/src/languages/handlebars.js MD5 <129fe49dd4318e5b61064e5c2a39cd1c>
  */
 internal fun handlebars(): Mode {
-    var BUILT_INS = listOf(
-        Keyword(
+    var BUILT_INS = keyword(
             className = "builtin-name",
             value = "each in with if else unless bindattr action collection debugger log outlet template unbound view yield"
         )
-    )
     return Mode(
         aliases = listOf(
             "hbs",

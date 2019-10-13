@@ -14,7 +14,7 @@ internal fun elm(): Mode {
         variants = listOf(
             hljs.COMMENT(
                 "--",
-                "\$"
+                "$"
             ),
             hljs.COMMENT(
                 "\\{-",
@@ -69,25 +69,25 @@ internal fun elm(): Mode {
             ),
             Mode(
                 begin = "import",
-                end = "\$",
+                end = "$",
                 keywords = keywords("import as exposing"),
                 contains = listOf(LIST, COMMENT),
                 illegal = "\\W\\.|;"
             ),
             Mode(
                 begin = "type",
-                end = "\$",
+                end = "$",
                 keywords = keywords("type alias"),
                 contains = listOf(CONSTRUCTOR, LIST, RECORD, COMMENT)
             ),
             Mode(
                 beginKeywords = keywords("infix infixl infixr"),
-                end = "\$",
+                end = "$",
                 contains = listOf(hljs.C_NUMBER_MODE, COMMENT)
             ),
             Mode(
                 begin = "port",
-                end = "\$",
+                end = "$",
                 keywords = keywords("port"),
                 contains = listOf(COMMENT)
             ),

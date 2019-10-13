@@ -33,22 +33,22 @@ internal fun d(): Mode {
      * @type {Object)
      */
     var D_KEYWORDS = listOf(
-        Keyword(
+        keyword(
             className = "keyword",
             value =
                 "abstract alias align asm assert auto body break byte case cast catch class const continue debug default delete deprecated do else enum export extern final finally for foreach foreach_reverse|10 goto if immutable import in inout int interface invariant is lazy macro mixin module new nothrow out override package pragma private protected public pure ref return scope shared static struct super switch synchronized template this throw try typedef typeid typeof union unittest version void volatile while with __FILE__ __LINE__ __gshared|10 __thread __traits __DATE__ __EOF__ __TIME__ __TIMESTAMP__ __VENDOR__ __VERSION__"
         ),
-        Keyword(
+        keyword(
             className = "built_in",
             value =
                 "bool cdouble cent cfloat char creal dchar delegate double dstring float function idouble ifloat ireal long real short string ubyte ucent uint ulong ushort wchar wstring"
         ),
-        Keyword(
+        keyword(
             className = "literal",
             value =
                 "false null true"
         )
-    )
+    ).flatten()
     /**
      * Number literal regexps
      *
@@ -192,7 +192,7 @@ internal fun d(): Mode {
     var D_HASHBANG_MODE = Mode(
         className = "meta",
         begin = "^#!",
-        end = "\$",
+        end = "$",
         relevance = 5
     )
     /**
@@ -203,7 +203,7 @@ internal fun d(): Mode {
     var D_SPECIAL_TOKEN_SEQUENCE_MODE = Mode(
         className = "meta",
         begin = "#(line)",
-        end = "\$",
+        end = "$",
         relevance = 5
     )
     /**

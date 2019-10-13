@@ -1,5 +1,10 @@
 package ch.deletescape.highlight.languages
-import ch.deletescape.highlight.core.*
+
+import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.hljs
+import ch.deletescape.highlight.core.keyword
+import ch.deletescape.highlight.core.keywords
+
 /*
 Language = OpenSCAD
 Author = Dan Panzarella <alsoelp@gmail.com>
@@ -16,16 +21,8 @@ internal fun openscad(): Mode {
         begin = "\\\$(f[asn]|t|vp[rtd]|children)"
     )
     var LITERALS = Mode(
-        keywords = listOf(
-            Keyword(
-                className = "className",
-                value = "literal"
-            ),
-            Keyword(
-                className = "begin",
-                value = "false|true|PI|undef"
-            )
-        )
+        className = "literal",
+        begin = "false|true|PI|undef"
     )
     var NUMBERS = Mode(
         className = "number",
@@ -36,11 +33,9 @@ internal fun openscad(): Mode {
     var STRING = hljs.inherit(hljs.QUOTE_STRING_MODE, Mode(illegal = null))
     var PREPRO = Mode(
         className = "meta",
-        keywords = listOf(
-            Keyword(
-                className = "meta-keyword",
-                value = "include use"
-            )
+        keywords = keyword(
+            className = "meta-keyword",
+            value = "include use"
         ),
         begin = "include|use <",
         end = ">"
@@ -67,19 +62,19 @@ internal fun openscad(): Mode {
     return Mode(
         aliases = listOf("scad"),
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value = "function module include use for intersection_for if else \\%"
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value = "false true PI undef"
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value = "circle square polygon text sphere cube cylinder polyhedron translate rotate scale resize mirror multmatrix color offset hull minkowski union difference intersection abs sign sin cos tan acos asin atan atan2 floor round ceil ln log pow sqrt exp rands min max concat lookup str chr search version version_num norm cross parent_module echo import import_dxf dxf_linear_extrude linear_extrude rotate_extrude surface projection render children dxf_cross dxf_dim let assign"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             hljs.C_LINE_COMMENT_MODE,
             hljs.C_BLOCK_COMMENT_MODE,

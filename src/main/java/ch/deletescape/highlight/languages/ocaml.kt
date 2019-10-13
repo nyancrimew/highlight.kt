@@ -16,23 +16,23 @@ internal fun ocaml(): Mode {
     return Mode(
         aliases = listOf("ml"),
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value =
                     "and as assert asr begin class constraint do done downto else end exception external for fun function functor if in include inherit! inherit initializer land lazy let lor lsl lsr lxor match method!|10 method mod module mutable new object of open! open or private rec sig struct then to try type val! val virtual when while with parser value"
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value =
                     /* built-in types */
                     "array bool bytes char exn|5 float int int32 int64 list lazy_t|5 nativeint|5 string unit in_channel out_channel ref"
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value =
                     "true false"
             )
-        ),
+        ).flatten(),
         illegal =
             """\/\/|>>""",
         lexemes = "[a-z_]\\w*!?",

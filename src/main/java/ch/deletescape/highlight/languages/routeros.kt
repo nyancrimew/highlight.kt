@@ -3,6 +3,7 @@ package ch.deletescape.highlight.languages
 import ch.deletescape.highlight.core.Keyword
 import ch.deletescape.highlight.core.Mode
 import ch.deletescape.highlight.core.hljs
+import ch.deletescape.highlight.core.keyword
 
 /*
 Language = Microtik RouterOS script
@@ -43,11 +44,11 @@ internal fun routeros(): Mode {
         variants = listOf(
             Mode(
                 begin =
-                    """${'$'}[\w\d#@][\w\d_]*"""
+                    """\${'$'}[\w\d#@][\w\d_]*"""
             ),
             Mode(
                 begin =
-                    """${'$'}\{(.*?)}"""
+                    """\${'$'}\{(.*?)}"""
             )
         )
     )
@@ -64,7 +65,7 @@ internal fun routeros(): Mode {
             Mode(
                 className = "variable",
                 begin =
-                    """${'$'}\(""",
+                    """\${'$'}\(""",
                 end =
                     """\)""",
                 contains = listOf(hljs.BACKSLASH_ESCAPE)
@@ -93,18 +94,18 @@ internal fun routeros(): Mode {
         lexemes =
             """:?[\w-]+""",
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "literal",
                 value = LITERALS
             ),
-            Keyword(
+            keyword(
                 className = "keyword",
                 value = STATEMENTS + " :" +
                     STATEMENTS.split(" ").joinToString(" :") +
                     " :" +
                     GLOBAL_COMMANDS.split(" ").joinToString(" :")
             )
-        ),
+        ).flatten(),
         contains = listOf(
             Mode(// недопустимые конструкции
                 variants = listOf(
@@ -182,7 +183,7 @@ internal fun routeros(): Mode {
             ),
             hljs.COMMENT(
                 "^#",
-                "${'\$'}"
+                "$"
             ),
             QUOTE_STRING,
             APOS_STRING,

@@ -1,5 +1,9 @@
 package ch.deletescape.highlight.languages
-import ch.deletescape.highlight.core.*
+
+import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.hljs
+import ch.deletescape.highlight.core.keyword
+
 /*
 Language = Inform 7
 Author = Bruno Dias <bruno.r.dias@gmail.com>
@@ -15,14 +19,13 @@ internal fun inform7(): Mode {
     return Mode(
         aliases = listOf("i7"),
         case_insensitive = true,
-        keywords = listOf(
-            // Some keywords more or less unique to I7, for relevance.
-            Keyword(
-                className = "keyword",
-                value =
-                    // kind:
-                    "thing room person man woman animal container supporter backdrop door scenery open closed locked inside gender is are say understand kind of rule"
-            )
+        keywords =
+        // Some keywords more or less unique to I7, for relevance.
+        keyword(
+            className = "keyword",
+            value =
+            // kind:
+            "thing room person man woman animal container supporter backdrop door scenery open closed locked inside gender is are say understand kind of rule"
         ),
         contains = listOf(
             Mode(
@@ -41,14 +44,14 @@ internal fun inform7(): Mode {
             Mode(
                 className = "section",
                 begin =
-                    """^(Volume|Book|Part|Chapter|Section|Table)\b""",
+                """^(Volume|Book|Part|Chapter|Section|Table)\b""",
                 end = "${'$'}"
             ),
             Mode(
                 // Rule definition
                 // This is here for relevance.
                 begin =
-                    """^(Check|Carry out|Report|Instead of|To|Rule|When|Before|After)\b""",
+                """^(Check|Carry out|Report|Instead of|To|Rule|When|Before|After)\b""",
                 end = ":",
                 contains = listOf(
                     Mode(

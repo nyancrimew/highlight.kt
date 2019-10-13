@@ -14,22 +14,22 @@ internal fun capnproto(): Mode {
     return Mode(
         aliases = listOf("capnp"),
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value =
                     "struct enum interface union group import using const annotation extends in of on as with from fixed"
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value =
                     "Void Bool Int8 Int16 Int32 Int64 UInt8 UInt16 UInt32 UInt64 Float32 Float64 Text Data AnyPointer AnyStruct Capability List"
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value =
                     "true false"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             hljs.QUOTE_STRING_MODE,
             hljs.NUMBER_MODE,

@@ -15,7 +15,7 @@ internal fun haskell(): Mode {
         variants = listOf(
             hljs.COMMENT(
                 "--",
-                "\$"
+                "$"
             ),
             hljs.COMMENT(
                 "\\{-",
@@ -34,7 +34,7 @@ internal fun haskell(): Mode {
     var PREPROCESSOR = Mode(
         className = "meta",
         begin = "^#",
-        end = "\$"
+        end = "$"
     )
     var CONSTRUCTOR = Mode(
         className = "type",
@@ -78,7 +78,7 @@ internal fun haskell(): Mode {
             ),
             Mode(
                 begin = "\\bimport\\b",
-                end = "\$",
+                end = "$",
                 keywords = keywords("import qualified as hiding"),
                 contains = listOf(LIST, COMMENT),
                 illegal = "\\W\\.|;"
@@ -93,30 +93,30 @@ internal fun haskell(): Mode {
             Mode(
                 className = "class",
                 begin = "\\b(data|(new)?type)\\b",
-                end = "\$",
+                end = "$",
                 keywords = keywords("data family type newtype deriving"),
                 contains = listOf(PRAGMA, CONSTRUCTOR, LIST, RECORD, COMMENT)
             ),
             Mode(
                 beginKeywords = keywords("default"),
-                end = "\$",
+                end = "$",
                 contains = listOf(CONSTRUCTOR, LIST, COMMENT)
             ),
             Mode(
                 beginKeywords = keywords("infix infixl infixr"),
-                end = "\$",
+                end = "$",
                 contains = listOf(hljs.C_NUMBER_MODE, COMMENT)
             ),
             Mode(
                 begin = "\\bforeign\\b",
-                end = "\$",
+                end = "$",
                 keywords = keywords("foreign import export ccall stdcall cplusplus jvm dotnet safe unsafe"),
                 contains = listOf(CONSTRUCTOR, hljs.QUOTE_STRING_MODE, COMMENT)
             ),
             Mode(
                 className = "meta",
                 begin = "#!\\/usr\\/bin\\/env\\ runhaskell",
-                end = "\$"
+                end = "$"
             ),
             // "Whitespaces".
 

@@ -30,17 +30,17 @@ internal fun dos(): Mode {
         illegal =
             """\/\*""",
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value =
                     "if else goto for in do call exit not exist errorlevel defined equ neq lss leq gtr geq"
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value =
                     "prn nul lpt3 lpt2 lpt1 con com4 com3 com2 com1 aux shift cd dir echo setlocal endlocal set pause copy append assoc at attrib break cacls cd chcp chdir chkdsk chkntfs cls cmd color comp compact convert date dir diskcomp diskcopy doskey erase fs find findstr format ftype graftabl help keyb label md mkdir mode more move path pause print popd pushd promt rd recover rem rename replace restore rmdir shiftsort start subst time title tree type ver verify vol ping net ipconfig taskkill xcopy ren del"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             Mode(
                 className = "variable",

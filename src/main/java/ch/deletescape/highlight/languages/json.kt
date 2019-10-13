@@ -1,5 +1,10 @@
 package ch.deletescape.highlight.languages
-import ch.deletescape.highlight.core.*
+
+import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.hljs
+import ch.deletescape.highlight.core.keyword
+import ch.deletescape.highlight.core.keywords
+
 /*
 Language = JSON / JSON with Comments
 Author = Ivan Sagalaev <maniac@softwaremaniacs.org>
@@ -10,11 +15,9 @@ Category = common, protocols
  * Origin highlight.js/src/languages/json.js MD5 <e7c66d259be22095e1900dee8845b531>
  */
 internal fun json(): Mode {
-    var LITERALS = listOf(
-        Keyword(
-            className = "literal",
-            value = "true false null"
-        )
+    var LITERALS = keyword(
+        className = "literal",
+        value = "true false null"
     )
     var ALLOWED_COMMENTS = listOf(
         hljs.C_LINE_COMMENT_MODE,
@@ -38,14 +41,18 @@ internal fun json(): Mode {
             Mode(
                 className = "attr",
                 begin =
-                    """"""",
+                """"""",
                 end =
-                    """"""",
+                """"""",
                 contains = listOf(hljs.BACKSLASH_ESCAPE),
                 illegal = "\\n"
             ),
-            hljs.inherit(VALUE_CONTAINER, Mode(begin =
-                    """:"""))
+            hljs.inherit(
+                VALUE_CONTAINER, Mode(
+                    begin =
+                    """:"""
+                )
+            )
         ) + ALLOWED_COMMENTS,
         illegal = "\\S"
     )

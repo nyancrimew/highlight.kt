@@ -12,22 +12,22 @@ Description = Pony is an open-source, object-oriented, actor-model,
  */
 internal fun pony(): Mode {
     var KEYWORDS = listOf(
-        Keyword(
+        keyword(
             className = "keyword",
             value =
                 "actor addressof and as be break class compile_error compile_intrinsic consume continue delegate digestof do else elseif embed end error for fun if ifdef in interface is isnt lambda let match new not object or primitive recover repeat return struct then trait try type until use var where while with xor"
         ),
-        Keyword(
+        keyword(
             className = "meta",
             value =
                 "iso val tag trn box ref"
         ),
-        Keyword(
+        keyword(
             className = "literal",
             value =
                 "this false true"
         )
-    )
+    ).flatten()
     var TRIPLE_QUOTE_STRING_MODE = Mode(
         className = "string",
         begin = "\"\"\"",

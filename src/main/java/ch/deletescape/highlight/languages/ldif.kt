@@ -36,7 +36,7 @@ internal fun ldif(): Mode {
             Mode(
                 className = "literal",
                 begin = "^-",
-                end = "\$"
+                end = "$"
             ),
             hljs.HASH_COMMENT_MODE
         )

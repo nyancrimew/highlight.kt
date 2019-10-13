@@ -25,7 +25,7 @@ internal fun markdown(): Mode {
                 variants = listOf(
                     Mode(
                         begin = "^#{1,6}",
-                        end = "\$"
+                        end = "$"
                     ),
                     Mode(begin = "^.+?\\n[=-]{2,}\$")
                 )
@@ -62,7 +62,7 @@ internal fun markdown(): Mode {
             Mode(
                 className = "quote",
                 begin = "^>\\s+",
-                end = "\$"
+                end = "$"
             ),
             // code snippets
             Mode(
@@ -77,7 +77,7 @@ internal fun markdown(): Mode {
                     ),
                     Mode(
                         begin = "^( {4}|\\t)",
-                        end = "\$",
+                        end = "$",
                         relevance = 0
                     )
                 )
@@ -85,7 +85,7 @@ internal fun markdown(): Mode {
             // horizontal rules
             Mode(
                 begin = "^[-\\*]{3,}",
-                end = "\$"
+                end = "$"
             ),
             // using links - title and link
             Mode(

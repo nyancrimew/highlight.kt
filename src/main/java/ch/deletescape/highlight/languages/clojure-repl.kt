@@ -20,7 +20,7 @@ internal fun `clojure-repl`(): Mode {
                     """^([\w.-]+|\s*#_)?=>""",
                 starts = Mode(
                     end =
-                        """${'$'}""",
+                        """$""",
                     subLanguage = "clojure"
                 )
             )

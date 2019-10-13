@@ -33,7 +33,7 @@ internal fun abnf(): Mode {
     )
     var commentMode = hljs.COMMENT(
         ";",
-        "\$"
+        "$"
     )
     var terminalBinaryMode = Mode(
         className = "symbol",

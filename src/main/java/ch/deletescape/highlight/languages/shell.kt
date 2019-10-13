@@ -18,7 +18,7 @@ internal fun shell(): Mode {
                 className = "meta",
                 begin = "^\\s{0,3}[\\w\\d\\[\\]()@-]*[>%\$#]",
                 starts = Mode(
-                    end = "\$",
+                    end = "$",
                     subLanguage = "bash"
                 )
             )

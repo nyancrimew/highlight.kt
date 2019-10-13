@@ -11,22 +11,22 @@ internal fun nimrod(): Mode {
     return Mode(
         aliases = listOf("nim"),
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value =
                     "addr and as asm bind block break case cast const continue converter discard distinct div do elif else end enum except export finally for from generic if import in include interface is isnot iterator let macro method mixin mod nil not notin object of or out proc ptr raise ref return shl shr static template try tuple type using var when while with without xor yield"
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value =
                     "shared guarded stdin stdout stderr result true false"
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value =
                     "int int8 int16 int32 int64 uint uint8 uint16 uint32 uint64 float float32 float64 bool char string cstring pointer expr stmt void auto any range array openarray varargs seq set clong culong cchar cschar cshort cint csize clonglong cfloat cdouble clongdouble cuchar cushort cuint culonglong cstringarray semistatic"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             Mode(
                 className = "meta",

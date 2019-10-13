@@ -13,22 +13,22 @@ import ch.deletescape.highlight.core.*
 internal fun arcade(): Mode {
     var IDENT_RE = "[A-Za-z_][0-9A-Za-z_]*"
     var KEYWORDS = listOf(
-        Keyword(
+        keyword(
             className = "keyword",
             value =
                 "if for while var new function do return void else break"
         ),
-        Keyword(
+        keyword(
             className = "literal",
             value =
                 "BackSlash DoubleQuote false ForwardSlash Infinity NaN NewLine null PI SingleQuote Tab TextFormatting true undefined"
         ),
-        Keyword(
+        keyword(
             className = "built_in",
             value =
                 "Abs Acos Angle Attachments Area AreaGeodetic Asin Atan Atan2 Average Bearing Boolean Buffer BufferGeodetic Ceil Centroid Clip Console Constrain Contains Cos Count Crosses Cut Date DateAdd DateDiff Day Decode DefaultValue Dictionary Difference Disjoint Distance DistanceGeodetic Distinct DomainCode DomainName Equals Exp Extent Feature FeatureSet FeatureSetByAssociation FeatureSetById FeatureSetByPortalItem FeatureSetByRelationshipName FeatureSetByTitle FeatureSetByUrl Filter First Floor Geometry GroupBy Guid HasKey Hour IIf IndexOf Intersection Intersects IsEmpty IsNan IsSelfIntersecting Length LengthGeodetic Log Max Mean Millisecond Min Minute Month MultiPartToSinglePart Multipoint NextSequenceValue Now Number OrderBy Overlaps Point Polygon Polyline Portal Pow Random Relate Reverse RingIsClockWise Round Second SetGeometry Sin Sort Sqrt Stdev Sum SymmetricDifference Tan Text Timestamp Today ToLocal Top Touches ToUTC TrackCurrentTime TrackGeometryWindow TrackIndex TrackStartTime TrackWindow TypeOf Union UrlEncode Variance Weekday When Within Year "
         )
-    )
+    ).flatten()
     // var EXPRESSIONS
     var SYMBOL = Mode(
         className = "symbol",
@@ -47,7 +47,7 @@ internal fun arcade(): Mode {
         className = "subst",
         begin = "\\\$\\{",
         end = "\\}",
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         contains = listOf() // defined later
     )
     var TEMPLATE_STRING = Mode(
@@ -72,7 +72,7 @@ internal fun arcade(): Mode {
     )
     return Mode(
         aliases = listOf("arcade"),
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         contains = listOf(
             hljs.APOS_STRING_MODE,
             hljs.QUOTE_STRING_MODE,
@@ -132,7 +132,7 @@ internal fun arcade(): Mode {
                                             """\)""",
                                         excludeBegin = true,
                                         excludeEnd = true,
-                                        keywords = keywords(KEYWORDS),
+                                        keywords = KEYWORDS,
                                         contains = PARAMS_CONTAINS
                                     )
                                 )
@@ -166,7 +166,7 @@ internal fun arcade(): Mode {
             ),
             Mode(
                 begin =
-                    """${'$'}[(.]"""
+                    """\$[(.]"""
             )
         ),
         illegal =

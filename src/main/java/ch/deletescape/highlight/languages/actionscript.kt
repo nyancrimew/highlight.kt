@@ -1,5 +1,10 @@
 package ch.deletescape.highlight.languages
-import ch.deletescape.highlight.core.*
+
+import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.hljs
+import ch.deletescape.highlight.core.keyword
+import ch.deletescape.highlight.core.keywords
+
 /*
 Language = ActionScript
 Author = Alexander Myadzel <myadzel@gmail.com>
@@ -21,15 +26,15 @@ internal fun actionscript(): Mode {
     return Mode(
         aliases = listOf("as"),
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value = "as break case catch class const continue default delete do dynamic each else extends final finally for function get if implements import in include instanceof interface internal is namespace native new override package private protected public return set static super switch this throw try typeof use var void while with"
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value = "true false null undefined"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             hljs.APOS_STRING_MODE,
             hljs.QUOTE_STRING_MODE,
@@ -58,11 +63,9 @@ internal fun actionscript(): Mode {
                 className = "meta",
                 beginKeywords = keywords("import include"),
                 end = ";",
-                keywords = listOf(
-                    Keyword(
-                        className = "meta-keyword",
-                        value = "import include"
-                    )
+                keywords = keyword(
+                    className = "meta-keyword",
+                    value = "import include"
                 )
             ),
             Mode(
@@ -87,13 +90,13 @@ internal fun actionscript(): Mode {
                     ),
                     Mode(
                         begin = ":\\s*" +
-                            IDENT_FUNC_RETURN_TYPE_RE
+                                IDENT_FUNC_RETURN_TYPE_RE
                     )
                 )
             ),
             hljs.METHOD_GUARD
         ),
         illegal =
-            """#"""
+        """#"""
     )
 }

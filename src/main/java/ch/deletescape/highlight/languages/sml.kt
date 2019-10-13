@@ -15,24 +15,24 @@ internal fun sml(): Mode {
     return Mode(
         aliases = listOf("ml"),
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value =
                     /* according to Definition of Standard ML 97  */
                     "abstype and andalso as case datatype do else end eqtype exception fn fun functor handle if in include infix infixr let local nonfix of op open orelse raise rec sharing sig signature struct structure then type val with withtype where while"
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value =
                     /* built-in types according to basis library */
                     "array bool char exn int list option order real ref string substring vector unit word"
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value =
                     "true false NONE SOME LESS EQUAL GREATER nil"
             )
-        ),
+        ).flatten(),
         illegal =
             """\/\/|>>""",
         lexemes = "[a-z_]\\w*!?",

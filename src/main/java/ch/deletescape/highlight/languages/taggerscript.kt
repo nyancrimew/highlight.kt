@@ -13,7 +13,7 @@ internal fun taggerscript(): Mode {
     var COMMENT = Mode(
         className = "comment",
         begin =
-            """${'$'}noop\(""",
+            """\${'$'}noop\(""",
         end =
             """\)""",
         contains = listOf(
@@ -36,7 +36,7 @@ internal fun taggerscript(): Mode {
     var FUNCTION = Mode(
         className = "keyword",
         begin =
-            """${'$'}(?!noop)[a-zA-Z][_a-zA-Z0-9]*""",
+            """\${'$'}(?!noop)[a-zA-Z][_a-zA-Z0-9]*""",
         end =
             """\(""",
         excludeEnd = true

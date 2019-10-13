@@ -14,22 +14,22 @@ Category = scripting
 internal fun typescript(): Mode {
     var JS_IDENT_RE = "[A-Za-z\$_][0-9A-Za-z\$_]*"
     var KEYWORDS = listOf(
-        Keyword(
+        keyword(
             className = "keyword",
             value =
                 "in if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const class public private protected get set super static implements enum export import declare type namespace abstract as from extends async await"
         ),
-        Keyword(
+        keyword(
             className = "literal",
             value =
                 "true false null undefined NaN Infinity"
         ),
-        Keyword(
+        keyword(
             className = "built_in",
             value =
                 "eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape Object Function Boolean Error EvalError InternalError RangeError ReferenceError StopIteration SyntaxError TypeError URIError Number Math Date String RegExp Array Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require module console window document any number boolean string void Promise"
         )
-    )
+    ).flatten()
     var DECORATOR = Mode(
         className = "meta",
         begin = "@" +
@@ -217,11 +217,9 @@ internal fun typescript(): Mode {
             Mode(// prevent references like module.id from being higlighted as module definitions
                 begin =
                     """module\.""",
-                keywords = listOf(
-                    Keyword(
+                keywords = keyword(
                         className = "built_in",
                         value = "module"
-                    )
                 ),
                 relevance = 0
             ),
@@ -240,7 +238,7 @@ internal fun typescript(): Mode {
             ),
             Mode(
                 begin =
-                    """${'$'}[(.]""" // relevance booster for a pattern common to JS libs: `$(something)` and `$.something`
+                    """\${'$'}[(.]""" // relevance booster for a pattern common to JS libs: `$(something)` and `$.something`
             ),
             Mode(
                 begin = "\\." +

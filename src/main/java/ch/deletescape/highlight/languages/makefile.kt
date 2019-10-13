@@ -22,7 +22,7 @@ internal fun makefile(): Mode {
             ),
             Mode(
                 begin =
-                    """${'$'}[@%<?\^\+\*]"""
+                    """\${'$'}[@%<?\^\+\*]"""
             )
         )
     )
@@ -42,15 +42,13 @@ internal fun makefile(): Mode {
     var FUNC = Mode(
         className = "variable",
         begin =
-            """${'$'}\([\w-]+\s""",
+            """\${'$'}\([\w-]+\s""",
         end =
             """\)""",
-        keywords = listOf(
-            Keyword(
+        keywords = keyword(
                 className = "built_in",
                 value =
                     "subst patsubst strip findstring filter filter-out sort word wordlist firstword lastword dir notdir suffix basename addsuffix addprefix join wildcard realpath abspath error warning shell origin flavor foreach if or and call eval file value"
-            )
         ),
         contains = listOf(
             VARIABLE
@@ -78,11 +76,9 @@ internal fun makefile(): Mode {
             """^\.PHONY = """,
         end =
             """${'$'}""",
-        keywords = listOf(
-            Keyword(
+        keywords = keyword(
                 className = "meta-keyword",
                 value = ".PHONY"
-            )
         ),
         lexemes =
             """[\.\w]+"""

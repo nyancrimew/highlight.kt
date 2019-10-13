@@ -153,11 +153,9 @@ internal fun xml(): Mode {
         */
                 begin = "<style(?=\\s|>|${'$'})",
                 end = ">",
-                keywords = listOf(
-                    Keyword(
+                keywords = keyword(
                         className = "name",
                         value = "style"
-                    )
                 ),
                 contains = listOf(TAG_INTERNALS),
                 starts = Mode(
@@ -174,11 +172,9 @@ internal fun xml(): Mode {
                 // See the comment in the <style tag about the lookahead pattern
                 begin = "<script(?=\\s|>|${'$'})",
                 end = ">",
-                keywords = listOf(
-                    Keyword(
+                keywords = keyword(
                         className = "name",
                         value = "script"
-                    )
                 ),
                 contains = listOf(TAG_INTERNALS),
                 starts = Mode(

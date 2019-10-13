@@ -1,5 +1,10 @@
 package ch.deletescape.highlight.languages
-import ch.deletescape.highlight.core.*
+
+import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.hljs
+import ch.deletescape.highlight.core.keyword
+import ch.deletescape.highlight.core.keywords
+
 /*
 Language = STEP Part 21
 Contributors = Adam Joseph Cook <adam.joseph.cook@gmail.com>
@@ -11,11 +16,9 @@ Description = Syntax highlighter for STEP Part 21 files (ISO 10303-21).
  */
 internal fun step21(): Mode {
     var STEP21_IDENT_RE = "[A-Z_][A-Z0-9_.]*"
-    var STEP21_KEYWORDS = listOf(
-        Keyword(
-            className = "keyword",
-            value = "HEADER ENDSEC DATA"
-        )
+    var STEP21_KEYWORDS = keyword(
+        className = "keyword",
+        value = "HEADER ENDSEC DATA"
     )
     var STEP21_START = Mode(
         className = "meta",

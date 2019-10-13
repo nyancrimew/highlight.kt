@@ -83,9 +83,9 @@ internal fun ini(): Mode {
                                 className = "variable",
                                 variants = listOf(
                                     Mode(begin =
-                                            """${'$'}[\w\d"][\w\d_]*"""),
+                                            """\${'$'}[\w\d"][\w\d_]*"""),
                                     Mode(begin =
-                                            """${'$'}\{(.*?)\\}""")
+                                            """\${'$'}\{(.*?)\}""")
                                 )
                             ),
                             STRING,

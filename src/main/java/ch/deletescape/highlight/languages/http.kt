@@ -19,7 +19,7 @@ internal fun http(): Mode {
             Mode(
                 begin = "^" +
                     VERSION,
-                end = "\$",
+                end = "$",
                 contains = listOf(
                     Mode(
                         className = "number",
@@ -31,7 +31,7 @@ internal fun http(): Mode {
                 begin = "^[A-Z]+ (.*?) " +
                     VERSION + "\$",
                 returnBegin = true,
-                end = "\$",
+                end = "$",
                 contains = listOf(
                     Mode(
                         className = "string",
@@ -56,7 +56,7 @@ internal fun http(): Mode {
                 excludeEnd = true,
                 illegal = "\\n|\\s|=",
                 starts = Mode(
-                    end = "\$",
+                    end = "$",
                     relevance = 0
                 )
             ),

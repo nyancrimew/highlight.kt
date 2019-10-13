@@ -18,18 +18,18 @@ internal fun mipsasm(): Mode {
         lexemes = "\\.?" +
             hljs.IDENT_RE,
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "meta",
                 value =
                     // GNU preprocs
                     ".2byte .4byte .align .ascii .asciz .balign .byte .code .data .else .end .endif .endm .endr .equ .err .exitm .extern .global .hword .if .ifdef .ifndef .include .irp .long .macro .rept .req .section .set .skip .space .text .word .ltorg "
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value =
                     "\$0 \$1 \$2 \$3 \$4 \$5 \$6 \$7 \$8 \$9 \$10 \$11 \$12 \$13 \$14 \$15 \$16 \$17 \$18 \$19 \$20 \$21 \$22 \$23 \$24 \$25 \$26 \$27 \$28 \$29 \$30 \$31 zero at v0 v1 a0 a1 a2 a3 a4 a5 a6 a7 t0 t1 t2 t3 t4 t5 t6 t7 t8 t9 s0 s1 s2 s3 s4 s5 s6 s7 s8 k0 k1 gp sp fp ra \$f0 \$f1 \$f2 \$f2 \$f4 \$f5 \$f6 \$f7 \$f8 \$f9 \$f10 \$f11 \$f12 \$f13 \$f14 \$f15 \$f16 \$f17 \$f18 \$f19 \$f20 \$f21 \$f22 \$f23 \$f24 \$f25 \$f26 \$f27 \$f28 \$f29 \$f30 \$f31 Context Random EntryLo0 EntryLo1 Context PageMask Wired EntryHi HWREna BadVAddr Count Compare SR IntCtl SRSCtl SRSMap Cause EPC PRId EBase Config Config1 Config2 Config3 LLAddr Debug DEPC DESAVE CacheErr ECC ErrorEPC TagLo DataLo TagHi DataHi WatchLo WatchHi PerfCtl PerfCnt " // Coprocessor 0 registers
             )
-        ),
+        ).flatten(),
         contains = listOf(
             Mode(
                 className = "keyword",
@@ -38,7 +38,7 @@ internal fun mipsasm(): Mode {
             ),
             hljs.COMMENT(
                 "[;#]",
-                "\$"
+                "$"
             ),
             hljs.C_BLOCK_COMMENT_MODE,
             hljs.QUOTE_STRING_MODE,

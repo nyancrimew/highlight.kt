@@ -18,23 +18,23 @@ internal fun maxima(): Mode {
     return Mode(
         lexemes = "[A-Za-z_%][0-9A-Za-z_%]*",
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value = KEYWORDS
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value = LITERALS
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value = BUILTIN_FUNCTIONS
             ),
-            Keyword(
+            keyword(
                 className = "symbol",
                 value = SYMBOLS
             )
-        ),
+        ).flatten(),
         contains = listOf(
             Mode(
                 className = "comment",

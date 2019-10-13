@@ -19,7 +19,7 @@ internal fun autoit(): Mode {
         variants = listOf(
             hljs.COMMENT(
                 ";",
-                "\$",
+                "$",
                 Mode(relevance = 0)
             ),
             hljs.COMMENT(
@@ -72,13 +72,11 @@ internal fun autoit(): Mode {
     var PREPROCESSOR = Mode(
         className = "meta",
         begin = "#",
-        end = "${'$'}",
-        keywords = listOf(
-            Keyword(
+        end = "$",
+        keywords = keyword(
                 className = "meta-keyword",
                 value = "comments include include-once NoTrayIcon OnAutoItStartRegister pragma compile RequireAdmin"
-            )
-        ),
+            ),
         contains = listOf(
             Mode(
                 begin =
@@ -87,13 +85,11 @@ internal fun autoit(): Mode {
             ),
             Mode(
                 beginKeywords = keywords("include"),
-                keywords = listOf(
-                    Keyword(
+                keywords = keyword(
                         className = "meta-keyword",
                         value = "include"
-                    )
-                ),
-                end = "${'$'}",
+                    ),
+                end = "$",
                 contains = listOf(
                     STRING,
                     Mode(
@@ -148,8 +144,8 @@ internal fun autoit(): Mode {
     var FUNCTION = Mode(
         className = "function",
         beginKeywords = keywords("Func"),
-        end = "${'$'}",
-        illegal = "\\${'$'}|\\[|%",
+        end = "$",
+        illegal = "\\$|\\[|%",
         contains = listOf(
             hljs.UNDERSCORE_TITLE_MODE,
             Mode(
@@ -169,19 +165,19 @@ internal fun autoit(): Mode {
         illegal =
             """\/\*""",
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value = KEYWORDS
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value = BUILT_IN
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value = LITERAL
             )
-        ),
+        ).flatten(),
         contains = listOf(
             COMMENT,
             VARIABLE,

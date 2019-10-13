@@ -1,9 +1,7 @@
 package ch.deletescape.highlight.languages
 
-import ch.deletescape.highlight.core.Keyword
-import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.*
 import ch.deletescape.highlight.core.hljs
-import ch.deletescape.highlight.core.keywords
 
 /*
 Language = LiveScript
@@ -19,24 +17,24 @@ Category = scripting
  */
 internal fun livescript(): Mode {
     var KEYWORDS = listOf(
-        Keyword(
+        keyword(
             className = "keyword",
             value =
                 // JS keywords
                 "in if for while finally new do return else break catch instanceof throw try this switch continue typeof delete debugger case default function var with then unless until loop of by when and or is isnt not it that otherwise from to til fallthrough super case default function var void const let enum export import native __hasProp __extends __slice __bind __indexOf"
         ),
-        Keyword(
+        keyword(
             className = "literal",
             value =
                 // JS literals
                 "true false null undefined yes no on off it that void"
         ),
-        Keyword(
+        keyword(
             className = "built_in",
             value =
                 "npm require console print module global window document"
         )
-    )
+    ).flatten()
     var JS_IDENT_RE = "[A-Za-z\$_](?:\\-[0-9A-Za-z\$_]|[0-9A-Za-z\$_])*"
     var TITLE = hljs.inherit(hljs.TITLE_MODE, Mode(begin = JS_IDENT_RE))
     var SUBST = Mode(

@@ -1,9 +1,7 @@
 package ch.deletescape.highlight.languages
 
-import ch.deletescape.highlight.core.Keyword
-import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.*
 import ch.deletescape.highlight.core.hljs
-import ch.deletescape.highlight.core.keywords
 
 /*
 Language = CoffeeScript
@@ -18,24 +16,24 @@ Category = common, scripting
  */
 internal fun coffeescript(): Mode {
     var KEYWORDS = listOf(
-        Keyword(
+        keyword(
             className = "keyword",
             value =
                 // JS keywords
                 "in if for while finally new do return else break catch instanceof throw try this switch continue typeof delete debugger super yield import export from as default await then unless until loop of by when and or is isnt not"
         ),
-        Keyword(
+        keyword(
             className = "literal",
             value =
                 // JS literals
                 "true false null undefined yes no on off"
         ),
-        Keyword(
+        keyword(
             className = "built_in",
             value =
                 "npm require console print module global window document"
         )
-    )
+    ).flatten()
     var JS_IDENT_RE = "[A-Za-z\$_][0-9A-Za-z\$_]*"
     var SUBST = Mode(
         className = "subst",
@@ -191,7 +189,7 @@ internal fun coffeescript(): Mode {
             Mode(
                 className = "class",
                 beginKeywords = keywords("class"),
-                end = "${'$'}",
+                end = "$",
                 illegal =
                     """[:="\[\]]""",
                 contains = listOf(

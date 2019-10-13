@@ -14,19 +14,19 @@ internal fun nsis(): Mode {
     var CONSTANTS = Mode(
         className = "variable",
         begin =
-            """${'$'}(ADMINTOOLS|APPDATA|CDBURN_AREA|CMDLINE|COMMONFILES32|COMMONFILES64|COMMONFILES|COOKIES|DESKTOP|DOCUMENTS|EXEDIR|EXEFILE|EXEPATH|FAVORITES|FONTS|HISTORY|HWNDPARENT|INSTDIR|INTERNET_CACHE|LANGUAGE|LOCALAPPDATA|MUSIC|NETHOOD|OUTDIR|PICTURES|PLUGINSDIR|PRINTHOOD|PROFILE|PROGRAMFILES32|PROGRAMFILES64|PROGRAMFILES|QUICKLAUNCH|RECENT|RESOURCES_LOCALIZED|RESOURCES|SENDTO|SMPROGRAMS|SMSTARTUP|STARTMENU|SYSDIR|TEMP|TEMPLATES|VIDEOS|WINDIR)"""
+            """\${'$'}(ADMINTOOLS|APPDATA|CDBURN_AREA|CMDLINE|COMMONFILES32|COMMONFILES64|COMMONFILES|COOKIES|DESKTOP|DOCUMENTS|EXEDIR|EXEFILE|EXEPATH|FAVORITES|FONTS|HISTORY|HWNDPARENT|INSTDIR|INTERNET_CACHE|LANGUAGE|LOCALAPPDATA|MUSIC|NETHOOD|OUTDIR|PICTURES|PLUGINSDIR|PRINTHOOD|PROFILE|PROGRAMFILES32|PROGRAMFILES64|PROGRAMFILES|QUICKLAUNCH|RECENT|RESOURCES_LOCALIZED|RESOURCES|SENDTO|SMPROGRAMS|SMSTARTUP|STARTMENU|SYSDIR|TEMP|TEMPLATES|VIDEOS|WINDIR)"""
     )
     var DEFINES = Mode(
         // ${'$'}{defines)
         className = "variable",
         begin =
-            """${'$'}+{[\w\.:-]+}"""
+            """\${'$'}+{[\w\.:-]+}"""
     )
     var VARIABLES = Mode(
         // ${'$'}variables
         className = "variable",
         begin =
-            """${'$'}+\w+""",
+            """\${'$'}+\w+""",
         illegal =
             """\(\){}"""
     )
@@ -34,7 +34,7 @@ internal fun nsis(): Mode {
         // ${'$'}(language_strings)
         className = "variable",
         begin =
-            """${'$'}+\([\w\^\.:-]+\)"""
+            """\${'$'}+\([\w\^\.:-]+\)"""
     )
     var PARAMETERS = Mode(
         // command parameters
@@ -51,7 +51,7 @@ internal fun nsis(): Mode {
         // ${'$'}\n, ${'$'}\r, ${'$'}\t, ${'$'}${'$'}
         className = "meta",
         begin =
-            """${'$'}(\\[nrt]|${'$'})"""
+            """\${'$'}(\\[nrt]|${'$'})"""
     )
     var PLUGINS = Mode(
         // plug::ins
@@ -88,23 +88,23 @@ internal fun nsis(): Mode {
     return Mode(
         case_insensitive = false,
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value =
                     "Abort AddBrandingImage AddSize AllowRootDirInstall AllowSkipFiles AutoCloseWindow BGFont BGGradient BrandingText BringToFront Call CallInstDLL Caption ChangeUI CheckBitmap ClearErrors CompletedText ComponentText CopyFiles CRCCheck CreateDirectory CreateFont CreateShortCut Delete DeleteINISec DeleteINIStr DeleteRegKey DeleteRegValue DetailPrint DetailsButtonText DirText DirVar DirVerify EnableWindow EnumRegKey EnumRegValue Exch Exec ExecShell ExecShellWait ExecWait ExpandEnvStrings File FileBufSize FileClose FileErrorText FileOpen FileRead FileReadByte FileReadUTF16LE FileReadWord FileSeek FileWrite FileWriteByte FileWriteUTF16LE FileWriteWord FindClose FindFirst FindNext FindWindow FlushINI FunctionEnd GetCurInstType GetCurrentAddress GetDlgItem GetDLLVersion GetDLLVersionLocal GetErrorLevel GetFileTime GetFileTimeLocal GetFullPathName GetFunctionAddress GetInstDirError GetLabelAddress GetTempFileName Goto HideWindow Icon IfAbort IfErrors IfFileExists IfRebootFlag IfSilent InitPluginsDir InstallButtonText InstallColors InstallDir InstallDirRegKey InstProgressFlags InstType InstTypeGetText InstTypeSetText Int64Cmp Int64CmpU Int64Fmt IntCmp IntCmpU IntFmt IntOp IntPtrCmp IntPtrCmpU IntPtrOp IsWindow LangString LicenseBkColor LicenseData LicenseForceSelection LicenseLangString LicenseText LoadLanguageFile LockWindow LogSet LogText ManifestDPIAware ManifestSupportedOS MessageBox MiscButtonText Name Nop OutFile Page PageCallbacks PageExEnd Pop Push Quit ReadEnvStr ReadINIStr ReadRegDWORD ReadRegStr Reboot RegDLL Rename RequestExecutionLevel ReserveFile Return RMDir SearchPath SectionEnd SectionGetFlags SectionGetInstTypes SectionGetSize SectionGetText SectionGroupEnd SectionIn SectionSetFlags SectionSetInstTypes SectionSetSize SectionSetText SendMessage SetAutoClose SetBrandingImage SetCompress SetCompressor SetCompressorDictSize SetCtlColors SetCurInstType SetDatablockOptimize SetDateSave SetDetailsPrint SetDetailsView SetErrorLevel SetErrors SetFileAttributes SetFont SetOutPath SetOverwrite SetRebootFlag SetRegView SetShellVarContext SetSilent ShowInstDetails ShowUninstDetails ShowWindow SilentInstall SilentUnInstall Sleep SpaceTexts StrCmp StrCmpS StrCpy StrLen SubCaption Unicode UninstallButtonText UninstallCaption UninstallIcon UninstallSubCaption UninstallText UninstPage UnRegDLL Var VIAddVersionKey VIFileVersion VIProductVersion WindowIcon WriteINIStr WriteRegBin WriteRegDWORD WriteRegExpandStr WriteRegMultiStr WriteRegNone WriteRegStr WriteUninstaller XPStyle"
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value =
                     "admin all auto both bottom bzip2 colored components current custom directory false force hide highest ifdiff ifnewer instfiles lastused leave left license listonly lzma nevershow none normal notset off on open print right show silent silentlog smooth textonly top true try un.components un.custom un.directory un.instfiles un.license uninstConfirm user Win10 Win7 Win8 WinVista zlib"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             hljs.HASH_COMMENT_MODE,
             hljs.C_BLOCK_COMMENT_MODE,
             hljs.COMMENT(
                 ";",
-                "\$",
+                "$",
                 Mode(
                     relevance = 0
                 )
@@ -112,7 +112,7 @@ internal fun nsis(): Mode {
             Mode(
                 className = "function",
                 beginKeywords = keywords("Function PageEx Section SectionGroup"),
-                end = "\$"
+                end = "$"
             ),
             STRING,
             COMPILER,

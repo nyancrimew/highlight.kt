@@ -20,13 +20,13 @@ internal fun delphi(): Mode {
         variants = listOf(
             Mode(
                 begin =
-                    """\{${'$'}""",
+                    """\{\${'$'}""",
                 end =
                     """\}"""
             ),
             Mode(
                 begin =
-                    """\(\*${'$'}""",
+                    """\(\*\${'$'}""",
                 end =
                     """\*\)"""
             )
@@ -87,7 +87,7 @@ internal fun delphi(): Mode {
         case_insensitive = true,
         keywords = keywords(KEYWORDS),
         illegal =
-            """"|${'$'}[G-Zg-z]|\/\*|<\/|\|""",
+            """"|\${'$'}[G-Zg-z]|\/\*|<\/|\|""",
         contains = listOf(
             STRING, CHAR_STRING,
             hljs.NUMBER_MODE,

@@ -41,7 +41,7 @@ internal fun properties(): Mode {
         contains = listOf(
             hljs.COMMENT(
                 "^\\s*[!#]",
-                "\$"
+                "$"
             ),
             // key: everything until whitespace or = or : (taking into account backslashes)
             // case of a "normal" key

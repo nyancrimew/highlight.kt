@@ -13,17 +13,17 @@ Category = common
 internal fun ruby(): Mode {
     var RUBY_METHOD_RE = "[a-zA-Z_]\\w*[!?=]?|[-+~]\\@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\]=?"
     var RUBY_KEYWORDS = listOf(
-        Keyword(
+        keyword(
             className = "keyword",
             value =
                 "and then defined module in return redo if BEGIN retry end for self when next until do begin unless END rescue else break undef not super class case require yield alias while ensure elsif or include attr_reader attr_writer attr_accessor"
         ),
-        Keyword(
+        keyword(
             className = "literal",
             value =
                 "true false nil"
         )
-    )
+    ).flatten()
     var YARDOCTAG = Mode(
         className = "doctag",
         begin = "@[A-Za-z]+"
@@ -222,12 +222,12 @@ internal fun ruby(): Mode {
                         """\n""",
                     variants = listOf(
                         Mode(
-                            begin = "/",
-                            end = "/[a-z]*"
+                            begin = "\\/",
+                            end = "\\/[a-z]*"
                         ),
                         Mode(
                             begin = "%r\\{",
-                            end = "}[a-z]*"
+                            end = "\\}[a-z]*"
                         ),
                         Mode(
                             begin = "%r\\(",

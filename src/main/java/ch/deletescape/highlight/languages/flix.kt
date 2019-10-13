@@ -39,15 +39,15 @@ internal fun flix(): Mode {
     )
     return Mode(
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "literal",
                 value = "true false"
             ),
-            Keyword(
+            keyword(
                 className = "keyword",
                 value = "case class def else enum if impl import in lat rel index let match namespace switch type yield with"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             hljs.C_LINE_COMMENT_MODE,
             hljs.C_BLOCK_COMMENT_MODE,

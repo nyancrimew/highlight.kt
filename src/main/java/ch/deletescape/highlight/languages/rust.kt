@@ -1,5 +1,10 @@
 package ch.deletescape.highlight.languages
-import ch.deletescape.highlight.core.*
+
+import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.hljs
+import ch.deletescape.highlight.core.keyword
+import ch.deletescape.highlight.core.keywords
+
 /*
 Language = Rust
 Author = Andrey Vlasovskikh <andrey.vlasovskikh@gmail.com>
@@ -20,22 +25,22 @@ internal fun rust(): Mode {
     return Mode(
         aliases = listOf("rs"),
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value =
-                    KEYWORDS
+                KEYWORDS
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value =
-                    "true false Some None Ok Err"
+                "true false Some None Ok Err"
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value =
-                    BUILTINS
+                BUILTINS
             )
-        ),
+        ).flatten(),
         lexemes = hljs.IDENT_RE + "!?",
         illegal = "</",
         contains = listOf(
@@ -49,7 +54,7 @@ internal fun rust(): Mode {
                 hljs.QUOTE_STRING_MODE,
                 Mode(
                     begin =
-                        """b?\"""",
+                    """b?\"""",
                     illegal = null
                 )
             ),
@@ -58,37 +63,37 @@ internal fun rust(): Mode {
                 variants = listOf(
                     Mode(
                         begin =
-                            """r(#*)"(.|\n)*?"\1(?!#)"""
+                        """r(#*)"(.|\n)*?"\1(?!#)"""
                     ),
                     Mode(
                         begin =
-                            """b?'\\?(x\w{2}|u\w{4}|U\w{8}|.)'"""
+                        """b?'\\?(x\w{2}|u\w{4}|U\w{8}|.)'"""
                     )
                 )
             ),
             Mode(
                 className = "symbol",
                 begin =
-                    """'[a-zA-Z_][a-zA-Z0-9_]*"""
+                """'[a-zA-Z_][a-zA-Z0-9_]*"""
             ),
             Mode(
                 className = "number",
                 variants = listOf(
                     Mode(
                         begin = "\\b0b([01_]+)" +
-                            NUM_SUFFIX
+                                NUM_SUFFIX
                     ),
                     Mode(
                         begin = "\\b0o([0-7_]+)" +
-                            NUM_SUFFIX
+                                NUM_SUFFIX
                     ),
                     Mode(
                         begin = "\\b0x([A-Fa-f0-9_]+)" +
-                            NUM_SUFFIX
+                                NUM_SUFFIX
                     ),
                     Mode(
                         begin = "\\b(\\d[\\d_]*(\\.[0-9_]+)?([eE][+-]?[0-9_]+)?)" +
-                            NUM_SUFFIX
+                                NUM_SUFFIX
                     )
                 ),
                 relevance = 0
@@ -108,9 +113,9 @@ internal fun rust(): Mode {
                     Mode(
                         className = "meta-string",
                         begin =
-                            """"""",
+                        """"""",
                         end =
-                            """""""
+                        """""""
                     )
                 )
             ),
@@ -134,11 +139,9 @@ internal fun rust(): Mode {
             ),
             Mode(
                 begin = hljs.IDENT_RE + "::",
-                keywords = listOf(
-                    Keyword(
-                        className = "built_in",
-                        value = BUILTINS
-                    )
+                keywords = keyword(
+                    className = "built_in",
+                    value = BUILTINS
                 )
             ),
             Mode(

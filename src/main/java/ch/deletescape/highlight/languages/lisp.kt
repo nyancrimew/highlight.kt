@@ -17,7 +17,7 @@ internal fun lisp(): Mode {
     var SHEBANG = Mode(
         className = "meta",
         begin = "^#!",
-        end = "\$"
+        end = "$"
     )
     var LITERAL = Mode(
         className = "literal",
@@ -43,7 +43,7 @@ internal fun lisp(): Mode {
     var STRING = hljs.inherit(hljs.QUOTE_STRING_MODE, Mode(illegal = null))
     var COMMENT = hljs.COMMENT(
         ";",
-        "\$",
+        "$",
         Mode(
             relevance = 0
         )
@@ -82,11 +82,9 @@ internal fun lisp(): Mode {
             Mode(
                 begin = "\\(quote ",
                 end = "\\)",
-                keywords = listOf(
-                    Keyword(
+                keywords = keyword(
                         className = "name",
                         value = "quote"
-                    )
                 )
             ),
             Mode(

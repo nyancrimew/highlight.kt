@@ -107,12 +107,12 @@ internal fun yaml(): Mode {
             Mode(// fragment id &ref
                 className = "meta",
                 begin = "&" +
-                    hljs.UNDERSCORE_IDENT_RE + "\$"
+                    hljs.UNDERSCORE_IDENT_RE + "\\\$"
             ),
             Mode(// fragment reference *ref
                 className = "meta",
                 begin = "\\*" +
-                    hljs.UNDERSCORE_IDENT_RE + "\$"
+                    hljs.UNDERSCORE_IDENT_RE + "\\\$"
             ),
             Mode(// array listing
                 className = "bullet",
@@ -122,11 +122,9 @@ internal fun yaml(): Mode {
             hljs.HASH_COMMENT_MODE,
             Mode(
                 beginKeywords = keywords(LITERALS),
-                keywords = listOf(
-                    Keyword(
+                keywords = keyword(
                         className = "literal",
                         value = LITERALS
-                    )
                 )
             ),
             hljs.C_NUMBER_MODE,

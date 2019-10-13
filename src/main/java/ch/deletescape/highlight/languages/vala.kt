@@ -12,23 +12,23 @@ Description = Vala is a new programming language that aims to bring modern progr
 internal fun vala(): Mode {
     return Mode(
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value =
                     // Value types
                     "char uchar unichar int uint long ulong short ushort int8 int16 int32 int64 uint8 uint16 uint32 uint64 float double bool struct enum string void weak unowned owned async signal static abstract interface override virtual delegate if while do for foreach else switch case break default return try catch public private protected internal using new this get set const stdout stdin stderr var"
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value =
                     "DBus GLib CCode Gee Object Gtk Posix"
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value =
                     "false true null"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             Mode(
                 className = "class",
@@ -54,7 +54,7 @@ internal fun vala(): Mode {
             Mode(
                 className = "meta",
                 begin = "^#",
-                end = "\$",
+                end = "$",
                 relevance = 2
             )
         )

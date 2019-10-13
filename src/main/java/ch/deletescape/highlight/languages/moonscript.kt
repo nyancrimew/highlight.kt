@@ -1,9 +1,7 @@
 package ch.deletescape.highlight.languages
 
-import ch.deletescape.highlight.core.Keyword
-import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.*
 import ch.deletescape.highlight.core.hljs
-import ch.deletescape.highlight.core.keywords
 
 /*
 Language = MoonScript
@@ -18,23 +16,23 @@ Category = scripting
  */
 internal fun moonscript(): Mode {
     var KEYWORDS = listOf(
-        Keyword(
+        keyword(
             className = "keyword",
             value =
                 // Moonscript keywords
                 "if then not for in while do return else elseif break continue switch and or unless when class extends super local import export from using"
         ),
-        Keyword(
+        keyword(
             className = "literal",
             value =
                 "true false nil"
         ),
-        Keyword(
+        keyword(
             className = "built_in",
             value =
                 "_G _VERSION assert collectgarbage dofile error getfenv getmetatable ipairs load loadfile loadstring module next pairs pcall print rawequal rawget rawset require select setfenv setmetatable tonumber tostring type unpack xpcall coroutine debug io math os package string table"
         )
-    )
+    ).flatten()
     var JS_IDENT_RE = "[A-Za-z\$_][0-9A-Za-z\$_]*"
     var SUBST = Mode(
         className = "subst",

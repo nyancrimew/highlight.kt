@@ -201,19 +201,19 @@ internal fun xquery(): Mode {
         illegal =
             """(proc)|(abstract)|(extends)|(until)|(#)""",
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value = KEYWORDS
             ),
-            Keyword(
+            keyword(
                 className = "type",
                 value = TYPE
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value = LITERAL
             )
-        ),
+        ).flatten(),
         contains = CONTAINS
     )
 }

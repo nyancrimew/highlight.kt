@@ -84,15 +84,15 @@ internal fun cal(): Mode {
     return Mode(
         case_insensitive = true,
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value = KEYWORDS
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value = LITERALS
             )
-        ),
+        ).flatten(),
         illegal =
             """\/\*""",
         contains = listOf(

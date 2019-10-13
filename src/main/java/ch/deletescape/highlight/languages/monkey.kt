@@ -1,5 +1,10 @@
 package ch.deletescape.highlight.languages
-import ch.deletescape.highlight.core.*
+
+import ch.deletescape.highlight.core.Mode
+import ch.deletescape.highlight.core.hljs
+import ch.deletescape.highlight.core.keyword
+import ch.deletescape.highlight.core.keywords
+
 /*
 Language = Monkey
 Author = Arthur Bikmullin <devolonter@gmail.com>
@@ -22,21 +27,21 @@ internal fun monkey(): Mode {
     return Mode(
         case_insensitive = true,
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value = "public private property continue exit extern new try catch eachin not abstract final select case default const local global field end if then else elseif endif while wend repeat until forever for to step next return module inline throw import"
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value = "DebugLog DebugStop Error Print ACos ACosr ASin ASinr ATan ATan2 ATan2r ATanr Abs Abs Ceil Clamp Clamp Cos Cosr Exp Floor Log Max Max Min Min Pow Sgn Sgn Sin Sinr Sqrt Tan Tanr Seed PI HALFPI TWOPI"
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value = "true false null and or shl shr mod"
             )
-        ),
+        ).flatten(),
         illegal =
-            """\/\*""",
+        """\/\*""",
         contains = listOf(
             hljs.COMMENT(
                 "#rem",
@@ -54,7 +59,7 @@ internal fun monkey(): Mode {
                 beginKeywords = keywords("function method"),
                 end = "[(=:]|${'$'}",
                 illegal =
-                    """\n""",
+                """\n""",
                 contains = listOf(
                     hljs.UNDERSCORE_TITLE_MODE
                 )
@@ -62,7 +67,7 @@ internal fun monkey(): Mode {
             Mode(
                 className = "class",
                 beginKeywords = keywords("class interface"),
-                end = "\$",
+                end = "$",
                 contains = listOf(
                     Mode(
                         beginKeywords = keywords("extends implements")
@@ -77,12 +82,11 @@ internal fun monkey(): Mode {
             Mode(
                 className = "meta",
                 begin = "\\s*#",
-                end = "\$",
-                keywords = listOf(
-                    Keyword(
-                        className = "meta-keyword",
-                        value = "if else elseif endif end then"
-                    )
+                end = "$",
+                keywords =
+                keyword(
+                    className = "meta-keyword",
+                    value = "if else elseif endif end then"
                 )
             ),
             Mode(

@@ -526,23 +526,23 @@ internal fun isbl(): Mode {
     )
     // keywords = keywords(ключевые слова)
     var KEYWORDS = listOf(
-        Keyword(
+        keyword(
             className = "keyword",
             value = KEYWORD
         ),
-        Keyword(
+        keyword(
             className = "built_in",
             value = BUILTIN
         ),
-        Keyword(
+        keyword(
             className = "class",
             value = CLASS
         ),
-        Keyword(
+        keyword(
             className = "literal",
             value = LITERAL
         )
-    )
+    ).flatten()
     // methods : методы
     var METHODS = Mode(
         begin = "\\.\\s*" +
@@ -573,11 +573,9 @@ internal fun isbl(): Mode {
     var TITLE_MODE = Mode(
         className = "title",
         lexemes = UNDERSCORE_IDENT_RE,
-        keywords = listOf(
-            Keyword(
+        keywords =keyword(
                 className = "built_in",
                 value = system_functions
-            )
         ),
         begin = FUNCTION_TITLE,
         end = "\\(",

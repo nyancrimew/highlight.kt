@@ -11,22 +11,22 @@ Category = common, scripting
 internal fun javascript(): Mode {
     var IDENT_RE = "[A-Za-z\$_][0-9A-Za-z\$_]*"
     var KEYWORDS = listOf(
-        Keyword(
+        keyword(
             className = "keyword",
             value =
                 "in of if for while finally var new function do return void else break catch instanceof with throw case default try this switch continue typeof delete let yield const export super debugger as async await static import from as"
         ),
-        Keyword(
+        keyword(
             className = "literal",
             value =
                 "true false null undefined NaN Infinity"
         ),
-        Keyword(
+        keyword(
             className = "built_in",
             value =
                 "eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape Object Function Boolean Error EvalError InternalError RangeError ReferenceError StopIteration SyntaxError TypeError URIError Number Math Date String RegExp Array Float32Array Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require module console window document Symbol Set Map WeakSet WeakMap Proxy Reflect Promise"
         )
-    )
+    ).flatten()
     var NUMBER = Mode(
         className = "number",
         variants = listOf(
@@ -241,7 +241,7 @@ internal fun javascript(): Mode {
             ),
             Mode(
                 begin =
-                    """${'$'}[(.]""" // relevance booster for a pattern common to JS libs: `${'$'}(something)` and `${'$'}.something`
+                    """\${'$'}[(.]""" // relevance booster for a pattern common to JS libs: `${'$'}(something)` and `${'$'}.something`
             ),
             hljs.METHOD_GUARD,
             Mode(// ES6 class

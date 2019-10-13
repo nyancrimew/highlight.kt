@@ -88,10 +88,10 @@ internal fun php(): Mode {
                         className = "subst",
                         variants = listOf(
                             Mode(begin =
-                                    """${'$'}\w+"""),
+                                    """\$\w+"""),
                             Mode(
                                 begin =
-                                    """\{${'$'}""",
+                                    """\{\$""",
                                 end =
                                     """\}"""
                             )

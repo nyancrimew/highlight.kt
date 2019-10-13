@@ -22,7 +22,7 @@ internal fun mojolicious(): Mode {
             // mojolicious line
             Mode(
                 begin = "^\\s*%{1,2}={0,2}",
-                end = "\$",
+                end = "$",
                 subLanguage = "perl"
             ),
             // mojolicious block

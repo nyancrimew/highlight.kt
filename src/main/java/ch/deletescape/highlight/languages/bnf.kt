@@ -25,7 +25,7 @@ internal fun bnf(): Mode {
                     """::=""",
                 starts = Mode(
                     end =
-                        """${'$'}""",
+                        """$""",
                     contains = listOf(
                         Mode(
                             begin =

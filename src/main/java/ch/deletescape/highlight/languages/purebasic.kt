@@ -41,7 +41,7 @@ internal fun purebasic(): Mode {
             // COMMENTS | PB IDE color: #00AAAA (Persian Green)
             hljs.COMMENT(
                 ";",
-                "\$",
+                "$",
                 Mode(relevance = 0)
             ),
             Mode(// PROCEDURES DEFINITIONS

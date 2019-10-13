@@ -16,22 +16,22 @@ internal fun haxe(): Mode {
     return Mode(
         aliases = listOf("hx"),
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value = "break case cast catch continue default do dynamic else enum extern for function here if import in inline never new override package private get set public return static super switch this throw trace try typedef untyped using var while " +
                     HAXE_BASIC_TYPES
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value =
                     "trace this"
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value =
                     "true false null _"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             Mode(
                 className = "string",
@@ -62,20 +62,18 @@ internal fun haxe(): Mode {
                 className = "meta",
                 // compiler meta
                 begin = "@:",
-                end = "\$"
+                end = "$"
             ),
             Mode(
                 className = "meta",
                 // compiler conditionals
                 begin = "#",
-                end = "\$",
-                keywords = listOf(
-                    Keyword(
+                end = "$",
+                keywords = keyword(
                         className = "meta-keyword",
                         value = "if else elseif end error"
                     )
-                )
-            ),
+                ),
             Mode(
                 className = "type",
                 // function types
@@ -139,12 +137,10 @@ internal fun haxe(): Mode {
                     ),
                     hljs.TITLE_MODE
                 ),
-                keywords = listOf(
-                    Keyword(
+                keywords = keyword(
                         className = "keyword",
                         value = "abstract from to"
                     )
-                )
             ),
             Mode(
                 className = "class",

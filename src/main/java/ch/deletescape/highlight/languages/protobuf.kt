@@ -13,19 +13,19 @@ Category = protocols
 internal fun protobuf(): Mode {
     return Mode(
         keywords = listOf(
-            Keyword(
+            keyword(
                 className = "keyword",
                 value = "package import option optional required repeated group oneof"
             ),
-            Keyword(
+            keyword(
                 className = "built_in",
                 value = "double float int32 int64 uint32 uint64 sint32 sint64 fixed32 fixed64 sfixed32 sfixed64 bool string bytes"
             ),
-            Keyword(
+            keyword(
                 className = "literal",
                 value = "true false"
             )
-        ),
+        ).flatten(),
         contains = listOf(
             hljs.QUOTE_STRING_MODE,
             hljs.NUMBER_MODE,

@@ -69,7 +69,7 @@ internal fun css(): Mode {
     return Mode(
         case_insensitive = true,
         illegal =
-            """[=\/|'${'$'}]""",
+            """[=\/|'$]""",
         contains = listOf(
             hljs.C_BLOCK_COMMENT_MODE,
             Mode(
@@ -88,7 +88,7 @@ internal fun css(): Mode {
                     """\[""",
                 end =
                     """\]""",
-                illegal = "${'$'}"
+                illegal = "\\\$"
             ),
             Mode(
                 className = "selector-pseudo",

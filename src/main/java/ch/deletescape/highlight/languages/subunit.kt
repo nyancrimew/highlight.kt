@@ -33,7 +33,6 @@ internal fun subunit(): Mode {
             Mode(begin = "^progress(:?)(\\s+)?(pop|push)?"),
             Mode(begin = "^tags = "),
             Mode(begin = "^time = ")
-
         )
     )
     return Mode(
