@@ -72,7 +72,7 @@ internal fun pony(): Mode {
      * where it is valid to have a function head without a body
      */
     return Mode(
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         contains = listOf(
             TYPE_NAME,
             TRIPLE_QUOTE_STRING_MODE,

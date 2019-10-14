@@ -97,7 +97,7 @@ internal fun erlang(): Mode {
     var BLOCK_STATEMENTS = Mode(
         beginKeywords = keywords("fun receive if try case"),
         end = "end",
-        keywords = keywords(ERLANG_RESERVED)
+        keywords = ERLANG_RESERVED
     )
     BLOCK_STATEMENTS.contains = listOf(
         COMMENT,
@@ -133,7 +133,7 @@ internal fun erlang(): Mode {
     )
     return Mode(
         aliases = listOf("erl"),
-        keywords = keywords(ERLANG_RESERVED),
+        keywords = ERLANG_RESERVED,
         illegal = "(</|\\*=|\\+=|-=|/\\*|\\*/|\\(\\*|\\*\\))",
         contains = listOf(
             Mode(
@@ -149,7 +149,7 @@ internal fun erlang(): Mode {
                 ),
                 starts = Mode(
                     end = ";|\\.",
-                    keywords = keywords(ERLANG_RESERVED),
+                    keywords = ERLANG_RESERVED,
                     contains = BASIC_MODES
                 )
             ),

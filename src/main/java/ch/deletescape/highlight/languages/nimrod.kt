@@ -32,7 +32,7 @@ internal fun nimrod(): Mode {
                 className = "meta",
                 // Actually pragma
                 begin =
-                    """{\.""",
+                    """\{\.""",
                 end =
                     """\.}""",
                 relevance = 10

@@ -40,7 +40,7 @@ internal fun typescript(): Mode {
             begin = "\\(",
             end =
                 """\)""",
-            keywords = keywords(KEYWORDS),
+            keywords = KEYWORDS,
             contains = listOf(
                 hljs.SELF,
                 hljs.QUOTE_STRING_MODE,
@@ -56,7 +56,7 @@ internal fun typescript(): Mode {
             """\)""",
         excludeBegin = true,
         excludeEnd = true,
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         contains = listOf(
             hljs.C_LINE_COMMENT_MODE,
             hljs.C_BLOCK_COMMENT_MODE,
@@ -76,8 +76,8 @@ internal fun typescript(): Mode {
     var SUBST = Mode(
         className = "subst",
         begin = "\\${'$'}\\{",
-        end = "\\\\}",
-        keywords = keywords(KEYWORDS),
+        end = "\\}",
+        keywords = KEYWORDS,
         contains = listOf() // defined later
     )
     var HTML_TEMPLATE = Mode(
@@ -127,7 +127,7 @@ internal fun typescript(): Mode {
 
     return Mode(
         aliases = listOf("ts"),
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         contains = listOf(
             Mode(
                 className = "meta",
@@ -174,7 +174,7 @@ internal fun typescript(): Mode {
                                             """\)""",
                                         excludeBegin = true,
                                         excludeEnd = true,
-                                        keywords = keywords(KEYWORDS),
+                                        keywords = KEYWORDS,
                                         contains = listOf(
                                             hljs.SELF,
                                             hljs.C_LINE_COMMENT_MODE,
@@ -194,7 +194,7 @@ internal fun typescript(): Mode {
                 end =
                     """[\{;]""",
                 excludeEnd = true,
-                keywords = keywords(KEYWORDS),
+                keywords = KEYWORDS,
                 contains = listOf(
                     hljs.SELF,
                     hljs.inherit(hljs.TITLE_MODE, Mode(begin = JS_IDENT_RE)),

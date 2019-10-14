@@ -44,7 +44,7 @@ internal fun haxe(): Mode {
                         className = "subst",
                         // interpolation
                         begin = "\\\$\\{",
-                        end = "\\\\}"
+                        end = "\\}"
                     ),
                     Mode(
                         className = "subst",
@@ -103,7 +103,7 @@ internal fun haxe(): Mode {
                 className = "class",
                 // enums
                 beginKeywords = keywords("enum"),
-                end = "\\\\{",
+                end = "\\{",
                 contains = listOf(
                     hljs.TITLE_MODE
                 )
@@ -112,7 +112,7 @@ internal fun haxe(): Mode {
                 className = "class",
                 // abstracts
                 beginKeywords = keywords("abstract"),
-                end = "[\\\\{\$]",
+                end = "[\\\\{\\\$]",
                 contains = listOf(
                     Mode(
                         className = "type",
@@ -146,7 +146,7 @@ internal fun haxe(): Mode {
                 className = "class",
                 // classes
                 begin = "\\b(class|interface) +",
-                end = "[\\\\{\$]",
+                end = "[\\\\{\\\$]",
                 excludeEnd = true,
                 keywords = keywords("class interface"),
                 contains = listOf(

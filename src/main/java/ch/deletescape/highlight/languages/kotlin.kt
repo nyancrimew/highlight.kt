@@ -140,7 +140,7 @@ internal fun kt(): Mode {
     KOTLIN_PAREN_TYPE.variants[1].contains = listOf(KOTLIN_PAREN_TYPE2)
     return Mode(
         aliases = listOf("kt"),
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         contains = listOf(
             hljs.COMMENT(
                 "/\\*\\*",
@@ -167,7 +167,7 @@ internal fun kt(): Mode {
                 end = "[(]|$",
                 returnBegin = true,
                 excludeEnd = true,
-                keywords = keywords(KEYWORDS),
+                keywords = KEYWORDS,
                 illegal =
                     """fun\s+(<.*>)?[^\s\(]+(\s+[^\s\(]+)\s*=""",
                 relevance = 5,
@@ -194,7 +194,7 @@ internal fun kt(): Mode {
                         end =
                             """\)""",
                         endsParent = true,
-                        keywords = keywords(KEYWORDS),
+                        keywords = KEYWORDS,
                         relevance = 0,
                         contains = listOf(
                             Mode(

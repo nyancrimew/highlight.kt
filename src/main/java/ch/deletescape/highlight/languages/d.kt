@@ -181,8 +181,8 @@ internal fun d(): Mode {
      */
     var D_TOKEN_STRING_MODE = Mode(
         className = "string",
-        begin = "q\"\\\\{",
-        end = "\\\\}\""
+        begin = "q\"\\{",
+        end = "\\}\""
     )
     /**
      * Hashbang support
@@ -230,7 +230,7 @@ internal fun d(): Mode {
     )
     return Mode(
         lexemes = hljs.UNDERSCORE_IDENT_RE,
-        keywords = keywords(D_KEYWORDS),
+        keywords = D_KEYWORDS,
         contains = listOf(
             hljs.C_LINE_COMMENT_MODE,
             hljs.C_BLOCK_COMMENT_MODE,

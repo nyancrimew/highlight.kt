@@ -70,7 +70,7 @@ internal fun scala(): Mode {
     var NAME = Mode(
         className = "title",
         begin =
-            """[^0 - 9\ n \ t "'(),.`{}\[\]:;][^\n\t \"'(),.`{}\[\]:;]+|[^0-9\n\t \"'(),.`{}\[\]:;=]""",
+            """[^0-9\n\t "'(),.`{}\[\]:;][^\n\t "'(),.`{}\[\]:;]+|[^0-9\n\t "'(),.`{}\[\]:;=]""",
         relevance = 0
     )
     var CLASS = Mode(

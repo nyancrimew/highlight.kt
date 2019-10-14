@@ -37,7 +37,7 @@ internal fun capnproto(): Mode {
             Mode(
                 className = "meta",
                 begin =
-                    """@0x[\w\d]{16);""",
+                    """@0x[\w\d]{16};""",
                 illegal =
                     """\n"""
             ),

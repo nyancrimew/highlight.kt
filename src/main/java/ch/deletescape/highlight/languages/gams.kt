@@ -65,7 +65,7 @@ internal fun gams(): Mode {
     var ASSIGNMENT = Mode(
         begin = "/",
         end = "/",
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         contains = listOf(
             QSTR,
             hljs.C_LINE_COMMENT_MODE,
@@ -95,7 +95,7 @@ internal fun gams(): Mode {
     return Mode(
         aliases = listOf("gms"),
         case_insensitive = true,
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         contains = listOf(
             hljs.COMMENT("""^\${'$'}ontext""", """^\${'$'}offtext"""),
             Mode(

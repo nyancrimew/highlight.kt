@@ -41,7 +41,7 @@ internal fun coffeescript(): Mode {
             """#\{""",
         end =
             """}""",
-        keywords = keywords(KEYWORDS)
+        keywords = KEYWORDS
     )
     var EXPRESSIONS = listOf(
         hljs.BINARY_NUMBER_MODE,
@@ -142,7 +142,7 @@ internal fun coffeescript(): Mode {
                     """\(""",
                 end =
                     """\)""",
-                keywords = keywords(KEYWORDS),
+                keywords = KEYWORDS,
                 contains = listOf(hljs.SELF) + EXPRESSIONS
             )
         )
@@ -153,7 +153,7 @@ internal fun coffeescript(): Mode {
             "cson",
             "iced"
         ),
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         illegal =
             """\/\*""",
         contains = EXPRESSIONS + listOf(

@@ -108,7 +108,7 @@ internal fun scheme(): Mode {
         className = "name",
         begin = SCHEME_IDENT_RE,
         lexemes = SCHEME_IDENT_RE,
-        keywords = keywords(BUILTINS)
+        keywords = BUILTINS
     )
     var LAMBDA = Mode(
         begin =

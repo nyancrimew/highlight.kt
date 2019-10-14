@@ -35,9 +35,9 @@ internal fun verilog(): Mode {
             "svh"
         ),
         case_insensitive = false,
-        keywords = keywords(SV_KEYWORDS),
+        keywords = SV_KEYWORDS,
         lexemes =
-            """[\w${'$'}]+""",
+            """[\w\${'$'}]+""",
         contains = listOf(
             hljs.C_BLOCK_COMMENT_MODE,
             hljs.C_LINE_COMMENT_MODE,
@@ -49,7 +49,7 @@ internal fun verilog(): Mode {
                     Mode(begin = "\\b((\\d+'(b|h|o|d|B|H|O|D))[0-9xzXZa-fA-F_]+)"),
                     Mode(begin = "\\B(('(b|h|o|d|B|H|O|D))[0-9xzXZa-fA-F_]+)"),
                     Mode(
-                        begin = "\\b(listOf(0-9_))+",
+                        begin = "\\b([0-9_])+",
                         relevance = 0
                     )
                 )

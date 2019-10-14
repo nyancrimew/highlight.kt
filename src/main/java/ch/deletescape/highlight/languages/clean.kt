@@ -36,7 +36,7 @@ internal fun clean(): Mode {
             hljs.APOS_STRING_MODE,
             hljs.QUOTE_STRING_MODE,
             hljs.C_NUMBER_MODE,
-            Mode(begin = "->|<-[|:]?|#!?|>>=|\\\\{\\||\\|\\\\}|:==|=:|<>") // relevance booster
+            Mode(begin = "->|<-[|:]?|#!?|>>=|\\{\\||\\|\\}|:==|=:|<>") // relevance booster
         )
     )
 }

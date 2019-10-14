@@ -12,7 +12,7 @@ Category = config
  * Origin highlight.js/src/languages/roboconf.js MD5 <f0e17f5918400873282f147efc907bcd>
  */
 internal fun roboconf(): Mode {
-    var IDENTIFIER = "[a-zA-Z-_][^\\n\\{]+\\\\{"
+    var IDENTIFIER = "[a-zA-Z-_][^\\n\\{]+\\{"
     var PROPERTY = Mode(
         className = "attribute",
         begin =

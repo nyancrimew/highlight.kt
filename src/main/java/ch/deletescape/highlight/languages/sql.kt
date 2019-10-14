@@ -17,7 +17,7 @@ internal fun sql(): Mode {
     return Mode(
         case_insensitive = true,
         illegal =
-            """[<>{}*]""",
+            """[<>\{\}\*]""",
         contains = listOf(
             Mode(
                 beginKeywords =

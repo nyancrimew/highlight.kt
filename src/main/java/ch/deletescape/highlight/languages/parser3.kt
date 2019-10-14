@@ -27,8 +27,8 @@ internal fun parser3(): Mode {
                 "$"
             ),
             hljs.COMMENT(
-                "\\^rem{",
-                "}",
+                "\\^rem\\{",
+                "\\}",
                 Mode(
                     relevance = 10,
                     contains = listOf(

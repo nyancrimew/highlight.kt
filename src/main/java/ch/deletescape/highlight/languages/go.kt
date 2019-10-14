@@ -31,7 +31,7 @@ internal fun go(): Mode {
     ).flatten()
     return Mode(
         aliases = listOf("golang"),
-        keywords = keywords(GO_KEYWORDS),
+        keywords = GO_KEYWORDS,
         illegal = "</",
         contains = listOf(
             hljs.C_LINE_COMMENT_MODE,
@@ -78,7 +78,7 @@ internal fun go(): Mode {
                             """\(""",
                         end =
                             """\)""",
-                        keywords = keywords(GO_KEYWORDS),
+                        keywords = GO_KEYWORDS,
                         illegal =
                             """["']"""
                     )

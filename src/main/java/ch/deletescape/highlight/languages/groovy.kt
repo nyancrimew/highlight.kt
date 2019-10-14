@@ -57,8 +57,8 @@ internal fun groovy(): Mode {
             ),
             Mode(
                 className = "string",
-                begin = "\${'$'}/",
-                end = "/\${'$'}",
+                begin = "\\${'$'}/",
+                end = "/\\${'$'}",
                 relevance = 10
             ),
             hljs.APOS_STRING_MODE,

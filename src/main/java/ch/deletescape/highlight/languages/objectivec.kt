@@ -44,7 +44,7 @@ internal fun objectivec(): Mode {
             "objc",
             "obj-c"
         ),
-        keywords = keywords(OBJC_KEYWORDS),
+        keywords = OBJC_KEYWORDS,
         lexemes = LEXEMES,
         illegal = "</",
         contains = listOf(

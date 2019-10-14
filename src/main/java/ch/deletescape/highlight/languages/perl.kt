@@ -14,11 +14,11 @@ internal fun perl(): Mode {
     var SUBST = Mode(
         className = "subst",
         begin = "[\$@]\\{",
-        end = "\\\\}",
+        end = "\\}",
         keywords = keywords(PERL_KEYWORDS)
     )
     var METHOD = Mode(
-        begin = "->{",
+        begin = "->\\{",
         end = "}"
         // contains defined later
     )
@@ -27,10 +27,10 @@ internal fun perl(): Mode {
             Mode(begin =
                     """\${'$'}\d"""),
             Mode(begin =
-                    """[${'$'}%@](\^\w\b|#\w+(::\w+)*|{\w+}|\w+(::\w*)*)"""),
+                    """[${'$'}%@](\^\w\b|#\w+(::\w+)*|\{\w+\}|\w+(::\w*)*)"""),
             Mode(
                 begin =
-                    """[${'$'}%@][^\s\w{]""",
+                    """[${'$'}%@][^\s\w\{]""",
                 relevance = 0
             )
         )
@@ -63,7 +63,7 @@ internal fun perl(): Mode {
                 ),
                 Mode(
                     begin = "q[qwxr]?\\s*\\{",
-                    end = "\\\\}",
+                    end = "\\}",
                     relevance = 5
                 ),
                 Mode(

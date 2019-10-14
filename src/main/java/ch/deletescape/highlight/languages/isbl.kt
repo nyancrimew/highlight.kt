@@ -547,7 +547,7 @@ internal fun isbl(): Mode {
     var METHODS = Mode(
         begin = "\\.\\s*" +
             hljs.UNDERSCORE_IDENT_RE,
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         relevance = 0
     )
     // type : встроенные типы
@@ -563,7 +563,7 @@ internal fun isbl(): Mode {
     var VARIABLES = Mode(
         className = "variable",
         lexemes = UNDERSCORE_IDENT_RE,
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         begin = UNDERSCORE_IDENT_RE,
         relevance = 0,
         contains = listOf(TYPES, METHODS)
@@ -589,7 +589,7 @@ internal fun isbl(): Mode {
         end = "\\)$",
         returnBegin = true,
         lexemes = UNDERSCORE_IDENT_RE,
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         illegal = "[\\[\\]\\|\\$\\?%,~#@]",
         contains = listOf(TITLE_MODE, METHODS, VARIABLES, STRINGS, NUMBERS, COMMENTS)
     )
@@ -597,7 +597,7 @@ internal fun isbl(): Mode {
         aliases = listOf("isbl"),
         case_insensitive = true,
         lexemes = UNDERSCORE_IDENT_RE,
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         illegal = "\\$|\\?|%|,|;$|~|#|@|</",
         contains = listOf(
             FUNCTIONS,

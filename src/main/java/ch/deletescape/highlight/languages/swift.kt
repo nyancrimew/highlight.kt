@@ -48,7 +48,7 @@ internal fun swift(): Mode {
         begin =
             """\\\(""",
         end = "\\)",
-        keywords = keywords(SWIFT_KEYWORDS),
+        keywords = SWIFT_KEYWORDS,
         contains = listOf() // assigned later
     )
     var STRING = Mode(
@@ -76,7 +76,7 @@ internal fun swift(): Mode {
     )
     SUBST.contains = listOf(NUMBERS)
     return Mode(
-        keywords = keywords(SWIFT_KEYWORDS),
+        keywords = SWIFT_KEYWORDS,
         contains = listOf(
             STRING,
             hljs.C_LINE_COMMENT_MODE,
@@ -110,7 +110,7 @@ internal fun swift(): Mode {
                         end =
                             """\)""",
                         endsParent = true,
-                        keywords = keywords(SWIFT_KEYWORDS),
+                        keywords = SWIFT_KEYWORDS,
                         contains = listOf(
                             hljs.SELF,
                             NUMBERS,
@@ -128,8 +128,8 @@ internal fun swift(): Mode {
             Mode(
                 className = "class",
                 beginKeywords = keywords("struct protocol class extension enum"),
-                keywords = keywords(SWIFT_KEYWORDS),
-                end = "\\\\\\{",
+                keywords = SWIFT_KEYWORDS,
+                end = "\\{",
                 excludeEnd = true,
                 contains = listOf(
                     hljs.inherit(hljs.TITLE_MODE, Mode(begin =

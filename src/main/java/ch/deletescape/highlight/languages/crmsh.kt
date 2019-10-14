@@ -84,7 +84,7 @@ internal fun crmsh(): Mode {
             hljs.QUOTE_STRING_MODE,
             Mode(
                 className = "meta",
-                begin = "(ocf|systemd|service|lsb):[\\w_ = -]+",
+                begin = "(ocf|systemd|service|lsb):[\\w_:-]+",
                 relevance = 0
             ),
             Mode(

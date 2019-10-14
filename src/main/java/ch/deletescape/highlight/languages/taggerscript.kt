@@ -44,7 +44,7 @@ internal fun taggerscript(): Mode {
     var VARIABLE = Mode(
         className = "variable",
         begin =
-            """%[_a-zA-Z0-9 = ]*""",
+            """%[_a-zA-Z0-9:]*""",
         end = "%"
     )
     var ESCAPE_SEQUENCE = Mode(

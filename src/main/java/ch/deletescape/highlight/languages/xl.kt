@@ -54,7 +54,7 @@ internal fun xl(): Mode {
     var IMPORT = Mode(
         beginKeywords = keywords("import"),
         end = "$",
-        keywords = keywords(XL_KEYWORDS),
+        keywords = XL_KEYWORDS,
         contains = listOf(DOUBLE_QUOTE_TEXT)
     )
     var FUNCTION_DEFINITION = Mode(
@@ -70,7 +70,7 @@ internal fun xl(): Mode {
                 Mode(
                     starts = Mode(
                         endsWithParent = true,
-                        keywords = keywords(XL_KEYWORDS)
+                        keywords = XL_KEYWORDS
                     )
                 )
             )
@@ -80,7 +80,7 @@ internal fun xl(): Mode {
         aliases = listOf("tao"),
         lexemes =
             """[a-zA-Z][a-zA-Z0-9_?]*""",
-        keywords = keywords(XL_KEYWORDS),
+        keywords = XL_KEYWORDS,
         contains = listOf(
             hljs.C_LINE_COMMENT_MODE,
             hljs.C_BLOCK_COMMENT_MODE,

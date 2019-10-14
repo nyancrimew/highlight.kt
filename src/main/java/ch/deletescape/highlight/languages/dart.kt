@@ -91,7 +91,7 @@ internal fun dart(): Mode {
         )
     ).flatten()
     return Mode(
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         contains = listOf(
             STRING,
             hljs.COMMENT(

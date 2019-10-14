@@ -100,7 +100,7 @@ internal fun dts(): Mode {
     var DTS_NODE = Mode(
         className = "class",
         begin =
-        """[a-zA-Z_][a-zA-Z\d_@]*\s{""",
+        """[a-zA-Z_][a-zA-Z\d_@]*\s\{""",
         end =
         """[{;=]""",
         returnBegin = true,
@@ -109,7 +109,7 @@ internal fun dts(): Mode {
     var DTS_ROOT_NODE = Mode(
         className = "class",
         begin = "/\\s*\\{",
-        end = ");",
+        end = "\\);",
         relevance = 10,
         contains = listOf(
             DTS_REFERENCE,

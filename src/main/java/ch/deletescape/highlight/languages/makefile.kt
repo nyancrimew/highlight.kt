@@ -73,7 +73,7 @@ internal fun makefile(): Mode {
     var META = Mode(
         className = "meta",
         begin =
-            """^\.PHONY = """,
+            """^\.PHONY:""",
         end =
             """${'$'}""",
         keywords = keyword(

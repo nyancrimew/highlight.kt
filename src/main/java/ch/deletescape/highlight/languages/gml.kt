@@ -35,7 +35,7 @@ internal fun gml(): Mode {
             "GML"
         ),
         case_insensitive = false, // language is case-insensitive
-        keywords = keywords(GML_KEYWORDS),
+        keywords = GML_KEYWORDS,
         contains = listOf(
             hljs.C_LINE_COMMENT_MODE,
             hljs.C_BLOCK_COMMENT_MODE,

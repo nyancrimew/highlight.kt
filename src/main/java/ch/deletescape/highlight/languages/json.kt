@@ -23,20 +23,21 @@ internal fun json(): Mode {
         hljs.C_LINE_COMMENT_MODE,
         hljs.C_BLOCK_COMMENT_MODE
     )
-    var TYPES = listOf(
+    val TYPES = mutableListOf(
         hljs.QUOTE_STRING_MODE,
         hljs.C_NUMBER_MODE
     )
+
     var VALUE_CONTAINER = Mode(
         end = ",",
         endsWithParent = true,
         excludeEnd = true,
         contains = TYPES,
-        keywords = keywords(LITERALS)
+        keywords = LITERALS
     )
     var OBJECT = Mode(
         begin = "\\{",
-        end = "}",
+        end = "\\}",
         contains = listOf(
             Mode(
                 className = "attr",
@@ -59,7 +60,7 @@ internal fun json(): Mode {
     var ARRAY = Mode(
         begin = "\\[",
         end = "\\]",
-        contains = listOf(hljs.inherit(VALUE_CONTAINER)), // inherit is a workaround for a bug that makes shared modes with endsWithParent compile only the ending of one of the parents
+        contains = listOf(VALUE_CONTAINER), // inherit is a workaround for a bug that makes shared modes with endsWithParent compile only the ending of one of the parents
         illegal = "\\S"
     )
     TYPES += listOf(OBJECT, ARRAY)
@@ -68,7 +69,7 @@ internal fun json(): Mode {
     }
     return Mode(
         contains = TYPES,
-        keywords = keywords(LITERALS),
+        keywords = LITERALS,
         illegal = "\\S"
     )
 }

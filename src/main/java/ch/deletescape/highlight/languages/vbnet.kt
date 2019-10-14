@@ -36,7 +36,7 @@ internal fun vbnet(): Mode {
                     "true false nothing"
             )
         ).flatten(),
-        illegal = "//|{|}|endif|gosub|variant|wend|^\\\$ ", /* reserved deprecated keywords */
+        illegal = "//|\\{|\\}|endif|gosub|variant|wend|^\\\$ ", /* reserved deprecated keywords */
         contains = listOf(
             hljs.inherit(hljs.QUOTE_STRING_MODE, Mode(contains = listOf(Mode(begin = "\"\"")))),
             hljs.COMMENT(

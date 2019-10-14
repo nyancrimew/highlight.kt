@@ -38,9 +38,9 @@ internal fun javascript(): Mode {
     )
     var SUBST = Mode(
         className = "subst",
-        begin = "\\\$\\{",
-        end = "\\\\}",
-        keywords = keywords(KEYWORDS),
+        begin = "\\$\\{",
+        end = "\\}",
+        keywords = KEYWORDS,
         contains = listOf() // defined later
     )
     var HTML_TEMPLATE = Mode(
@@ -96,20 +96,20 @@ internal fun javascript(): Mode {
             "js",
             "jsx"
         ),
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         contains = listOf(
             Mode(
                 className = "meta",
                 relevance = 10,
                 begin =
-                    """^\s*['\"]use (strict|asm)['"]"""
+                    """^\s*['\"]use (strict|asm)['\"]"""
             ),
             Mode(
                 className = "meta",
                 begin =
                     """^#!""",
                 end =
-                    """${'$'}"""
+                    """$"""
             ),
             hljs.APOS_STRING_MODE,
             hljs.QUOTE_STRING_MODE,
@@ -121,7 +121,7 @@ internal fun javascript(): Mode {
             NUMBER,
             Mode(// object attr container
                 begin =
-                    """[{,\n]\s*""",
+                    """[\{\,\s]\s*""",
                 relevance = 0,
                 contains = listOf(
                     Mode(
@@ -170,7 +170,7 @@ internal fun javascript(): Mode {
                                             """\)""",
                                         excludeBegin = true,
                                         excludeEnd = true,
-                                        keywords = keywords(KEYWORDS),
+                                        keywords = KEYWORDS,
                                         contains = PARAMS_CONTAINS
                                     )
                                 )
@@ -189,24 +189,24 @@ internal fun javascript(): Mode {
                         begin =
                             """<""",
                         end =
-                            """(\/[A-Za-z0-9\\._ = -]+|[A-Za-z0-9\\._ = -]+\/)>""",
+                            """(\/[A-Za-z0-9\\._:-]+|[A-Za-z0-9\\._:-]+\/)>""",
                         subLanguage = "xml",
                         contains = listOf(
                             Mode(
                                 begin =
-                                    """<[A-Za-z0-9\\._ = -]+\s*\/>""",
+                                    """<[A-Za-z0-9\\._:-]+\s*\/>""",
                                 skip = true
                             ),
                             Mode(
                                 begin =
-                                    """<[A-Za-z0-9\\._ = -]+""",
+                                    """<[A-Za-z0-9\\._:-]+""",
                                 end =
-                                    """(\/[A-Za-z0-9\\._ = -]+|[A-Za-z0-9\\._ = -]+\/)>""",
+                                    """(\/[A-Za-z0-9\\._:-]+|[A-Za-z0-9\\._:-]+\/)>""",
                                 skip = true,
                                 contains = listOf(
                                     Mode(
                                         begin =
-                                            """<[A-Za-z0-9\\._ = -]+\s*\/>""",
+                                            """<[A-Za-z0-9\\._:-]+\s*\/>""",
                                         skip = true
                                     ),
                                     hljs.SELF
@@ -241,7 +241,7 @@ internal fun javascript(): Mode {
             ),
             Mode(
                 begin =
-                    """\${'$'}[(.]""" // relevance booster for a pattern common to JS libs: `${'$'}(something)` and `${'$'}.something`
+                    """\$[(\.]""" // relevance booster for a pattern common to JS libs: `${'$'}(something)` and `${'$'}.something`
             ),
             hljs.METHOD_GUARD,
             Mode(// ES6 class

@@ -34,7 +34,7 @@ internal fun nix(): Mode {
             """\${'$'}\{""",
         end =
             """}""",
-        keywords = keywords(NIX_KEYWORDS)
+        keywords = NIX_KEYWORDS
     )
     var ATTRS = Mode(
         begin =
@@ -73,7 +73,7 @@ internal fun nix(): Mode {
     ANTIQUOTE.contains = EXPRESSIONS
     return Mode(
         aliases = listOf("nixos"),
-        keywords = keywords(NIX_KEYWORDS),
+        keywords = NIX_KEYWORDS,
         contains = EXPRESSIONS
     )
 }

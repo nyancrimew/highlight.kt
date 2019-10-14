@@ -79,13 +79,13 @@ internal fun nginx(): Mode {
                 variants = listOf(
                     Mode(
                         begin = "\\s\\^",
-                        end = "\\s|{|;",
+                        end = "\\s|\\{|;",
                         returnEnd = true
                     ),
                     // regexp locations (~, ~*)
                     Mode(
                         begin = "~\\*?\\s+",
-                        end = "\\s|{|;",
+                        end = "\\s|\\{|;",
                         returnEnd = true
                     ),
                     // *.example.com
@@ -97,7 +97,7 @@ internal fun nginx(): Mode {
             // IP
             Mode(
                 className = "number",
-                begin = "\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}(:\\d{1,5))?\\b"
+                begin = "\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}(:\\d{1,5})?\\b"
             ),
             // units
             Mode(
@@ -113,7 +113,7 @@ internal fun nginx(): Mode {
         contains = listOf(
             hljs.HASH_COMMENT_MODE,
             Mode(
-                begin = hljs.UNDERSCORE_IDENT_RE + "\\s+\\{",
+                begin = hljs.UNDERSCORE_IDENT_RE + """\s+\{""",
                 returnBegin = true,
                 end = "\\{",
                 contains = listOf(
@@ -138,6 +138,6 @@ internal fun nginx(): Mode {
                 relevance = 0
             )
         ),
-        illegal = "[^\\s\\\\}]"
+        illegal = "[^\\s\\}]"
     )
 }

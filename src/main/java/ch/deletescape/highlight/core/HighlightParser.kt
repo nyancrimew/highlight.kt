@@ -6,8 +6,8 @@ package ch.deletescape.highlight.core;
  */
 class HighlightParser(
    val language: Mode,
-   val rendererFactory: StyleRendererFactory,
-   val blockRenderer: StyleRenderer
+   private val rendererFactory: StyleRendererFactory,
+   private val blockRenderer: StyleRenderer
 ) {
 
    private var modeBuffer: String = ""
@@ -27,7 +27,7 @@ class HighlightParser(
          return false
       }
       val match = re.find(lexeme)
-      return match != null && match.range.start == 0
+      return match != null && match.range.first == 0
    }
 
    private fun subMode(lexeme: String, mode: Mode) = mode.contains.firstOrNull { testRe(it.beginRe, lexeme) }
@@ -64,7 +64,7 @@ class HighlightParser(
 
    private fun isIllegal(lexeme: String, mode: Mode) = !ignoreIllegals && testRe(mode.illegalRe, lexeme)
 
-   private fun keywordMatch(mode: Mode, match: String) = mode.compiledKeywords.get(if(language.case_insensitive) match.toLowerCase() else match)
+   private fun keywordMatch(mode: Mode, match: String) = mode.compiledKeywords[if(language.case_insensitive) match.toLowerCase() else match]
 
    private fun commonKeyword(keyword: String) = keyword in COMMON_KEYWORDS
 
@@ -76,7 +76,7 @@ class HighlightParser(
 
       var lastIndex = 0
       top.mode.lexemesRe!!.findAll(modeBuffer).forEach { match ->
-         blockRenderer.onPushCodeBlock(modeBuffer.substring(lastIndex, match.range.start))
+         blockRenderer.onPushCodeBlock(modeBuffer.substring(lastIndex, match.range.first))
          val keyword = keywordMatch(top.mode, match.groupValues[0])
          if (keyword != null) {
             if (keyword.relevance > 1 || !commonKeyword(keyword.value))
@@ -87,16 +87,16 @@ class HighlightParser(
          } else {
             blockRenderer.onPushCodeBlock(match.groupValues[0])
          }
-         lastIndex = match.range.endInclusive + 1
+         lastIndex = match.range.last + 1
        }
       blockRenderer.onPushCodeBlock(modeBuffer.substring(lastIndex))
    }
 
    private fun processSubLanguage() {
       val explicit = !top.mode.subLanguage.isNullOrBlank()
-      var relevance = 0
-      var resultCode: CharSequence? = null
-      var resultLanguage: String? = null
+      val relevance: Int
+      val resultCode: CharSequence
+      val resultLanguage: String?
 
       if (explicit) {
          val languageName = top.mode.subLanguage!!
@@ -108,10 +108,10 @@ class HighlightParser(
 
          val renderer = rendererFactory.create(languageName)
          val parser = HighlightParser(language, rendererFactory, renderer)
-         relevance = parser.highlight(modeBuffer, true, continuations.get(languageName), graceful)
-         resultCode = renderer.getResult();
+         relevance = parser.highlight(modeBuffer, true, continuations[languageName], graceful)
+         resultCode = renderer.getResult()
          resultLanguage = languageName
-         continuations.put(languageName, parser.top)
+         continuations[languageName] = parser.top
       } else {
          val highlighter = Highlighter(rendererFactory)
          val result = highlighter.highlightAuto(modeBuffer, top.mode.subLanguages)
@@ -197,7 +197,7 @@ class HighlightParser(
        * character forward to prevent infinite looping.
        */
       modeBuffer += lexeme
-      return Math.max(lexeme.length, 1)
+      return lexeme.length.coerceAtLeast(1)
    }
 
    @JvmOverloads
@@ -228,10 +228,10 @@ class HighlightParser(
          var index = 0
          while (top.mode.terminators != null) {
             val match = top.mode.terminators?.find(code, index)
-            if (match == null || match.range.endInclusive < 0) break
-            val start = match.range.start
+            if (match == null || match.range.last < 0) break
+            val start = match.range.first
             val count = processLexeme(code.substring(index, start), match.groupValues[0])
-            index = start + count
+            index = start + count.coerceAtLeast(0)
          }
          processLexeme(code.substring(index), null)
 
@@ -244,7 +244,7 @@ class HighlightParser(
          }
          blockRenderer.onFinish()
       } catch(e: Exception) {
-         if(!graceful && e.message?.contains("Illegal lexeme") != true) {
+         if (!graceful && e.message?.contains("Illegal lexeme") != true) {
             throw Exception("Aborted", e)
          }
          blockRenderer.onAbort(code)
@@ -255,8 +255,6 @@ class HighlightParser(
    }
 
    companion object {
-      val COMMON_KEYWORDS = listOf(
-         "if"
-      )
+      val COMMON_KEYWORDS = listOf("of", "and", "for", "in", "not", "or", "if", "then", "else")
    }
 }

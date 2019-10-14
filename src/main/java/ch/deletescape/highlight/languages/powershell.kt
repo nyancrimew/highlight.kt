@@ -19,7 +19,7 @@ internal fun powershell(): Mode {
         variants = listOf(
             Mode(
                 begin =
-                    """\${'$'}[\w\d][\w\d_ = ]*"""
+                    """\${'$'}[\w\d][\w\d_:]*"""
             )
         )
     )
@@ -97,7 +97,7 @@ internal fun powershell(): Mode {
                     begin =
                         """#""",
                     end =
-                        """${'$'}"""
+                        """$"""
                 ),
                 /* multi-line comment */
                 Mode(

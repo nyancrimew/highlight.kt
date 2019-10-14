@@ -43,7 +43,7 @@ internal fun livescript(): Mode {
             """#\{""",
         end =
             """}""",
-        keywords = keywords(KEYWORDS)
+        keywords = KEYWORDS
     )
     var SUBST_SIMPLE = Mode(
         className = "subst",
@@ -51,7 +51,7 @@ internal fun livescript(): Mode {
             """#[A-Za-z${'$'}_]""",
         end =
             """(?:\-[0-9A-Za-z${'$'}_]|[0-9A-Za-z${'$'}_])*""",
-        keywords = keywords(KEYWORDS)
+        keywords = KEYWORDS
     )
     var EXPRESSIONS = listOf(
         hljs.BINARY_NUMBER_MODE,
@@ -145,14 +145,14 @@ internal fun livescript(): Mode {
                     """\(""",
                 end =
                     """\)""",
-                keywords = keywords(KEYWORDS),
+                keywords = KEYWORDS,
                 contains = listOf(hljs.SELF) + EXPRESSIONS
             )
         )
     )
     return Mode(
         aliases = listOf("ls"),
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         illegal =
             """\/\*""",
         contains = EXPRESSIONS + listOf(

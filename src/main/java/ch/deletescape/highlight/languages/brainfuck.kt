@@ -18,8 +18,8 @@ internal fun brainfuck(): Mode {
         aliases = listOf("bf"),
         contains = listOf(
             hljs.COMMENT(
-                "[^\\[\\]\\.,\\+\\-<> \r\n]",
-                "[\\[\\]\\.,\\+\\-<> \r\n]",
+                "[^\\[\\]\\.,\\+\\-<> \\r\\n]",
+                "[\\[\\]\\.,\\+\\-<> \\r\\n]",
                 Mode(
                     returnEnd = true,
                     relevance = 0

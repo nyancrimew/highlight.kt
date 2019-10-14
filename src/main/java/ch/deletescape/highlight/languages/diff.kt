@@ -31,7 +31,7 @@ internal fun diff(): Mode {
                 variants = listOf(
                     Mode(
                         begin =
-                            """Index = """,
+                            """Index:""",
                         end =
                             """${'$'}"""
                     ),

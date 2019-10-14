@@ -35,7 +35,7 @@ internal fun fortran(): Mode {
             "f90",
             "f95"
         ),
-        keywords = keywords(F_KEYWORDS),
+        keywords = F_KEYWORDS,
         illegal =
             """\/\*""",
         contains = listOf(

@@ -14,11 +14,11 @@ Category = functional
  */
 internal fun xquery(): Mode {
     // see https://www.w3.org/TR/xquery/#id-terminal-delimitation
-    var KEYWORDS = "module schema namespace boundary-space preserve no-preserve strip default collation base-uri ordering context decimal-format decimal-separator copy-namespaces empty-sequence except exponent-separator external grouping-separator inherit no-inherit lax minus-sign per-mille percent schema-attribute schema-element strict unordered zero-digit declare import option function validate variable for at in let where order group by return if then else tumbling sliding window start when only end previous next stable ascending descending allowing empty greatest least some every satisfies switch case typeswitch try catch and or to union intersect instance of treat as castable cast map array delete insert into replace value rename copy modify update"
+    var KEYWORDS = "module schema namespace boundary-space preserve no-preserve strip default collation base-uri ordering context decimal-format decimal-separator copy-namespaces empty-sequence except exponent-separator external grouping-separator inherit no-inherit lax minus-sign per-mille percent schema-attribute schema-element strict unordered zero-digit declare import option function validate variable for at in let where order group by return if then else tumbling sliding window start when only end previous next stable ascending descending allowing empty greatest least some every satisfies switch case typeswitch try catch and or to union intersect instance of treat as castable cast map array delete insert into replace value rename copy modify updat"
     // Node Types (sorted by inheritance)
     // atomic types (sorted by inheritance)
-    var TYPE = "item document-node node attribute document element comment namespace namespace-node processing-instruction text construction xs = anyAtomicType xs = untypedAtomic xs = duration xs = time xs = decimal xs = float xs = double xs = gYearMonth xs = gYear xs = gMonthDay xs = gMonth xs = gDay xs = boolean xs = base64Binary xs = hexBinary xs = anyURI xs = QName xs = NOTATION xs = dateTime xs = dateTimeStamp xs = date xs = string xs = normalizedString xs = token xs = language xs = NMTOKEN xs = Name xs = NCName xs = ID xs = IDREF xs = ENTITY xs = integer xs = nonPositiveInteger xs = negativeInteger xs = long xs = int xs = short xs = byte xs = nonNegativeInteger xs = unisignedLong xs = unsignedInt xs = unsignedShort xs = unsignedByte xs = positiveInteger xs = yearMonthDuration xs = dayTimeDuration"
-    var LITERAL = "eq ne lt le gt ge is self = : child = : descendant = : descendant-or-self = : attribute = : following = : following-sibling = : parent = : ancestor = : ancestor-or-self = : preceding = : preceding-sibling = : NaN"
+    var TYPE = "item document-node node attribute document element comment namespace namespace-node processing-instruction text construction xs:anyAtomicType xs:untypedAtomic xs:duration xs:time xs:decimal xs:float xs:double xs:gYearMonth xs:gYear xs:gMonthDay xs:gMonth xs:gDay xs:boolean xs:base64Binary xs:hexBinary xs:anyURI xs:QName xs:NOTATION xs:dateTime xs:dateTimeStamp xs:date xs:string xs:normalizedString xs:token xs:language xs:NMTOKEN xs:Name xs:NCName xs:ID xs:IDREF xs:ENTITY xs:integer xs:nonPositiveInteger xs:negativeInteger xs:long xs:int xs:short xs:byte xs:nonNegativeInteger xs:unisignedLong xs:unsignedInt xs:unsignedShort xs:unsignedByte xs:positiveInteger xs:yearMonthDuration xs:dayTimeDuration"
+    var LITERAL = "eq ne lt le gt ge is self:: child:: descendant:: descendant-or-self:: attribute:: following:: following-sibling:: parent:: ancestor:: ancestor-or-self:: preceding:: preceding-sibling:: NaN"
     // functions (TODO: find regex for op: without breaking build)
     var BUILT_IN = Mode(
         className = "built_in",
@@ -92,7 +92,7 @@ internal fun xquery(): Mode {
     var VAR = Mode(
         className = "variable",
         begin =
-            """[${'$'}][\w- = ]+"""
+            """[${'$'}][\w-:]+"""
     )
     var NUMBER = Mode(
         className = "number",
@@ -133,7 +133,7 @@ internal fun xquery(): Mode {
     var ANNOTATION = Mode(
         className = "meta",
         begin =
-            """%[\w- = ]+"""
+            """%[\w-:]+"""
     )
     var COMMENT = Mode(
         className = "comment",
@@ -158,9 +158,9 @@ internal fun xquery(): Mode {
     // mocha: direct_method
     var DIRECT = Mode(
         begin =
-            """<([\w\._ = \-]+)((\s*.*)=('|\").*('|"))?>""",
+            """<([\w\._:\-]+)((\s*.*)=('|\").*('|"))?>""",
         end =
-            """(\/[\w\._ = \-]+>)""",
+            """(\/[\w\._:\-]+>)""",
         subLanguage = "xml",
         contains = listOf(
             Mode(
@@ -197,7 +197,7 @@ internal fun xquery(): Mode {
         ),
         case_insensitive = false,
         lexemes =
-            """[a-zA-Z${'$'}][a-zA-Z0-9_ = \-]*""",
+            """[a-zA-Z${'$'}][a-zA-Z0-9_:\-]*""",
         illegal =
             """(proc)|(abstract)|(extends)|(until)|(#)""",
         keywords = listOf(

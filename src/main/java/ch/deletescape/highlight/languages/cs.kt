@@ -53,7 +53,7 @@ internal fun cs(): Mode {
         className = "subst",
         begin = "\\{",
         end = "}",
-        keywords = keywords(KEYWORDS)
+        keywords = KEYWORDS
     )
     var SUBST_NO_LF = hljs.inherit(
         SUBST,
@@ -127,7 +127,7 @@ internal fun cs(): Mode {
             "csharp",
             "c#"
         ),
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         illegal =
             """::""",
         contains = listOf(
@@ -171,7 +171,7 @@ internal fun cs(): Mode {
                 end =
                     """[{;=]""",
                 illegal =
-                    """[^\s = ,]""",
+                    """[^\s:,]""",
                 contains = listOf(
                     hljs.TITLE_MODE,
                     hljs.C_LINE_COMMENT_MODE,
@@ -183,7 +183,7 @@ internal fun cs(): Mode {
                 end =
                     """[\{;=]""",
                 illegal =
-                    """[^\s = ]""",
+                    """[^\s:]""",
                 contains = listOf(
                     hljs.inherit(hljs.TITLE_MODE, Mode(begin = "[a-zA-Z](\\.?\\w)*")),
                     hljs.C_LINE_COMMENT_MODE,
@@ -222,7 +222,7 @@ internal fun cs(): Mode {
                 end =
                     """\s*[\{;=]""",
                 excludeEnd = true,
-                keywords = keywords(KEYWORDS),
+                keywords = KEYWORDS,
                 contains = listOf(
                     Mode(
                         begin = hljs.IDENT_RE + "\\s*\\(",
@@ -238,7 +238,7 @@ internal fun cs(): Mode {
                             """\)""",
                         excludeBegin = true,
                         excludeEnd = true,
-                        keywords = keywords(KEYWORDS),
+                        keywords = KEYWORDS,
                         relevance = 0,
                         contains = listOf(
                             STRING,

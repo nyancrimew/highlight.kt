@@ -20,7 +20,7 @@ internal fun nsis(): Mode {
         // ${'$'}{defines)
         className = "variable",
         begin =
-            """\${'$'}+{[\w\.:-]+}"""
+            """\${'$'}+\{[\w\.:-]+\}"""
     )
     var VARIABLES = Mode(
         // ${'$'}variables
@@ -28,7 +28,7 @@ internal fun nsis(): Mode {
         begin =
             """\${'$'}+\w+""",
         illegal =
-            """\(\){}"""
+            """\(\)\{\}"""
     )
     var LANGUAGES = Mode(
         // ${'$'}(language_strings)

@@ -117,14 +117,14 @@ internal fun cpp(): Mode {
             "hxx",
             "cxx"
         ),
-        keywords = keywords(CPP_KEYWORDS),
+        keywords = CPP_KEYWORDS,
         illegal = "</",
         contains = EXPRESSION_CONTAINS + listOf(
             PREPROCESSOR,
             Mode(
                 begin = "\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",
                 end = ">",
-                keywords = keywords(CPP_KEYWORDS),
+                keywords = CPP_KEYWORDS,
                 contains = listOf(
                     hljs.SELF,
                     CPP_PRIMITIVE_TYPES
@@ -132,7 +132,7 @@ internal fun cpp(): Mode {
             ),
             Mode(
                 begin = hljs.IDENT_RE + "::",
-                keywords = keywords(CPP_KEYWORDS)
+                keywords = CPP_KEYWORDS
             ),
             Mode(
                 // This mode covers expression context where we can't expect a function
@@ -157,14 +157,14 @@ internal fun cpp(): Mode {
                         """;"""
                     )
                 ),
-                keywords = keywords(CPP_KEYWORDS),
+                keywords = CPP_KEYWORDS,
                 contains = EXPRESSION_CONTAINS + listOf(
                     Mode(
                         begin =
                         """\(""",
                         end =
                         """\\""",
-                        keywords = keywords(CPP_KEYWORDS),
+                        keywords = CPP_KEYWORDS,
                         contains = EXPRESSION_CONTAINS + listOf(hljs.SELF),
                         relevance = 0
                     )
@@ -180,7 +180,7 @@ internal fun cpp(): Mode {
                 end =
                 """[{;=]""",
                 excludeEnd = true,
-                keywords = keywords(CPP_KEYWORDS),
+                keywords = CPP_KEYWORDS,
                 illegal =
                 """[^\w\s\*&]""",
                 contains = listOf(
@@ -196,7 +196,7 @@ internal fun cpp(): Mode {
                         """\(""",
                         end =
                         """\)""",
-                        keywords = keywords(CPP_KEYWORDS),
+                        keywords = CPP_KEYWORDS,
                         relevance = 0,
                         contains = listOf(
                             hljs.C_LINE_COMMENT_MODE,
@@ -210,7 +210,7 @@ internal fun cpp(): Mode {
                                 """\(""",
                                 end =
                                 """\)""",
-                                keywords = keywords(CPP_KEYWORDS),
+                                keywords = CPP_KEYWORDS,
                                 relevance = 0,
                                 contains = listOf(
                                     hljs.SELF,
@@ -249,7 +249,7 @@ internal fun cpp(): Mode {
         exports = Mode(
             preprocessor = PREPROCESSOR,
             strings = STRINGS,
-            keywords = keywords(CPP_KEYWORDS)
+            keywords = CPP_KEYWORDS
         )
     )
 }

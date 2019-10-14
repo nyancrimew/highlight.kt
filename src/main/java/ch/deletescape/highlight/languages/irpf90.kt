@@ -32,7 +32,7 @@ internal fun irpf90(): Mode {
     ).flatten()
     return Mode(
         case_insensitive = true,
-        keywords = keywords(F_KEYWORDS),
+        keywords = F_KEYWORDS,
         illegal =
             """\/\*""",
         contains = listOf(

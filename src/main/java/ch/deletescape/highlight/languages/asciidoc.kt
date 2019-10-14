@@ -18,8 +18,8 @@ internal fun asciidoc(): Mode {
         contains = listOf(
             // block comment
             hljs.COMMENT(
-                "^/{4,\\}\\n",
-                "\\n/{4,\\}\$",
+                "^/{4,}\\n",
+                "\\n/{4,}\$",
                 // can also be done as...
                 // '^/{4,\\}\$',
                 // '^/{4,\\}\$',
@@ -42,8 +42,8 @@ internal fun asciidoc(): Mode {
             ),
             // example, admonition & sidebar blocks
             Mode(
-                begin = "^[=\\*]{4,\\}\\n",
-                end = "\\n^[=\\*]{4,\\}\$",
+                begin = "^[=\\*]{4,}\\n",
+                end = "\\n^[=\\*]{4,}\$",
                 relevance = 10
             ),
             // headings
@@ -52,7 +52,7 @@ internal fun asciidoc(): Mode {
                 relevance = 10,
                 variants = listOf(
                     Mode(begin = "^(={1,5}) .+?( \\1)?\$"),
-                    Mode(begin = "^[^\\[\\]\\n]+?\\n[=\\-~\\^\\+]{2,\\}\$")
+                    Mode(begin = "^[^\\[\\]\\n]+?\\n[=\\-~\\^\\+]{2,}\$")
                 )
             ),
             // document attributes
@@ -72,21 +72,21 @@ internal fun asciidoc(): Mode {
             // quoteblocks
             Mode(
                 className = "quote",
-                begin = "^_{4,\\}\\n",
-                end = "\\n_{4,\\}\$",
+                begin = "^_{4,}\\n",
+                end = "\\n_{4,}\$",
                 relevance = 10
             ),
             // listing and literal blocks
             Mode(
                 className = "code",
-                begin = "^[\\-\\.]{4,\\}\\n",
-                end = "\\n[\\-\\.]{4,\\}\$",
+                begin = "^[\\-\\.]{4,}\\n",
+                end = "\\n[\\-\\.]{4,}\$",
                 relevance = 10
             ),
             // passthrough blocks
             Mode(
-                begin = "^\\+{4,\\}\\n",
-                end = "\\n\\+{4,\\}\$",
+                begin = "^\\+{4,}\\n",
+                end = "\\n\\+{4,}\$",
                 contains = listOf(
                     Mode(
                         begin = "<",
@@ -168,16 +168,16 @@ internal fun asciidoc(): Mode {
             ),
             // horizontal rules
             Mode(
-                begin = "^'{3,\\}[ \\t]*\$",
+                begin = "^'{3,}[ \\t]*\$",
                 relevance = 10
             ),
             // images and links
             Mode(
-                begin = "(link = )?(http|https|ftp|file|irc|image = ?):\\S+\\[.*?\\]",
+                begin = "(link:)?(http|https|ftp|file|irc|image:?):\\S+\\[.*?\\]",
                 returnBegin = true,
                 contains = listOf(
                     Mode(
-                        begin = "(link|image = ?):",
+                        begin = "(link|image:?):",
                         relevance = 0
                     ),
                     Mode(

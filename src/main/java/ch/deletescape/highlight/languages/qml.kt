@@ -96,7 +96,7 @@ internal fun qml(): Mode {
     return Mode(
         aliases = listOf("qt"),
         case_insensitive = false,
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         contains = listOf(
             Mode(
                 className = "meta",
@@ -114,7 +114,7 @@ internal fun qml(): Mode {
                     Mode(
                         className = "subst",
                         begin = "\\${'$'}\\{",
-                        end = "\\\\}"
+                        end = "\\}"
                     )
                 )
             ),
@@ -158,7 +158,7 @@ internal fun qml(): Mode {
                 excludeEnd = true,
                 contains = listOf(
                     hljs.inherit(hljs.TITLE_MODE, Mode(begin =
-                            """[A-Za-z${'$'}_][0-9A-Za-z${'$'}_]*""")),
+                            """[A-Za-z\${'$'}_][0-9A-Za-z\${'$'}_]*""")),
                     Mode(
                         className = "params",
                         begin =

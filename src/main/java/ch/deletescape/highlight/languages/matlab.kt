@@ -103,7 +103,7 @@ internal fun matlab(): Mode {
             ),
             hljs.COMMENT(
                 "^\\s*\\%\\\\\\{\\s*\$",
-                "^\\s*\\%\\\\}\\s*\$"
+                "^\\s*\\%\\}\\s*\$"
             ),
             hljs.COMMENT(
                 "\\%",

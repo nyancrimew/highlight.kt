@@ -67,7 +67,7 @@ internal fun puppet(): Mode {
             STRING,
             Mode(
                 beginKeywords = keywords("class"),
-                end = "\\\\{|;",
+                end = "\\{|;",
                 illegal =
                     """=""",
                 contains = listOf(TITLE, COMMENT)
@@ -85,7 +85,7 @@ internal fun puppet(): Mode {
                 )
             ),
             Mode(
-                begin = hljs.IDENT_RE + "\\s+\\\\{",
+                begin = hljs.IDENT_RE + "\\s+\\{",
                 returnBegin = true,
                 end =
                     """\S""",
@@ -99,7 +99,7 @@ internal fun puppet(): Mode {
                             """\{""",
                         end =
                             """\}""",
-                        keywords = keywords(PUPPET_KEYWORDS),
+                        keywords = PUPPET_KEYWORDS,
                         relevance = 0,
                         contains = listOf(
                             STRING,

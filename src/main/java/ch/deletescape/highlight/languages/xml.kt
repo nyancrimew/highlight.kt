@@ -9,7 +9,7 @@ Category = common
  * Origin highlight.js/src/languages/xml.js MD5 <8d1fe692045603803f24f0f60fd6f450>
  */
 internal fun xml(): Mode {
-    var XML_IDENT_RE = "[A-Za-z0-9\\._ = -]+"
+    var XML_IDENT_RE = "[A-Za-z0-9\\._:-]+"
     var TAG_INTERNALS = Mode(
         endsWithParent = true,
         illegal =

@@ -23,7 +23,7 @@ internal fun cmake(): Mode {
         contains = listOf(
             Mode(
                 className = "variable",
-                begin = "\\\${",
+                begin = "\\\$\\{",
                 end = "}"
             ),
             hljs.HASH_COMMENT_MODE,

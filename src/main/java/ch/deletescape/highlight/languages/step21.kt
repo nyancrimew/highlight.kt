@@ -38,7 +38,7 @@ internal fun step21(): Mode {
         ),
         case_insensitive = true, // STEP 21 is case insensitive in theory, in practice all non-comments are capitalized.
         lexemes = STEP21_IDENT_RE,
-        keywords = keywords(STEP21_KEYWORDS),
+        keywords = STEP21_KEYWORDS,
         contains = listOf(
             STEP21_START,
             STEP21_CLOSE,

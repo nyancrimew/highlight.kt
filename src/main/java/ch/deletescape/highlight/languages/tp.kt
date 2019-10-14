@@ -88,7 +88,7 @@ internal fun tp(): Mode {
                 "[;\$]"
             ),
             hljs.COMMENT(
-                "--eg = ",
+                "--eg:",
                 "\$"
             ),
             hljs.QUOTE_STRING_MODE,

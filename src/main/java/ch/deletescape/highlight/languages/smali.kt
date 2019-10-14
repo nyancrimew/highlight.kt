@@ -61,7 +61,7 @@ internal fun smali(): Mode {
         "sparse"
     )
     var smali_keywords = keywords(
-        listOf("transient"),
+        "transient",
         "constructor",
         "abstract",
         "final",
@@ -98,7 +98,7 @@ internal fun smali(): Mode {
                         relevance = 0
                     ),
                     Mode(
-                        begin = "\\s = [a-zA-Z_0-9]*",
+                        begin = "\\s:[a-zA-Z_0-9]*",
                         relevance = 0
                     ),
                     Mode(

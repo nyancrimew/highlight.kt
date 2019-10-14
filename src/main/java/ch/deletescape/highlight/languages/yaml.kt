@@ -21,9 +21,9 @@ internal fun yaml(): Mode {
         className = "attr",
         variants = listOf(
             // TODO: remove |$ hack when we have proper look-ahead support
-            Mode(begin = "\\w[\\w = \\/.-]*:(?=[ \t]|\$)"),
-            Mode(begin = "\"\\w[\\w = \\/.-]*\":(?=[ \t]|\$)"), // double quoted keys
-            Mode(begin = "'\\w[\\w = \\/.-]*':(?=[ \t]|\$)") // single quoted keys
+            Mode(begin = "\\w[\\w:\\/.-]*:(?=[ \t]|\$)"),
+            Mode(begin = "\"\\w[\\w:\\/.-]*\":(?=[ \t]|\$)"), // double quoted keys
+            Mode(begin = "'\\w[\\w:\\/.-]*':(?=[ \t]|\$)") // single quoted keys
         )
     )
     var TEMPLATE_VARIABLES = Mode(

@@ -1,11 +1,6 @@
-package ch.deletescape.highlight.core;
+package ch.deletescape.highlight.core
 
-import ch.deletescape.highlight.languages.*;
-
-/*
- * Created by Sergej Kravcenko on 5/17/2017.
- * Copyright (c) 2017 Sergej Kravcenko
- */
+import ch.deletescape.highlight.languages.*
 
 /**
  * Main class for code syntax highlighting. Contains all supported languages
@@ -13,9 +8,9 @@ import ch.deletescape.highlight.languages.*;
  * code language is known or use {@link Highlighter#highlightAuto(String, String[])}
  * to automatically detect code language.
  */
-class Highlighter(val rendererFactory: StyleRendererFactory) {
+class Highlighter(private val rendererFactory: StyleRendererFactory) {
     companion object {
-        internal val languageMap = mutableMapOf<String, Mode>()
+        private val languageMap = mutableMapOf<String, Mode>()
         internal val languages = mutableSetOf<String>()
 
         init {

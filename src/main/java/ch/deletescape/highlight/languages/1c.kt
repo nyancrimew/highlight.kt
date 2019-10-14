@@ -157,7 +157,7 @@ internal fun `1c`(): Mode {
     var LITERAL = "null истина ложь неопределено"
 
     // number : числа
-    var NUMBERS = hljs.inherit(hljs.NUMBER_MODE)
+    var NUMBERS = hljs.NUMBER_MODE
     // string : строки
     var STRINGS = Mode(
         className = "string",
@@ -180,7 +180,7 @@ internal fun `1c`(): Mode {
     )
 
     // comment : комментарии
-    var COMMENTS = hljs.inherit(hljs.C_LINE_COMMENT_MODE)
+    var COMMENTS = hljs.C_LINE_COMMENT_MODE
 
     // meta : инструкции препроцессора, директивы компиляции
     var META = Mode(

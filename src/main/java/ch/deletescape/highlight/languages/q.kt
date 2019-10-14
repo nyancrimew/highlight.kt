@@ -37,7 +37,7 @@ internal fun q(): Mode {
             "k",
             "kdb"
         ),
-        keywords = keywords(Q_KEYWORDS),
+        keywords = Q_KEYWORDS,
         lexemes =
             """(`?)[A-Za-z0-9_]+\b""",
         contains = listOf(

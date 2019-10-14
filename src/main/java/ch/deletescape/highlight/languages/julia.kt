@@ -67,7 +67,7 @@ internal fun julia(): Mode {
     // placeholder for recursive self-reference
     var DEFAULT = Mode(
         lexemes = VARIABLE_NAME_RE,
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         illegal =
             """<\/"""
     )
@@ -96,11 +96,11 @@ internal fun julia(): Mode {
             """\${'$'}\(""",
         end =
             """\)""",
-        keywords = keywords(KEYWORDS)
+        keywords = KEYWORDS
     )
     var INTERPOLATED_VARIABLE = Mode(
         className = "variable",
-        begin = "\\\${'\$'}" +
+        begin = "\\$" +
             VARIABLE_NAME_RE
     )
     // TODO: neatly escape normal code in string literal

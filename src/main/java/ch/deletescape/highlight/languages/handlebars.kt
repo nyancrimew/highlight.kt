@@ -40,7 +40,7 @@ internal fun handlebars(): Mode {
                         className = "name",
                         begin =
                             """[a-zA-Z\.-]+""",
-                        keywords = keywords(BUILT_INS),
+                        keywords = BUILT_INS,
                         starts = Mode(
                             endsWithParent = true,
                             relevance = 0,
@@ -57,7 +57,7 @@ internal fun handlebars(): Mode {
                     """\{\{""",
                 end =
                     """\}\}""",
-                keywords = keywords(BUILT_INS)
+                keywords = BUILT_INS
             )
         )
     )

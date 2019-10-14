@@ -78,7 +78,7 @@ internal fun mercury(): Mode {
             "m",
             "moo"
         ),
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         contains = listOf(
             IMPLICATION,
             HEAD_BODY_CONJUNCTION,
@@ -88,10 +88,8 @@ internal fun mercury(): Mode {
             hljs.NUMBER_MODE,
             ATOM,
             STRING,
-            Mode(
-                begin =
-                    """:-"""
-            ) // relevance booster
+            Mode(begin = """:-"""), // relevance booster
+            Mode(begin = """\.$""") // relevance booster
         )
     )
 }

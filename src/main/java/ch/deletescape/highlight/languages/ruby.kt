@@ -57,7 +57,7 @@ internal fun ruby(): Mode {
         className = "subst",
         begin = "#\\{",
         end = "}",
-        keywords = keywords(RUBY_KEYWORDS)
+        keywords = RUBY_KEYWORDS
     )
     var STRING = Mode(
         className = "string",
@@ -131,8 +131,7 @@ internal fun ruby(): Mode {
                     Mode(
                         begin =
                             """\w+""",
-                        end =
-                            """\w+""",
+                        endSameAsBegin = true,
                         contains = listOf(hljs.BACKSLASH_ESCAPE, SUBST)
                     )
                 )
@@ -144,7 +143,7 @@ internal fun ruby(): Mode {
         begin = "\\(",
         end = "\\)",
         endsParent = true,
-        keywords = keywords(RUBY_KEYWORDS)
+        keywords = RUBY_KEYWORDS
     )
     var RUBY_DEFAULT_CONTAINS = listOf(
         STRING,
@@ -152,7 +151,7 @@ internal fun ruby(): Mode {
         Mode(
             className = "class",
             beginKeywords = keywords("class module"),
-            end = "${'$'}|;",
+            end = "$|;",
             illegal =
                 """=""",
             contains = listOf(
@@ -207,7 +206,7 @@ internal fun ruby(): Mode {
                 """\|""",
             end =
                 """\|""",
-            keywords = keywords(RUBY_KEYWORDS)
+            keywords = RUBY_KEYWORDS
         ),
         Mode(// regexp container
             begin = "(" +
@@ -278,7 +277,7 @@ internal fun ruby(): Mode {
             "thor",
             "irb"
         ),
-        keywords = keywords(RUBY_KEYWORDS),
+        keywords = RUBY_KEYWORDS,
         illegal =
             """\/\*""",
         contains = COMMENT_MODES + IRB_DEFAULT + RUBY_DEFAULT_CONTAINS

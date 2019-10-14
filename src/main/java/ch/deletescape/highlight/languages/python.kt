@@ -36,7 +36,7 @@ internal fun python(): Mode {
             """\{""",
         end =
             """\}""",
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         illegal =
             """#"""
     )
@@ -145,7 +145,7 @@ internal fun python(): Mode {
             "gyp",
             "ipython"
         ),
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         illegal =
             """(<\/|->|\?)|=>""",
         contains = listOf(

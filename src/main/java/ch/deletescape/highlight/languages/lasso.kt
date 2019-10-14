@@ -122,7 +122,7 @@ internal fun lasso(): Mode {
         ),
         case_insensitive = true,
         lexemes = LASSO_IDENT_RE + "|&[lg]t;",
-        keywords = keywords(LASSO_KEYWORDS),
+        keywords = LASSO_KEYWORDS,
         contains = listOf(
             Mode(
                 className = "meta",
@@ -145,7 +145,7 @@ internal fun lasso(): Mode {
                     end = "\\[/no_square_brackets\\]",
                     // not implemented in the language
                     lexemes = LASSO_IDENT_RE + "|&[lg]t;",
-                    keywords = keywords(LASSO_KEYWORDS),
+                    keywords = LASSO_KEYWORDS,
                     contains = listOf(
                         Mode(
                             className = "meta",

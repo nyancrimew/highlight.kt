@@ -14,8 +14,8 @@ Website = https = //bronevichok.ru/
 internal fun subunit(): Mode {
     var DETAILS = Mode(
         className = "string",
-        begin = "\\[\n(multipart)?",
-        end = "\\]\n"
+        begin = "\\[\\n(multipart)?",
+        end = "\\]\\n"
     )
     var TIME = Mode(
         className = "string",
@@ -31,8 +31,8 @@ internal fun subunit(): Mode {
         variants = listOf(
             Mode(begin = "^(test|testing|success|successful|failure|error|skip|xfail|uxsuccess)(:?)\\s+(test)?"),
             Mode(begin = "^progress(:?)(\\s+)?(pop|push)?"),
-            Mode(begin = "^tags = "),
-            Mode(begin = "^time = ")
+            Mode(begin = "^tags:"),
+            Mode(begin = "^time:")
         )
     )
     return Mode(

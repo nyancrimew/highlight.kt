@@ -33,7 +33,7 @@ internal fun fix(): Mode {
                         begin =
                             """=""",
                         end =
-                            """(listOf(\u2401\u0001))""",
+                            """([\u2401\u0001])""",
                         excludeEnd = true,
                         excludeBegin = true,
                         className = "string"

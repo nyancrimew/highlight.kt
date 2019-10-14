@@ -40,7 +40,7 @@ internal fun moonscript(): Mode {
             """#\{""",
         end =
             """}""",
-        keywords = keywords(KEYWORDS)
+        keywords = KEYWORDS
     )
     var EXPRESSIONS = listOf(
         hljs.inherit(
@@ -101,14 +101,14 @@ internal fun moonscript(): Mode {
                     """\(""",
                 end =
                     """\)""",
-                keywords = keywords(KEYWORDS),
+                keywords = KEYWORDS,
                 contains = listOf(hljs.SELF) + EXPRESSIONS
             )
         )
     )
     return Mode(
         aliases = listOf("moon"),
-        keywords = keywords(KEYWORDS),
+        keywords = KEYWORDS,
         illegal =
             """\/\*""",
         contains = EXPRESSIONS + listOf(
@@ -146,13 +146,13 @@ internal fun moonscript(): Mode {
                 beginKeywords = keywords("class"),
                 end = "${'\$'}",
                 illegal =
-                    """[:="\[\]]\""",
+                    """[:="\[\]]""",
                 contains = listOf(
                     Mode(
                         beginKeywords = keywords("extends"),
                         endsWithParent = true,
                         illegal =
-                            """[:="\[\]]\""",
+                            """[:="\[\]]""",
                         contains = listOf(TITLE)
                     ),
                     TITLE

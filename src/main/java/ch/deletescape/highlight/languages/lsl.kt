@@ -70,7 +70,8 @@ internal fun lsl(): Mode {
                         "/\\*",
                         "\\*/"
                     )
-                )
+                ),
+                relevance = 0
             ),
             LSL_NUMBERS,
             Mode(

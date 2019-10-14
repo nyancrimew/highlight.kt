@@ -50,7 +50,7 @@ internal fun dos(): Mode {
             Mode(
                 className = "function",
                 begin = LABEL.begin,
-                end = "goto = eof",
+                end = "goto:eof",
                 contains = listOf(
                     hljs.inherit(hljs.TITLE_MODE, Mode(begin = "([_a-zA-Z]\\w*\\.)*([_a-zA-Z]\\w*:)?[_a-zA-Z]\\w*")),
                     COMMENT
